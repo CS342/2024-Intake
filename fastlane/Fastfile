@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Spezi Template Application open-source project
+# This source file is part of the Intake based on the Stanford Spezi Template Application project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University
 #
@@ -49,7 +49,7 @@ platform :ios do
       xcargs: "-skipPackagePluginValidation",
       export_options: {
         provisioningProfiles: {
-          "edu.stanford.spezi.templateapplication" => "Spezi Template Application"
+          "edu.stanford.cs342.2024.intake" => "CS342 2024 Intake"
         }
       }
     )
