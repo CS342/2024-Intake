@@ -16,12 +16,12 @@ struct Contacts: View {
     let contacts = [
         Contact(
             name: PersonNameComponents(
-                givenName: "Leland",
-                familyName: "Stanford"
+                givenName: "Oliver O.",
+                familyName: "Aalami"
             ),
-            image: Image(systemName: "figure.wave.circle"), // swiftlint:disable:this accessibility_label_for_image
-            title: "University Founder",
-            description: String(localized: "LELAND_STANFORD_BIO"),
+            image: Image("ProfilePicture"), // swiftlint:disable:this accessibility_label_for_image
+            title: "CLINICAL PROFESSOR, SURGERY - VASCULAR SURGERY",
+            description: String(localized: "OLIVER_AALAMI_BIO"),
             organization: "Stanford University",
             address: {
                 let address = CNMutablePostalAddress()
@@ -29,18 +29,19 @@ struct Contacts: View {
                 address.state = "CA"
                 address.postalCode = "94305"
                 address.city = "Stanford"
-                address.street = "450 Serra Mall"
+                address.street = "300 Pasteur Dr"
+                address.subAdministrativeArea = "Rm H3640 MC 5308"
                 return address
             }(),
             contactOptions: [
-                .call("+1 (650) 723-2300"),
-                .text("+1 (650) 723-2300"),
-                .email(addresses: ["contact@stanford.edu"]),
+                .call("+1 (650) 725-5227"),
+                .text("+1 (650) 725-5227"),
+                .email(addresses: ["aalami@stanford.edu"]),
                 ContactOption(
                     image: Image(systemName: "safari.fill"), // swiftlint:disable:this accessibility_label_for_image
                     title: "Website",
                     action: {
-                        if let url = URL(string: "https://stanford.edu") {
+                        if let url = URL(string: "https://profiles.stanford.edu/oliver-aalami") {
                             UIApplication.shared.open(url)
                         }
                     }
