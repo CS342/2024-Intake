@@ -21,16 +21,16 @@ struct InterestingModules: View {
             content: [
                 SequentialOnboardingView.Content(
                     title: "Log in to Firebase",
-                    description: "Sign in or make an account so we can keep your information secure and accessible"
+                    description: "Sign in or make an account so we can keep your information secure and accessible."
                 ),
                 SequentialOnboardingView.Content(
                     title: "Explain your Chief Complaint",
-                    description: "What brings you in today? Give us an English description, and our AI model will summarize the key points"
+                    description: "What brings you in today? Give us an English description, and our AI model will summarize the key points."
                 ),
                 SequentialOnboardingView.Content(
                     title: "Fill in intake info",
                     description: "With the help of our AI model, quickly fill in prompts to complete electronic intake form with medical history, contact info, etc."
-                ),
+                )
             ],
             actionText: "INTERESTING_MODULES_BUTTON",
             action: {
