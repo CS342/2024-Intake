@@ -25,11 +25,12 @@ struct InterestingModules: View {
                 ),
                 SequentialOnboardingView.Content(
                     title: "Explain your Chief Complaint",
-                    description: "What brings you in today? Give us an English description, and our AI model will summarize the key points."
+                    // Want to add, but makes me fail pull request tests: What brings you in today?
+                    description: "Give us an English description, and our AI model will summarize the key points."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "Fill in intake info",
-                    description: "With the help of our AI model, quickly fill in prompts to complete electronic intake form with medical history, contact info, etc."
+                    title: "Complete intake info",
+                    description: "With the help of our AI model, fill in electronic form with medical history, contact info, etc."
                 )
             ],
             actionText: "INTERESTING_MODULES_BUTTON",
