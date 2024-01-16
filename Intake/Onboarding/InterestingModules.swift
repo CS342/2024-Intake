@@ -16,25 +16,21 @@ struct InterestingModules: View {
     
     var body: some View {
         SequentialOnboardingView(
-            title: "INTERESTING_MODULES_TITLE",
-            subtitle: "INTERESTING_MODULES_SUBTITLE",
+            title: "The Intake Process",
+            subtitle: "Intake works in 3 simple steps...",
             content: [
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA1_TITLE",
-                    description: "INTERESTING_MODULES_AREA1_DESCRIPTION"
+                    title: "Log in to Firebase",
+                    description: "Sign in or make an account so we can keep your information secure and accessible"
                 ),
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA2_TITLE",
-                    description: "INTERESTING_MODULES_AREA2_DESCRIPTION"
+                    title: "Explain your Chief Complaint",
+                    description: "What brings you in today? Give us an English description, and our AI model will summarize the key points"
                 ),
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA3_TITLE",
-                    description: "INTERESTING_MODULES_AREA3_DESCRIPTION"
+                    title: "Fill in intake info",
+                    description: "With the help of our AI model, quickly fill in prompts to complete electronic intake form with medical history, contact info, etc."
                 ),
-                SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA4_TITLE",
-                    description: "INTERESTING_MODULES_AREA4_DESCRIPTION"
-                )
             ],
             actionText: "INTERESTING_MODULES_BUTTON",
             action: {

@@ -16,35 +16,35 @@ struct Welcome: View {
     
     var body: some View {
         OnboardingView(
-            title: "WELCOME_TITLE",
-            subtitle: "WELCOME_SUBTITLE",
+            title: "Welcome to Intake",
+            subtitle: "Electronic medical forms made easy.",
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "apps.iphone")
+                        Image(systemName: "list.bullet.clipboard")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA1_TITLE",
-                    description: "WELCOME_AREA1_DESCRIPTION"
+                    title: "Modernize Patient Experience",
+                    description: "Digitally replicate the traditional patient intake form to ensure up-to-date health records"
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "shippingbox.fill")
+                        Image(systemName: "heart.circle")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA2_TITLE",
-                    description: "WELCOME_AREA2_DESCRIPTION"
+                    title: "Integrate Medical History",
+                    description: "Intake automatically extracts key information from HealthKit and patient input."
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "list.bullet.clipboard.fill")
+                        Image(systemName: "bubble")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA3_TITLE",
-                    description: "WELCOME_AREA3_DESCRIPTION"
+                    title: "Virtual Assistance",
+                    description: "Our helpful AI survey assistant can answer clarifying questions."
                 )
             ],
-            actionText: "WELCOME_BUTTON",
+            actionText: "Get Started",
             action: {
                 onboardingNavigationPath.nextStep()
             }
