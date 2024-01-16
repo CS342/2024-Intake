@@ -20,7 +20,6 @@ struct OnboardingFlow: View {
 
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
-    @State private var localNotificationAuthorization = false
     
     
     private var healthKitAuthorization: Bool {
@@ -50,13 +49,7 @@ struct OnboardingFlow: View {
                 HealthKitPermissions()
             }
             
-            if !localNotificationAuthorization {
-                NotificationPermissions()
-            }
         }
-            .task {
-                localNotificationAuthorization = await scheduler.localNotificationAuthorization
-            }
             .interactiveDismissDisabled(!completedOnboardingFlow)
     }
 }
