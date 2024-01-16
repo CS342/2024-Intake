@@ -21,7 +21,6 @@ struct OnboardingFlow: View {
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
     
-    
     private var healthKitAuthorization: Bool {
         // As HealthKit not available in preview simulator
         if ProcessInfo.processInfo.isPreviewSimulator {
@@ -48,7 +47,6 @@ struct OnboardingFlow: View {
             if HKHealthStore.isHealthDataAvailable() && !healthKitAuthorization {
                 HealthKitPermissions()
             }
-            
         }
             .interactiveDismissDisabled(!completedOnboardingFlow)
     }
