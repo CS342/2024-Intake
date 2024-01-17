@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10521599.svg)](https://doi.org/10.5281/zenodo.10521599)
 
 This repository contains the CS342 2024 Intake application.
-The CS342 2024 Intake is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
+The CS342 2024 Intake application is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
 
 > [!NOTE]  
 > Do you want to try out the CS342 2024 Intake application? You can download it to your iOS device using [TestFlight](https://testflight.apple.com/join/Yp0Y24xT)!
