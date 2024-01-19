@@ -16,7 +16,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You may login to your existing account. Or create a new one if you don't have one already."
+            "value" : "You may login to your existing account. Or create a new one if you don't have one already. You will have to enter your details of name, date of birth, and your preferred email."
           }
         }
       }
@@ -26,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You are already logged in with the account shown below. Continue or change your account by logging out."
+            "value" : "You are already logged in with the account shown below. Continue or change your account by logging out. You can also update your details of name, date of birth, and your preferred email."
           }
         }
       }
