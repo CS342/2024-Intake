@@ -63,6 +63,9 @@
         }
       }
     },
+    "Complete intake info" : {
+
+    },
     "COMPLETED_TASK_LABEL %@" : {
       "localizations" : {
         "en" : {
@@ -134,6 +137,21 @@
         }
       }
     },
+    "Digitally replicate the traditional patient intake form to ensure up-to-date health records" : {
+
+    },
+    "Electronic medical forms made easy." : {
+
+    },
+    "Explain your Chief Complaint" : {
+
+    },
+    "Get Started" : {
+
+    },
+    "Give us an English description, and our AI model will summarize the key points." : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -175,7 +193,17 @@
         }
       }
     },
+    "Intake automatically extracts key information from HealthKit and patient input." : {
+
+    },
+    "Intake works in 3 simple steps..." : {
+
+    },
+    "Integrate Medical History" : {
+
+    },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -186,6 +214,7 @@
       }
     },
     "INTERESTING_MODULES_AREA1_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -196,6 +225,7 @@
       }
     },
     "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -206,6 +236,7 @@
       }
     },
     "INTERESTING_MODULES_AREA2_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -216,6 +247,7 @@
       }
     },
     "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -226,6 +258,7 @@
       }
     },
     "INTERESTING_MODULES_AREA3_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -236,6 +269,7 @@
       }
     },
     "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -246,6 +280,7 @@
       }
     },
     "INTERESTING_MODULES_AREA4_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -266,6 +301,7 @@
       }
     },
     "INTERESTING_MODULES_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -277,6 +313,7 @@
     },
     "INTERESTING_MODULES_TITLE" : {
       "comment" : "MARK: Interesting Modules",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -306,6 +343,9 @@
         }
       }
     },
+    "Log in to Firebase" : {
+
+    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
       "localizations" : {
@@ -316,6 +356,9 @@
           }
         }
       }
+    },
+    "Modernize Patient Experience" : {
+
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -358,6 +401,9 @@
         }
       }
     },
+    "Our helpful AI survey assistant can answer clarifying questions." : {
+
+    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -398,6 +444,9 @@
           }
         }
       }
+    },
+    "Sign in or make an account so we can keep your information secure and accessible." : {
+
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
@@ -449,7 +498,17 @@
         }
       }
     },
+    "The Intake Process" : {
+
+    },
+    "Virtual Assistance" : {
+
+    },
+    "Welcome to Intake" : {
+
+    },
     "WELCOME_AREA1_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -460,6 +519,7 @@
       }
     },
     "WELCOME_AREA1_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -470,6 +530,7 @@
       }
     },
     "WELCOME_AREA2_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -480,6 +541,7 @@
       }
     },
     "WELCOME_AREA2_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -490,6 +552,7 @@
       }
     },
     "WELCOME_AREA3_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -500,6 +563,7 @@
       }
     },
     "WELCOME_AREA3_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -510,6 +574,7 @@
       }
     },
     "WELCOME_BUTTON" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -520,6 +585,7 @@
       }
     },
     "WELCOME_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -531,6 +597,7 @@
     },
     "WELCOME_TITLE" : {
       "comment" : "MARK: Welcome",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -539,6 +606,9 @@
           }
         }
       }
+    },
+    "With the help of our AI model, fill in electronic form with medical history, contact info, etc." : {
+
     }
   },
   "version" : "1.0"
