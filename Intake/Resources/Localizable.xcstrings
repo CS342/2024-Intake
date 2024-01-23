@@ -16,7 +16,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You may login to your existing account. Or create a new one if you don't have one already. You will have to enter your details of name, date of birth, and your preferred email."
+            "value" : "You may login to your existing account. Or create a new one if you don't have one already. You will have to connect a name and email to your account. You may enter additional details such as your date of birth."
           }
         }
       }
