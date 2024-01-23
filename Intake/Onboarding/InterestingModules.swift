@@ -16,24 +16,32 @@ struct InterestingModules: View {
     
     var body: some View {
         SequentialOnboardingView(
-            title: "INTERESTING_MODULES_TITLE",
-            subtitle: "INTERESTING_MODULES_SUBTITLE",
+            title: "Medical Intake Form",
+            subtitle: "Together we will summarize...",
             content: [
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA1_TITLE",
-                    description: "INTERESTING_MODULES_AREA1_DESCRIPTION"
+                    title: "Main reason(s) for visit",
+                    description: "What brings you in today? Identify your primary concern(s)."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA2_TITLE",
-                    description: "INTERESTING_MODULES_AREA2_DESCRIPTION"
+                    title: "Medical History",
+                    description: "Summarize your medical history."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA3_TITLE",
-                    description: "INTERESTING_MODULES_AREA3_DESCRIPTION"
+                    title: "Surgical History",
+                    description: "Summarize your surgical history."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "INTERESTING_MODULES_AREA4_TITLE",
-                    description: "INTERESTING_MODULES_AREA4_DESCRIPTION"
+                    title: "Medications",
+                    description: "List your current medications."
+                ),
+                SequentialOnboardingView.Content(
+                    title: "Allergies",
+                    description: "List all your allgeries."
+                ),
+                SequentialOnboardingView.Content(
+                    title: "Review of Systems",
+                    description: "Other important questions."
                 )
             ],
             actionText: "INTERESTING_MODULES_BUTTON",
