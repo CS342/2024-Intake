@@ -287,6 +287,7 @@
       }
     },
     "LELAND_STANFORD_BIO" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -313,6 +314,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mock Web Service"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Notifications"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spezi Scheduler Notifications."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_TITLE" : {
+      "comment" : "MARK: Notifications",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "OLIVER_AALAMI_BIO" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Oliver O. Aalami is a Clinical Professor of Surgery at Stanford University and a vascular surgeon based in Palo Alto, California. He is affiliated with Stanford Health Care and the VA Palo Alto Health Care System.\nDr. Aalami is also the Director of Biodesign for Digital Health at the Stanford Byers Center for Biodesign. He co-founded Spezi (formerly CardinalKit) and is passionate about clinically validating smartphone and smartwatch sensors in patients with cardiovascular disease."
           }
         }
       }
