@@ -52,6 +52,12 @@
         }
       }
     },
+    "Allergies" : {
+
+    },
+    "Auto-fill Intake Form" : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -62,9 +68,6 @@
           }
         }
       }
-    },
-    "Complete intake info" : {
-
     },
     "COMPLETED_TASK_LABEL %@" : {
       "localizations" : {
@@ -137,19 +140,10 @@
         }
       }
     },
-    "Digitally replicate the traditional patient intake form to ensure up-to-date health records" : {
-
-    },
-    "Electronic medical forms made easy." : {
-
-    },
-    "Explain your Chief Complaint" : {
+    "Download your medical records from your health system." : {
 
     },
     "Get Started" : {
-
-    },
-    "Give us an English description, and our AI model will summarize the key points." : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -193,13 +187,7 @@
         }
       }
     },
-    "Intake automatically extracts key information from HealthKit and patient input." : {
-
-    },
-    "Intake works in 3 simple steps..." : {
-
-    },
-    "Integrate Medical History" : {
+    "Integrate your Records" : {
 
     },
     "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
@@ -343,7 +331,22 @@
         }
       }
     },
-    "Log in to Firebase" : {
+    "List all your allgeries." : {
+
+    },
+    "List your current medications." : {
+
+    },
+    "Main reason(s) for visit" : {
+
+    },
+    "Medical History" : {
+
+    },
+    "Medical Intake Form" : {
+
+    },
+    "Medications" : {
 
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
@@ -356,9 +359,6 @@
           }
         }
       }
-    },
-    "Modernize Patient Experience" : {
-
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "localizations" : {
@@ -401,7 +401,7 @@
         }
       }
     },
-    "Our helpful AI survey assistant can answer clarifying questions." : {
+    "Other important questions." : {
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
@@ -424,6 +424,12 @@
         }
       }
     },
+    "Review of Systems" : {
+
+    },
+    "Review summary of your medical history." : {
+
+    },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
         "en" : {
@@ -445,7 +451,19 @@
         }
       }
     },
-    "Sign in or make an account so we can keep your information secure and accessible." : {
+    "Share with provider of your choice." : {
+
+    },
+    "Submit your Form" : {
+
+    },
+    "Summarize your medical history." : {
+
+    },
+    "Summarize your surgical history." : {
+
+    },
+    "Surgical History" : {
 
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
@@ -498,13 +516,13 @@
         }
       }
     },
-    "The Intake Process" : {
+    "This application will help autocomplete your medical intake form." : {
 
     },
-    "Virtual Assistance" : {
+    "Together we will summarize..." : {
 
     },
-    "Welcome to Intake" : {
+    "Welcome to ReForm" : {
 
     },
     "WELCOME_AREA1_DESCRIPTION" : {
@@ -607,7 +625,7 @@
         }
       }
     },
-    "With the help of our AI model, fill in electronic form with medical history, contact info, etc." : {
+    "What brings you in today? Identify your primary concern(s)." : {
 
     }
   },

@@ -16,21 +16,32 @@ struct InterestingModules: View {
     
     var body: some View {
         SequentialOnboardingView(
-            title: "The Intake Process",
-            subtitle: "Intake works in 3 simple steps...",
+            title: "Medical Intake Form",
+            subtitle: "Together we will summarize...",
             content: [
                 SequentialOnboardingView.Content(
-                    title: "Log in to Firebase",
-                    description: "Sign in or make an account so we can keep your information secure and accessible."
+                    title: "Main reason(s) for visit",
+                    description: "What brings you in today? Identify your primary concern(s)."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "Explain your Chief Complaint",
-                    // Want to add, but makes me fail pull request tests: What brings you in today?
-                    description: "Give us an English description, and our AI model will summarize the key points."
+                    title: "Medical History",
+                    description: "Summarize your medical history."
                 ),
                 SequentialOnboardingView.Content(
-                    title: "Complete intake info",
-                    description: "With the help of our AI model, fill in electronic form with medical history, contact info, etc."
+                    title: "Surgical History",
+                    description: "Summarize your surgical history."
+                ),
+                SequentialOnboardingView.Content(
+                    title: "Medications",
+                    description: "List your current medications."
+                ),
+                SequentialOnboardingView.Content(
+                    title: "Allergies",
+                    description: "List all your allgeries."
+                ),
+                SequentialOnboardingView.Content(
+                    title: "Review of Systems",
+                    description: "Other important questions."
                 )
             ],
             actionText: "INTERESTING_MODULES_BUTTON",

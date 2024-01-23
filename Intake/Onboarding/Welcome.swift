@@ -16,32 +16,32 @@ struct Welcome: View {
     
     var body: some View {
         OnboardingView(
-            title: "Welcome to Intake",
-            subtitle: "Electronic medical forms made easy.",
+            title: "Welcome to ReForm",
+            subtitle: "This application will help autocomplete your medical intake form.",
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "list.bullet.clipboard")
+                        Image(systemName: "folder.fill.badge.plus")
                             .accessibilityHidden(true)
                     },
-                    title: "Modernize Patient Experience",
-                    description: "Digitally replicate the traditional patient intake form to ensure up-to-date health records"
+                    title: "Integrate your Records",
+                    description: "Download your medical records from your health system."
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "heart.circle")
+                        Image(systemName: "list.bullet.rectangle.fill")
                             .accessibilityHidden(true)
                     },
-                    title: "Integrate Medical History",
-                    description: "Intake automatically extracts key information from HealthKit and patient input."
+                    title: "Auto-fill Intake Form",
+                    description: "Review summary of your medical history."
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "bubble")
+                        Image(systemName: "square.and.arrow.up.fill")
                             .accessibilityHidden(true)
                     },
-                    title: "Virtual Assistance",
-                    description: "Our helpful AI survey assistant can answer clarifying questions."
+                    title: "Submit your Form",
+                    description: "Share with provider of your choice."
                 )
             ],
             actionText: "Get Started",
