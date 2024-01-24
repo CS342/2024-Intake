@@ -16,35 +16,35 @@ struct Welcome: View {
     
     var body: some View {
         OnboardingView(
-            title: "WELCOME_TITLE",
-            subtitle: "WELCOME_SUBTITLE",
+            title: "Welcome to ReForm",
+            subtitle: "This application will help autocomplete your medical intake form.",
             areas: [
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "apps.iphone")
+                        Image(systemName: "folder.fill.badge.plus")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA1_TITLE",
-                    description: "WELCOME_AREA1_DESCRIPTION"
+                    title: "Integrate your Records",
+                    description: "Download your medical records from your health system."
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "shippingbox.fill")
+                        Image(systemName: "list.bullet.rectangle.fill")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA2_TITLE",
-                    description: "WELCOME_AREA2_DESCRIPTION"
+                    title: "Auto-fill Intake Form",
+                    description: "Review summary of your medical history."
                 ),
                 OnboardingInformationView.Content(
                     icon: {
-                        Image(systemName: "list.bullet.clipboard.fill")
+                        Image(systemName: "square.and.arrow.up.fill")
                             .accessibilityHidden(true)
                     },
-                    title: "WELCOME_AREA3_TITLE",
-                    description: "WELCOME_AREA3_DESCRIPTION"
+                    title: "Submit your Form",
+                    description: "Share with provider of your choice."
                 )
             ],
-            actionText: "WELCOME_BUTTON",
+            actionText: "Get Started",
             action: {
                 onboardingNavigationPath.nextStep()
             }

@@ -30,15 +30,15 @@ extension IntakeScheduler {
         }
 
         return Task(
-            title: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE"),
-            description: String(localized: "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION"),
+            title: String(localized: "QUESTIONNAIRE_TITLE"),
+            description: String(localized: "QUESTIONNAIRE_DESCRIPTION"),
             schedule: Schedule(
                 start: Calendar.current.startOfDay(for: Date()),
                 repetition: .matching(dateComponents),
                 end: .numberOfEvents(365)
             ),
             notifications: true,
-            context: IntakeTaskContext.questionnaire(Bundle.main.questionnaire(withName: "SocialSupportQuestionnaire"))
+            context: IntakeTaskContext.questionnaire(Bundle.main.questionnaire(withName: "Questionnaire"))
         )
     }
 

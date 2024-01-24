@@ -52,6 +52,12 @@
         }
       }
     },
+    "Allergies" : {
+
+    },
+    "Auto-fill Intake Form" : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -134,6 +140,12 @@
         }
       }
     },
+    "Download your medical records from your health system." : {
+
+    },
+    "Get Started" : {
+
+    },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
       "localizations" : {
         "en" : {
@@ -149,7 +161,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This onboarding step allows you to customize the onboarding flow to explain how the application uses the HealhtKit data and allows a user to cusomize the selection."
+            "value" : "Intake will use your different types of your health records in order to most effectively aid you with your intake form."
           }
         }
       }
@@ -159,7 +171,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spezi can access data from HealthKit using the HealthKitDataSource module."
+            "value" : "Intake would like to access to your health records to fill out your intake form."
           }
         }
       }
@@ -175,85 +187,8 @@
         }
       }
     },
-    "INTERESTING_MODULES_AREA1_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The onboarding module allows you to build an onboarding flow like this one."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA1_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Onboarding"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA2_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The application uses HL7 FHIR to provide a common standard to encode data gathered by the application."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA2_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HL7 FHIR"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The contact module allows you to display contact information in your application."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA3_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contact"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The HealthKit data source module allows you to fetch data from HealthKit and e.g. transform it to FHIR resources."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_AREA4_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "HealthKit Data Source"
-          }
-        }
-      }
+    "Integrate your Records" : {
+
     },
     "INTERESTING_MODULES_BUTTON" : {
       "localizations" : {
@@ -261,37 +196,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Next"
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_SUBTITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Here are a few Spezi modules that are interesting to know about ..."
-          }
-        }
-      }
-    },
-    "INTERESTING_MODULES_TITLE" : {
-      "comment" : "MARK: Interesting Modules",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Interesting Modules"
-          }
-        }
-      }
-    },
-    "LELAND_STANFORD_BIO" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Amasa Leland Stanford (March 9, 1824 – June 21, 1893) was an American industrialist and politician. [...] He and his wife Jane were also the founders of Stanford University, which they named after their late son.\n[https://en.wikipedia.org/wiki/Leland_Stanford]"
           }
         }
       }
@@ -305,6 +209,24 @@
           }
         }
       }
+    },
+    "List all your allgeries." : {
+
+    },
+    "List your current medications." : {
+
+    },
+    "Main reason(s) for visit" : {
+
+    },
+    "Medical History" : {
+
+    },
+    "Medical Intake Form" : {
+
+    },
+    "Medications" : {
+
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
@@ -358,12 +280,45 @@
         }
       }
     },
+    "Other important questions." : {
+    
+    },
+    "OLIVER_AALAMI_BIO" : {
+    "localizations" : {
+      "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Oliver O. Aalami is a Clinical Professor of Surgery at Stanford University and a vascular surgeon based in Palo Alto, California. He is affiliated with Stanford Health Care and the VA Palo Alto Health Care System.\nDr. Aalami is also the Director of Biodesign for Digital Health at the Stanford Byers Center for Biodesign. He co-founded Spezi (formerly CardinalKit) and is passionate about clinically validating smartphone and smartwatch sensors in patients with cardiovascular disease."
+          }
+        }
+      }
+    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "This project is licensed under the MIT License."
+          }
+        }
+      }
+    },
+    "QUESTIONNAIRE_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please fill out the Questionnaire every day."
+          }
+        }
+      }
+    },
+    "QUESTIONNAIRE_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questionnaire"
           }
         }
       }
@@ -377,6 +332,12 @@
           }
         }
       }
+    },
+    "Review of Systems" : {
+
+    },
+    "Review summary of your medical history." : {
+
     },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
@@ -398,6 +359,21 @@
           }
         }
       }
+    },
+    "Share with provider of your choice." : {
+
+    },
+    "Submit your Form" : {
+
+    },
+    "Summarize your medical history." : {
+
+    },
+    "Summarize your surgical history." : {
+
+    },
+    "Surgical History" : {
+
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
       "localizations" : {
@@ -430,6 +406,7 @@
       }
     },
     "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -440,6 +417,7 @@
       }
     },
     "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -449,96 +427,17 @@
         }
       }
     },
-    "WELCOME_AREA1_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The Spezi Framework builds the foundation of this application."
-          }
-        }
-      }
+    "This application will help autocomplete your medical intake form." : {
+
     },
-    "WELCOME_AREA1_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The Spezi Framework"
-          }
-        }
-      }
+    "Together we will summarize..." : {
+
     },
-    "WELCOME_AREA2_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi uses the Swift Package Manager to import it as a dependency."
-          }
-        }
-      }
+    "Welcome to ReForm" : {
+
     },
-    "WELCOME_AREA2_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Swift Package Manager"
-          }
-        }
-      }
-    },
-    "WELCOME_AREA3_DESCRIPTION" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi offers several modules including HealthKit integration, questionnaires, and more ..."
-          }
-        }
-      }
-    },
-    "WELCOME_AREA3_TITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi Modules"
-          }
-        }
-      }
-    },
-    "WELCOME_BUTTON" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Learn More"
-          }
-        }
-      }
-    },
-    "WELCOME_SUBTITLE" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This application demonstrates several Spezi features & modules."
-          }
-        }
-      }
-    },
-    "WELCOME_TITLE" : {
-      "comment" : "MARK: Welcome",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spezi\nIntake"
-          }
-        }
-      }
+    "What brings you in today? Identify your primary concern(s)." : {
+
     }
   },
   "version" : "1.0"
