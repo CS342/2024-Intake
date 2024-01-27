@@ -12,13 +12,13 @@ import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziHealthKit
+import SpeziLLM
+import SpeziLLMLocal
+import SpeziLLMOpenAI
 import SpeziMockWebService
 import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
-import SpeziLLM
-import SpeziLLMLocal
-import SpeziLLMOpenAI
 
 
 class IntakeDelegate: SpeziAppDelegate {
