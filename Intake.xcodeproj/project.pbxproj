@@ -74,6 +74,14 @@
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
+		F42AB1D22B6379B5002E13A6 /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D12B6379B5002E13A6 /* SpeziLLM */; };
+		F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */; };
+		F42AB1D62B6379B5002E13A6 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D52B6379B5002E13A6 /* SpeziLLMLocalDownload */; };
+		F42AB1D82B6379B5002E13A6 /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D72B6379B5002E13A6 /* SpeziLLMOpenAI */; };
+		F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */; };
+		F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */; };
+		F42AB1E32B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */; };
+		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +150,10 @@
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
 		ACAA47802B571C7F0032D21F /* Questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Questionnaire.json; sourceTree = "<group>"; };
+		F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOnboardingView.swift; sourceTree = "<group>"; };
+		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
+		F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMLocalDownloadOnboarding.swift; sourceTree = "<group>"; };
+		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,16 +161,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42AB1D22B6379B5002E13A6 /* SpeziLLM in Frameworks */,
 				9733CFC62A8066DE001B7ABC /* SpeziOnboarding in Frameworks */,
 				2FE5DC6429EDD883004B9AB4 /* SpeziAccount in Frameworks */,
+				F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
+				F42AB1D82B6379B5002E13A6 /* SpeziLLMOpenAI in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
 				2FE5DC8429EDD934004B9AB4 /* SpeziQuestionnaire in Frameworks */,
 				2FB099B32A875DF100B20952 /* FirebaseFirestoreSwift in Frameworks */,
 				5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */,
 				2FB099B12A875DF100B20952 /* FirebaseFirestore in Frameworks */,
 				A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */,
+				F42AB1D62B6379B5002E13A6 /* SpeziLLMLocalDownload in Frameworks */,
 				2FB099B62A875E2B00B20952 /* HealthKitOnFHIR in Frameworks */,
 				2FE5DC8A29EDD972004B9AB4 /* SpeziLocalStorage in Frameworks */,
 				2FE5DC8C29EDD972004B9AB4 /* SpeziSecureStorage in Frameworks */,
@@ -240,7 +256,6 @@
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
-				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
 				ACAA47802B571C7F0032D21F /* Questionnaire.json */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
 				637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */,
@@ -322,6 +337,7 @@
 				2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */,
 				2F4E23822989D51F0013F3D9 /* IntakeTestingSetup.swift */,
 				2FC975A72978F11A00BA99FE /* Home.swift */,
+				F42AB1DA2B637C5F002E13A6 /* ChiefComplaint */,
 				A9720E412ABB68B300872D23 /* Account */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				2FE5DC3B29EDD7D0004B9AB4 /* Schedule */,
@@ -369,6 +385,33 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		F42AB1DA2B637C5F002E13A6 /* ChiefComplaint */ = {
+			isa = PBXGroup;
+			children = (
+				F42AB1E02B637CA4002E13A6 /* Local */,
+				F42AB1E12B637CAC002E13A6 /* OpenAI */,
+				F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */,
+				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
+			);
+			path = ChiefComplaint;
+			sourceTree = "<group>";
+		};
+		F42AB1E02B637CA4002E13A6 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		F42AB1E12B637CAC002E13A6 /* OpenAI */ = {
+			isa = PBXGroup;
+			children = (
+				F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */,
+			);
+			path = OpenAI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -411,6 +454,10 @@
 				9739A0C52AD7B5730084BEA5 /* FirebaseStorage */,
 				97D73D692AD860AD00B47FA0 /* SpeziFirebaseStorage */,
 				A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */,
+				F42AB1D12B6379B5002E13A6 /* SpeziLLM */,
+				F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */,
+				F42AB1D52B6379B5002E13A6 /* SpeziLLMLocalDownload */,
+				F42AB1D72B6379B5002E13A6 /* SpeziLLMOpenAI */,
 			);
 			productName = Intake;
 			productReference = 653A254D283387FE005D4D48 /* Intake.app */;
@@ -505,6 +552,7 @@
 				2FE750CA2A87240100723EAE /* XCRemoteSwiftPackageReference "SpeziMockWebService" */,
 				2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */,
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
+				F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -523,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
-				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
 				637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
@@ -579,6 +626,7 @@
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2F4FC8D729EE69D300BFFE26 /* MockUpload.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
+				F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
@@ -586,12 +634,14 @@
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
+				F42AB1E32B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */,
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
@@ -602,6 +652,7 @@
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
+				F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* Intake.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
@@ -751,6 +802,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-Intake_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -956,6 +1008,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-Intake_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1005,6 +1058,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				"SWIFT_ELicenseRef-Intake_LOC_STRINGS" = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_INTEROP_MODE = objcxx;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1262,6 +1316,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1393,6 +1455,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE5DC7329EDD8E6004B9AB4 /* XCRemoteSwiftPackageReference "SpeziFirebase" */;
 			productName = SpeziFirebaseAccountStorage;
+		};
+		F42AB1D12B6379B5002E13A6 /* SpeziLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLM;
+		};
+		F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocal;
+		};
+		F42AB1D52B6379B5002E13A6 /* SpeziLLMLocalDownload */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMLocalDownload;
+		};
+		F42AB1D72B6379B5002E13A6 /* SpeziLLMOpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */;
+			productName = SpeziLLMOpenAI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,6 +16,9 @@ import SpeziMockWebService
 import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
+import SpeziLLM
+import SpeziLLMLocal
+import SpeziLLMOpenAI
 
 
 class IntakeDelegate: SpeziAppDelegate {
@@ -30,7 +33,6 @@ class IntakeDelegate: SpeziAppDelegate {
                     .collects(\.genderIdentity),
                     .collects(\.dateOfBirth)
                 ])
-
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
                         authenticationMethods: [.emailAndPassword, .signInWithApple],
@@ -42,17 +44,21 @@ class IntakeDelegate: SpeziAppDelegate {
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
-                } else {
-                    FirebaseStorageConfiguration()
-                }
+                } else { FirebaseStorageConfiguration() }
             } else {
                 MockWebService()
             }
-
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }
-            
+            LLMRunner(
+                runnerConfig: .init(
+                    taskPriority: .medium
+                )
+            ) {
+                LLMLocalRunnerSetupTask()
+                LLMOpenAIRunnerSetupTask()
+            }
             IntakeScheduler()
             OnboardingDataSource()
         }
