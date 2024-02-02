@@ -77,8 +77,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/gtm-session-fetcher.git",
       "state" : {
-        "revision" : "115f75e43851774934d695449a4836123c3246e1",
-        "version" : "3.2.0"
+        "revision" : "76135c9f4e1ac85459d5fec61b6f76ac47ab3a4c",
+        "version" : "3.3.1"
       }
     },
     {
@@ -185,8 +185,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziChat",
       "state" : {
-        "revision" : "9d45c10bcf859c98f2998ecd4f6a80f31894fe2c",
-        "version" : "0.1.4"
+        "revision" : "ea5e21b4f42d99a5549dd7a7033e2a3efeb5fd36",
+        "version" : "0.1.5"
       }
     },
     {
@@ -293,8 +293,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziViews.git",
       "state" : {
-        "revision" : "0137e69d156bf4001a8d6bf5661c9a37b2bbd0aa",
-        "version" : "1.0.0"
+        "revision" : "138d3326ca348761ebb3fe5d275dd5c89a1cc51d",
+        "version" : "1.1.1"
       }
     },
     {
