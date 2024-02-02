@@ -14,6 +14,7 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case schedule
+        case form
         case contact
         case mockUpload
     }
@@ -46,6 +47,11 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
+            LLMInteraction(presentingAccount: $presentingAccount, responseText: "")
+                .tag(Tabs.form)
+                .tabItem {
+                    Label("Create Form", systemImage: "captions.bubble.fill")
+                }
         }
             .sheet(isPresented: $presentingAccount) {
                 AccountSheet()
