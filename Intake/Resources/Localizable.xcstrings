@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "2. Please list current conditions you have" : {
+
+    },
+    "5. What are your current allergies?" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -52,6 +58,9 @@
         }
       }
     },
+    "Add Field" : {
+
+    },
     "Allergies" : {
 
     },
@@ -78,6 +87,9 @@
           }
         }
       }
+    },
+    "Condition" : {
+
     },
     "CONSENT_LOADING_ERROR" : {
       "localizations" : {
@@ -141,6 +153,9 @@
       }
     },
     "Download your medical records from your health system." : {
+
+    },
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "Get Started" : {
@@ -228,6 +243,12 @@
     "Medications" : {
 
     },
+    "MOCK_ALLERGY_RECORDS_TITLE" : {
+
+    },
+    "MOCK_MEDICAL_HISTORY_TITLE" : {
+
+    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
       "localizations" : {
@@ -240,6 +261,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -250,6 +272,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -260,6 +283,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -271,6 +295,7 @@
     },
     "NOTIFICATION_PERMISSIONS_TITLE" : {
       "comment" : "MARK: Notifications",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -280,18 +305,18 @@
         }
       }
     },
-    "Other important questions." : {
-    
-    },
     "OLIVER_AALAMI_BIO" : {
-    "localizations" : {
-      "en" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dr. Oliver O. Aalami is a Clinical Professor of Surgery at Stanford University and a vascular surgeon based in Palo Alto, California. He is affiliated with Stanford Health Care and the VA Palo Alto Health Care System.\nDr. Aalami is also the Director of Biodesign for Digital Health at the Stanford Byers Center for Biodesign. He co-founded Spezi (formerly CardinalKit) and is passionate about clinically validating smartphone and smartwatch sensors in patients with cardiovascular disease."
           }
         }
       }
+    },
+    "Other important questions." : {
+
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
@@ -323,6 +348,9 @@
         }
       }
     },
+    "Reactions" : {
+
+    },
     "Repository Link" : {
       "localizations" : {
         "en" : {
@@ -332,6 +360,12 @@
           }
         }
       }
+    },
+    "Resource Selection" : {
+
+    },
+    "Resource Settings" : {
+
     },
     "Review of Systems" : {
 
@@ -359,6 +393,12 @@
           }
         }
       }
+    },
+    "SETTINGS" : {
+
+    },
+    "SETTINGS_TITLE" : {
+
     },
     "Share with provider of your choice." : {
 
@@ -431,6 +471,9 @@
 
     },
     "Together we will summarize..." : {
+
+    },
+    "Use HealthKit Resources" : {
 
     },
     "Welcome to ReForm" : {
