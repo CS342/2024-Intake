@@ -18,23 +18,40 @@ import SwiftUI
 
 struct LLMInteraction: View {
     @Binding var presentingAccount: Bool
+    @Environment(LLMRunner.self) var runner: LLMRunner
     
+    @State var responseText: String
     @State var showOnboarding = true
     @State var model: LLM = LLMOpenAI(
         parameters: .init(
-            modelType: .gpt4_1106_preview,
+            modelType: .gpt3_5Turbo,
             systemPrompt: """
                 You are acting as an intake person at a clinic and need to work with\
                 the patient to help clarify their chief complaint into a concise,\
                 specific complaint which includes elements of laterality if\
                 appropriate, as well as severity and duration.\
                 
-                Please begin with a kind welcome message: "Welcome! What is the main reason for your visit?"\
                 Please use everyday layman terms and avoid using complex medical terminology.\
                 Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
             """
         )
     )
+
+    func executePrompt(prompt: String) async {
+        // Execute the query on the runner, returning a stream of outputs
+        let stream = try? await runner(with: model).generate(prompt: prompt)
+        
+        if let unwrappedStream = stream {
+            do {
+                for try await token in unwrappedStream {
+                    responseText.append(token)
+                }
+            } catch {
+                // Handle any errors that occurred during the asynchronous operation
+                print("Error: \(error)")
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -56,10 +73,9 @@ struct LLMInteraction: View {
 
 
 #Preview {
-    LLMInteraction(presentingAccount: .constant(true))
+    LLMInteraction(presentingAccount: .constant(true), responseText: "Test")
         .previewWith {
             LLMRunner {
-                LLMLocalRunnerSetupTask()
                 LLMOpenAIRunnerSetupTask()
             }
         }

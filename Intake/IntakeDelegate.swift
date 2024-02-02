@@ -56,7 +56,6 @@ class IntakeDelegate: SpeziAppDelegate {
                     taskPriority: .medium
                 )
             ) {
-                LLMLocalRunnerSetupTask()
                 LLMOpenAIRunnerSetupTask()
             }
             IntakeScheduler()

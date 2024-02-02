@@ -80,7 +80,6 @@
 		F42AB1D82B6379B5002E13A6 /* SpeziLLMOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D72B6379B5002E13A6 /* SpeziLLMOpenAI */; };
 		F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */; };
 		F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */; };
-		F42AB1E32B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */; };
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 /* End PBXBuildFile section */
 
@@ -152,7 +151,6 @@
 		ACAA47802B571C7F0032D21F /* Questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Questionnaire.json; sourceTree = "<group>"; };
 		F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOnboardingView.swift; sourceTree = "<group>"; };
 		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
-		F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMLocalDownloadOnboarding.swift; sourceTree = "<group>"; };
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -388,20 +386,11 @@
 		F42AB1DA2B637C5F002E13A6 /* ChiefComplaint */ = {
 			isa = PBXGroup;
 			children = (
-				F42AB1E02B637CA4002E13A6 /* Local */,
 				F42AB1E12B637CAC002E13A6 /* OpenAI */,
 				F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */,
 				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
 			);
 			path = ChiefComplaint;
-			sourceTree = "<group>";
-		};
-		F42AB1E02B637CA4002E13A6 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				F42AB1E22B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift */,
-			);
-			path = Local;
 			sourceTree = "<group>";
 		};
 		F42AB1E12B637CAC002E13A6 /* OpenAI */ = {
@@ -634,7 +623,6 @@
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
-				F42AB1E32B6383DD002E13A6 /* LLMLocalDownloadOnboarding.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
