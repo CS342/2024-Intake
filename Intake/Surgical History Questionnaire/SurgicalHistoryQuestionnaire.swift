@@ -1,0 +1,35 @@
+//
+//  SurgicalHistoryQuestionnaire.swift
+//  Intake
+//
+//  Created by Nina Boord on 2/1/24.
+//
+
+//
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+
+import Foundation
+import SpeziQuestionnaire
+
+
+extension Foundation.Bundle {
+    func surgicalQuestionnaire(withName name: String) -> Questionnaire {
+        guard let resourceURL = self.url(forResource: name, withExtension: "json") else {
+            fatalError("Could not find the questionnaire \"\(name).json\" in the bundle.")
+        }
+        
+        do {
+            let resourceData = try Data(contentsOf: resourceURL)
+            return try JSONDecoder().decode(Questionnaire.self, from: resourceData)
+        } catch {
+            fatalError("Could not decode the FHIR questionnaire named \"\(name).json\": \(error)")
+        }
+    }
+}
+
+let surgicalQuestionnaire = Bundle.main.questionnaire(withName: "surgicalquestionnaire")

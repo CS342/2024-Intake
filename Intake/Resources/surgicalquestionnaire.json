@@ -1,0 +1,235 @@
+{
+  "title": "Surgical History",
+  "resourceType": "Questionnaire",
+  "language": "en-US",
+  "status": "draft",
+  "publisher": "Stanford Biodesign Digital Health",
+  "meta": {
+    "profile": [
+      "http://spezi.health/fhir/StructureDefinition/sdf-Questionnaire"
+    ],
+    "tag": [
+      {
+        "system": "urn:ietf:bcp:47",
+        "code": "en-US",
+        "display": "English"
+      }
+    ]
+  },
+  "useContext": [
+    {
+      "code": {
+        "system": "http://hl7.org/fhir/ValueSet/usage-context-type",
+        "code": "focus",
+        "display": "Clinical Focus"
+      },
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "urn:oid:2.16.578.1.12.4.1.1.8655",
+            "display": "Surgical History"
+          }
+        ]
+      }
+    }
+  ],
+  "contact": [
+    {
+      "name": "http://spezi.health"
+    }
+  ],
+  "subjectType": [
+    "Patient"
+  ],
+  "url": "http://spezi.health/fhir/questionnaire/b0c3c7c5-321f-4fc7-8171-7a7b9758f95c",
+  "item": [
+    {
+      "linkId": "ff91c72c-86cf-4eee-b614-0bd583dca557",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "ba70d6c0-37f8-471a-8c55-17103357c8ee",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "ff91c72c-86cf-4eee-b614-0bd583dca557",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false
+    },
+    {
+      "linkId": "e04936b9-de2f-433a-9e47-bfaaeedd2093",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "acc7b593-ca2c-4b02-8554-e7cc53586f55",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "e04936b9-de2f-433a-9e47-bfaaeedd2093",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "ba70d6c0-37f8-471a-8c55-17103357c8ee",
+          "operator": "exists",
+          "answerBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "81268ebb-bff1-49a7-e82d-69e9e0edbabc",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "18adc911-81e5-417d-88bd-7adda0e02ae6",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "81268ebb-bff1-49a7-e82d-69e9e0edbabc",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "acc7b593-ca2c-4b02-8554-e7cc53586f55",
+          "operator": "exists",
+          "answerBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "58f16008-0c83-4c23-e90f-6ae8986973fb",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "2a39c954-0dd4-4663-9e92-04cfc29a6d2d",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "58f16008-0c83-4c23-e90f-6ae8986973fb",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "18adc911-81e5-417d-88bd-7adda0e02ae6",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "linkId": "68644512-a0ef-425c-8ea7-95d0a11aab56",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "4f6a4b84-986b-458f-e27a-9aa159fd66fd",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "68644512-a0ef-425c-8ea7-95d0a11aab56",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "2a39c954-0dd4-4663-9e92-04cfc29a6d2d",
+          "operator": "exists",
+          "answerBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "7e1623dc-b30a-47d2-807e-fda36f220b65",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "1d0892fe-24aa-486e-85f6-c68abb13b4ad",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "7e1623dc-b30a-47d2-807e-fda36f220b65",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "4f6a4b84-986b-458f-e27a-9aa159fd66fd",
+          "operator": "exists",
+          "answerBoolean": true
+        }
+      ]
+    },
+    {
+      "linkId": "878ed9f9-f2d3-4b92-b83d-8563806c86f4",
+      "type": "string",
+      "text": "Briefly name and describe your procedure or surgery. If you do not know its medical name, you can ask the chat assistant.",
+      "item": [
+        {
+          "linkId": "ee774223-c416-4da3-d557-84f3349aaf6e",
+          "type": "date",
+          "required": false,
+          "enableWhen": [
+            {
+              "question": "878ed9f9-f2d3-4b92-b83d-8563806c86f4",
+              "operator": "exists",
+              "answerBoolean": true
+            }
+          ],
+          "text": "Date of your procedure"
+        }
+      ],
+      "required": false,
+      "enableWhen": [
+        {
+          "question": "1d0892fe-24aa-486e-85f6-c68abb13b4ad",
+          "operator": "exists",
+          "answerBoolean": true
+        }
+      ]
+    }
+  ]
+}

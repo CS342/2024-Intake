@@ -16,16 +16,16 @@ struct InterestingModules: View {
     
     var body: some View {
         SequentialOnboardingView(
-            title: "Medical Intake Form",
+            title: "Medical Intake Forms Made Easy",
             subtitle: "Together we will summarize...",
             content: [
                 SequentialOnboardingView.Content(
-                    title: "Main reason(s) for visit",
-                    description: "What brings you in today? Identify your primary concern(s)."
+                    title: "Main reason for visit",
+                    description: "What brings you in today? Identify your primary concerns."
                 ),
                 SequentialOnboardingView.Content(
                     title: "Medical History",
-                    description: "Summarize your medical history."
+                    description: "Summarize your relevant medical history."
                 ),
                 SequentialOnboardingView.Content(
                     title: "Surgical History",

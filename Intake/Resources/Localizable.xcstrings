@@ -216,13 +216,13 @@
     "List your current medications." : {
 
     },
-    "Main reason(s) for visit" : {
+    "Main reason for visit" : {
 
     },
     "Medical History" : {
 
     },
-    "Medical Intake Form" : {
+    "Medical Intake Forms Made Easy" : {
 
     },
     "Medications" : {
@@ -240,6 +240,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -250,6 +251,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -260,6 +262,7 @@
       }
     },
     "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -271,6 +274,7 @@
     },
     "NOTIFICATION_PERMISSIONS_TITLE" : {
       "comment" : "MARK: Notifications",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -280,18 +284,18 @@
         }
       }
     },
-    "Other important questions." : {
-    
-    },
     "OLIVER_AALAMI_BIO" : {
-    "localizations" : {
-      "en" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dr. Oliver O. Aalami is a Clinical Professor of Surgery at Stanford University and a vascular surgeon based in Palo Alto, California. He is affiliated with Stanford Health Care and the VA Palo Alto Health Care System.\nDr. Aalami is also the Director of Biodesign for Digital Health at the Stanford Byers Center for Biodesign. He co-founded Spezi (formerly CardinalKit) and is passionate about clinically validating smartphone and smartwatch sensors in patients with cardiovascular disease."
           }
         }
       }
+    },
+    "Other important questions." : {
+
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
@@ -366,7 +370,7 @@
     "Submit your Form" : {
 
     },
-    "Summarize your medical history." : {
+    "Summarize your relevant medical history." : {
 
     },
     "Summarize your surgical history." : {
@@ -436,7 +440,7 @@
     "Welcome to ReForm" : {
 
     },
-    "What brings you in today? Identify your primary concern(s)." : {
+    "What brings you in today? Identify your primary concerns." : {
 
     }
   },
