@@ -36,22 +36,6 @@ struct LLMInteraction: View {
             """
         )
     )
-
-    func executePrompt(prompt: String) async {
-        // Execute the query on the runner, returning a stream of outputs
-        let stream = try? await runner(with: model).generate(prompt: prompt)
-        
-        if let unwrappedStream = stream {
-            do {
-                for try await token in unwrappedStream {
-                    responseText.append(token)
-                }
-            } catch {
-                // Handle any errors that occurred during the asynchronous operation
-                print("Error: \(error)")
-            }
-        }
-    }
     
     var body: some View {
         NavigationStack {
@@ -66,6 +50,22 @@ struct LLMInteraction: View {
             }
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
+            }
+        }
+    }
+    
+    func executePrompt(prompt: String) async {
+        // Execute the query on the runner, returning a stream of outputs
+        let stream = try? await runner(with: model).generate(prompt: prompt)
+        
+        if let unwrappedStream = stream {
+            do {
+                for try await token in unwrappedStream {
+                    responseText.append(token)
+                }
+            } catch {
+                // Handle any errors that occurred during the asynchronous operation
+                print("Error: \(error)")
             }
         }
     }
