@@ -12,21 +12,18 @@ import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI
 
-
 /// Displays an multi-step onboarding flow for the Intake.
 struct OnboardingFlow: View {
     @Environment(HealthKit.self) private var healthKitDataSource
     @Environment(IntakeScheduler.self) private var scheduler
-
-    @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
+    @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
     
     private var healthKitAuthorization: Bool {
         // As HealthKit not available in preview simulator
         if ProcessInfo.processInfo.isPreviewSimulator {
             return false
         }
-        
         return healthKitDataSource.authorized
     }
     
