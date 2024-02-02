@@ -51,6 +51,17 @@ struct LLMInteraction: View {
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
+            .onAppear {
+                Task {
+                    do {
+                        let stream = try await runner(with: model).generate(prompt: "Say hello!")
+                        
+                        for try await token in stream {
+                            model.context.append(assistantOutput: token)
+                        }
+                    }
+                }
+            }
         }
     }
     
