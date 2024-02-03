@@ -36,6 +36,7 @@ struct LLMInteraction: View {
         Please use everyday layman terms and avoid using complex medical terminology.\
         Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
         """
+    
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
@@ -73,7 +74,6 @@ struct LLMInteraction: View {
     @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
     
-    @State var responseText: String
     @State var showOnboarding = true
     
     @State var model: LLM = LLMOpenAI(
@@ -97,7 +97,9 @@ struct LLMInteraction: View {
                 Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
             """
         )
-    )
+    ) {
+//        SummarizeFunction()
+    }
     
     var body: some View {
         NavigationStack {
@@ -133,12 +135,10 @@ struct LLMInteraction: View {
 }
 
 #Preview {
-    LLMInteraction(presentingAccount: .constant(true), responseText: "Test")
+    LLMInteraction(presentingAccount: .constant(true))
         .previewWith {
             LLMRunner {
                 LLMOpenAIRunnerSetupTask()
             }
         }
 }
-
-
