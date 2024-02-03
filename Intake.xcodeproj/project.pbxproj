@@ -81,6 +81,7 @@
 		F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */; };
 		F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */; };
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
+		F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOnboardingView.swift; sourceTree = "<group>"; };
 		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
+		F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 				F42AB1E12B637CAC002E13A6 /* OpenAI */,
 				F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */,
 				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
+				F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */,
 			);
 			path = ChiefComplaint;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */,
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
+				F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
 				F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */,
