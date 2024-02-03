@@ -32,8 +32,7 @@ struct LLMInteraction: View {
         
         @Parameter(description: "The duration of the primary medical concern.") var duration: String
         
-        @Parameter(description: "Extra important information relevant to the primary medical concern that the doctor should be aware of.")
-        var supplementaryInfo: String
+        @Parameter(description: "Extra important information relevant to the primary medical concern that the doctor should be aware of.") var supplementaryInfo: String
         
         @Binding var chiefComplaint: String
         
@@ -56,33 +55,33 @@ struct LLMInteraction: View {
     
     @State var responseText: String
     @State var showOnboarding = true
-//    @State var model: LLM
+    //    @State var model: LLM
     
-//    init() {
-//        model = LLMOpenAI(
-//            parameters: .init(
-//                modelType: .gpt3_5Turbo,
-//                systemPrompt: """
-//                    You are acting as an intake person at a clinic and need to work with\
-//                    the patient to help clarify their chief complaint into a concise,\
-//                    specific complaint.
-//                
-//                    You should always ask about severity and duration if the patient does not include this information.
-//                
-//                    Additionally, help guide the patient into providing information specific to the condition that the define.\
-//                    For example, if the patient is experiencing leg pain, you should prompt them to be more\
-//                    specific about laterality and location. You should also ask if the pain is dull or sharp,\
-//                    and encourage them to rate their pain on a scale of 1 to 10. For a cough, for example, you\
-//                    should inquire whether the cough is wet or dry, as well as any other characteristics of the\
-//                    cough that might allow a doctor to rule out diagnoses.
-//                
-//                    Please use everyday layman terms and avoid using complex medical terminology.\
-//                    Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
-//                """
-//            )
-//        )
-//        $model.function = SummarizeFunction(ChiefComplaint: $ChiefComplaint)
-//    }
+    //    init() {
+    //        model = LLMOpenAI(
+    //            parameters: .init(
+    //                modelType: .gpt3_5Turbo,
+    //                systemPrompt: """
+    //                    You are acting as an intake person at a clinic and need to work with\
+    //                    the patient to help clarify their chief complaint into a concise,\
+    //                    specific complaint.
+    //
+    //                    You should always ask about severity and duration if the patient does not include this information.
+    //
+    //                    Additionally, help guide the patient into providing information specific to the condition that the define.\
+    //                    For example, if the patient is experiencing leg pain, you should prompt them to be more\
+    //                    specific about laterality and location. You should also ask if the pain is dull or sharp,\
+    //                    and encourage them to rate their pain on a scale of 1 to 10. For a cough, for example, you\
+    //                    should inquire whether the cough is wet or dry, as well as any other characteristics of the\
+    //                    cough that might allow a doctor to rule out diagnoses.
+    //
+    //                    Please use everyday layman terms and avoid using complex medical terminology.\
+    //                    Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
+    //                """
+    //            )
+    //        )
+    //        $model.function = SummarizeFunction(ChiefComplaint: $ChiefComplaint)
+    //    }
     
     
     @State var model: LLM = LLMOpenAI(
@@ -107,7 +106,7 @@ struct LLMInteraction: View {
             """
         )
     ) {
-//        SummarizeFunction(ChiefComplaint: $ChiefComplaint)
+        //        SummarizeFunction(ChiefComplaint: $ChiefComplaint)
     }
     
     var body: some View {
@@ -136,18 +135,29 @@ struct LLMInteraction: View {
                             if isFirstToken {
                                 isFirstToken = false
                                 continue }
-                            model.context.append(assistantOutput: token)}}}}
+                            model.context.append(assistantOutput: token)
+                        }
+                    }
+                }
+            }
             .onChange(of: chiefComplaint) { _, newChiefComplaint in
                 if let newChiefComplaint = newChiefComplaint {
-                    shouldNavigateToSummaryView = true}}
+                    shouldNavigateToSummaryView = true
+                }
+            }
             .background(
                 NavigationLink(
                     destination: SummaryView(chiefComplaint: chiefComplaint ?? "error"),
                     isActive: $shouldNavigateToSummaryView
                 ) { EmptyView() }
-                .isDetailLink(false)
-                .navigationDestination(isPresented: $shouldNavigateToSummaryView) {
-                    EmptyView() })}}}
+                    .isDetailLink(false)
+                    .navigationDestination(isPresented: $shouldNavigateToSummaryView) {
+                        EmptyView()
+                    }
+            )
+        }
+    }
+}
 
 
 #Preview {
