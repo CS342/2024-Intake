@@ -47,7 +47,7 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
-            LLMInteraction(presentingAccount: $presentingAccount, responseText: "")
+            LLMInteraction(presentingAccount: $presentingAccount)
                 .tag(Tabs.form)
                 .tabItem {
                     Label("Create Form", systemImage: "captions.bubble.fill")

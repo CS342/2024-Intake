@@ -25,5 +25,4 @@ struct SummaryView: View {
         }
         .navigationTitle("Summary")
     }
-    
 }

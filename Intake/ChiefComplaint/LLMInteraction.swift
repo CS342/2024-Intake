@@ -39,6 +39,7 @@ struct LLMInteraction: View {
         @Parameter(description: desc) var supplementaryInfo: String
         
         @Binding var chiefComplaint: String
+        @Binding var nextView: Bool
         
         func execute() async throws -> String? {
             let summary = """
@@ -49,6 +50,7 @@ struct LLMInteraction: View {
                 Extra Info: \(supplementaryInfo)\n
             """
             chiefComplaint = summary
+            nextView = true
             return summary
         }
     }
@@ -57,7 +59,6 @@ struct LLMInteraction: View {
     @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
     
-    @State var responseText: String
     @State var showOnboarding = true
     
     @State var model: LLM = LLMOpenAI(
@@ -82,7 +83,7 @@ struct LLMInteraction: View {
             """
         )
     ) {
-        //        SummarizeFunction(ChiefComplaint: $ChiefComplaint)
+//        SummarizeFunction(chiefComplaint: )
     }
     
     var body: some View {
@@ -99,47 +100,35 @@ struct LLMInteraction: View {
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
-            .onAppear {
-                Task {
-                    do {
-                        let stream = try await runner(with: model).generate(prompt: """
-                                        Hello! I am a patient coming in to see the doctor and would like\
-                                        to discuss the reason for my visit.
-                                    """)
-                        var isFirstToken = true
-                        for try await token in stream {
-                            if isFirstToken {
-                                isFirstToken = false
-                                continue }
-                            model.context.append(assistantOutput: token)
-                        }
-                    }
-                }
-            }
+//            .onAppear {
+//                Task {
+//                    do {
+//                        let stream = try await runner(with: model).generate(prompt: """
+//                                        Hello! I am a patient coming in to see the doctor and would like\
+//                                        to discuss the reason for my visit.
+//                                    """)
+//                        var isFirstToken = true
+//                        for try await token in stream {
+//                            if isFirstToken {
+//                                isFirstToken = false
+//                                continue }
+//                            model.context.append(assistantOutput: token)
+//                        }
+//                    }
+//                }
+//            }
             .onChange(of: chiefComplaint) { _, newChiefComplaint in
                 if let newChiefComplaint = newChiefComplaint {
                     shouldNavigateToSummaryView = true
                 }
             }
-            .background(
-                NavigationLink(
-                    destination: SummaryView(chiefComplaint: chiefComplaint ?? "error"),
-                    isActive: $shouldNavigateToSummaryView
-                ) {
-                    EmptyView()
-                }
-                    .isDetailLink(false)
-                    .navigationDestination(isPresented: $shouldNavigateToSummaryView) {
-                        EmptyView()
-                    }
-            )
         }
     }
 }
 
 
 #Preview {
-    LLMInteraction(presentingAccount: .constant(true), responseText: "Test")
+    LLMInteraction(presentingAccount: .constant(true))
         .previewWith {
             LLMRunner {
                 LLMOpenAIRunnerSetupTask()
