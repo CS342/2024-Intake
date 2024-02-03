@@ -70,6 +70,9 @@
     "Auto-fill Intake Form" : {
 
     },
+    "Chief Complaint" : {
+
+    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -154,6 +157,9 @@
           }
         }
       }
+    },
+    "Create Form" : {
+
     },
     "Download your medical records from your health system." : {
 

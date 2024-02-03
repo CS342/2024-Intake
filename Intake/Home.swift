@@ -14,6 +14,7 @@ import SwiftUI
 struct HomeView: View {
     enum Tabs: String {
         case schedule
+        case form
         case contact
         case mockUpload
         case medicalHistory
@@ -64,16 +65,7 @@ struct HomeView: View {
                             Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                         }
                 }
-                MedicalHistoryView()
-                    .tag(Tabs.medicalHistory)
-                    .tabItem {
-                        Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
-                    }
-                AllergyView()
-                    .tag(Tabs.allergyRecords)
-                    .tabItem {
-                        Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
-                    }
+                
             }
                 .sheet(isPresented: $presentingAccount) {
                     AccountSheet()
@@ -88,6 +80,10 @@ struct HomeView: View {
                 }
                 .sheet(isPresented: $showSettings) {
                     SettingsView()
+            LLMInteraction(presentingAccount: $presentingAccount, responseText: "")
+                .tag(Tabs.form)
+                .tabItem {
+                    Label("Create Form", systemImage: "captions.bubble.fill")
                 }
         }
     }
