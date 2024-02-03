@@ -16,6 +16,22 @@ struct HomeView: View {
         case schedule
         case contact
         case mockUpload
+        case medicalHistory
+        case allergyRecords
+    }
+    
+    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Button(
+                action: {
+                    showSettings.toggle()
+                },
+                label: {
+                    Image(systemName: "gear")
+                        .accessibilityLabel(Text("SETTINGS"))
+                }
+            )
+        }
     }
     
     static var accountEnabled: Bool {
@@ -25,35 +41,55 @@ struct HomeView: View {
 
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @State private var presentingAccount = false
+    @State private var showSettings = false
 
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            ScheduleView(presentingAccount: $presentingAccount)
-                .tag(Tabs.schedule)
-                .tabItem {
-                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
-                }
-            Contacts(presentingAccount: $presentingAccount)
-                .tag(Tabs.contact)
-                .tabItem {
-                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
-                }
-            if FeatureFlags.disableFirebase {
-                MockUpload(presentingAccount: $presentingAccount)
-                    .tag(Tabs.mockUpload)
+        NavigationStack {
+            TabView(selection: $selectedTab) {
+                ScheduleView(presentingAccount: $presentingAccount)
+                    .tag(Tabs.schedule)
                     .tabItem {
-                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
+                        Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
+                    }
+                Contacts(presentingAccount: $presentingAccount)
+                    .tag(Tabs.contact)
+                    .tabItem {
+                        Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+                    }
+                if FeatureFlags.disableFirebase {
+                    MockUpload(presentingAccount: $presentingAccount)
+                        .tag(Tabs.mockUpload)
+                        .tabItem {
+                            Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
+                        }
+                }
+                MedicalHistoryView()
+                    .tag(Tabs.medicalHistory)
+                    .tabItem {
+                        Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
+                    }
+                AllergyView()
+                    .tag(Tabs.allergyRecords)
+                    .tabItem {
+                        Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
                     }
             }
+                .sheet(isPresented: $presentingAccount) {
+                    AccountSheet()
+                    
+                }
+                .accountRequired(Self.accountEnabled) {
+                    AccountSheet()
+                }
+                .verifyRequiredAccountDetails(Self.accountEnabled)
+                .toolbar {
+                    settingsToolbarItem
+                }
+                .sheet(isPresented: $showSettings) {
+                    SettingsView()
+                }
         }
-            .sheet(isPresented: $presentingAccount) {
-                AccountSheet()
-            }
-            .accountRequired(Self.accountEnabled) {
-                AccountSheet()
-            }
-            .verifyRequiredAccountDetails(Self.accountEnabled)
     }
 }
 

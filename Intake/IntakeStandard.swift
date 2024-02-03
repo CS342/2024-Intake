@@ -13,10 +13,10 @@ import OSLog
 import PDFKit
 import Spezi
 import SpeziAccount
-import SpeziFirebaseAccountStorage
-import SpeziFirestore
 import SpeziFHIR
 import SpeziFHIRHealthKit
+import SpeziFirebaseAccountStorage
+import SpeziFirestore
 import SpeziHealthKit
 import SpeziMockWebService
 import SpeziOnboarding
