@@ -32,8 +32,7 @@ struct LLMInteraction: View {
         
         @Parameter(description: "The duration of the primary medical concern.") var duration: String
         
-        @Parameter(description: "Extra important information relevant to the primary medical concern that the doctor should be aware of.")
-        var supplementaryInfo: String
+        @Parameter(description: "Extra important information relevant to the primary medical concern that the doctor should be aware of.") var supplementaryInfo: String
         
         @Binding var chiefComplaint: String
         
@@ -110,7 +109,7 @@ struct LLMInteraction: View {
             """
         )
     ) {
-//        SummarizeFunction(ChiefComplaint: $ChiefComplaint)
+        //        SummarizeFunction(ChiefComplaint: $ChiefComplaint)
     }
     
     var body: some View {
@@ -129,40 +128,39 @@ struct LLMInteraction: View {
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
-            .onAppear{
-                model.context.append()
-            }
-            // greeting
-//            .onAppear {
-//                Task {
-//                    do {
-//                        let stream = try await runner(with: model).generate(prompt: """
-//                                        Hello! I am a patient coming in to see the doctor and would like\
-//                                        to discuss the reason for my visit.
-//                                    """)
-//                        var isFirstToken = true
-//                        for try await token in stream {
-//                            if isFirstToken {
-//                                isFirstToken = false
-//                                continue }
-//                            model.context.append(assistantOutput: token)}}}}
-//            
-            
-            
-            
-            
-            // navigation to summary view after chat
+            .onAppear {
+                Task {
+                    do {
+                        let stream = try await runner(with: model).generate(prompt: """
+                                        Hello! I am a patient coming in to see the doctor and would like\
+                                        to discuss the reason for my visit.
+                                    """)
+                        var isFirstToken = true
+                        for try await token in stream {
+                            if isFirstToken {
+                                isFirstToken = false
+                                continue }
+                            model.context.append(assistantOutput: token)}}}}
             .onChange(of: chiefComplaint) { _, newChiefComplaint in
                 if let newChiefComplaint = newChiefComplaint {
-                    shouldNavigateToSummaryView = true}}
+                    shouldNavigateToSummaryView = true
+                }
+            }
             .background(
                 NavigationLink(
                     destination: SummaryView(chiefComplaint: chiefComplaint ?? "error"),
                     isActive: $shouldNavigateToSummaryView
-                ) { EmptyView() }
-                .isDetailLink(false)
-                .navigationDestination(isPresented: $shouldNavigateToSummaryView) {
-                    EmptyView() })}}}
+                ) {
+                    EmptyView()
+                }
+                    .isDetailLink(false)
+                    .navigationDestination(isPresented: $shouldNavigateToSummaryView) {
+                        EmptyView()
+                    }
+            )
+        }
+    }
+}
 
 
 #Preview {
