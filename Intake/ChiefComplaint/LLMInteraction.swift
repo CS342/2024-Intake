@@ -32,7 +32,11 @@ struct LLMInteraction: View {
         
         @Parameter(description: "The duration of the primary medical concern.") var duration: String
         
-        @Parameter(description: "Extra important information relevant to the primary medical concern that the doctor should be aware of.") var supplementaryInfo: String
+        static let desc: String = """
+            Extra important information relevant to the primary\
+            medical concern that the doctor should be aware of.
+            """
+        @Parameter(description: desc) var supplementaryInfo: String
         
         @Binding var chiefComplaint: String
         
