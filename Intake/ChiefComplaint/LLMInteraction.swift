@@ -56,6 +56,9 @@ struct LLMInteraction: View {
     
     @State var responseText: String
     @State var showOnboarding = true
+//    @State var charSystemPrompt: self.ChatEntity
+//    @State var chatRole: self.ChatEntity
+    
 //    @State var model: LLM
     
 //    init() {
@@ -111,6 +114,8 @@ struct LLMInteraction: View {
     }
     
     var body: some View {
+        
+        
         NavigationStack {
             LLMChatView(
                 model: model
@@ -124,19 +129,29 @@ struct LLMInteraction: View {
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
-            .onAppear {
-                Task {
-                    do {
-                        let stream = try await runner(with: model).generate(prompt: """
-                                        Hello! I am a patient coming in to see the doctor and would like\
-                                        to discuss the reason for my visit.
-                                    """)
-                        var isFirstToken = true
-                        for try await token in stream {
-                            if isFirstToken {
-                                isFirstToken = false
-                                continue }
-                            model.context.append(assistantOutput: token)}}}}
+            .onAppear{
+                model.context.append()
+            }
+            // greeting
+//            .onAppear {
+//                Task {
+//                    do {
+//                        let stream = try await runner(with: model).generate(prompt: """
+//                                        Hello! I am a patient coming in to see the doctor and would like\
+//                                        to discuss the reason for my visit.
+//                                    """)
+//                        var isFirstToken = true
+//                        for try await token in stream {
+//                            if isFirstToken {
+//                                isFirstToken = false
+//                                continue }
+//                            model.context.append(assistantOutput: token)}}}}
+//            
+            
+            
+            
+            
+            // navigation to summary view after chat
             .onChange(of: chiefComplaint) { _, newChiefComplaint in
                 if let newChiefComplaint = newChiefComplaint {
                     shouldNavigateToSummaryView = true}}
