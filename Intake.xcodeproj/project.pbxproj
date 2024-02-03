@@ -62,6 +62,28 @@
 		5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661552D2AB854C000209B80 /* PackageHelper.swift */; };
 		5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5680DD382AB8983D004E6D4A /* PackageCell.swift */; };
 		56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F6F29F2AB441930022FE5A /* ContributionsList.swift */; };
+		5A0C1A192B69691000120506 /* SpeziFHIR in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C1A182B69691000120506 /* SpeziFHIR */; };
+		5A0C1A1B2B69691000120506 /* SpeziFHIRHealthKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C1A1A2B69691000120506 /* SpeziFHIRHealthKit */; };
+		5A2B9F7A2B69AE2C005CA63F /* MedicalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9F792B69AE2C005CA63F /* MedicalHistoryView.swift */; };
+		5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9F842B69E06B005CA63F /* SettingsView.swift */; };
+		5A2B9F872B69E06B005CA63F /* ResourceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9F852B69E06B005CA63F /* ResourceSelection.swift */; };
+		5A2B9F8A2B69E0AF005CA63F /* SpeziFHIRMockPatients in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2B9F892B69E0AF005CA63F /* SpeziFHIRMockPatients */; };
+		5A2B9F8F2B69E286005CA63F /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9F8E2B69E286005CA63F /* MockData.swift */; };
+		5A2B9F9E2B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F922B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json */; };
+		5A2B9F9F2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F932B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json */; };
+		5A2B9FA02B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F942B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license */; };
+		5A2B9FA12B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F952B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license */; };
+		5A2B9FA22B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F962B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license */; };
+		5A2B9FA32B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F972B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json */; };
+		5A2B9FA42B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F982B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license */; };
+		5A2B9FA52B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F992B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json */; };
+		5A2B9FA62B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F9A2B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json */; };
+		5A2B9FA72B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F9B2B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json */; };
+		5A2B9FA82B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F9C2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license */; };
+		5A2B9FA92B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 5A2B9F9D2B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license */; };
+		5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FAA2B69E430005CA63F /* FHIRStore+Extensions.swift */; };
+		5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */; };
+		5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */; };
 		637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */; };
 		653A2551283387FE005D4D48 /* Intake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* Intake.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -130,6 +152,25 @@
 		5661552D2AB854C000209B80 /* PackageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHelper.swift; sourceTree = "<group>"; };
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
 		56F6F29F2AB441930022FE5A /* ContributionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsList.swift; sourceTree = "<group>"; };
+		5A2B9F792B69AE2C005CA63F /* MedicalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalHistoryView.swift; sourceTree = "<group>"; };
+		5A2B9F842B69E06B005CA63F /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5A2B9F852B69E06B005CA63F /* ResourceSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceSelection.swift; sourceTree = "<group>"; };
+		5A2B9F8E2B69E286005CA63F /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		5A2B9F922B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json"; sourceTree = "<group>"; };
+		5A2B9F932B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json"; sourceTree = "<group>"; };
+		5A2B9F942B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license"; sourceTree = "<group>"; };
+		5A2B9F952B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license"; sourceTree = "<group>"; };
+		5A2B9F962B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license"; sourceTree = "<group>"; };
+		5A2B9F972B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json"; sourceTree = "<group>"; };
+		5A2B9F982B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license"; sourceTree = "<group>"; };
+		5A2B9F992B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json"; sourceTree = "<group>"; };
+		5A2B9F9A2B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json"; sourceTree = "<group>"; };
+		5A2B9F9B2B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json"; sourceTree = "<group>"; };
+		5A2B9F9C2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license"; sourceTree = "<group>"; };
+		5A2B9F9D2B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license"; sourceTree = "<group>"; };
+		5A2B9FAA2B69E430005CA63F /* FHIRStore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRStore+Extensions.swift"; sourceTree = "<group>"; };
+		5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyRecords.swift; sourceTree = "<group>"; };
+		5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = Questionnaire.json.license; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* Intake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intake.swift; sourceTree = "<group>"; };
@@ -154,6 +195,8 @@
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
+				5A0C1A1B2B69691000120506 /* SpeziFHIRHealthKit in Frameworks */,
+				5A0C1A192B69691000120506 /* SpeziFHIR in Frameworks */,
 				2FE5DC8429EDD934004B9AB4 /* SpeziQuestionnaire in Frameworks */,
 				2FB099B32A875DF100B20952 /* FirebaseFirestoreSwift in Frameworks */,
 				5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */,
@@ -168,6 +211,7 @@
 				2FE5DC7229EDD8D3004B9AB4 /* SpeziHealthKit in Frameworks */,
 				2F49B7762980407C00BCB272 /* Spezi in Frameworks */,
 				2FE5DC8F29EDD980004B9AB4 /* SpeziViews in Frameworks */,
+				5A2B9F8A2B69E0AF005CA63F /* SpeziFHIRMockPatients in Frameworks */,
 				2F3D4ABC2A4E7C290068FB2F /* SpeziScheduler in Frameworks */,
 				2FBD738C2A3BD150004228E7 /* SpeziScheduler in Frameworks */,
 				2FE5DC7929EDD8E6004B9AB4 /* SpeziFirestore in Frameworks */,
@@ -237,10 +281,10 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A2B9F912B69E32A005CA63F /* Mock Patients */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
-				2FE5DC2A29EDD78D004B9AB4 /* AppIcon.png */,
 				ACAA47802B571C7F0032D21F /* Questionnaire.json */,
 				2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */,
 				637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */,
@@ -292,9 +336,65 @@
 			path = Contributions;
 			sourceTree = "<group>";
 		};
+		5A2B9F762B69AE07005CA63F /* Medical History */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B9F792B69AE2C005CA63F /* MedicalHistoryView.swift */,
+			);
+			path = "Medical History";
+			sourceTree = "<group>";
+		};
+		5A2B9F832B69E06B005CA63F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B9F842B69E06B005CA63F /* SettingsView.swift */,
+				5A2B9F852B69E06B005CA63F /* ResourceSelection.swift */,
+			);
+			name = Settings;
+			path = Intake/Settings;
+			sourceTree = "<group>";
+		};
+		5A2B9F8D2B69E286005CA63F /* Mock Data */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B9FAA2B69E430005CA63F /* FHIRStore+Extensions.swift */,
+				5A2B9F8E2B69E286005CA63F /* MockData.swift */,
+			);
+			path = "Mock Data";
+			sourceTree = "<group>";
+		};
+		5A2B9F912B69E32A005CA63F /* Mock Patients */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B9F922B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json */,
+				5A2B9F932B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json */,
+				5A2B9F942B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license */,
+				5A2B9F952B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license */,
+				5A2B9F962B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license */,
+				5A2B9F972B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json */,
+				5A2B9F982B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license */,
+				5A2B9F992B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json */,
+				5A2B9F9A2B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json */,
+				5A2B9F9B2B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json */,
+				5A2B9F9C2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license */,
+				5A2B9F9D2B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license */,
+			);
+			path = "Mock Patients";
+			sourceTree = "<group>";
+		};
+		5A2B9FB32B6AFE1F005CA63F /* Allergy Records */ = {
+			isa = PBXGroup;
+			children = (
+				5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */,
+				5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */,
+			);
+			path = "Allergy Records";
+			sourceTree = "<group>";
+		};
 		653A2544283387FE005D4D48 = {
 			isa = PBXGroup;
 			children = (
+				5A2B9F832B69E06B005CA63F /* Settings */,
 				2FC94CD4298B0A1D009C8209 /* Intake.xctestplan */,
 				653A254F283387FE005D4D48 /* Intake */,
 				653A256028338800005D4D48 /* IntakeTests */,
@@ -317,6 +417,9 @@
 		653A254F283387FE005D4D48 /* Intake */ = {
 			isa = PBXGroup;
 			children = (
+				5A2B9FB32B6AFE1F005CA63F /* Allergy Records */,
+				5A2B9F8D2B69E286005CA63F /* Mock Data */,
+				5A2B9F762B69AE07005CA63F /* Medical History */,
 				653A2550283387FE005D4D48 /* Intake.swift */,
 				2F5E32BC297E05EA003432F8 /* IntakeDelegate.swift */,
 				2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */,
@@ -411,6 +514,9 @@
 				9739A0C52AD7B5730084BEA5 /* FirebaseStorage */,
 				97D73D692AD860AD00B47FA0 /* SpeziFirebaseStorage */,
 				A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */,
+				5A0C1A182B69691000120506 /* SpeziFHIR */,
+				5A0C1A1A2B69691000120506 /* SpeziFHIRHealthKit */,
+				5A2B9F892B69E0AF005CA63F /* SpeziFHIRMockPatients */,
 			);
 			productName = Intake;
 			productReference = 653A254D283387FE005D4D48 /* Intake.app */;
@@ -505,6 +611,7 @@
 				2FE750CA2A87240100723EAE /* XCRemoteSwiftPackageReference "SpeziMockWebService" */,
 				2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */,
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
+				5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -522,13 +629,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A2B9FA52B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json in Resources */,
 				2FC3439229EE634B002D773C /* ConsentDocument.md in Resources */,
-				2FC3439129EE6349002D773C /* AppIcon.png in Resources */,
+				5A2B9FA02B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json.license in Resources */,
 				637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */,
+				5A2B9FA92B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license in Resources */,
+				5A2B9FA32B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json in Resources */,
+				5A2B9FA82B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license in Resources */,
 				653A255528338800005D4D48 /* Assets.xcassets in Resources */,
+				5A2B9F9F2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json in Resources */,
+				5A2B9FA62B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json in Resources */,
 				2FC3439029EE6346002D773C /* SocialSupportQuestionnaire.json in Resources */,
+				5A2B9FA22B69E32A005CA63F /* Allen322_Ferry570_ad134528-56a5-35fd-c37f-466ff119c625.json.license in Resources */,
+				5A2B9F9E2B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json in Resources */,
 				2FA0BFED2ACC977500E0EF83 /* Localizable.xcstrings in Resources */,
 				2F6025CB29BBE70F0045459E /* GoogleService-Info.plist in Resources */,
+				5A2B9FA12B69E32A005CA63F /* Gonzalo160_Duenas839_ed70a28f-30b2-acb7-658a-8b340dadd685.json.license in Resources */,
+				5A2B9FA72B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json in Resources */,
+				5A2B9FA42B69E32A005CA63F /* Jacklyn830_Veum823_e0e1f21a-22a7-d166-7bb1-63f6bbce1a32.json.license in Resources */,
 				ACAA47812B571C800032D21F /* Questionnaire.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,15 +707,22 @@
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
+				5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
+				5A2B9F872B69E06B005CA63F /* ResourceSelection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
+				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
+				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
 				2FE5DC5129EDD7FA004B9AB4 /* IntakeTaskContext.swift in Sources */,
 				56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */,
+				5A2B9F7A2B69AE2C005CA63F /* MedicalHistoryView.swift in Sources */,
+				5A2B9F8F2B69E286005CA63F /* MockData.swift in Sources */,
+				5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */,
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
@@ -1254,6 +1379,14 @@
 				minimumVersion = 3.0.10;
 			};
 		};
+		5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
+			requirement = {
+				branch = "feat/lift-to-spezi-llm";
+				kind = branch;
+			};
+		};
 		97F466E62A76BBEE005DC9B4 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding";
@@ -1378,6 +1511,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */;
 			productName = "plugin:SwiftPackageListJSONPlugin";
+		};
+		5A0C1A182B69691000120506 /* SpeziFHIR */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
+			productName = SpeziFHIR;
+		};
+		5A0C1A1A2B69691000120506 /* SpeziFHIRHealthKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
+			productName = SpeziFHIRHealthKit;
+		};
+		5A2B9F892B69E0AF005CA63F /* SpeziFHIRMockPatients */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */;
+			productName = SpeziFHIRMockPatients;
 		};
 		9739A0C52AD7B5730084BEA5 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
