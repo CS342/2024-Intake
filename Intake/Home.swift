@@ -17,6 +17,7 @@ struct HomeView: View {
         case form
         case contact
         case mockUpload
+        case summary
     }
     
     static var accountEnabled: Bool {
@@ -47,6 +48,11 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
+//            SummaryView(chiefComplaint: "Test")
+//                .tag(Tabs.summary)
+//                .tabItem {
+//                    Label("Summary", systemImage: "person")
+//                }
             LLMInteraction(presentingAccount: $presentingAccount)
                 .tag(Tabs.form)
                 .tabItem {

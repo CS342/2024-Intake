@@ -36,7 +36,7 @@ struct LLMInteraction: View {
             """
         @Parameter(description: desc) var supplementaryInfo: String
         
-        @Binding var chiefComplaint: String
+//        var completion: (() -> Void)?
         
         func execute() async throws -> String? {
             let summary = """
@@ -46,13 +46,14 @@ struct LLMInteraction: View {
                 Duration: \(duration)\n
                 Extra Info: \(supplementaryInfo)\n
             """
-            chiefComplaint = summary
+//            shouldNavigateToSummaryView = true
+//            completion?()
             return summary
         }
     }
     
     @State private var chiefComplaint: String? = "blah blah blah"
-    @State private var shouldNavigateToSummaryView = true
+    @State private var shouldNavigateToSummaryView = false
     @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
     
@@ -80,7 +81,7 @@ struct LLMInteraction: View {
             """
         )
     ) {
-//        SummarizeFunction()
+        SummarizeFunction()
     }
     
     var body: some View {
@@ -101,17 +102,19 @@ struct LLMInteraction: View {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
                 model.context.insert(assistantMessage, at: 0)
             }
-            .onChange(of: chiefComplaint) { _, newChiefComplaint in
-                if let newChiefComplaint = newChiefComplaint {
-                    shouldNavigateToSummaryView = true
+            .onChange(of: shouldNavigateToSummaryView) { _, newValue in
+                if newValue {
+                    chiefComplaint = model.context[-1].content
+                    // Navigate to next screen, passing chiefComplaint as parameter
+                    print($chiefComplaint)
                 }
             }
-            NavigationLink(
-                destination: SummaryView(chiefComplaint: chiefComplaint ?? "No Chief Complaint"),
-                label: {
-                    EmptyView()
-                }
-            )
+//            NavigationLink(
+//                destination: SummaryView(chiefComplaint: chiefComplaint ?? "No Chief Complaint"),
+//                label: {
+//                    EmptyView()
+//                }
+//            )
         }
     }
 }
