@@ -58,6 +58,7 @@ struct LLMInteraction: View {
     @Environment(LLMRunner.self) var runner: LLMRunner
     
     @State var showOnboarding = true
+    @State var greeting = true
     
     @State var model: LLM = LLMOpenAI(
         parameters: .init(
@@ -99,8 +100,12 @@ struct LLMInteraction: View {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
             .onAppear {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                model.context.insert(assistantMessage, at: 0)
+                if greeting{
+                    let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
+                    model.context.insert(assistantMessage, at: 0)
+                }
+                greeting = false
+
             }
             .onChange(of: shouldNavigateToSummaryView) { _, newValue in
                 if newValue {
