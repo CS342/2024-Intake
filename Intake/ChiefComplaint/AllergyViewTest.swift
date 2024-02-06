@@ -1,8 +1,8 @@
 //
-//  SummaryView.swift
+//  AllergyView.swift
 //  Intake
 //
-//  Created by Nick Riedman on 2/2/24.
+//  Created by Nick Riedman on 2/5/24.
 //
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
@@ -14,19 +14,12 @@
 import Foundation
 import SwiftUI
 
-struct SummaryView: View {
-    let chiefComplaint: String
-//    var navigationPath: NavigationPath
-    
+struct AllergyViewTest: View {
     var body: some View {
         VStack {
-            Text(chiefComplaint)
+            Text("Success!")
                 .padding()
                 .multilineTextAlignment(.center)
-//            Button(action: { navigationPath.append(NavigationViews.allergies) }, label: {
-//                Text("Submit")
-//            })
         }
-        .navigationTitle("Summary")
     }
 }

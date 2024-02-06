@@ -82,6 +82,7 @@
 		F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */; };
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 		F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */; };
+		F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 		F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +394,7 @@
 				F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */,
 				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
 				F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */,
+				F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */,
 			);
 			path = ChiefComplaint;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				2F4FC8D729EE69D300BFFE26 /* MockUpload.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */,
+				F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,

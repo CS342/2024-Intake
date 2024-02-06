@@ -18,6 +18,19 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct LLMInteraction: View {
+    @Observable
+    class StringBox: Equatable {
+        var llmResponseSummary: String
+        
+        init() {
+            self.llmResponseSummary = ""
+        }
+        
+        static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
+            lhs.llmResponseSummary == rhs.llmResponseSummary
+        }
+    }
+    
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
@@ -36,7 +49,11 @@ struct LLMInteraction: View {
             """
         @Parameter(description: desc) var supplementaryInfo: String
         
-//        var completion: (() -> Void)?
+        let stringBox: StringBox
+        
+        init(stringBox: StringBox) {
+            self.stringBox = stringBox
+        }
         
         func execute() async throws -> String? {
             let summary = """
@@ -46,86 +63,84 @@ struct LLMInteraction: View {
                 Duration: \(duration)\n
                 Extra Info: \(supplementaryInfo)\n
             """
-//            shouldNavigateToSummaryView = true
-//            completion?()
-            return summary
+            
+            self.stringBox.llmResponseSummary = summary
+            
+            return nil
         }
     }
     
-    @State private var chiefComplaint: String? = "blah blah blah"
-    @State private var shouldNavigateToSummaryView = false
     @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
     
     @State var showOnboarding = true
     @State var greeting = true
+    @State var stringBox: StringBox
+    @State var showSheet = false
     
-    @State var model: LLM = LLMOpenAI(
-        parameters: .init(
-            modelType: .gpt3_5Turbo,
-            systemPrompt: """
-                You are acting as an intake person at a clinic and need to work with\
-                the patient to help clarify their chief complaint into a concise,\
-                specific complaint.
-            
-                You should always ask about severity and duration if the patient does not include this information.
-                
-                Additionally, help guide the patient into providing information specific to the condition that the define.\
-                For example, if the patient is experiencing leg pain, you should prompt them to be more\
-                specific about laterality and location. You should also ask if the pain is dull or sharp,\
-                and encourage them to rate their pain on a scale of 1 to 10. For a cough, for example, you\
-                should inquire whether the cough is wet or dry, as well as any other characteristics of the\
-                cough that might allow a doctor to rule out diagnoses.
-                
-                Please use everyday layman terms and avoid using complex medical terminology.\
-                Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
-            """
-        )
-    ) {
-        SummarizeFunction()
-    }
+    @State var model: LLM
     
     var body: some View {
-        NavigationStack {
-            LLMChatView(
-                model: model
-            )
-            .navigationTitle("Chief Complaint")
-            .toolbar {
-                if AccountButton.shouldDisplay {
-                    AccountButton(isPresented: $presentingAccount)
-                }
+        LLMChatView(
+            model: model
+        )
+        .navigationTitle("Chief Complaint")
+        .toolbar {
+            if AccountButton.shouldDisplay {
+                AccountButton(isPresented: $presentingAccount)
             }
-            .sheet(isPresented: $showOnboarding) {
-                LLMOnboardingView(showOnboarding: $showOnboarding)
-            }
-            .onAppear {
-                if greeting{
-                    let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                    model.context.insert(assistantMessage, at: 0)
-                }
-                greeting = false
-
-            }
-            .onChange(of: shouldNavigateToSummaryView) { _, newValue in
-                if newValue {
-                    chiefComplaint = model.context[-1].content
-                    // Navigate to next screen, passing chiefComplaint as parameter
-                    print($chiefComplaint)
-                }
-            }
-//            NavigationLink(
-//                destination: SummaryView(chiefComplaint: chiefComplaint ?? "No Chief Complaint"),
-//                label: {
-//                    EmptyView()
-//                }
-//            )
         }
+        .sheet(isPresented: $showOnboarding) {
+            LLMOnboardingView(showOnboarding: $showOnboarding)
+        }
+        .onAppear {
+            if greeting {
+                let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
+                model.context.insert(assistantMessage, at: 0)
+            }
+            greeting = false
+        }
+        .onChange(of: self.stringBox.llmResponseSummary) { _, _ in
+            self.showSheet = true
+        }
+        .sheet(isPresented: $showSheet) {
+            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary)
+        }
+    }
+    
+    init(presentingAccount: Binding<Bool>) {
+        self._presentingAccount = presentingAccount
+        let stringBoxTemp = StringBox()
+        self.stringBox = stringBoxTemp
+        self.model = LLMOpenAI(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: """
+                        You are acting as an intake person at a clinic and need to work with\
+                        the patient to help clarify their chief complaint into a concise,\
+                        specific complaint.
+                    
+                        You should always ask about severity and duration if the patient does not include this information.
+                        
+                        Additionally, help guide the patient into providing information specific to the condition that the define.\
+                        For example, if the patient is experiencing leg pain, you should prompt them to be more\
+                        specific about laterality and location. You should also ask if the pain is dull or sharp,\
+                        and encourage them to rate their pain on a scale of 1 to 10. For a cough, for example, you\
+                        should inquire whether the cough is wet or dry, as well as any other characteristics of the\
+                        cough that might allow a doctor to rule out diagnoses.
+                        
+                        Please use everyday layman terms and avoid using complex medical terminology.\
+                        Only ask one question or prompt at a time, and keep your responses brief (one to two short sentences).
+                    """
+                )
+            ) {
+                SummarizeFunction(stringBox: stringBoxTemp)
+            }
     }
 }
 
 #Preview {
-    LLMInteraction(presentingAccount: .constant(true))
+    LLMInteraction(presentingAccount: .constant(false))
         .previewWith {
             LLMRunner {
                 LLMOpenAIRunnerSetupTask()
