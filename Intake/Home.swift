@@ -18,6 +18,7 @@ struct HomeView: View {
         case mockUpload
         case medicalHistory
         case allergyRecords
+        case medications
     }
     
     @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
@@ -73,6 +74,11 @@ struct HomeView: View {
                     .tag(Tabs.allergyRecords)
                     .tabItem {
                         Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
+                    }
+                MedicationView()
+                    .tag(Tabs.medications)
+                    .tabItem {
+                        Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
                     }
             }
                 .sheet(isPresented: $presentingAccount) {

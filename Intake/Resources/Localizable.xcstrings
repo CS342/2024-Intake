@@ -7,6 +7,9 @@
     "2. Please list current conditions you have" : {
 
     },
+    "3. Please list your current medications." : {
+
+    },
     "5. What are your current allergies?" : {
 
     },
@@ -243,6 +246,9 @@
     "Medical Intake Form" : {
 
     },
+    "Medication" : {
+
+    },
     "Medications" : {
 
     },
@@ -250,6 +256,9 @@
 
     },
     "MOCK_MEDICAL_HISTORY_TITLE" : {
+
+    },
+    "MOCK_MEDICATIONS_RECORDS_TITLE" : {
 
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
