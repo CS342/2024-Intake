@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct ReactionItem: Identifiable {
     var id = UUID()
@@ -69,5 +69,4 @@ struct ReactionView: View {
         .previewWith {
             FHIRStore()
         }
-        
 }

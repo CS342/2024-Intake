@@ -8,7 +8,7 @@
 import Foundation
 import HealthKit
 
-//class HealthKitManager {
+// class HealthKitManager {
 //    let healthStore = HKHealthStore()
 //
 //    func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
@@ -50,11 +50,11 @@ import HealthKit
 //        // Execute the query
 //        healthStore.execute(query)
 //    }
-//}
+// }
 //
 //// Usage
-//let healthKitManager = HealthKitManager()
-//healthKitManager.requestAuthorization { (authorized, error) in
+// let healthKitManager = HealthKitManager()
+// healthKitManager.requestAuthorization { (authorized, error) in
 //    guard authorized else {
 //        print("Permission denied: \(error?.localizedDescription ?? "Unknown error")")
 //        return
@@ -62,4 +62,4 @@ import HealthKit
 //
 //    // If we're authorized, query the allergy records
 //    healthKitManager.queryAllergyRecords()
-//}
+// }

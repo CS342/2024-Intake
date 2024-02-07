@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct MedicationItem: Identifiable {
     var id = UUID()
@@ -74,11 +74,9 @@ struct MedicationView: View {
     }
         
 
-
 #Preview {
     MedicationView()
         .previewWith {
             FHIRStore()
         }
-        
 }
