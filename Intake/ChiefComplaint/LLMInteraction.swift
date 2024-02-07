@@ -18,7 +18,6 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct LLMInteraction: View {
-
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
