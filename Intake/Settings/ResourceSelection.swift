@@ -28,7 +28,7 @@ struct ResourceSelection: View {
                     return false
                 }
                  */
-                return standard.useHealthKitResources
+                standard.useHealthKitResources
             },
             set: { newValue in
                 showBundleSelection = !newValue

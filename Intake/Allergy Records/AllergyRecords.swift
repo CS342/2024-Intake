@@ -4,11 +4,17 @@
 //
 //  Created by Akash Gupta on 1/30/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import ModelsR4
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct AllergyItem: Identifiable {
     var id = UUID()
@@ -66,7 +72,7 @@ struct AllergyView: View {
 //                var reactions: [String] = []
                 let intolerances = fhirStore.allergyIntolerances
                 if intolerances.count > 0 {
-                    for i in 0...(intolerances.count-1) {
+                    for i in 0...(intolerances.count - 1) {
                         let vr = intolerances[i].versionedResource
                         switch vr {
                         case .r4(let result as AllergyIntolerance):
@@ -98,11 +104,9 @@ struct AllergyView: View {
 }
         
 
-
 #Preview {
     AllergyView()
         .previewWith {
             FHIRStore()
         }
-        
 }

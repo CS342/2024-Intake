@@ -4,10 +4,16 @@
 //
 //  Created by Kate Callon on 2/6/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct MedicationItem: Identifiable {
     var id = UUID()
@@ -74,11 +80,9 @@ struct MedicationView: View {
     }
         
 
-
 #Preview {
     MedicationView()
         .previewWith {
             FHIRStore()
         }
-        
 }

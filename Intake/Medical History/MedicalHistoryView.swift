@@ -4,10 +4,16 @@
 //
 //  Created by Akash Gupta on 1/30/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct MedicalHistoryItem: Identifiable {
     var id = UUID()
@@ -61,9 +67,9 @@ struct MedicalHistoryView: View {
                     let conditions = fhirStore.conditions
                     print(conditions)
                     let invalid = ["Medication review due (situation)", "Part-time employment (finding)",
-                                    "Stress (finding)", "Full-time employment (finding)", ]
+                                    "Stress (finding)", "Full-time employment (finding)" ]
                     for condition in conditions {
-                        if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: { $0.condition == condition.displayName }){
+                        if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: { $0.condition == condition.displayName }) {
                             self.medicalHistory.append(MedicalHistoryItem(condition: condition.displayName))
                         }
                     }
@@ -77,11 +83,9 @@ struct MedicalHistoryView: View {
     }
         
 
-
 #Preview {
     MedicalHistoryView()
         .previewWith {
             FHIRStore()
         }
-        
 }

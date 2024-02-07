@@ -4,10 +4,15 @@
 //
 //  Created by Akash Gupta on 2/1/24.
 //
-
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
 
 struct ReactionItem: Identifiable {
     var id = UUID()
@@ -69,5 +74,4 @@ struct ReactionView: View {
         .previewWith {
             FHIRStore()
         }
-        
 }
