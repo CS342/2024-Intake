@@ -15,18 +15,35 @@ import Foundation
 import SwiftUI
 
 struct SummaryView: View {
-    let chiefComplaint: String
+    @State var chiefComplaint: String
 //    var navigationPath: NavigationPath
     
     var body: some View {
         VStack {
-            Text(chiefComplaint)
+            Text("Primary Concern")
+                .font(.title)
+                .padding(50)
+            Text("Here is a summary of your primary concern:")
+            TextField(
+                "Summary",
+                text: $chiefComplaint,
+                axis: .vertical
+            )
+                .border(.secondary)
+                .textFieldStyle(.roundedBorder)
                 .padding()
                 .multilineTextAlignment(.center)
+            Button(action: {}, label: {
+                Text("Submit")
+            })
 //            Button(action: { navigationPath.append(NavigationViews.allergies) }, label: {
 //                Text("Submit")
 //            })
         }
         .navigationTitle("Summary")
+    }
+    
+    init(chiefComplaint: String) {
+        self.chiefComplaint = chiefComplaint
     }
 }

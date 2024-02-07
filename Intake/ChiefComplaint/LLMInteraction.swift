@@ -57,7 +57,6 @@ struct LLMInteraction: View {
         
         func execute() async throws -> String? {
             let summary = """
-            Here is the summary that will be provided to your doctor:\n
                 Primary concern: \(medicalConcern)\n
                 Severity: \(severity)\n
                 Duration: \(duration)\n
