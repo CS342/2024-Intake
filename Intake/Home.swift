@@ -10,6 +10,14 @@ import SpeziAccount
 import SpeziMockWebService
 import SwiftUI
 
+enum NavigationViews: String {
+    case allergies
+    case surgical
+    case medical
+    case social
+    case medication
+    case chat
+}
 
 struct HomeView: View {
     enum Tabs: String {
@@ -17,18 +25,32 @@ struct HomeView: View {
         case form
         case contact
         case mockUpload
+        case summary
     }
     
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
 
-
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @State private var presentingAccount = false
-
+    
+//    @State var navigationPath = NavigationPath()
     
     var body: some View {
+//        NavigationStack(path: $navigationPath) {
+//            LLMInteraction(presentingAccount: $presentingAccount)
+//                .navigationDestination(for: NavigationViews.self) { view in
+//                switch view {
+//                case .allergies: AllergyViewTest()
+//                default: SummaryView(chiefComplaint: "blah blah blah")
+//                    // Fill in rest from NavigationView
+//                }
+//            }
+//        }
+//        .environmentObject(navigationPath)
+        
+        
         TabView(selection: $selectedTab) {
             ScheduleView(presentingAccount: $presentingAccount)
                 .tag(Tabs.schedule)
@@ -53,13 +75,13 @@ struct HomeView: View {
                     Label("Create Form", systemImage: "captions.bubble.fill")
                 }
         }
-            .sheet(isPresented: $presentingAccount) {
-                AccountSheet()
-            }
-            .accountRequired(Self.accountEnabled) {
-                AccountSheet()
-            }
-            .verifyRequiredAccountDetails(Self.accountEnabled)
+        .sheet(isPresented: $presentingAccount) {
+            AccountSheet()
+        }
+        .accountRequired(Self.accountEnabled) {
+            AccountSheet()
+        }
+        .verifyRequiredAccountDetails(Self.accountEnabled)
     }
 }
 
