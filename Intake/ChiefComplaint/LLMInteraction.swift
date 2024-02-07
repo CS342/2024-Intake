@@ -92,7 +92,6 @@ struct LLMInteraction: View {
     }
     
     init(presentingAccount: Binding<Bool>) {
-        // swiftlint:disable line_length
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
         let stringBoxTemp = StringBox()
@@ -144,7 +143,6 @@ struct LLMInteraction: View {
             ) {
                 SummarizeFunction(stringBox: stringBoxTemp)
             }
-        // swiftlint:enable line_length
         // swiftlint:enable closure_end_indentation
     }
 }
