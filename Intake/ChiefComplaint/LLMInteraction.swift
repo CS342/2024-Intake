@@ -18,6 +18,7 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct LLMInteraction: View {
+
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
@@ -31,12 +32,14 @@ struct LLMInteraction: View {
         }
     }
     
+
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.
                     """
+
         
         @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
         
