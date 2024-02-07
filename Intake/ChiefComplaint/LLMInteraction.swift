@@ -37,17 +37,8 @@ struct LLMInteraction: View {
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.
                     """
-        @Parameter(description: "The primary medical concern that the patient is experiencing.") var medicalConcern: String
         
-        @Parameter(description: "The severity of the primary medical concern.") var severity: String
-        
-        @Parameter(description: "The duration of the primary medical concern.") var duration: String
-        
-        static let desc: String = """
-            Extra important information relevant to the primary\
-            medical concern that the doctor should be aware of.
-            """
-        @Parameter(description: desc) var supplementaryInfo: String
+        @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
         
         let stringBox: StringBox
         
@@ -56,15 +47,8 @@ struct LLMInteraction: View {
         }
         
         func execute() async throws -> String? {
-            let summary = """
-                Primary concern: \(medicalConcern)\n
-                Severity: \(severity)\n
-                Duration: \(duration)\n
-                Extra Info: \(supplementaryInfo)\n
-            """
-            
+            let summary = patientSummary
             self.stringBox.llmResponseSummary = summary
-            
             return nil
         }
     }

@@ -19,28 +19,37 @@ struct SummaryView: View {
 //    var navigationPath: NavigationPath
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 20) {
             Text("Primary Concern")
                 .font(.title)
-                .padding(50)
+                .padding(.top, 50)
+            
             Text("Here is a summary of your primary concern:")
-            TextField(
-                "Summary",
-                text: $chiefComplaint,
-                axis: .vertical
-            )
-                .border(.secondary)
-                .textFieldStyle(.roundedBorder)
-                .padding()
-                .multilineTextAlignment(.center)
-            Button(action: {}, label: {
+            
+            TextEditor(text: $chiefComplaint)
+                .frame(height: 150)
+                .background(Color.white)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.secondary, lineWidth: 1)
+                )
+                .padding(.horizontal)
+            
+            Button(action: {
+                // TODO: Save output to Fhirstore and navigate to next screen
+//                navigationPath.append(NavigationViews.allergies)
+            }) {
                 Text("Submit")
-            })
-//            Button(action: { navigationPath.append(NavigationViews.allergies) }, label: {
-//                Text("Submit")
-//            })
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+            .padding(.horizontal)
         }
-        .navigationTitle("Summary")
+        .padding()
     }
     
     init(chiefComplaint: String) {
