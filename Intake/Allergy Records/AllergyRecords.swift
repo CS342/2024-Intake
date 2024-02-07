@@ -28,7 +28,7 @@ struct AllergyView: View {
     @State private var allergyRecords: [AllergyItem] = []
     
     var body: some View {
-        NavigationView {
+        NavigationView { // swiftlint:disable:this closure_body_length
             List {
                 ForEach($allergyRecords) { $item in
                     NavigationLink(destination: ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: item.condition)) {

@@ -26,7 +26,7 @@ struct MedicalHistoryView: View {
     @State private var medicalHistory: [MedicalHistoryItem] = []
 
         var body: some View {
-            NavigationView {
+            NavigationView { // swiftlint:disable:this closure_body_length
                 List {
                     ForEach($medicalHistory) { $item in
                         HStack {
@@ -69,7 +69,8 @@ struct MedicalHistoryView: View {
                     let invalid = ["Medication review due (situation)", "Part-time employment (finding)",
                                     "Stress (finding)", "Full-time employment (finding)" ]
                     for condition in conditions {
-                        if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: { $0.condition == condition.displayName }) {
+                        if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: {
+                                                                    $0.condition == condition.displayName }) {
                             self.medicalHistory.append(MedicalHistoryItem(condition: condition.displayName))
                         }
                     }

@@ -26,7 +26,7 @@ struct MedicationView: View {
     @State private var medications: [MedicationItem] = []
 
         var body: some View {
-            NavigationView {
+            NavigationView { // swiftlint:disable:this closure_body_length
                 List {
                     ForEach($medications) { $item in
                         HStack {

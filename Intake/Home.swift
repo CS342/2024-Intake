@@ -70,7 +70,7 @@ struct HomeView: View {
 //        .environmentObject(navigationPath)
         
         
-        TabView(selection: $selectedTab) {
+        TabView(selection: $selectedTab) { // swiftlint:disable:this closure_body_length
             ScheduleView(presentingAccount: $presentingAccount)
                 .tag(Tabs.schedule)
                 .tabItem {
