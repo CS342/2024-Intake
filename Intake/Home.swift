@@ -89,7 +89,6 @@ struct HomeView: View {
             }
                 .sheet(isPresented: $presentingAccount) {
                     AccountSheet()
-                    
                 }
                 .accountRequired(Self.accountEnabled) {
                     AccountSheet()

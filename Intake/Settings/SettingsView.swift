@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-//import SpeziFHIRInterpretation
-//import SpeziOpenAI
+// import SpeziFHIRInterpretation
+// import SpeziOpenAI
 import SwiftUI
 
 
@@ -28,11 +28,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                //openAISettings
-                //speechSettings
-                //resourcesLimitSettings
+                // openAISettings
+                // speechSettings
+                // resourcesLimitSettings
                 resourcesSettings
-                //promptsSettings
+                // promptsSettings
             }
                 .navigationTitle("SETTINGS_TITLE")
                 .navigationDestination(for: SettingsDestinations.self) { destination in
