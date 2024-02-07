@@ -12,6 +12,9 @@ import SpeziFirebaseAccount
 import SpeziFirebaseStorage
 import SpeziFirestore
 import SpeziHealthKit
+import SpeziLLM
+import SpeziLLMLocal
+import SpeziLLMOpenAI
 import SpeziMockWebService
 import SpeziOnboarding
 import SpeziScheduler
@@ -25,12 +28,11 @@ class IntakeDelegate: SpeziAppDelegate {
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
                     .requires(\.name),
-
+                    
                     // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
                     .collects(\.genderIdentity),
                     .collects(\.dateOfBirth)
                 ])
-
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseAccountConfiguration(
                         authenticationMethods: [.emailAndPassword, .signInWithApple],
@@ -42,17 +44,20 @@ class IntakeDelegate: SpeziAppDelegate {
                 firestore
                 if FeatureFlags.useFirebaseEmulator {
                     FirebaseStorageConfiguration(emulatorSettings: (host: "localhost", port: 9199))
-                } else {
-                    FirebaseStorageConfiguration()
-                }
+                } else { FirebaseStorageConfiguration() }
             } else {
                 MockWebService()
             }
-
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }
-            
+            LLMRunner(
+                runnerConfig: .init(
+                    taskPriority: .medium
+                )
+            ) {
+                LLMOpenAIRunnerSetupTask()
+            }
             IntakeScheduler()
             OnboardingDataSource()
         }
@@ -72,28 +77,15 @@ class IntakeDelegate: SpeziAppDelegate {
         )
     }
     
-    
+    // swiftlint:disable trailing_newline
     private var healthKit: HealthKit {
         HealthKit {
-            CollectSamples(
-                [
-                    HKClinicalType(.allergyRecord),
-                    HKClinicalType(.clinicalNoteRecord),
-                    HKClinicalType(.conditionRecord),
-                    HKClinicalType(.coverageRecord),
-                    HKClinicalType(.immunizationRecord),
-                    HKClinicalType(.labResultRecord),
-                    HKClinicalType(.medicationRecord),
-                    HKClinicalType(.procedureRecord),
-                    HKClinicalType(.vitalSignRecord)
-                ],
-                predicate: HKQuery.predicateForSamples(
-                    withStart: Date.distantPast,
-                    end: nil,
-                    options: .strictEndDate
-                ),
-                deliverySetting: .anchorQuery(saveAnchor: false)
+            CollectSample(
+                HKQuantityType(.stepCount),
+                deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
             )
         }
     }
 }
+// swiftlint:enable trailing newline
+

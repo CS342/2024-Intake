@@ -10,12 +10,22 @@ import SpeziAccount
 import SpeziMockWebService
 import SwiftUI
 
+enum NavigationViews: String {
+    case allergies
+    case surgical
+    case medical
+    case social
+    case medication
+    case chat
+}
 
 struct HomeView: View {
     enum Tabs: String {
         case schedule
+        case form
         case contact
         case mockUpload
+        case summary
         case medicalHistory
         case allergyRecords
         case medications
@@ -40,66 +50,81 @@ struct HomeView: View {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
 
-
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @State private var presentingAccount = false
     @State private var showSettings = false
-
+    
+//    @State var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationStack {
-            TabView(selection: $selectedTab) {
-                ScheduleView(presentingAccount: $presentingAccount)
-                    .tag(Tabs.schedule)
-                    .tabItem {
-                        Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
-                    }
-                Contacts(presentingAccount: $presentingAccount)
-                    .tag(Tabs.contact)
-                    .tabItem {
-                        Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
-                    }
-                if FeatureFlags.disableFirebase {
-                    MockUpload(presentingAccount: $presentingAccount)
-                        .tag(Tabs.mockUpload)
-                        .tabItem {
-                            Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
-                        }
+//        NavigationStack(path: $navigationPath) {
+//            LLMInteraction(presentingAccount: $presentingAccount)
+//                .navigationDestination(for: NavigationViews.self) { view in
+//                switch view {
+//                case .allergies: AllergyViewTest()
+//                default: SummaryView(chiefComplaint: "blah blah blah")
+//                    // Fill in rest from NavigationView
+//                }
+//            }
+//        }
+//        .environmentObject(navigationPath)
+        
+        
+        TabView(selection: $selectedTab) {
+            ScheduleView(presentingAccount: $presentingAccount)
+                .tag(Tabs.schedule)
+                .tabItem {
+                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
                 }
-                MedicalHistoryView()
-                    .tag(Tabs.medicalHistory)
+            Contacts(presentingAccount: $presentingAccount)
+                .tag(Tabs.contact)
+                .tabItem {
+                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+                }
+            if FeatureFlags.disableFirebase {
+                MockUpload(presentingAccount: $presentingAccount)
+                    .tag(Tabs.mockUpload)
                     .tabItem {
-                        Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
-                    }
-                AllergyView()
-                    .tag(Tabs.allergyRecords)
-                    .tabItem {
-                        Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
-                    }
-                MedicationView()
-                    .tag(Tabs.medications)
-                    .tabItem {
-                        Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
-                    }
-                SurgeryView()
-                    .tag(Tabs.surgeries)
-                    .tabItem {
-                        Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
+                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
+            MedicalHistoryView()
+                .tag(Tabs.medicalHistory)
+                .tabItem {
+                    Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
                 .sheet(isPresented: $presentingAccount) {
                     AccountSheet()
                 }
-                .accountRequired(Self.accountEnabled) {
-                    AccountSheet()
+            AllergyView()
+                .tag(Tabs.allergyRecords)
+                .tabItem {
+                    Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
                 }
-                .verifyRequiredAccountDetails(Self.accountEnabled)
-                .toolbar {
-                    settingsToolbarItem
+            MedicationView()
+                .tag(Tabs.medications)
+                .tabItem {
+                    Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
                 }
-                .sheet(isPresented: $showSettings) {
-                    SettingsView()
+            SurgeryView()
+                .tag(Tabs.surgeries)
+                .tabItem {
+                    Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
                 }
+            LLMInteraction(presentingAccount: $presentingAccount)
+                .tag(Tabs.form)
+                .tabItem {
+                    Label("Create Form", systemImage: "captions.bubble.fill")
+                }
+        }
+        .sheet(isPresented: $presentingAccount) {
+            AccountSheet()
+        }
+        .accountRequired(Self.accountEnabled) {
+            AccountSheet()
+        }
+        .verifyRequiredAccountDetails(Self.accountEnabled)
+        .toolbar {
+            settingsToolbarItem
         }
     }
 }
