@@ -1,6 +1,21 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ Reactions" : {
+
+    },
+    "2. Please list current conditions you have" : {
+
+    },
+    "3. Please list your current medications." : {
+
+    },
+    "4. Please list your previous surgeries." : {
+
+    },
+    "5. What are your current allergies?" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -52,6 +67,9 @@
         }
       }
     },
+    "Add Field" : {
+
+    },
     "Allergies" : {
 
     },
@@ -81,6 +99,9 @@
           }
         }
       }
+    },
+    "Condition" : {
+
     },
     "CONSENT_LOADING_ERROR" : {
       "localizations" : {
@@ -147,6 +168,9 @@
 
     },
     "Download your medical records from your health system." : {
+
+    },
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "Get Started" : {
@@ -234,7 +258,22 @@
     "Medical Intake Form" : {
 
     },
+    "Medication" : {
+
+    },
     "Medications" : {
+
+    },
+    "MOCK_ALLERGY_RECORDS_TITLE" : {
+
+    },
+    "MOCK_MEDICAL_HISTORY_TITLE" : {
+
+    },
+    "MOCK_MEDICATIONS_RECORDS_TITLE" : {
+
+    },
+    "MOCK_SURGERY_RECORDS_TITLE" : {
 
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
@@ -339,6 +378,9 @@
         }
       }
     },
+    "Reactions" : {
+
+    },
     "Repository Link" : {
       "localizations" : {
         "en" : {
@@ -348,6 +390,12 @@
           }
         }
       }
+    },
+    "Resource Selection" : {
+
+    },
+    "Resource Settings" : {
+
     },
     "Review of Systems" : {
 
@@ -376,6 +424,12 @@
         }
       }
     },
+    "SETTINGS" : {
+
+    },
+    "SETTINGS_TITLE" : {
+
+    },
     "Share with provider of your choice." : {
 
     },
@@ -392,6 +446,9 @@
 
     },
     "Summarize your surgical history." : {
+
+    },
+    "Surgery" : {
 
     },
     "Surgical History" : {
@@ -453,6 +510,9 @@
 
     },
     "Together we will summarize..." : {
+
+    },
+    "Use HealthKit Resources" : {
 
     },
     "Welcome to ReForm" : {

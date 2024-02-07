@@ -26,6 +26,24 @@ struct HomeView: View {
         case contact
         case mockUpload
         case summary
+        case medicalHistory
+        case allergyRecords
+        case medications
+        case surgeries
+    }
+    
+    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Button(
+                action: {
+                    showSettings.toggle()
+                },
+                label: {
+                    Image(systemName: "gear")
+                        .accessibilityLabel(Text("SETTINGS"))
+                }
+            )
+        }
     }
     
     static var accountEnabled: Bool {
@@ -34,6 +52,7 @@ struct HomeView: View {
 
     @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
     @State private var presentingAccount = false
+    @State private var showSettings = false
     
 //    @State var navigationPath = NavigationPath()
     
@@ -69,6 +88,26 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
+            MedicalHistoryView()
+                .tag(Tabs.medicalHistory)
+                .tabItem {
+                    Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
+                }
+            AllergyView()
+                .tag(Tabs.allergyRecords)
+                .tabItem {
+                    Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
+                }
+            MedicationView()
+                .tag(Tabs.medications)
+                .tabItem {
+                    Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
+                }
+            SurgeryView()
+                .tag(Tabs.surgeries)
+                .tabItem {
+                    Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
+                }
             LLMInteraction(presentingAccount: $presentingAccount)
                 .tag(Tabs.form)
                 .tabItem {
@@ -82,6 +121,9 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
+        .toolbar {
+            settingsToolbarItem
+        }
     }
 }
 
