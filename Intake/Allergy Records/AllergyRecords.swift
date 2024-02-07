@@ -71,10 +71,10 @@ struct AllergyView: View {
                 var allergies: [FHIRString] = []
 //                var reactions: [String] = []
                 let intolerances = fhirStore.allergyIntolerances
-                if intolerances.count > 0 {
-                    for i in 0...(intolerances.count - 1) {
-                        let vr = intolerances[i].versionedResource
-                        switch vr {
+                if !intolerances.isEmpty {
+                    for indx in 0...(intolerances.count - 1) {
+                        let vrs = intolerances[indx].versionedResource
+                        switch vrs {
                         case .r4(let result as AllergyIntolerance):
                             allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
 //                            var reactions_per_allergy = result.reaction

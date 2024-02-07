@@ -92,8 +92,9 @@ struct HomeView: View {
                 .tag(Tabs.medicalHistory)
                 .tabItem {
                     Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
-                .sheet(isPresented: $presentingAccount) {
-                    AccountSheet()
+                        .sheet(isPresented: $presentingAccount) {
+                            AccountSheet()
+                        }
                 }
             AllergyView()
                 .tag(Tabs.allergyRecords)
