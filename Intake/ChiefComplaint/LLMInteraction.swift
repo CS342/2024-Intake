@@ -141,7 +141,7 @@ struct LLMInteraction: View {
                         Only ask one question or prompt at a time, and keep your questions brief (one to two short sentences).
                     """
                 )
-            ){
+            ) {
                 SummarizeFunction(stringBox: stringBoxTemp)
             }
         // swiftlint:enable line_length

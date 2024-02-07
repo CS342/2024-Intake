@@ -37,7 +37,7 @@ struct SummaryView: View {
                 .padding(.horizontal)
             
             Button(action: {
-                // TODO: Save output to Fhirstore and navigate to next screen
+                // Save output to Fhirstore and navigate to next screen
 //                navigationPath.append(NavigationViews.allergies)
             }) {
                 Text("Submit")
