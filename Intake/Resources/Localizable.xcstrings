@@ -10,6 +10,9 @@
     "3. Please list your current medications." : {
 
     },
+    "4. Please list your previous surgeries." : {
+
+    },
     "5. What are your current allergies?" : {
 
     },
@@ -261,6 +264,9 @@
     "MOCK_MEDICATIONS_RECORDS_TITLE" : {
 
     },
+    "MOCK_SURGERY_RECORDS_TITLE" : {
+
+    },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
       "localizations" : {
@@ -422,6 +428,9 @@
 
     },
     "Summarize your surgical history." : {
+
+    },
+    "Surgery" : {
 
     },
     "Surgical History" : {
