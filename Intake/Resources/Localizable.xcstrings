@@ -64,6 +64,9 @@
     "Add Field" : {
 
     },
+    "Add Medication" : {
+
+    },
     "Allergies" : {
 
     },
@@ -243,6 +246,12 @@
     "Medical Intake Form" : {
 
     },
+    "Medication" : {
+
+    },
+    "Medication Settings" : {
+
+    },
     "Medications" : {
 
     },
@@ -250,6 +259,9 @@
 
     },
     "MOCK_MEDICAL_HISTORY_TITLE" : {
+
+    },
+    "MOCK_MEDICATIONS_TITLE" : {
 
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
@@ -319,6 +331,9 @@
       }
     },
     "Other important questions." : {
+
+    },
+    "Patient's Medications" : {
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
@@ -404,6 +419,9 @@
 
     },
     "Share with provider of your choice." : {
+
+    },
+    "Show Settings" : {
 
     },
     "Submit your Form" : {

@@ -18,6 +18,7 @@ struct HomeView: View {
         case mockUpload
         case medicalHistory
         case allergyRecords
+        case medications
     }
     
     @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
@@ -68,6 +69,11 @@ struct HomeView: View {
                     .tag(Tabs.medicalHistory)
                     .tabItem {
                         Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
+                    }
+                MedicationsView()
+                    .tag(Tabs.medications)
+                    .tabItem {
+                        Label("MOCK_MEDICATIONS_TITLE", systemImage: "server.rack")
                     }
                 AllergyView()
                     .tag(Tabs.allergyRecords)
