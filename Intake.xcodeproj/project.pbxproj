@@ -57,6 +57,8 @@
 		2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */; };
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */; };
+		511827962B740192002033A0 /* SurgeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827952B740191002033A0 /* SurgeryView.swift */; };
+		511827982B7401A8002033A0 /* MedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827972B7401A8002033A0 /* MedicationView.swift */; };
 		5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 5661551C2AB8384200209B80 /* SwiftPackageList */; };
 		566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566155282AB8447C00209B80 /* Package+LicenseType.swift */; };
 		5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661552D2AB854C000209B80 /* PackageHelper.swift */; };
@@ -148,6 +150,8 @@
 		2FE5DC5529EDD811004B9AB4 /* SocialSupportQuestionnaire.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SocialSupportQuestionnaire.json; sourceTree = "<group>"; };
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeStandard.swift; sourceTree = "<group>"; };
+		511827952B740191002033A0 /* SurgeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryView.swift; sourceTree = "<group>"; };
+		511827972B7401A8002033A0 /* MedicationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationView.swift; sourceTree = "<group>"; };
 		566155282AB8447C00209B80 /* Package+LicenseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package+LicenseType.swift"; sourceTree = "<group>"; };
 		5661552D2AB854C000209B80 /* PackageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHelper.swift; sourceTree = "<group>"; };
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
@@ -325,6 +329,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		511827942B740191002033A0 /* Surgery */ = {
+			isa = PBXGroup;
+			children = (
+				511827952B740191002033A0 /* SurgeryView.swift */,
+			);
+			path = Surgery;
+			sourceTree = "<group>";
+		};
 		56F6F29E2AB441640022FE5A /* Contributions */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,6 +429,8 @@
 		653A254F283387FE005D4D48 /* Intake */ = {
 			isa = PBXGroup;
 			children = (
+				511827972B7401A8002033A0 /* MedicationView.swift */,
+				511827942B740191002033A0 /* Surgery */,
 				5A2B9FB32B6AFE1F005CA63F /* Allergy Records */,
 				5A2B9F8D2B69E286005CA63F /* Mock Data */,
 				5A2B9F762B69AE07005CA63F /* Medical History */,
@@ -706,6 +720,7 @@
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
+				511827982B7401A8002033A0 /* MedicationView.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
@@ -726,6 +741,7 @@
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
+				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* Intake.swift in Sources */,
