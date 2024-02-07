@@ -183,7 +183,7 @@
     {
       "identity" : "spezichat",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziChat.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziChat",
       "state" : {
         "revision" : "ea5e21b4f42d99a5549dd7a7033e2a3efeb5fd36",
         "version" : "0.1.5"
@@ -237,7 +237,7 @@
     {
       "identity" : "spezillm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziLLM",
       "state" : {
         "revision" : "94c1f3bd3eb9412e3321a46730c1572da11bd951",
         "version" : "0.6.1"
