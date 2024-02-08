@@ -89,12 +89,11 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
-                SocialHistoryQuestionView()
-                    .tag(Tabs.socialHistory)
-                    .tabItem {
-                        Label("Social History", systemImage: "person.line.dotted.person")
-                    }
-                
+            SocialHistoryQuestionView()
+                .tag(Tabs.socialHistory)
+                .tabItem {
+                    Label("Social History", systemImage: "person.line.dotted.person")
+                }
             MedicalHistoryView()
                 .tag(Tabs.medicalHistory)
                 .tabItem {
