@@ -18,6 +18,7 @@ struct HomeView: View {
         case mockUpload
         case medicalHistory
         case allergyRecords
+        case socialHistory
     }
     
     @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
@@ -45,7 +46,7 @@ struct HomeView: View {
 
     
     var body: some View {
-        NavigationStack {
+        NavigationStack {   // swiftlint:disable:this closure_body_length
             TabView(selection: $selectedTab) {
                 ScheduleView(presentingAccount: $presentingAccount)
                     .tag(Tabs.schedule)
@@ -64,6 +65,12 @@ struct HomeView: View {
                             Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                         }
                 }
+                SocialHistoryQuestionView()
+                    .tag(Tabs.socialHistory)
+                    .tabItem {
+                        Label("Social History", systemImage: "person.line.dotted.person")
+                    }
+                /*
                 MedicalHistoryView()
                     .tag(Tabs.medicalHistory)
                     .tabItem {
@@ -73,8 +80,9 @@ struct HomeView: View {
                     .tag(Tabs.allergyRecords)
                     .tabItem {
                         Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
-                    }
+                    }*/
             }
+            
                 .sheet(isPresented: $presentingAccount) {
                     AccountSheet()
                     

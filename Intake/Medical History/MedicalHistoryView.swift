@@ -4,7 +4,7 @@
 //
 //  Created by Akash Gupta on 1/30/24.
 //
-
+/*
 import Foundation
 import SwiftUI
 import SpeziFHIR
@@ -85,3 +85,4 @@ struct MedicalHistoryView: View {
         }
         
 }
+*/

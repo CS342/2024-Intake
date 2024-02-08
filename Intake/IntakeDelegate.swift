@@ -94,6 +94,13 @@ class IntakeDelegate: SpeziAppDelegate {
                 ),
                 deliverySetting: .anchorQuery(saveAnchor: false)
             )
+            /*
+            CollectSample(
+                HKCharacteristicType(.biologicalSex),
+                deliverySetting: .anchorQuery(saveAnchor: false)
+            )
+             */
+            
         }
     }
 }

@@ -4,7 +4,7 @@
 //
 //  Created by Akash Gupta on 1/30/24.
 //
-
+/*
 import Foundation
 import ModelsR4
 import SwiftUI
@@ -106,3 +106,4 @@ struct AllergyView: View {
         }
         
 }
+*/
