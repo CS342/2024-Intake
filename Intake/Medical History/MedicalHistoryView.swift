@@ -90,3 +90,4 @@ struct MedicalHistoryView: View {
             FHIRStore()
         }
 }
+

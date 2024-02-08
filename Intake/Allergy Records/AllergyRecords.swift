@@ -110,3 +110,4 @@ struct AllergyView: View {
             FHIRStore()
         }
 }
+

@@ -70,6 +70,9 @@
     "Add Field" : {
 
     },
+    "Additional details: %@" : {
+
+    },
     "Allergies" : {
 
     },
@@ -167,6 +170,9 @@
     "Create Form" : {
 
     },
+    "Do you currently smoke or have you in the past?" : {
+
+    },
     "Download your medical records from your health system." : {
 
     },
@@ -218,6 +224,12 @@
       }
     },
     "Here is a summary of your primary concern:" : {
+
+    },
+    "How many days a year do you smoke?" : {
+
+    },
+    "How many packs do you smoke a day?" : {
 
     },
     "Integrate your Records" : {
@@ -315,6 +327,9 @@
         }
       }
     },
+    "Next: Smoking History" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -369,6 +384,9 @@
           }
         }
       }
+    },
+    "Optional symptoms: heavy bleeding, cramps, etc." : {
+
     },
     "Other important questions." : {
 
@@ -431,6 +449,9 @@
     "Review summary of your medical history." : {
 
     },
+    "Save" : {
+
+    },
     "SCHEDULE_LIST_TITLE" : {
       "localizations" : {
         "en" : {
@@ -452,6 +473,18 @@
         }
       }
     },
+    "Select approx. end date." : {
+
+    },
+    "Select approx. start date." : {
+
+    },
+    "Select End Date" : {
+
+    },
+    "Select Start Date" : {
+
+    },
     "SETTINGS" : {
 
     },
@@ -459,6 +492,9 @@
 
     },
     "Share with provider of your choice." : {
+
+    },
+    "Social History" : {
 
     },
     "Submit" : {
@@ -474,6 +510,9 @@
 
     },
     "Summarize your surgical history." : {
+
+    },
+    "Summary" : {
 
     },
     "Surgery" : {
@@ -534,10 +573,16 @@
         }
       }
     },
+    "Thank you for completing Social History!" : {
+
+    },
     "This application will help autocomplete your medical intake form." : {
 
     },
     "Together we will summarize..." : {
+
+    },
+    "Total calculated result for smoking: %.2f pack years" : {
 
     },
     "Use HealthKit Resources" : {
@@ -548,6 +593,19 @@
     },
     "What brings you in today? Identify your primary concern(s)." : {
 
+    },
+    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
+
+    },
+    "Your last period was from %@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your last period was from %1$@ to %2$@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -30,6 +30,7 @@ struct HomeView: View {
         case allergyRecords
         case medications
         case surgeries
+        case socialHistory
     }
     
     @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
@@ -57,7 +58,7 @@ struct HomeView: View {
 //    @State var navigationPath = NavigationPath()
     
     var body: some View {
-//        NavigationStack(path: $navigationPath) {
+//        NavigationStack(path: $navigationPath) {   // swiftlint:disable:this closure_body_length
 //            LLMInteraction(presentingAccount: $presentingAccount)
 //                .navigationDestination(for: NavigationViews.self) { view in
 //                switch view {
@@ -88,6 +89,12 @@ struct HomeView: View {
                         Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
                     }
             }
+                SocialHistoryQuestionView()
+                    .tag(Tabs.socialHistory)
+                    .tabItem {
+                        Label("Social History", systemImage: "person.line.dotted.person")
+                    }
+                
             MedicalHistoryView()
                 .tag(Tabs.medicalHistory)
                 .tabItem {
@@ -117,6 +124,7 @@ struct HomeView: View {
                     Label("Create Form", systemImage: "captions.bubble.fill")
                 }
         }
+            
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
         }
