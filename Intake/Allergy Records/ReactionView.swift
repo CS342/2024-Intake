@@ -9,10 +9,7 @@ import Foundation
 import SwiftUI
 import SpeziFHIR
 
-struct ReactionItem: Identifiable {
-    var id = UUID()
-    var reaction: String
-}
+
 
 struct ReactionView: View {
     @State private var reactionRecords: [ReactionItem]

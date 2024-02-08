@@ -14,28 +14,42 @@ struct MedicalHistoryItem: Identifiable {
     var condition: String
 }
 
+struct SheetData {
+    var isShowing: Bool
+    var displayText: String
+}
 
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @State private var medicalHistory: [MedicalHistoryItem] = []
+    @State private var sheetData = SheetData(isShowing: false , displayText: "")
+    @State private var textFieldInput = ""
+    @State private var selectedHistoryItem: String? = nil
+
 
         var body: some View {
             NavigationView {
                 List {
                     ForEach($medicalHistory) { $item in
                         HStack {
+//                            Button(action: {
+//                                // Action to delete this item
+//                                if let index = medicalHistory.firstIndex(where: { $0.id == item.id }) {
+//                                    medicalHistory.remove(at: index)
+//                                }
+//                            }) {
+//                                Image(systemName: "xmark.circle")
+//                            }
                             TextField("Condition", text: $item.condition)
                             Button(action: {
-                                // Action to delete this item
-                                if let index = medicalHistory.firstIndex(where: { $0.id == item.id }) {
-                                    medicalHistory.remove(at: index)
-                                }
+                                sheetData.displayText = item.condition
+                                sheetData.isShowing = true
                             }) {
-                                Image(systemName: "xmark.circle")
+                                Text("?")
                             }
+                            
                         }
                     }
-                    .onDelete(perform: delete)
                     
                     Button(action: {
                         // Action to add new item
@@ -43,8 +57,19 @@ struct MedicalHistoryView: View {
                     }) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
-                            Text("Add Field")
+                            Text("Add Condition")
                         }
+                    }
+                }
+                .sheet(isPresented: $sheetData.isShowing) {
+                    NavigationView {
+                        TextField(sheetData.displayText, text: $textFieldInput)
+                            .navigationBarItems(leading: Button(action: {
+                                sheetData.displayText = ""
+                                sheetData.isShowing = false
+                            }) {
+                                Text("X").bold()
+                            })
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)

@@ -10,12 +10,18 @@ import ModelsR4
 import SwiftUI
 import SpeziFHIR
 
-struct AllergyItem: Identifiable {
+
+struct ReactionItem: Identifiable {
     var id = UUID()
-    var condition: String
     var reaction: String
 }
 
+
+struct AllergyItem: Identifiable {
+    var id = UUID()
+    var condition: String
+    var reactions: [ReactionItem]
+}
 
 struct AllergyView: View {
     @Environment(FHIRStore.self) private var fhirStore
@@ -25,7 +31,7 @@ struct AllergyView: View {
         NavigationView {
             List {
                 ForEach($allergyRecords) { $item in
-                    NavigationLink(destination: ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: item.condition)) {
+                    NavigationLink(destination: ReactionView(reactionRecords: item.reactions, name: item.condition)) {
                         HStack {
                             Button(action: {
                                 // Action to delete this item
@@ -43,7 +49,7 @@ struct AllergyView: View {
                 
                 Button(action: {
                     // Action to add new item
-                    allergyRecords.append(AllergyItem(condition: "", reaction: ""))
+                    allergyRecords.append(AllergyItem(condition: "", reactions: []))
                 }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
@@ -63,7 +69,7 @@ struct AllergyView: View {
             .onAppear {
                 // Set a breakpoint on the next line to inspect `fhirStore.conditions`
                 var allergies: [FHIRString] = []
-//                var reactions: [String] = []
+                var r: [[ReactionItem]] = []
                 let intolerances = fhirStore.allergyIntolerances
                 if intolerances.count > 0 {
                     for i in 0...(intolerances.count-1) {
@@ -71,22 +77,29 @@ struct AllergyView: View {
                         switch vr {
                         case .r4(let result as AllergyIntolerance):
                             allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
-//                            var reactions_per_allergy = result.reaction
-//                            var reactions_for_allergy: [String] = []
-//                            if reactions_per_allergy != nil {
-//                                reactions_for_allergy = reactions_per_allergy.map { reaction in
-//                                    reaction.manifestation[0].text.value
-//                                }
-//                            }
-//                            
+                            let reactions_per_allergy = result.reaction
+                            var reactions_for_allergy: [ReactionItem] = []
+                            if let reactions = reactions_per_allergy {
+                                for reaction in reactions {
+                                    let manifestations = reaction.manifestation
+                                    for manifestation in manifestations {
+                                        reactions_for_allergy.append(ReactionItem(reaction: manifestation.text?.value?.string ?? "Default"))
+                                    }
+                                }
+                            }
+                            r.append(reactions_for_allergy)
+                            
+//
                         default:
-                            // Handle other cases or default case
                             print("The resource is not an R4 Allergy Intolerance")
+                        }
                     }
                 }
-            }
-                self.allergyRecords = allergies.map { allergy in
-                    AllergyItem(condition: allergy.string, reaction: "")
+                if allergies.count > 0 {
+                    for i in 0...(allergies.count-1) {
+                        self.allergyRecords.append(
+                            AllergyItem(condition: allergies[i].string, reactions: r[i]))
+                    }
                 }
             }
         }

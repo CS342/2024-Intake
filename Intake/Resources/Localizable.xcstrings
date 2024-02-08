@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "?" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -60,6 +63,9 @@
           }
         }
       }
+    },
+    "Add Condition" : {
+
     },
     "Add Field" : {
 
@@ -483,6 +489,9 @@
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
+
+    },
+    "X" : {
 
     }
   },
