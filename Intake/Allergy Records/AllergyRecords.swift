@@ -25,46 +25,61 @@ struct AllergyItem: Identifiable {
 
 struct AllergyView: View {
     @Environment(FHIRStore.self) private var fhirStore
+    @EnvironmentObject private var navigationPath: NavigationPathWrapper
     @State private var allergyRecords: [AllergyItem] = []
     
     var body: some View {
         NavigationView { // swiftlint:disable:this closure_body_length
-            List {
-                ForEach($allergyRecords) { $item in
-                    NavigationLink(destination: ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: item.condition)) {
-                        HStack {
-                            Button(action: {
-                                // Action to delete this item
-                                if let index = allergyRecords.firstIndex(where: { $0.id == item.id }) {
-                                    allergyRecords.remove(at: index)
+            VStack { // swiftlint:disable:this closure_body_length
+                List {
+                    ForEach($allergyRecords) { $item in
+                        NavigationLink(destination: ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: item.condition)) {
+                            HStack {
+                                Button(action: {
+                                    // Action to delete this item
+                                    if let index = allergyRecords.firstIndex(where: { $0.id == item.id }) {
+                                        allergyRecords.remove(at: index)
+                                    }
+                                }) {
+                                    Image(systemName: "xmark.circle")
                                 }
-                            }) {
-                                Image(systemName: "xmark.circle")
+                                TextField("Condition", text: $item.condition)
                             }
-                            TextField("Condition", text: $item.condition)
+                        }
+                    }
+                    .onDelete(perform: delete)
+                    
+                    Button(action: {
+                        // Action to add new item
+                        allergyRecords.append(AllergyItem(condition: "", reaction: ""))
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("Add Field")
                         }
                     }
                 }
-                .onDelete(perform: delete)
-                
-                Button(action: {
-                    // Action to add new item
-                    allergyRecords.append(AllergyItem(condition: "", reaction: ""))
-                }) {
-                    HStack {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Add Field")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("What are your current allergies?")
+                            .font(.system(size: 28)) // Choose a size that fits
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
                     }
                 }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("5. What are your current allergies?")
-                        .font(.system(size: 28)) // Choose a size that fits
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
+                Button(action: {
+                    // Navigate to next screen
+                    self.navigationPath.append_item(item: NavigationViews.social)
+                }) {
+                    Text("Submit")
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(8)
                 }
+                .padding()
             }
             .onAppear {
                 // Set a breakpoint on the next line to inspect `fhirStore.conditions`

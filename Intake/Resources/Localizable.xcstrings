@@ -4,18 +4,6 @@
     "%@ Reactions" : {
 
     },
-    "2. Please list current conditions you have" : {
-
-    },
-    "3. Please list your current medications." : {
-
-    },
-    "4. Please list your previous surgeries." : {
-
-    },
-    "5. What are your current allergies?" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -128,6 +116,7 @@
     },
     "CONTACTS_TAB_TITLE" : {
       "comment" : "MARK: - Contacts",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -166,9 +155,6 @@
           }
         }
       }
-    },
-    "Create Form" : {
-
     },
     "Do you currently smoke or have you in the past?" : {
 
@@ -245,6 +231,9 @@
         }
       }
     },
+    "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
     "LICENSE_INFO_TITLE" : {
       "localizations" : {
         "en" : {
@@ -277,6 +266,7 @@
 
     },
     "MOCK_ALLERGY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -287,6 +277,7 @@
       }
     },
     "MOCK_MEDICAL_HISTORY_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -297,6 +288,7 @@
       }
     },
     "MOCK_MEDICATIONS_RECORDS_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -307,6 +299,7 @@
       }
     },
     "MOCK_SURGERY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -318,6 +311,7 @@
     },
     "MOCK_WEB_SERVICE_TAB_TITLE" : {
       "comment" : "MARK: - Mock Upload Data Storage Provider",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -389,6 +383,15 @@
 
     },
     "Other important questions." : {
+
+    },
+    "Please list current conditions you have" : {
+
+    },
+    "Please list your current medications." : {
+
+    },
+    "Please list your previous surgeries." : {
 
     },
     "Primary Concern" : {
@@ -464,6 +467,7 @@
     },
     "SCHEDULE_TAB_TITLE" : {
       "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -501,9 +505,6 @@
 
     },
     "Submit your Form" : {
-
-    },
-    "Success!" : {
 
     },
     "Summarize your medical history." : {
@@ -589,6 +590,9 @@
 
     },
     "Welcome to ReForm" : {
+
+    },
+    "What are your current allergies?" : {
 
     },
     "What brings you in today? Identify your primary concern(s)." : {

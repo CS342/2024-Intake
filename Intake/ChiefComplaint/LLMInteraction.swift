@@ -70,7 +70,7 @@ struct LLMInteraction: View {
             model: model
         )
         .navigationTitle("Chief Complaint")
-        .toolbar {
+        .toolbar {  // Is this doing anything except causing problems?
             if AccountButton.shouldDisplay {
                 AccountButton(isPresented: $presentingAccount)
             }
@@ -89,7 +89,7 @@ struct LLMInteraction: View {
             self.showSheet = true
         }
         .sheet(isPresented: $showSheet) {
-            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary)
+            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
         }
     }
     

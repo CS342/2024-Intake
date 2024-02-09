@@ -55,74 +55,77 @@ struct HomeView: View {
     @State private var presentingAccount = false
     @State private var showSettings = false
     
-//    @State var navigationPath = NavigationPath()
+    @EnvironmentObject private var navigationPath: NavigationPathWrapper
     
     var body: some View {
-//        NavigationStack(path: $navigationPath) {   // swiftlint:disable:this closure_body_length
-//            LLMInteraction(presentingAccount: $presentingAccount)
-//                .navigationDestination(for: NavigationViews.self) { view in
-//                switch view {
-//                case .allergies: AllergyViewTest()
-//                default: SummaryView(chiefComplaint: "blah blah blah")
-//                    // Fill in rest from NavigationView
-//                }
-//            }
-//        }
+        NavigationStack(path: $navigationPath.path) {
+            LLMInteraction(presentingAccount: $presentingAccount)
+                .navigationDestination(for: NavigationViews.self) { view in
+                    switch view {
+                        case .allergies: AllergyView()
+                        case .surgical: SurgeryView()
+                        case .medical: MedicalHistoryView()
+                        case .social: SocialHistoryQuestionView()
+                        case .medication: MedicationView()
+                        default: AllergyViewTest()
+                    }
+            }
+        }
 //        .environmentObject(navigationPath)
         
         
-        TabView(selection: $selectedTab) { // swiftlint:disable:this closure_body_length
-            ScheduleView(presentingAccount: $presentingAccount)
-                .tag(Tabs.schedule)
-                .tabItem {
-                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
-                }
-            Contacts(presentingAccount: $presentingAccount)
-                .tag(Tabs.contact)
-                .tabItem {
-                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
-                }
-            if FeatureFlags.disableFirebase {
-                MockUpload(presentingAccount: $presentingAccount)
-                    .tag(Tabs.mockUpload)
-                    .tabItem {
-                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
-                    }
-            }
-            SocialHistoryQuestionView()
-                .tag(Tabs.socialHistory)
-                .tabItem {
-                    Label("Social History", systemImage: "person.line.dotted.person")
-                }
-            MedicalHistoryView()
-                .tag(Tabs.medicalHistory)
-                .tabItem {
-                    Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
-                        .sheet(isPresented: $presentingAccount) {
-                            AccountSheet()
-                        }
-                }
-            AllergyView()
-                .tag(Tabs.allergyRecords)
-                .tabItem {
-                    Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
-                }
-            MedicationView()
-                .tag(Tabs.medications)
-                .tabItem {
-                    Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
-                }
-            SurgeryView()
-                .tag(Tabs.surgeries)
-                .tabItem {
-                    Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
-                }
-            LLMInteraction(presentingAccount: $presentingAccount)
-                .tag(Tabs.form)
-                .tabItem {
-                    Label("Create Form", systemImage: "captions.bubble.fill")
-                }
-        }
+//        TabView(selection: $selectedTab) { // swiftlint:disable:this closure_body_length
+//            ScheduleView(presentingAccount: $presentingAccount)
+//                .tag(Tabs.schedule)
+//                .tabItem {
+//                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
+//                }
+//            Contacts(presentingAccount: $presentingAccount)
+//                .tag(Tabs.contact)
+//                .tabItem {
+//                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+//                }
+//            if FeatureFlags.disableFirebase {
+//                MockUpload(presentingAccount: $presentingAccount)
+//                    .tag(Tabs.mockUpload)
+//                    .tabItem {
+//                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
+//                    }
+//            }
+//            SocialHistoryQuestionView()
+//                .tag(Tabs.socialHistory)
+//                .tabItem {
+//                    Label("Social History", systemImage: "person.line.dotted.person")
+//                }
+//            MedicalHistoryView()
+//                .tag(Tabs.medicalHistory)
+//                .tabItem {
+//                    Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
+//                        .sheet(isPresented: $presentingAccount) {
+//                            AccountSheet()
+//                        }
+//                }
+//            AllergyView()
+//                .tag(Tabs.allergyRecords)
+//                .tabItem {
+//                    Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
+//                }
+//            MedicationView()
+//                .tag(Tabs.medications)
+//                .tabItem {
+//                    Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
+//                }
+//            SurgeryView()
+//                .tag(Tabs.surgeries)
+//                .tabItem {
+//                    Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
+//                }
+//            LLMInteraction(presentingAccount: $presentingAccount)
+//                .tag(Tabs.form)
+//                .tabItem {
+//                    Label("Create Form", systemImage: "captions.bubble.fill")
+//                }
+//        }
             
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()

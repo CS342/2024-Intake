@@ -10,12 +10,20 @@ import Spezi
 import SpeziFirebaseAccount
 import SwiftUI
 
+class NavigationPathWrapper: ObservableObject {
+    @Published var path = NavigationPath()
+    
+    func append_item(item: NavigationViews) {
+        path.append(item)
+    }
+}
 
 @main
 struct Intake: App {
     @UIApplicationDelegateAdaptor(IntakeDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-
+    
+    let navigationPath = NavigationPathWrapper()
     
     var body: some Scene {
         WindowGroup {
@@ -31,6 +39,7 @@ struct Intake: App {
                 }
                 .testingSetup()
                 .spezi(appDelegate)
+                .environmentObject(navigationPath)
         }
     }
 }

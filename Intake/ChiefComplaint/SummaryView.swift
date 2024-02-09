@@ -16,7 +16,9 @@ import SwiftUI
 
 struct SummaryView: View {
     @State var chiefComplaint: String
-//    var navigationPath: NavigationPath
+    @Binding var isPresented: Bool
+    
+    @EnvironmentObject private var navigationPath: NavigationPathWrapper
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -37,8 +39,10 @@ struct SummaryView: View {
                 .padding(.horizontal)
             
             Button(action: {
-                // Save output to Fhirstore and navigate to next screen
-//                navigationPath.append(NavigationViews.allergies)
+                // Save output to Firestore and navigate to next screen
+                // Still need to save output to Firestore
+                self.navigationPath.append_item(item: NavigationViews.medical)
+                self.isPresented.toggle()
             }) {
                 Text("Submit")
                     .foregroundColor(.white)
@@ -52,7 +56,8 @@ struct SummaryView: View {
         .padding()
     }
     
-    init(chiefComplaint: String) {
+    init(chiefComplaint: String, isPresented: Binding<Bool>) {
         self.chiefComplaint = chiefComplaint
+        self._isPresented = isPresented
     }
 }

@@ -23,44 +23,60 @@ struct MedicationItem: Identifiable {
 
 struct MedicationView: View {
     @Environment(FHIRStore.self) private var fhirStore
+    @EnvironmentObject private var navigationPath: NavigationPathWrapper
     @State private var medications: [MedicationItem] = []
 
         var body: some View {
             NavigationView { // swiftlint:disable:this closure_body_length
-                List {
-                    ForEach($medications) { $item in
-                        HStack {
-                            TextField("Medication", text: $item.medicationName)
-                            Button(action: {
-                                // Action to delete this item
-                                if let index = medications.firstIndex(where: { $0.id == item.id }) {
-                                    medications.remove(at: index)
+                VStack { // swiftlint:disable:this closure_body_length
+                    List {
+                        ForEach($medications) { $item in
+                            HStack {
+                                TextField("Medication", text: $item.medicationName)
+                                Button(action: {
+                                    // Action to delete this item
+                                    if let index = medications.firstIndex(where: { $0.id == item.id }) {
+                                        medications.remove(at: index)
+                                    }
+                                }) {
+                                    Image(systemName: "xmark.circle")
                                 }
-                            }) {
-                                Image(systemName: "xmark.circle")
+                            }
+                        }
+                        .onDelete(perform: delete)
+                        
+                        Button(action: {
+                            // Action to add new item
+                            medications.append(MedicationItem(medicationName: ""))
+                        }) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("Add Field")
                             }
                         }
                     }
-                    .onDelete(perform: delete)
-                    
-                    Button(action: {
-                        // Action to add new item
-                        medications.append(MedicationItem(medicationName: ""))
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("Add Field")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("Please list your current medications.")
+                                .font(.system(size: 28)) // Choose a size that fits
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
                         }
                     }
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("3. Please list your current medications.")
-                            .font(.system(size: 28)) // Choose a size that fits
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
+                    Button(action: {
+                        // Save output to Firestore and navigate to next screen
+                        // Still need to save output to Firestore
+                        self.navigationPath.append_item(item: NavigationViews.allergies)
+                    }) {
+                        Text("Submit")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(8)
                     }
+                    .padding()
                 }
                 .onAppear {
                     // Set a breakpoint on the next line to inspect `fhirStore.conditions`
