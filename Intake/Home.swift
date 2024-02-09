@@ -33,19 +33,19 @@ struct HomeView: View {
         case socialHistory
     }
     
-    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .primaryAction) {
-            Button(
-                action: {
-                    showSettings.toggle()
-                },
-                label: {
-                    Image(systemName: "gear")
-                        .accessibilityLabel(Text("SETTINGS"))
-                }
-            )
-        }
-    }
+//    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
+//        ToolbarItem(placement: .primaryAction) {
+//            Button(
+//                action: {
+//                    showSettings.toggle()
+//                },
+//                label: {
+//                    Image(systemName: "gear")
+//                        .accessibilityLabel(Text("SETTINGS"))
+//                }
+//            )
+//        }
+//    }
     
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
@@ -62,12 +62,12 @@ struct HomeView: View {
             LLMInteraction(presentingAccount: $presentingAccount)
                 .navigationDestination(for: NavigationViews.self) { view in
                     switch view {
-                        case .allergies: AllergyView()
-                        case .surgical: SurgeryView()
-                        case .medical: MedicalHistoryView()
-                        case .social: SocialHistoryQuestionView()
-                        case .medication: MedicationView()
-                        default: AllergyViewTest()
+                    case .allergies: AllergyView()
+                    case .surgical: SurgeryView()
+                    case .medical: MedicalHistoryView()
+                    case .social: SocialHistoryQuestionView()
+                    case .medication: MedicationView()
+                    default: AllergyViewTest()
                     }
             }
         }
@@ -134,9 +134,9 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        .toolbar {
-            settingsToolbarItem
-        }
+//        .toolbar {
+//            settingsToolbarItem
+//        }
     }
 }
 

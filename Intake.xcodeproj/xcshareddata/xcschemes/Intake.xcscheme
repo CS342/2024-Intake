@@ -83,11 +83,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--showOnboarding"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"

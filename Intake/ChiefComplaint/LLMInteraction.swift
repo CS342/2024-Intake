@@ -18,6 +18,20 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct LLMInteraction: View {
+    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Button(
+                action: {
+                    showSettings.toggle()
+                },
+                label: {
+                    Image(systemName: "gear")
+                        .accessibilityLabel(Text("SETTINGS"))
+                }
+            )
+        }
+    }
+    
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
@@ -63,6 +77,8 @@ struct LLMInteraction: View {
     @State var stringBox: StringBox
     @State var showSheet = false
     
+    @State private var showSettings = false
+    
     @State var model: LLM
     
     var body: some View {
@@ -71,9 +87,10 @@ struct LLMInteraction: View {
         )
         .navigationTitle("Chief Complaint")
         .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
+            settingsToolbarItem
+//            if AccountButton.shouldDisplay {
+//                AccountButton(isPresented: $presentingAccount)
+//            }
         }
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
