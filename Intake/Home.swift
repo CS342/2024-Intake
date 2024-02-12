@@ -185,6 +185,9 @@ struct HomeView: View {
         .toolbar {
             settingsToolbarItem
         }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
     }
 }
 
