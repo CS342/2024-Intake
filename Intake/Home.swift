@@ -33,20 +33,6 @@ struct HomeView: View {
         case socialHistory
     }
     
-    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .primaryAction) {
-            Button(
-                action: {
-                    showSettings.toggle()
-                },
-                label: {
-                    Image(systemName: "gear")
-                        .accessibilityLabel(Text("SETTINGS"))
-                }
-            )
-        }
-    }
-    
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
@@ -119,61 +105,6 @@ struct HomeView: View {
                 }
             }
         }
-//        .environmentObject(navigationPath)
-        
-        
-//        TabView(selection: $selectedTab) { // swiftlint:disable:this closure_body_length
-//            ScheduleView(presentingAccount: $presentingAccount)
-//                .tag(Tabs.schedule)
-//                .tabItem {
-//                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
-//                }
-//            Contacts(presentingAccount: $presentingAccount)
-//                .tag(Tabs.contact)
-//                .tabItem {
-//                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
-//                }
-//            if FeatureFlags.disableFirebase {
-//                MockUpload(presentingAccount: $presentingAccount)
-//                    .tag(Tabs.mockUpload)
-//                    .tabItem {
-//                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
-//                    }
-//            }
-//            SocialHistoryQuestionView()
-//                .tag(Tabs.socialHistory)
-//                .tabItem {
-//                    Label("Social History", systemImage: "person.line.dotted.person")
-//                }
-//            MedicalHistoryView()
-//                .tag(Tabs.medicalHistory)
-//                .tabItem {
-//                    Label("MOCK_MEDICAL_HISTORY_TITLE", systemImage: "server.rack")
-//                        .sheet(isPresented: $presentingAccount) {
-//                            AccountSheet()
-//                        }
-//                }
-//            AllergyView()
-//                .tag(Tabs.allergyRecords)
-//                .tabItem {
-//                    Label("MOCK_ALLERGY_RECORDS_TITLE", systemImage: "server.rack")
-//                }
-//            MedicationView()
-//                .tag(Tabs.medications)
-//                .tabItem {
-//                    Label("MOCK_MEDICATIONS_RECORDS_TITLE", systemImage: "server.rack")
-//                }
-//            SurgeryView()
-//                .tag(Tabs.surgeries)
-//                .tabItem {
-//                    Label("MOCK_SURGERY_RECORDS_TITLE", systemImage: "server.rack")
-//                }
-//            LLMInteraction(presentingAccount: $presentingAccount)
-//                .tag(Tabs.form)
-//                .tabItem {
-//                    Label("Create Form", systemImage: "captions.bubble.fill")
-//                }
-//        }
             
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
@@ -182,9 +113,6 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        .toolbar {
-            settingsToolbarItem
-        }
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
