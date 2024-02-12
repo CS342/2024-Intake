@@ -59,7 +59,25 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
-            VStack {
+            VStack { // swiftlint:disable:this closure_body_length
+                HStack {
+                    Spacer()
+                    
+                    Button(action: {
+                        showSettings.toggle()
+                    },
+                    label: {
+                        Image(systemName: "gear")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.blue)
+                            .accessibilityLabel(Text("SETTINGS"))
+                    })
+                    
+                    .padding()
+                }
+                
                 Spacer()
                 
                 Image(systemName: "waveform.path.ecg")
