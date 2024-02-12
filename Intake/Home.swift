@@ -33,19 +33,19 @@ struct HomeView: View {
         case socialHistory
     }
     
-//    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
-//        ToolbarItem(placement: .primaryAction) {
-//            Button(
-//                action: {
-//                    showSettings.toggle()
-//                },
-//                label: {
-//                    Image(systemName: "gear")
-//                        .accessibilityLabel(Text("SETTINGS"))
-//                }
-//            )
-//        }
-//    }
+    @ToolbarContentBuilder private var settingsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .primaryAction) {
+            Button(
+                action: {
+                    showSettings.toggle()
+                },
+                label: {
+                    Image(systemName: "gear")
+                        .accessibilityLabel(Text("SETTINGS"))
+                }
+            )
+        }
+    }
     
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
@@ -58,17 +58,47 @@ struct HomeView: View {
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
     
     var body: some View {
-        NavigationStack(path: $navigationPath.path) {
-            LLMInteraction(presentingAccount: $presentingAccount)
-                .navigationDestination(for: NavigationViews.self) { view in
-                    switch view {
-                    case .allergies: AllergyView()
-                    case .surgical: SurgeryView()
-                    case .medical: MedicalHistoryView()
-                    case .social: SocialHistoryQuestionView()
-                    case .medication: MedicationView()
-                    default: AllergyViewTest()
-                    }
+        NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
+            VStack {
+                Spacer()
+                
+                Image(systemName: "waveform.path.ecg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.blue)
+                Text("ReForm")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                Text("AI-assisted medical intake")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Button(action: {
+                    self.navigationPath.append_item(item: NavigationViews.chat)
+                }) {
+                    Text("Start")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+            }
+            
+            .navigationDestination(for: NavigationViews.self) { view in
+                switch view {
+                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
+                case .allergies: AllergyView()
+                case .surgical: SurgeryView()
+                case .medical: MedicalHistoryView()
+                case .social: SocialHistoryQuestionView()
+                case .medication: MedicationView()
+                }
             }
         }
 //        .environmentObject(navigationPath)
@@ -134,9 +164,9 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-//        .toolbar {
-//            settingsToolbarItem
-//        }
+        .toolbar {
+            settingsToolbarItem
+        }
     }
 }
 

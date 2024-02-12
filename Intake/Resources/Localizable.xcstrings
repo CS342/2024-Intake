@@ -61,6 +61,9 @@
     "Additional details: %@" : {
 
     },
+    "AI-assisted medical intake" : {
+
+    },
     "Allergies" : {
 
     },
@@ -430,6 +433,9 @@
     "Reactions" : {
 
     },
+    "ReForm" : {
+
+    },
     "Repository Link" : {
       "localizations" : {
         "en" : {
@@ -499,6 +505,9 @@
 
     },
     "Social History" : {
+
+    },
+    "Start" : {
 
     },
     "Submit" : {
