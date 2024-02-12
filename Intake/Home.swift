@@ -105,7 +105,6 @@ struct HomeView: View {
                 }
             }
         }
-            
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
         }
