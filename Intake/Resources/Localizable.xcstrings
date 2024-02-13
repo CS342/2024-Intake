@@ -64,6 +64,9 @@
     "ADD_CONDITION" : {
 
     },
+    "ADD_MEDICATION" : {
+
+    },
     "Additional details: %@" : {
 
     },
@@ -169,6 +172,9 @@
 
     },
     "DELETE_CONDITION" : {
+
+    },
+    "DELETE_MEDICATION" : {
 
     },
     "Do you currently smoke or have you in the past?" : {

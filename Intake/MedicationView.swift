@@ -20,7 +20,6 @@ struct MedicationItem: Identifiable {
     var medicationName: String
 }
 
-
 struct MedicationView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
@@ -40,6 +39,7 @@ struct MedicationView: View {
                                     }
                                 }) {
                                     Image(systemName: "xmark.circle")
+                                        .accessibilityLabel(Text("DELETE_MEDICATION"))
                                 }
                             }
                         }
@@ -51,6 +51,7 @@ struct MedicationView: View {
                         }) {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
+                                    .accessibilityLabel(Text("ADD_MEDICATION"))
                                 Text("Add Field")
                             }
                         }
@@ -81,10 +82,8 @@ struct MedicationView: View {
                 .onAppear {
                     // Set a breakpoint on the next line to inspect `fhirStore.conditions`
                     let patientMedications = fhirStore.medications
-                                    for medication in patientMedications {
-                                        if !self.medications.contains(where: { $0.medicationName == medication.displayName }) {
-                                            self.medications.append(MedicationItem(medicationName: medication.displayName))
-                                        }
+                    for medication in patientMedications where !self.medications.contains(where: { $0.medicationName == medication.displayName }) {
+                        self.medications.append(MedicationItem(medicationName: medication.displayName))
                     }
                 }
             }
