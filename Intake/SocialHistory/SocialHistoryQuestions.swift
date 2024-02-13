@@ -247,10 +247,7 @@ struct SocialHistoryQuestionView: View {
     }
     
     private func fetchHealthKitData() {
-        let infoToRead = Set([
-            // NOTE: Force Unwrapping Violation, ask Zoya about changing it
-            HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
-        ])
+        let infoToRead = Set([HKObjectType.characteristicType(forIdentifier: .biologicalSex)].compactMap { $0 })
 
         Task {
             do {

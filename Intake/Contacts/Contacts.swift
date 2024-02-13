@@ -38,7 +38,7 @@ struct Contacts: View {
                 .text("+1 (650) 725-5227"),
                 .email(addresses: ["aalami@stanford.edu"]),
                 ContactOption(
-                    image: Image(systemName: "safari.fill"), // swiftlint:disable:this accessibility_label_for_image
+                    image: Image(systemName: "safari.fill"),
                     title: "Website",
                     action: {
                         if let url = URL(string: "https://profiles.stanford.edu/oliver-aalami") {
