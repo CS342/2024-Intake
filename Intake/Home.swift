@@ -20,24 +20,10 @@ enum NavigationViews: String {
 }
 
 struct HomeView: View {
-    enum Tabs: String {
-        case schedule
-        case form
-        case contact
-        case mockUpload
-        case summary
-        case medicalHistory
-        case allergyRecords
-        case medications
-        case surgeries
-        case socialHistory
-    }
-    
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
+    
     @State private var presentingAccount = false
     @State private var showSettings = false
     
@@ -71,6 +57,7 @@ struct HomeView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
                     .foregroundColor(.blue)
+                    .accessibilityLabel(Text("HOME_LOGO"))
                 Text("ReForm")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -108,13 +95,13 @@ struct HomeView: View {
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
         }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-        }
     }
 }
 

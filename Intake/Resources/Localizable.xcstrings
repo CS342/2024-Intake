@@ -58,6 +58,9 @@
     "Add Field" : {
 
     },
+    "ADD_ALLERGY" : {
+
+    },
     "Additional details: %@" : {
 
     },
@@ -159,6 +162,9 @@
         }
       }
     },
+    "DELETE_ALLERGY" : {
+
+    },
     "Do you currently smoke or have you in the past?" : {
 
     },
@@ -213,6 +219,9 @@
       }
     },
     "Here is a summary of your primary concern:" : {
+
+    },
+    "HOME_LOGO" : {
 
     },
     "How many days a year do you smoke?" : {
@@ -514,9 +523,6 @@
 
     },
     "Submit your Form" : {
-
-    },
-    "Success!" : {
 
     },
     "Summarize your medical history." : {

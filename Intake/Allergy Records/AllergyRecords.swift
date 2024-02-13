@@ -42,6 +42,7 @@ struct AllergyView: View {
                                     }
                                 }) {
                                     Image(systemName: "xmark.circle")
+                                        .accessibilityLabel(Text("DELETE_ALLERGY"))
                                 }
                                 TextField("Condition", text: $item.condition)
                             }
@@ -55,6 +56,7 @@ struct AllergyView: View {
                     }) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
+                                .accessibilityLabel(Text("ADD_ALLERGY"))
                             Text("Add Field")
                         }
                     }
@@ -103,9 +105,9 @@ struct AllergyView: View {
                         default:
                             // Handle other cases or default case
                             print("The resource is not an R4 Allergy Intolerance")
+                        }
                     }
                 }
-            }
                 self.allergyRecords = allergies.map { allergy in
                     AllergyItem(condition: allergy.string, reaction: "")
                 }
@@ -125,4 +127,3 @@ struct AllergyView: View {
             FHIRStore()
         }
 }
-
