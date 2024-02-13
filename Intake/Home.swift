@@ -35,17 +35,19 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     
-                    Button(action: {
-                        showSettings.toggle()
-                    },
-                    label: {
-                        Image(systemName: "gear")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.blue)
-                            .accessibilityLabel(Text("SETTINGS"))
-                    })
+                    Button(
+                        action: {
+                            showSettings.toggle()
+                        },
+                        label: {
+                            Image(systemName: "gear")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.blue)
+                                .accessibilityLabel(Text("SETTINGS"))
+                        }
+                    )
                     
                     .padding()
                 }
