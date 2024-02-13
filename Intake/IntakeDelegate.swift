@@ -90,7 +90,6 @@ class IntakeDelegate: SpeziAppDelegate {
                 deliverySetting: .anchorQuery(saveAnchor: false)
             )
              */
-            
         }
     }
 }

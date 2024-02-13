@@ -25,18 +25,18 @@ import SwiftUI
 
 
 actor IntakeStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint, AccountStorageConstraint {
+    enum IntakeStandardError: Error {
+        case userNotAuthenticatedYet
+    }
+    
+    private static var userCollection: CollectionReference {
+        Firestore.firestore().collection("users")
+    }
+    
     @Dependency var fhirStore: FHIRStore
     
     @MainActor var useHealthKitResources = true
     private var samples: [HKSample] = []
-    
-    enum IntakeStandardError: Error {
-        case userNotAuthenticatedYet
-    }
-
-    private static var userCollection: CollectionReference {
-        Firestore.firestore().collection("users")
-    }
 
     @Dependency var mockWebService: MockWebService?
     @Dependency var accountStorage: FirestoreAccountStorage?
