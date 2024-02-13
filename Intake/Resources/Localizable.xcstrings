@@ -67,6 +67,9 @@
     "ADD_MEDICATION" : {
 
     },
+    "ADD_REACTION" : {
+
+    },
     "Additional details: %@" : {
 
     },
@@ -175,6 +178,9 @@
 
     },
     "DELETE_MEDICATION" : {
+
+    },
+    "DELETE_REACTION" : {
 
     },
     "Do you currently smoke or have you in the past?" : {

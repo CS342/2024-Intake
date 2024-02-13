@@ -23,11 +23,6 @@ struct ReactionView: View {
     @State private var reactionRecords: [ReactionItem]
     @State private var name: String
     
-    init(reactionRecords: [ReactionItem], name: String) {
-        self._reactionRecords = State(initialValue: reactionRecords)
-        self._name = State(initialValue: name)
-    }
-    
     var body: some View {
         NavigationView {
             List {
@@ -41,6 +36,7 @@ struct ReactionView: View {
                             }
                         }) {
                             Image(systemName: "xmark.circle")
+                                .accessibilityLabel(Text("DELETE_REACTION"))
                         }
                     }
                 }
@@ -51,6 +47,7 @@ struct ReactionView: View {
                 }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
+                            .accessibilityLabel(Text("ADD_REACTION"))
                         Text("Add Field")
                     }
                 }
@@ -65,6 +62,11 @@ struct ReactionView: View {
                 }
             }
         }
+    }
+    
+    init(reactionRecords: [ReactionItem], name: String) {
+        self._reactionRecords = State(initialValue: reactionRecords)
+        self._name = State(initialValue: name)
     }
 }
 
