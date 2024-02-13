@@ -12,162 +12,8 @@
 //
 
 import Foundation
-import SwiftUI
 import HealthKit
-
-struct SocialHistoryQuestionView: View {
-    @State private var dateString: String = ""
-    @State private var additionalDetails: String = ""
-    @State private var isFemale = false
-    @State private var showMaleSlide = false
-    @State private var healthStore = HKHealthStore()
-
-    @State private var isSelectingStartDate = false
-    @State private var isSelectingEndDate = false
-    @State private var startDate = Date()
-    @State private var endDate = Date()
-    @State private var lastPeriodDate: Date? = nil
-    
-    @State private var daysPerYear: Double? = nil
-    @State private var packsPerDay: Double? = nil
-    @State private var totalPacksPerYear: Double = 0
-    @State private var navigateToSummary = false
-
-        // Passed parameters should not be within a function or closure
-
-        let numberFormatter: NumberFormatter = {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.minimum = 0
-            return formatter
-        }()
-
-    var body: some View {
-        NavigationView {
-            Form {
-                menstrualCycleInformationSection
-                Section {
-                    NavigationLink(destination: YesNoButtonView(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)) {
-                                            Text("Next: Smoking History").foregroundColor(.blue)
-                                        }
-                }
-            }
-            .navigationTitle("Social History")
-            .onAppear {
-                fetchHealthKitData()
-            }
-            .sheet(isPresented: $isSelectingStartDate, content: {
-                VStack {
-                    DatePicker("Select Start Date", selection: $startDate, displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                    
-                    Button("Save") {
-                        lastPeriodDate = startDate
-                        isSelectingStartDate = false
-                    }
-                }
-            })
-            .sheet(isPresented: $isSelectingEndDate, content: {
-                VStack {
-                    DatePicker("Select End Date", selection: $endDate, displayedComponents: .date)
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                    
-                    Button("Save") {
-                        // Handle saving the end date here
-                        isSelectingEndDate = false
-                    }
-                }
-            })
-        }
-    }
-    struct SectionHeader: View {
-        let title: String
-        let subtitle: String
-
-        var body: some View {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                Text(subtitle)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-        }
-    }
-
-    private var menstrualCycleInformationSection: some View {
-        Section(header: SectionHeader(title: "Menstrual Cycle Information", subtitle: "Select the dates of your last period.")) {
-            menstrualCycleButtons
-            TextField("Optional symptoms: heavy bleeding, cramps, etc.", text: $additionalDetails)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
-    }
-    
-    private var menstrualCycleButtons: some View {
-        VStack {
-            Button(action: {
-                isSelectingStartDate = true
-            }) {
-                HStack {
-                    Text("Select approx. start date.")
-                    Spacer() // Add Spacer here for white space
-                    Image(systemName: "calendar")
-                }
-            }
-            .buttonStyle(BorderlessButtonStyle())
-
-            Spacer().frame(height: 16) // White space between buttons
-
-            Button(action: {
-                isSelectingEndDate = true
-            }) {
-                HStack {
-                    Text("Select approx. end date.")
-                    Spacer()
-                    Image(systemName: "calendar")
-                }
-            }
-            .buttonStyle(BorderlessButtonStyle())
-        }
-    }
-
-
-    private func fetchHealthKitData() {
-        let infoToRead = Set([
-            HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
-        ])
-
-        Task {
-            do {
-                try await healthStore.requestAuthorization(toShare: [], read: infoToRead)
-                
-                if let bioSex = try? healthStore.biologicalSex() {
-                    DispatchQueue.main.async {
-                        self.isFemale = getIsFemaleBiologicalSex(biologicalSex: bioSex.biologicalSex)
-                        self.showMaleSlide = !self.isFemale
-                    }
-                }
-                
-                // Fetch and auto-populate the last menstrual period date from HealthKit
-                // Update the startDate and endDate variables accordingly
-                
-            } catch {
-                print("HealthKit authorization failed: \(error.localizedDescription)")
-            }
-        }
-    }
-
-    private func getIsFemaleBiologicalSex(biologicalSex: HKBiologicalSex) -> Bool {
-        switch biologicalSex {
-        case .female: return true
-        case .male: return false
-        case .other: return true
-        case .notSet: return false
-        @unknown default: return false
-        }
-    }
-}
-
+import SwiftUI
 
 struct SmokingSummaryView: View {
     let startDate: Date
@@ -209,11 +55,9 @@ struct SmokingSummaryView: View {
     }
 }
 
-
-
 struct YesNoButtonView: View {
-    @State private var daysPerYear: Double? = nil
-    @State private var packsPerDay: Double? = nil
+    @State private var daysPerYear: Double?
+    @State private var packsPerDay: Double?
     @State private var totalPacksPerYear: Double = 0
     @State private var navigateToSummary = false
 
@@ -228,8 +72,6 @@ struct YesNoButtonView: View {
         return formatter
     }()
     
-    
-
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Do you currently smoke or have you in the past?")
@@ -254,20 +96,28 @@ struct YesNoButtonView: View {
             
             
             Button("Submit") {
-                            calculateTotalPacksPerYear()
-                            navigateToSummary = true
-                        }
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        
-                        NavigationLink(destination: SmokingSummaryView(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails, 
-                                                                       totalPacksPerYear: totalPacksPerYear), isActive: $navigateToSummary) {
-                            EmptyView()
-                        }
-                    }
-                    .padding()
+                    calculateTotalPacksPerYear()
+                    navigateToSummary = true
+            }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            
+            // NOTE: Ask Zoya about deprecated NavigationLink -- replace with sheet? Integrate into main navigation stack?
+            NavigationLink(
+                destination: SmokingSummaryView(
+                                                startDate: startDate,
+                                                endDate: endDate,
+                                                additionalDetails: additionalDetails,
+                                                totalPacksPerYear: totalPacksPerYear
+                                                ),
+               isActive: $navigateToSummary
+            ) {
+                EmptyView()
+            }
+        }
+            .padding()
     }
     
     func calculateTotalPacksPerYear() {
@@ -277,6 +127,158 @@ struct YesNoButtonView: View {
     }
 }
 
+struct SocialHistoryQuestionView: View {
+    struct SectionHeader: View {
+        let title: String
+        let subtitle: String
 
+        var body: some View {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.headline)
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+        }
+    }
+    
+    private var menstrualCycleButtons: some View {
+        VStack {
+            Button(action: {
+                isSelectingStartDate = true
+            }) {
+                HStack {
+                    Text("Select approx. start date.")
+                    Spacer() // Add Spacer here for white space
+                    Image(systemName: "calendar")
+                        .accessibilityLabel(Text("START_CALENDAR"))
+                }
+            }
+            .buttonStyle(BorderlessButtonStyle())
 
+            Spacer().frame(height: 16) // White space between buttons
 
+            Button(action: {
+                isSelectingEndDate = true
+            }) {
+                HStack {
+                    Text("Select approx. end date.")
+                    Spacer()
+                    Image(systemName: "calendar")
+                        .accessibilityLabel(Text("END_CALENDAR"))
+                }
+            }
+            .buttonStyle(BorderlessButtonStyle())
+        }
+    }
+    
+    private var menstrualCycleInformationSection: some View {
+        Section(header: SectionHeader(title: "Menstrual Cycle Information", subtitle: "Select the dates of your last period.")) {
+            menstrualCycleButtons
+            TextField("Optional symptoms: heavy bleeding, cramps, etc.", text: $additionalDetails)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
+    }
+    
+    @State private var dateString: String = ""
+    @State private var additionalDetails: String = ""
+    @State private var isFemale = false
+    @State private var showMaleSlide = false
+    @State private var healthStore = HKHealthStore()
+
+    @State private var isSelectingStartDate = false
+    @State private var isSelectingEndDate = false
+    @State private var startDate = Date()
+    @State private var endDate = Date()
+    @State private var lastPeriodDate: Date?
+    
+    @State private var daysPerYear: Double?
+    @State private var packsPerDay: Double?
+    @State private var totalPacksPerYear: Double = 0
+    @State private var navigateToSummary = false
+
+    // Passed parameters should not be within a function or closure
+
+    let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimum = 0
+        return formatter
+    }()
+
+    var body: some View {
+        NavigationView {
+            Form {
+                menstrualCycleInformationSection
+                Section {
+                    NavigationLink(destination: YesNoButtonView(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)) {
+                        Text("Next: Smoking History").foregroundColor(.blue)
+                    }
+                }
+            }
+            .navigationTitle("Social History")
+            .onAppear {
+                fetchHealthKitData()
+            }
+            .sheet(isPresented: $isSelectingStartDate, content: {
+                VStack {
+                    DatePicker("Select Start Date", selection: $startDate, displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                    
+                    Button("Save") {
+                        lastPeriodDate = startDate
+                        isSelectingStartDate = false
+                    }
+                }
+            })
+            .sheet(isPresented: $isSelectingEndDate, content: {
+                VStack {
+                    DatePicker("Select End Date", selection: $endDate, displayedComponents: .date)
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                    
+                    Button("Save") {
+                        // Handle saving the end date here
+                        isSelectingEndDate = false
+                    }
+                }
+            })
+        }
+    }
+    
+    private func fetchHealthKitData() {
+        let infoToRead = Set([
+            // NOTE: Force Unwrapping Violation, ask Zoya about changing it
+            HKObjectType.characteristicType(forIdentifier: .biologicalSex)!
+        ])
+
+        Task {
+            do {
+                try await healthStore.requestAuthorization(toShare: [], read: infoToRead)
+                
+                if let bioSex = try? healthStore.biologicalSex() {
+                    DispatchQueue.main.async {
+                        self.isFemale = getIsFemaleBiologicalSex(biologicalSex: bioSex.biologicalSex)
+                        self.showMaleSlide = !self.isFemale
+                    }
+                }
+                
+                // Fetch and auto-populate the last menstrual period date from HealthKit
+                // Update the startDate and endDate variables accordingly
+                
+            } catch {
+                print("HealthKit authorization failed: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func getIsFemaleBiologicalSex(biologicalSex: HKBiologicalSex) -> Bool {
+        switch biologicalSex {
+        case .female: return true
+        case .male: return false
+        case .other: return true
+        case .notSet: return false
+        @unknown default: return false
+        }
+    }
+}

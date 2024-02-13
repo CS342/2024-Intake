@@ -189,6 +189,9 @@
     "Download your medical records from your health system." : {
 
     },
+    "END_CALENDAR" : {
+
+    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
@@ -535,6 +538,9 @@
 
     },
     "Start" : {
+
+    },
+    "START_CALENDAR" : {
 
     },
     "Submit" : {
