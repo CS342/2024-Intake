@@ -70,6 +70,9 @@
     "ADD_REACTION" : {
 
     },
+    "ADD_SURGERY" : {
+
+    },
     "Additional details: %@" : {
 
     },
@@ -181,6 +184,9 @@
 
     },
     "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
 
     },
     "Do you currently smoke or have you in the past?" : {

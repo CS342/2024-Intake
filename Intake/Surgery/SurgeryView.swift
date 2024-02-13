@@ -40,6 +40,7 @@ struct SurgeryView: View {
                                     }
                                 }) {
                                     Image(systemName: "xmark.circle")
+                                        .accessibilityLabel(Text("DELETE_SURGERY"))
                                 }
                             }
                         }
@@ -51,6 +52,7 @@ struct SurgeryView: View {
                         }) {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
+                                    .accessibilityLabel(Text("ADD_SURGERY"))
                                 Text("Add Field")
                             }
                         }
