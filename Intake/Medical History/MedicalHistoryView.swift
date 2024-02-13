@@ -40,6 +40,7 @@ struct MedicalHistoryView: View {
                                     }
                                 }) {
                                     Image(systemName: "xmark.circle")
+                                        .accessibilityLabel(Text("DELETE_CONDITION"))
                                 }
                             }
                         }
@@ -51,6 +52,7 @@ struct MedicalHistoryView: View {
                         }) {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
+                                    .accessibilityLabel(Text("ADD_CONDITION"))
                                 Text("Add Field")
                             }
                         }
@@ -81,8 +83,12 @@ struct MedicalHistoryView: View {
                     // Set a breakpoint on the next line to inspect `fhirStore.conditions`
                     let conditions = fhirStore.conditions
                     print(conditions)
-                    let invalid = ["Medication review due (situation)", "Part-time employment (finding)",
-                                    "Stress (finding)", "Full-time employment (finding)" ]
+                    let invalid = [
+                        "Medication review due (situation)",
+                        "Part-time employment (finding)",
+                        "Stress (finding)",
+                        "Full-time employment (finding)"
+                    ]
                     for condition in conditions {
                         if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: {
                                                                     $0.condition == condition.displayName }) {
@@ -105,4 +111,3 @@ struct MedicalHistoryView: View {
             FHIRStore()
         }
 }
-

@@ -61,6 +61,9 @@
     "ADD_ALLERGY" : {
 
     },
+    "ADD_CONDITION" : {
+
+    },
     "Additional details: %@" : {
 
     },
@@ -163,6 +166,9 @@
       }
     },
     "DELETE_ALLERGY" : {
+
+    },
+    "DELETE_CONDITION" : {
 
     },
     "Do you currently smoke or have you in the past?" : {
