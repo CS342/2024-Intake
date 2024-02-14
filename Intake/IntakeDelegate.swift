@@ -84,6 +84,12 @@ class IntakeDelegate: SpeziAppDelegate {
                 HKQuantityType(.stepCount),
                 deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
             )
+            /*
+            CollectSample(
+                HKCharacteristicType(.biologicalSex),
+                deliverySetting: .anchorQuery(saveAnchor: false)
+            )
+             */
         }
     }
 }

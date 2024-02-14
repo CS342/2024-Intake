@@ -199,6 +199,15 @@
       }
     },
     {
+      "identity" : "spezifhir",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziFHIR.git",
+      "state" : {
+        "branch" : "feat/lift-to-spezi-llm",
+        "revision" : "edacb7992efd5d17d8290af0ffe685c790fb2d5e"
+      }
+    },
+    {
       "identity" : "spezifirebase",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",

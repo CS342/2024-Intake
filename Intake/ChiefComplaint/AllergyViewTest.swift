@@ -17,7 +17,7 @@ import SwiftUI
 struct AllergyViewTest: View {
     var body: some View {
         VStack {
-            Text("Success!")
+            Text("It looks like an unexpected view was appended to the NavigationPath!")
                 .padding()
                 .multilineTextAlignment(.center)
         }

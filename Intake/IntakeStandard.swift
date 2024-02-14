@@ -13,6 +13,8 @@ import OSLog
 import PDFKit
 import Spezi
 import SpeziAccount
+import SpeziFHIR
+import SpeziFHIRHealthKit
 import SpeziFirebaseAccountStorage
 import SpeziFirestore
 import SpeziHealthKit
@@ -26,10 +28,15 @@ actor IntakeStandard: Standard, EnvironmentAccessible, HealthKitConstraint, Onbo
     enum IntakeStandardError: Error {
         case userNotAuthenticatedYet
     }
-
+    
     private static var userCollection: CollectionReference {
         Firestore.firestore().collection("users")
     }
+    
+    @Dependency var fhirStore: FHIRStore
+    
+    @MainActor var useHealthKitResources = true
+    private var samples: [HKSample] = []
 
     @Dependency var mockWebService: MockWebService?
     @Dependency var accountStorage: FirestoreAccountStorage?
@@ -68,32 +75,28 @@ actor IntakeStandard: Standard, EnvironmentAccessible, HealthKitConstraint, Onbo
 
 
     func add(sample: HKSample) async {
-        if let mockWebService {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
-            let jsonRepresentation = (try? String(data: encoder.encode(sample.resource), encoding: .utf8)) ?? ""
-            try? await mockWebService.upload(path: "healthkit/\(sample.uuid.uuidString)", body: jsonRepresentation)
-            return
-        }
-        
-        do {
-            try await healthKitDocument(id: sample.id).setData(from: sample.resource)
-        } catch {
-            logger.error("Could not store HealthKit sample: \(error)")
+        samples.append(sample)
+        if await useHealthKitResources {
+            await fhirStore.add(sample: sample)
         }
     }
     
     func remove(sample: HKDeletedObject) async {
-        if let mockWebService {
-            try? await mockWebService.remove(path: "healthkit/\(sample.uuid.uuidString)")
-            return
+        samples.removeAll(where: { $0.id == sample.uuid })
+        if await useHealthKitResources {
+            await fhirStore.remove(sample: sample)
+        }
+    }
+    
+    @MainActor
+    func loadHealthKitResources() async {
+        await fhirStore.removeAllResources()
+        
+        for sample in await samples {
+            await fhirStore.add(sample: sample)
         }
         
-        do {
-            try await healthKitDocument(id: sample.uuid).delete()
-        } catch {
-            logger.error("Could not remove HealthKit sample: \(error)")
-        }
+        useHealthKitResources = true
     }
     
     func add(response: ModelsR4.QuestionnaireResponse) async {

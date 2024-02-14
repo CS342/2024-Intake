@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ Reactions" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -52,6 +55,30 @@
         }
       }
     },
+    "Add Field" : {
+
+    },
+    "ADD_ALLERGY" : {
+
+    },
+    "ADD_CONDITION" : {
+
+    },
+    "ADD_MEDICATION" : {
+
+    },
+    "ADD_REACTION" : {
+
+    },
+    "ADD_SURGERY" : {
+
+    },
+    "Additional details: %@" : {
+
+    },
+    "AI-assisted medical intake" : {
+
+    },
     "Allergies" : {
 
     },
@@ -82,6 +109,9 @@
         }
       }
     },
+    "Condition" : {
+
+    },
     "CONSENT_LOADING_ERROR" : {
       "localizations" : {
         "en" : {
@@ -104,6 +134,7 @@
     },
     "CONTACTS_TAB_TITLE" : {
       "comment" : "MARK: - Contacts",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -143,10 +174,31 @@
         }
       }
     },
-    "Create Form" : {
+    "DELETE_ALLERGY" : {
+
+    },
+    "DELETE_CONDITION" : {
+
+    },
+    "DELETE_MEDICATION" : {
+
+    },
+    "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
+
+    },
+    "Do you currently smoke or have you in the past?" : {
 
     },
     "Download your medical records from your health system." : {
+
+    },
+    "END_CALENDAR" : {
+
+    },
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "Get Started" : {
@@ -196,6 +248,15 @@
     "Here is a summary of your primary concern:" : {
 
     },
+    "HOME_LOGO" : {
+
+    },
+    "How many days a year do you smoke?" : {
+
+    },
+    "How many packs do you smoke a day?" : {
+
+    },
     "Integrate your Records" : {
 
     },
@@ -208,6 +269,9 @@
           }
         }
       }
+    },
+    "It looks like an unexpected view was appended to the NavigationPath!" : {
+
     },
     "LICENSE_INFO_TITLE" : {
       "localizations" : {
@@ -234,19 +298,70 @@
     "Medical Intake Form" : {
 
     },
+    "Medication" : {
+
+    },
     "Medications" : {
 
     },
-    "MOCK_WEB_SERVICE_TAB_TITLE" : {
-      "comment" : "MARK: - Mock Upload Data Storage Provider",
+    "MOCK_ALLERGY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mock Web Service"
+            "value" : "Allergy Records"
           }
         }
       }
+    },
+    "MOCK_MEDICAL_HISTORY_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medical History"
+          }
+        }
+      }
+    },
+    "MOCK_MEDICATIONS_RECORDS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medications"
+          }
+        }
+      }
+    },
+    "MOCK_SURGERY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surgery"
+          }
+        }
+      }
+    },
+    "MOCK_WEB_SERVICE_TAB_TITLE" : {
+      "comment" : "MARK: - Mock Upload Data Storage Provider",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Service"
+          }
+        }
+      }
+    },
+    "Next: Smoking History" : {
+
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
@@ -303,7 +418,19 @@
         }
       }
     },
+    "Optional symptoms: heavy bleeding, cramps, etc." : {
+
+    },
     "Other important questions." : {
+
+    },
+    "Please list current conditions you have" : {
+
+    },
+    "Please list your current medications." : {
+
+    },
+    "Please list your previous surgeries." : {
 
     },
     "Primary Concern" : {
@@ -339,6 +466,12 @@
         }
       }
     },
+    "Reactions" : {
+
+    },
+    "ReForm" : {
+
+    },
     "Repository Link" : {
       "localizations" : {
         "en" : {
@@ -349,10 +482,19 @@
         }
       }
     },
+    "Resource Selection" : {
+
+    },
+    "Resource Settings" : {
+
+    },
     "Review of Systems" : {
 
     },
     "Review summary of your medical history." : {
+
+    },
+    "Save" : {
 
     },
     "SCHEDULE_LIST_TITLE" : {
@@ -367,6 +509,7 @@
     },
     "SCHEDULE_TAB_TITLE" : {
       "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -376,7 +519,34 @@
         }
       }
     },
+    "Select approx. end date." : {
+
+    },
+    "Select approx. start date." : {
+
+    },
+    "Select End Date" : {
+
+    },
+    "Select Start Date" : {
+
+    },
+    "SETTINGS" : {
+
+    },
+    "SETTINGS_TITLE" : {
+
+    },
     "Share with provider of your choice." : {
+
+    },
+    "Social History" : {
+
+    },
+    "Start" : {
+
+    },
+    "START_CALENDAR" : {
 
     },
     "Submit" : {
@@ -385,13 +555,16 @@
     "Submit your Form" : {
 
     },
-    "Success!" : {
-
-    },
     "Summarize your medical history." : {
 
     },
     "Summarize your surgical history." : {
+
+    },
+    "Summary" : {
+
+    },
+    "Surgery" : {
 
     },
     "Surgical History" : {
@@ -449,17 +622,42 @@
         }
       }
     },
+    "Thank you for completing Social History!" : {
+
+    },
     "This application will help autocomplete your medical intake form." : {
 
     },
     "Together we will summarize..." : {
 
     },
+    "Total calculated result for smoking: %.2f pack years" : {
+
+    },
+    "Use HealthKit Resources" : {
+
+    },
     "Welcome to ReForm" : {
+
+    },
+    "What are your current allergies?" : {
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
 
+    },
+    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
+
+    },
+    "Your last period was from %@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your last period was from %1$@ to %2$@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
