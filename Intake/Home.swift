@@ -10,56 +10,100 @@ import SpeziAccount
 import SpeziMockWebService
 import SwiftUI
 
+enum NavigationViews: String {
+    case allergies
+    case surgical
+    case medical
+    case social
+    case medication
+    case chat
+}
 
 struct HomeView: View {
-    enum Tabs: String {
-        case schedule
-        case form
-        case contact
-        case mockUpload
-    }
-    
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-
-
-    @AppStorage(StorageKeys.homeTabSelection) private var selectedTab = Tabs.schedule
+    
     @State private var presentingAccount = false
-
+    @State private var showSettings = false
+    
+    @EnvironmentObject private var navigationPath: NavigationPathWrapper
     
     var body: some View {
-        TabView(selection: $selectedTab) {
-            ScheduleView(presentingAccount: $presentingAccount)
-                .tag(Tabs.schedule)
-                .tabItem {
-                    Label("SCHEDULE_TAB_TITLE", systemImage: "list.clipboard")
+        NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
+            VStack { // swiftlint:disable:this closure_body_length
+                HStack {
+                    Spacer()
+                    
+                    Button(
+                        action: {
+                            showSettings.toggle()
+                        },
+                        label: {
+                            Image(systemName: "gear")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.blue)
+                                .accessibilityLabel(Text("SETTINGS"))
+                        }
+                    )
+                    
+                    .padding()
                 }
-            Contacts(presentingAccount: $presentingAccount)
-                .tag(Tabs.contact)
-                .tabItem {
-                    Label("CONTACTS_TAB_TITLE", systemImage: "person.fill")
+                
+                Spacer()
+                
+                Image(systemName: "waveform.path.ecg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.blue)
+                    .accessibilityLabel(Text("HOME_LOGO"))
+                Text("ReForm")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                Text("AI-assisted medical intake")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Button(action: {
+                    self.navigationPath.append_item(item: NavigationViews.chat)
+                }) {
+                    Text("Start")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
-            if FeatureFlags.disableFirebase {
-                MockUpload(presentingAccount: $presentingAccount)
-                    .tag(Tabs.mockUpload)
-                    .tabItem {
-                        Label("MOCK_WEB_SERVICE_TAB_TITLE", systemImage: "server.rack")
-                    }
             }
-            LLMInteraction(presentingAccount: $presentingAccount, responseText: "")
-                .tag(Tabs.form)
-                .tabItem {
-                    Label("Create Form", systemImage: "captions.bubble.fill")
+            
+            .navigationDestination(for: NavigationViews.self) { view in
+                switch view {
+                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
+                case .allergies: AllergyView()
+                case .surgical: SurgeryView()
+                case .medical: MedicalHistoryView()
+                case .social: SocialHistoryQuestionView()
+                case .medication: MedicationView()
                 }
+            }
         }
-            .sheet(isPresented: $presentingAccount) {
-                AccountSheet()
-            }
-            .accountRequired(Self.accountEnabled) {
-                AccountSheet()
-            }
-            .verifyRequiredAccountDetails(Self.accountEnabled)
+        .sheet(isPresented: $presentingAccount) {
+            AccountSheet()
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
+        .accountRequired(Self.accountEnabled) {
+            AccountSheet()
+        }
+        .verifyRequiredAccountDetails(Self.accountEnabled)
     }
 }
 

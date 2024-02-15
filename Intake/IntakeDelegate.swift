@@ -28,7 +28,7 @@ class IntakeDelegate: SpeziAppDelegate {
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
                     .requires(\.name),
-
+                    
                     // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
                     .collects(\.genderIdentity),
                     .collects(\.dateOfBirth)
@@ -77,28 +77,21 @@ class IntakeDelegate: SpeziAppDelegate {
         )
     }
     
-    
+    // swiftlint:disable trailing_newline
     private var healthKit: HealthKit {
         HealthKit {
-            CollectSamples(
-                [
-                    HKClinicalType(.allergyRecord),
-                    HKClinicalType(.clinicalNoteRecord),
-                    HKClinicalType(.conditionRecord),
-                    HKClinicalType(.coverageRecord),
-                    HKClinicalType(.immunizationRecord),
-                    HKClinicalType(.labResultRecord),
-                    HKClinicalType(.medicationRecord),
-                    HKClinicalType(.procedureRecord),
-                    HKClinicalType(.vitalSignRecord)
-                ],
-                predicate: HKQuery.predicateForSamples(
-                    withStart: Date.distantPast,
-                    end: nil,
-                    options: .strictEndDate
-                ),
+            CollectSample(
+                HKQuantityType(.stepCount),
+                deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
+            )
+            /*
+            CollectSample(
+                HKCharacteristicType(.biologicalSex),
                 deliverySetting: .anchorQuery(saveAnchor: false)
             )
+             */
         }
     }
 }
+// swiftlint:enable trailing newline
+
