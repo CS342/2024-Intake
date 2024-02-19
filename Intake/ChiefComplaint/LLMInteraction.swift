@@ -112,17 +112,17 @@ struct LLMInteraction: View {
 //                )
 //            ]
 //        }
-        if let patient = fhirStore.patient {
-            print(patient.jsonDescrption)
-//            chat.append(
-//                Chat(
-//                    role: .system,
-//                    content: patient.jsonDescription
-//
-//                )
-            )
-        }
-    }
+//        if let patient = fhirStore.patient {
+//            print(patient.jsonDescrption)
+////            chat.append(
+////                Chat(
+////                    role: .system,
+////                    content: patient.jsonDescription
+////
+////                )
+//            )
+//        }
+//    }
     
 //    var patient: FHIRResource? {
 //        let appBundlePath = Bundle.main.bundlePath
