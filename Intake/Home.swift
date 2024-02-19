@@ -27,11 +27,28 @@ struct HomeView: View {
     @State private var presentingAccount = false
     @State private var showSettings = false
     
+    @ViewBuilder
+    var homeElements: some View {
+        Image(systemName: "waveform.path.ecg")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100, height: 100)
+            .foregroundColor(.blue)
+            .accessibilityLabel(Text("HOME_LOGO"))
+        Text("ReForm")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .foregroundColor(.black)
+        Text("AI-assisted medical intake")
+            .font(.title2)
+            .foregroundColor(.gray)
+    }
+    
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
     
     var body: some View {
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
-            VStack { // swiftlint:disable:this closure_body_length
+            VStack {
                 HStack {
                     Spacer()
                     
@@ -54,19 +71,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                Image(systemName: "waveform.path.ecg")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.blue)
-                    .accessibilityLabel(Text("HOME_LOGO"))
-                Text("ReForm")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                Text("AI-assisted medical intake")
-                    .font(.title2)
-                    .foregroundColor(.gray)
+                homeElements
                 
                 Spacer()
                 
