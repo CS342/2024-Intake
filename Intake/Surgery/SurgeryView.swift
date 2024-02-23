@@ -59,6 +59,7 @@ struct SurgeryView: View {
                     }
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
+//                        EditButton()
                         ToolbarItem(placement: .principal) {
                             Text("Please list your previous surgeries.")
                                 .font(.system(size: 28)) // Choose a size that fits

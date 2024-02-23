@@ -82,7 +82,7 @@ struct LLMInteraction: View {
     var body: some View {
         LLMChatView(
             model: model,
-            exportFormat: .nil
+//            exportFormat: .nil
         )
         .navigationTitle("Chief Complaint")
         .navigationBarItems(trailing: SkipButton {
