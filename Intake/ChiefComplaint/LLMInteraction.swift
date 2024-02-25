@@ -82,9 +82,17 @@ struct LLMInteraction: View {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         .onAppear {
+//            if let patient = fhirStore.patient {
+//                // let additionalInformation = ChatEntity(role: .system,
+//                                                       // content: )
+//                model.context.append(
+//                    systemMessage: "This is a JSON summary of the patient you are interacting with. When you ask them questions, use their name: "
+//                    + patient.jsonDescription
+//                )
+//            }
+            
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                model.context.insert(assistantMessage, at: 0)
+                model.context.append(assistantOutput: "Hello! What brings you to the doctor's office?")
             }
             greeting = false
         }
@@ -95,13 +103,16 @@ struct LLMInteraction: View {
             SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
         }
     }
+    
+//    private func prepareSysPrompt(){
+//            
+//            return
+//        }
+//    
 
 // how do i get this json decoded so that i can iterate through it?
 // specifically want to use mock patient for testing and then use fhirstore later
 // then how do i get patient summary from llmonfhir from it?! .jsonDescription is used in LLMonFHIR
-
-    
-    
     
 //    private func prepareSystemPrompt() {
 //        if chat.isEmpty {
@@ -114,12 +125,12 @@ struct LLMInteraction: View {
 //        }
 //        if let patient = fhirStore.patient {
 //            print(patient.jsonDescrption)
-////            chat.append(
-////                Chat(
-////                    role: .system,
-////                    content: patient.jsonDescription
-////
-////                )
+//            chat.append(
+//                Chat(
+//                    role: .system,
+//                    content: patient.jsonDescription
+//
+//                )
 //            )
 //        }
 //    }
@@ -140,15 +151,19 @@ struct LLMInteraction: View {
 //        }
 //    }
     
+    
+    
     init(presentingAccount: Binding<Bool>) {
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
         let stringBoxTemp = StringBox()
         self.stringBox = stringBoxTemp
+        
+        
         self.model = LLMOpenAI(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
-                    systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT"
+                    systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT".localized().localizedString()
                 )
             ) {
                 SummarizeFunction(stringBox: stringBoxTemp)
