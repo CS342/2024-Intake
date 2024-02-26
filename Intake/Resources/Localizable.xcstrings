@@ -177,6 +177,12 @@
     "DELETE_MEDICATION" : {
 
     },
+    "DELETE_ALLERGY" : {
+
+    },
+    "DELETE_CONDITION" : {
+
+    },
     "DELETE_REACTION" : {
 
     },

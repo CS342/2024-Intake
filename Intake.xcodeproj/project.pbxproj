@@ -825,6 +825,7 @@
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
 				51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
+				51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */,
 				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
 				51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
