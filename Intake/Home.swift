@@ -90,7 +90,7 @@ struct HomeView: View {
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
                 case .social: SocialHistoryQuestionView()
-                case .medication: MedicationView()
+                case .medication: MedicationContentView()
                 }
             }
         }

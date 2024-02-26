@@ -64,9 +64,6 @@
     "ADD_CONDITION" : {
 
     },
-    "ADD_MEDICATION" : {
-
-    },
     "ADD_REACTION" : {
 
     },
@@ -178,9 +175,6 @@
 
     },
     "DELETE_CONDITION" : {
-
-    },
-    "DELETE_MEDICATION" : {
 
     },
     "DELETE_REACTION" : {
@@ -298,7 +292,7 @@
     "Medical Intake Form" : {
 
     },
-    "Medication" : {
+    "Medication Settings" : {
 
     },
     "Medications" : {
@@ -425,9 +419,6 @@
 
     },
     "Please list current conditions you have" : {
-
-    },
-    "Please list your current medications." : {
 
     },
     "Please list your previous surgeries." : {
