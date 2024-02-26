@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
+
+    },
+    "*Click the details to view/edit the reactions" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -55,13 +61,13 @@
         }
       }
     },
+    "Active" : {
+
+    },
+    "Add Condition" : {
+
+    },
     "Add Field" : {
-
-    },
-    "ADD_ALLERGY" : {
-
-    },
-    "ADD_CONDITION" : {
 
     },
     "ADD_MEDICATION" : {
@@ -80,6 +86,12 @@
 
     },
     "Allergies" : {
+
+    },
+    "Allergy" : {
+
+    },
+    "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
@@ -110,6 +122,9 @@
       }
     },
     "Condition" : {
+
+    },
+    "Condition Name" : {
 
     },
     "CONSENT_LOADING_ERROR" : {
@@ -174,12 +189,6 @@
         }
       }
     },
-    "DELETE_ALLERGY" : {
-
-    },
-    "DELETE_CONDITION" : {
-
-    },
     "DELETE_MEDICATION" : {
 
     },
@@ -187,6 +196,9 @@
 
     },
     "DELETE_SURGERY" : {
+
+    },
+    "DETAILS" : {
 
     },
     "Do you currently smoke or have you in the past?" : {
@@ -255,6 +267,9 @@
 
     },
     "How many packs do you smoke a day?" : {
+
+    },
+    "Inactive" : {
 
     },
     "Integrate your Records" : {
@@ -424,7 +439,7 @@
     "Other important questions." : {
 
     },
-    "Please list current conditions you have" : {
+    "Please list conditions you have had" : {
 
     },
     "Please list your current medications." : {

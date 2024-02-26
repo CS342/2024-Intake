@@ -34,7 +34,6 @@ struct HomeView: View {
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
                     Spacer()
-                    
                     Button(
                         action: {
                             showSettings.toggle()
@@ -48,7 +47,6 @@ struct HomeView: View {
                                 .accessibilityLabel(Text("SETTINGS"))
                         }
                     )
-                    
                     .padding()
                 }
                 
@@ -85,11 +83,11 @@ struct HomeView: View {
             
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
-                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
-                case .allergies: AllergyView()
+                case .chat: MedicalHistoryView()
+                case .allergies: AllergyList()
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
-                case .social: SocialHistoryQuestionView()
+                case .social: AllergyList()
                 case .medication: MedicationView()
                 }
             }

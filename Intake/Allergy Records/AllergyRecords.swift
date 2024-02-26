@@ -1,4 +1,4 @@
-//
+
 //  MedicalHistoryView.swift
 //  Intake
 //
@@ -16,114 +16,169 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
+
+
+
 struct AllergyItem: Identifiable {
-    var id = UUID()
-    var condition: String
-    var reaction: String
+    let id = UUID()
+    var allergy: String
+    var reaction: [ReactionItem]
 }
 
+//struct ReactionViewDetails {
+//    var showingReaction: Bool
+//    var
+//}
 
-struct AllergyView: View {
+struct ChatButton: View {
+    // Use @Binding to create a two-way binding to the parent view's showingChat state
+    @Binding var showingChat: Bool
+
+    var body: some View {
+        Button(action: {
+            // Toggle the provided state
+            self.showingChat = true
+        }) {
+            Image(systemName: "message")
+                .font(.largeTitle)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .clipShape(Circle())
+        }
+    }
+}
+
+struct AllergyList: View {
     @Environment(FHIRStore.self) private var fhirStore
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
     @State private var allergyRecords: [AllergyItem] = []
+    @State private var showingReaction = false
+    @State private var selectedIndex = 0
+    @State private var showingChat = false
+    @State private var presentingAccount = false
     
     var body: some View {
-        NavigationView { // swiftlint:disable:this closure_body_length
-            VStack { // swiftlint:disable:this closure_body_length
-                List {
-                    ForEach($allergyRecords) { $item in
-                        NavigationLink(destination: ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: item.condition)) {
-                            HStack {
+        VStack {
+            ZStack {
+            NavigationView {
+                Form { // Use Form instead of List
+                    Section(header: Text("What are your current allergies?")) {
+                        ForEach(0..<allergyRecords.count, id: \.self) { index in
                                 Button(action: {
-                                    // Action to delete this item
-                                    if let index = allergyRecords.firstIndex(where: { $0.id == item.id }) {
-                                        allergyRecords.remove(at: index)
-                                    }
+                                    self.selectedIndex = index
+                                    self.showingReaction = true
                                 }) {
-                                    Image(systemName: "xmark.circle")
-                                        .accessibilityLabel(Text("DELETE_ALLERGY"))
+                                    HStack {
+                                        Text(allergyRecords[index].allergy)
+                                            .foregroundColor(.black)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
+                                            .accessibilityLabel(Text("DETAILS"))
+                                    }
                                 }
-                                TextField("Condition", text: $item.condition)
+                        }
+                        .onDelete(perform: delete)
+        
+                        Button(action: {
+                            // Action to add new item
+                            allergyRecords.append(AllergyItem(allergy: "", reaction: []))
+                            showingReaction = true
+                        }) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("Add Field")
                             }
                         }
-                    }
-                    .onDelete(perform: delete)
-                    
-                    Button(action: {
-                        // Action to add new item
-                        allergyRecords.append(AllergyItem(condition: "", reaction: ""))
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .accessibilityLabel(Text("ADD_ALLERGY"))
-                            Text("Add Field")
-                        }
+                        Text("*Click the details to view/edit the reactions")
+                            .font(.caption)
+                            .foregroundColor(.gray) 
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("What are your current allergies?")
-                            .font(.system(size: 28)) // Choose a size that fits
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
-                    }
+                .navigationBarItems(trailing: EditButton())
+                .sheet(isPresented: $showingReaction) {
+                    EditAllergyView(index: selectedIndex, showingReaction: $showingReaction, allergyRecords: $allergyRecords)
                 }
-                Button(action: {
-                    // Navigate to next screen
-                    self.navigationPath.append_item(item: NavigationViews.social)
-                }) {
-                    Text("Submit")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                .navigationTitle("Allergies")
+                VStack {
+                    Spacer() // Pushes everything to the bottom
+                    ChatButton(showingChat: $showingChat) // Utilize the ChatButton view
+                        .padding(.trailing, 20) // Adjust padding as needed
+                        .padding(.bottom, 20) // Adjust for spacing from the bottom edge
                 }
+                .zIndex(1) // Ensure the chat button is above the form
+            }
+        }
+        Button(action: {
+            self.navigationPath.append_item(item: NavigationViews.social)
+        }) {
+            Text("Submit")
+                .foregroundColor(.white)
                 .padding()
-            }
-            .onAppear {
-                // Set a breakpoint on the next line to inspect `fhirStore.conditions`
-                var allergies: [FHIRString] = []
-//                var reactions: [String] = []
-                let intolerances = fhirStore.allergyIntolerances
-                if !intolerances.isEmpty {
-                    for indx in 0...(intolerances.count - 1) {
-                        let vrs = intolerances[indx].versionedResource
-                        switch vrs {
-                        case .r4(let result as AllergyIntolerance):
-                            allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
-//                            var reactions_per_allergy = result.reaction
-//                            var reactions_for_allergy: [String] = []
-//                            if reactions_per_allergy != nil {
-//                                reactions_for_allergy = reactions_per_allergy.map { reaction in
-//                                    reaction.manifestation[0].text.value
-//                                }
-//                            }
-//                            
-                        default:
-                            // Handle other cases or default case
-                            print("The resource is not an R4 Allergy Intolerance")
-                        }
-                    }
-                }
-                self.allergyRecords = allergies.map { allergy in
-                    AllergyItem(condition: allergy.string, reaction: "")
-                }
-            }
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+        }
+        .padding()
+    }
+    .onAppear {
+        loadAllergies()
+    }
+    .sheet(isPresented: $showingChat) {
+        LLMAssistantView(presentingAccount: .constant(false),
+                        pageTitle: .constant("Allergy Assistant"),
+                        initialQuestion: .constant("Do you have any questions about your allergies"),
+                        prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have."))
         }
     }
     
+    private func loadAllergies() {
+        var allergies: [FHIRString] = []
+        var r: [[ReactionItem]] = []
+        let intolerances = fhirStore.allergyIntolerances
+        if intolerances.count > 0 {
+            for i in 0...(intolerances.count-1) {
+                let vr = intolerances[i].versionedResource
+                switch vr {
+                    case .r4(let result as AllergyIntolerance):
+                        allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
+                        let reactions_per_allergy = result.reaction
+                        var reactions_for_allergy: [ReactionItem] = []
+                        if let reactions = reactions_per_allergy {
+                            for reaction in reactions {
+                                let manifestations = reaction.manifestation
+                                for manifestation in manifestations {
+                                    reactions_for_allergy.append(ReactionItem(reaction: manifestation.text?.value?.string ?? "Default"))
+                                }
+                             }
+                        }
+                        r.append(reactions_for_allergy)
+                                    
+                    default:
+                        print("The resource is not an R4 Allergy Intolerance")
+                }
+            }
+        }
+        if allergies.count > 0 {
+            for i in 0...(allergies.count-1) {
+                self.allergyRecords.append(
+                    AllergyItem(allergy: allergies[i].string, reaction: r[i])
+                )
+            }
+        }
+    }
+
     func delete(at offsets: IndexSet) {
-        allergyRecords.remove(atOffsets: offsets)
+        self.allergyRecords.remove(atOffsets: offsets)
     }
 }
+
         
 
-#Preview {
-    AllergyView()
-        .previewWith {
-            FHIRStore()
-        }
-}
+//#Preview {
+//    AllergyList()
+//        .previewWith {
+//            FHIRStore()
+//        }
+//}
