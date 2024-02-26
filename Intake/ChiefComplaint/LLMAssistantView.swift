@@ -4,7 +4,7 @@
 //
 //  Created by Akash Gupta on 2/18/24.
 //
-// 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
+
 import Foundation
 import SpeziChat
 import SpeziLLM
