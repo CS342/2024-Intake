@@ -20,7 +20,6 @@ struct SurgeryItem: Identifiable {
     var surgeryName: String
 }
 
-
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
@@ -45,7 +44,7 @@ struct SurgeryView: View {
                             }
                         }
                         .onDelete(perform: delete)
-                        
+
                         Button(action: {
                             // Action to add new item
                             surgeries.append(SurgeryItem(surgeryName: ""))
@@ -82,12 +81,11 @@ struct SurgeryView: View {
                 }
             }
             }
-        
+
         func delete(at offsets: IndexSet) {
             surgeries.remove(atOffsets: offsets)
         }
     }
-        
 
 #Preview {
     SurgeryView()

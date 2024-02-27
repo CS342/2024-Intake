@@ -21,16 +21,15 @@ struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
-        
+
         init() {
             self.llmResponseSummary = ""
         }
-        
+
         static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
             lhs.llmResponseSummary == rhs.llmResponseSummary
         }
     }
-    
 
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
@@ -39,32 +38,31 @@ struct LLMInteraction: View {
                     summarize the conversation into a concise Chief Complaint.
                     """
 
-        
         @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
-        
+
         let stringBox: StringBox
-        
+
         init(stringBox: StringBox) {
             self.stringBox = stringBox
         }
-        
+
         func execute() async throws -> String? {
             let summary = patientSummary
             self.stringBox.llmResponseSummary = summary
             return nil
         }
     }
-    
+
     @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
-    
+
     @State var showOnboarding = true
     @State var greeting = true
     @State var stringBox: StringBox
     @State var showSheet = false
-    
+
     @State var model: LLM
-    
+
     var body: some View {
         LLMChatView(
             model: model
@@ -92,7 +90,7 @@ struct LLMInteraction: View {
             SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
         }
     }
-    
+
     init(presentingAccount: Binding<Bool>) {
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount

@@ -13,8 +13,7 @@ enum StorageKeys {
     static let onboardingFlowComplete = "onboardingFlow.complete"
     /// A `Step` flag indicating the current step in the onboarding process.
     static let onboardingFlowStep = "onboardingFlow.step"
-    
-    
+
     // MARK: - Home
     /// The currently selected home tab.
     static let homeTabSelection = "home.tabselection"

@@ -20,7 +20,6 @@ struct MedicalHistoryItem: Identifiable {
     var condition: String
 }
 
-
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
@@ -45,7 +44,7 @@ struct MedicalHistoryView: View {
                             }
                         }
                         .onDelete(perform: delete)
-                        
+
                         Button(action: {
                             // Action to add new item
                             medicalHistory.append(MedicalHistoryItem(condition: ""))
@@ -98,12 +97,11 @@ struct MedicalHistoryView: View {
                 }
             }
         }
-        
+
         func delete(at offsets: IndexSet) {
             medicalHistory.remove(atOffsets: offsets)
         }
     }
-        
 
 #Preview {
     MedicalHistoryView()

@@ -15,7 +15,6 @@
 import Foundation
 import SpeziMedication
 
-
 struct IntakeDosage: Dosage {
     var localizedDescription: String
 }

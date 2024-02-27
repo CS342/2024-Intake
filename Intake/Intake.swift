@@ -12,7 +12,7 @@ import SwiftUI
 
 class NavigationPathWrapper: ObservableObject {
     @Published var path = NavigationPath()
-    
+
     func append_item(item: NavigationViews) {
         path.append(item)
     }
@@ -22,9 +22,9 @@ class NavigationPathWrapper: ObservableObject {
 struct Intake: App {
     @UIApplicationDelegateAdaptor(IntakeDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
+
     let navigationPath = NavigationPathWrapper()
-    
+
     var body: some Scene {
         WindowGroup {
             ZStack {

@@ -22,12 +22,11 @@ struct AllergyItem: Identifiable {
     var reaction: String
 }
 
-
 struct AllergyView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @EnvironmentObject private var navigationPath: NavigationPathWrapper
     @State private var allergyRecords: [AllergyItem] = []
-    
+
     var body: some View {
         NavigationView { // swiftlint:disable:this closure_body_length
             VStack { // swiftlint:disable:this closure_body_length
@@ -49,7 +48,7 @@ struct AllergyView: View {
                         }
                     }
                     .onDelete(perform: delete)
-                    
+
                     Button(action: {
                         // Action to add new item
                         allergyRecords.append(AllergyItem(condition: "", reaction: ""))
@@ -114,12 +113,11 @@ struct AllergyView: View {
             }
         }
     }
-    
+
     func delete(at offsets: IndexSet) {
         allergyRecords.remove(atOffsets: offsets)
     }
 }
-        
 
 #Preview {
     AllergyView()

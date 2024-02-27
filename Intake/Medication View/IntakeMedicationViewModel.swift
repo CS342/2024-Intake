@@ -19,19 +19,16 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
-
-
 @Observable
 class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, CustomStringConvertible {
     var medicationInstances: Set<IntakeMedicationInstance> = []
     let medicationOptions: Set<IntakeMedication>
-    
-    
+
     var description: String {
         guard !medicationInstances.isEmpty else {
             return "No Medications"
         }
-        
+
         return medicationInstances
             .map { medicationInstance in
                 let scheduleDescription: String
@@ -43,13 +40,12 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
                 case .asNeeded:
                     scheduleDescription = "AsNeeded"
                 }
-                
+
                 return "\(medicationInstance.type.localizedDescription) - \(medicationInstance.dosage.localizedDescription) - \(scheduleDescription)"
             }
             .joined(separator: ", ")
     }
-    
-    
+
     init(existingMedications: [FHIRResource]) {
         self.medicationOptions = [
             IntakeMedication(
@@ -77,27 +73,27 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
                 ]
             )
         ]
-        
+
         var foundMedications: [IntakeMedicationInstance] = []
-        if !existingMedications.isEmpty{
-            for medication in existingMedications{
+        if !existingMedications.isEmpty {
+            for medication in existingMedications {
                 for option in medicationOptions {
                     if option.localizedDescription == medication.displayName {
                         print("display", medication.displayName)
                         var medSchedule: SpeziMedication.Schedule
                         let medRequest = medicationRequest(resource: medication)
-                        if case .boolean(let asNeeded) = medRequest?.dosageInstruction?.first?.asNeeded{
-                            if let asNeededbool = asNeeded.value?.bool{
+                        if case .boolean(let asNeeded) = medRequest?.dosageInstruction?.first?.asNeeded {
+                            if let asNeededbool = asNeeded.value?.bool {
 
-                                if asNeededbool{
+                                if asNeededbool {
                                     medSchedule = SpeziMedication.Schedule(frequency: .asNeeded)
-                                    
-                                } else{
+
+                                } else {
                                     let interval = medRequest?.dosageInstruction?.first?.timing?.repeat?.period?.value?.decimal
                                     let intValue = NSDecimalNumber(decimal: interval!).intValue
                                     medSchedule = Schedule(frequency: .regularDayIntervals(intValue))
                                 }
-                                
+
                                 let intakeMedicationInstance = IntakeMedicationInstance(type: option, dosage: option.dosages.first!, schedule: medSchedule)
                                 foundMedications.append(intakeMedicationInstance)
                             }
@@ -112,14 +108,12 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
     func persist(medicationInstances: Set<IntakeMedicationInstance>) async throws {
         self.medicationInstances = medicationInstances
     }
-    
+
     func medicationRequest(resource: FHIRResource) -> MedicationRequest? {
         guard case let .r4(resource) = resource.versionedResource,
               let medicationRequest = resource as? ModelsR4.MedicationRequest else {
             return nil
         }
-        
         return medicationRequest
     }
 }
-

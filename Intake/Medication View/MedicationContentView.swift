@@ -23,20 +23,19 @@ struct MedicationContentView: View {
     @State private var presentSettings = false
 
     @State private var medicationSettingsViewModel: IntakeMedicationSettingsViewModel?
-        
+
         init() {
 
         }
-    
-    
+
     var body: some View {
         VStack {
             if let medicationSettingsViewModel {
-                MedicationSettings(allowEmtpySave: true, medicationSettingsViewModel: medicationSettingsViewModel){
+                MedicationSettings(allowEmtpySave: true, medicationSettingsViewModel: medicationSettingsViewModel) {
                     self.navigationPath.append_item(item: NavigationViews.allergies)
                 }
                         .navigationTitle("Medication Settings")
-            
+
             } else {
                 ProgressView()
             }
