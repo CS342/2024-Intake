@@ -73,24 +73,23 @@ struct LLMInteraction: View {
             model: model
         )
         .navigationTitle("Chief Complaint")
-        .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
-        }
+//        .toolbar {  // Is this doing anything except causing problems?
+//            if AccountButton.shouldDisplay {
+//                AccountButton(isPresented: $presentingAccount)
+//            }
+        //}
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         .onAppear {
-//            if let patient = fhirStore.patient {
-//                // let additionalInformation = ChatEntity(role: .system,
-//                                                       // content: )
-//                model.context.append(
-//                    systemMessage: "This is a JSON summary of the patient you are interacting with. When you ask them questions, use their name: "
-//                    + patient.jsonDescription
-//                )
-//            }
-            
+            if let patient = fhirStore.patient {
+                // let additionalInformation = ChatEntity(role: .system,
+                                                       // content: )
+                model.context.append(
+                    systemMessage: "This is a JSON summary of the patient you are interacting with. When you ask them questions, use their name: "
+                    + patient.jsonDescription
+                )
+            }
             if greeting {
                 model.context.append(assistantOutput: "Hello! What brings you to the doctor's office?")
             }
@@ -150,8 +149,6 @@ struct LLMInteraction: View {
 //            let patientDescription = patient.jsonDescription
 //        }
 //    }
-    
-    
     
     init(presentingAccount: Binding<Bool>) {
         // swiftlint:disable closure_end_indentation
