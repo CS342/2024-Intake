@@ -15,19 +15,18 @@ import SwiftUI
 
 // My head hurts. 10/10 pain. Sharp. Top of head. Hurts for a week. No triggers. Nothing makes it better or worse. No further information that I have
 struct LLMAssistantView: View {
-    @State var model: LLM
     @Binding var presentingAccount: Bool
     @State var showOnboarding = true
     @State var greeting = true
     @Binding var pageTitle: String
     @Binding var initialQuestion: String
     @Binding var prompt: String
-    @Environment(LLMRunner.self) var runner: LLMRunner
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
     var body: some View {
         NavigationView {
             LLMChatView(
-                model: model
+                session: $session
             )
             .sheet(isPresented: $showOnboarding) {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
@@ -41,7 +40,7 @@ struct LLMAssistantView: View {
             .onAppear {
                 if greeting {
                     let assistantMessage = ChatEntity(role: .assistant, content: initialQuestion)
-                    model.context.insert(assistantMessage, at: 0)
+                    session.context.insert(assistantMessage, at: 0)
                 }
                 greeting = false
             
@@ -52,12 +51,14 @@ struct LLMAssistantView: View {
     init(presentingAccount: Binding<Bool>, pageTitle: Binding<String>, initialQuestion: Binding<String>, prompt: Binding<String>) {
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
-        self.model = LLMOpenAI(
-                parameters: .init(
-                    modelType: .gpt3_5Turbo,
-                    systemPrompt: prompt.wrappedValue
+        self._session = LLMSessionProvider(
+                schema: LLMOpenAISchema(
+                    parameters: .init(
+                        modelType: .gpt3_5Turbo,
+                        systemPrompt: prompt.wrappedValue
                     )
-        ) {}
+                ) {}
+            )
         self._pageTitle = pageTitle
         self._initialQuestion = initialQuestion
         self._prompt = prompt
@@ -74,7 +75,7 @@ struct LLMAssistantView: View {
                      prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have."))
         .previewWith {
             LLMRunner {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
         }
 }

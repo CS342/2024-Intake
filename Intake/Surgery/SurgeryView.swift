@@ -78,7 +78,7 @@ struct InspectSurgeryView: View {
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(\.editMode) private var editMode
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     @State private var surgeries: [SurgeryItem] = []
 
     var body: some View {
