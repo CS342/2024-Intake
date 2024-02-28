@@ -51,11 +51,7 @@ class IntakeDelegate: SpeziAppDelegate {
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }
-            LLMRunner(
-                runnerConfig: .init(
-                    taskPriority: .userInitiated
-                )
-            ) {
+            LLMRunner {
                 LLMOpenAIPlatform()
             }
             IntakeScheduler()
