@@ -112,6 +112,7 @@
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 		F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */; };
 		F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */; };
+		F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4F8802B8C6FC5008FBEED /* Elements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,7 @@
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 		F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyViewTest.swift; sourceTree = "<group>"; };
+		F4F4F8802B8C6FC5008FBEED /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				5AEA5F2E2B8C0A9D00F1577A /* GlobalData.swift */,
+				F4F4F8802B8C6FC5008FBEED /* Elements.swift */,
 				511827972B7401A8002033A0 /* MedicationView.swift */,
 				511827942B740191002033A0 /* Surgery */,
 				AC2A17272B70684D00F560D0 /* SocialHistory */,
@@ -517,6 +520,14 @@
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
+			isa = PBXGroup;
+			children = (
+				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
+			);
+			path = SocialHistory;
 			sourceTree = "<group>";
 		};
 		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
@@ -804,6 +815,7 @@
 				5AEA5F292B8487A300F1577A /* AddConditionView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
+				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
 				2FE5DC5129EDD7FA004B9AB4 /* IntakeTaskContext.swift in Sources */,
@@ -1371,7 +1383,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.2.1;
 			};
 		};
 		2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */ = {
@@ -1482,8 +1494,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
 			requirement = {
-				branch = "feat/lift-to-spezi-llm";
-				kind = branch;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.6.0;
 			};
 		};
 		97F466E62A76BBEE005DC9B4 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
@@ -1491,15 +1503,15 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.1.0;
 			};
 		};
 		F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.1;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

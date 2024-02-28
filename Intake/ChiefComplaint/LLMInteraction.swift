@@ -17,6 +17,22 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+struct SkipButton: View {
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text("Skip")
+                .font(.headline)
+                .foregroundColor(.blue)
+                .padding(8) // Add padding for better appearance
+                .background(Color.white) // Set background color to white
+                .cornerRadius(8) // Round the corners
+        }
+        .buttonStyle(PlainButtonStyle()) // Remove button border
+    }
+}
+
 struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
@@ -31,14 +47,12 @@ struct LLMInteraction: View {
         }
     }
     
-
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.
                     """
-
         
         @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
         
@@ -56,32 +70,29 @@ struct LLMInteraction: View {
     }
     
     @Binding var presentingAccount: Bool
-    @Environment(LLMRunner.self) var runner: LLMRunner
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
     @State var showOnboarding = true
     @State var greeting = true
-    @State var stringBox: StringBox
+    @State var stringBox: StringBox = .init()
     @State var showSheet = false
-    
-    @State var model: LLM
     
     var body: some View {
         LLMChatView(
-            model: model
+            session: $session
         )
         .navigationTitle("Chief Complaint")
-        .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
-        }
+        .navigationBarItems(trailing: SkipButton {
+            self.showSheet = true
+        })
+        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         .onAppear {
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                model.context.insert(assistantMessage, at: 0)
+                session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
         }
@@ -93,12 +104,13 @@ struct LLMInteraction: View {
         }
     }
     
-    init(presentingAccount: Binding<Bool>) {
-        // swiftlint:disable closure_end_indentation
+    
+    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
         self._presentingAccount = presentingAccount
-        let stringBoxTemp = StringBox()
-        self.stringBox = stringBoxTemp
-        self.model = LLMOpenAI(
+        let temporaryStringBox = StringBox()
+        self.stringBox = temporaryStringBox
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
                     systemPrompt: """
@@ -143,9 +155,9 @@ struct LLMInteraction: View {
                     """
                 )
             ) {
-                SummarizeFunction(stringBox: stringBoxTemp)
+                SummarizeFunction(stringBox: temporaryStringBox)
             }
-        // swiftlint:enable closure_end_indentation
+        )
     }
 }
 
@@ -153,7 +165,7 @@ struct LLMInteraction: View {
     LLMInteraction(presentingAccount: .constant(false))
         .previewWith {
             LLMRunner {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
         }
 }
