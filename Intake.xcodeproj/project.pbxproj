@@ -508,6 +508,14 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
+			isa = PBXGroup;
+			children = (
+				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
+			);
+			path = SocialHistory;
+			sourceTree = "<group>";
+		};
 		F42AB1DA2B637C5F002E13A6 /* ChiefComplaint */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,14 +534,6 @@
 				F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */,
 			);
 			path = OpenAI;
-			sourceTree = "<group>";
-		};
-		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
-			isa = PBXGroup;
-			children = (
-				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
-			);
-			path = SocialHistory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1355,7 +1355,7 @@
 			repositoryURL = "https://github.com/StanfordSpezi/Spezi";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.2.1;
 			};
 		};
 		2FB099B42A875E2B00B20952 /* XCRemoteSwiftPackageReference "HealthKitOnFHIR" */ = {
@@ -1466,8 +1466,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziFHIR.git";
 			requirement = {
-				branch = "feat/lift-to-spezi-llm";
-				kind = branch;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.6.0;
 			};
 		};
 		97F466E62A76BBEE005DC9B4 /* XCRemoteSwiftPackageReference "SpeziOnboarding" */ = {
@@ -1475,15 +1475,15 @@
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziOnboarding";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.1.0;
 			};
 		};
 		F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/StanfordSpezi/SpeziLLM";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.1;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

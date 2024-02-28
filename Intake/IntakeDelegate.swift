@@ -53,10 +53,10 @@ class IntakeDelegate: SpeziAppDelegate {
             }
             LLMRunner(
                 runnerConfig: .init(
-                    taskPriority: .medium
+                    taskPriority: .userInitiated
                 )
             ) {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
             IntakeScheduler()
             OnboardingDataSource()
