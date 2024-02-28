@@ -127,6 +127,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
 
 extension Decimal {
     var int: Int {
-        return NSDecimalNumber(decimal: self).intValue  // swiftlint:disable:this legacy_objc_type
+        let intVal = NSDecimalNumber(decimal: self).intValue  // swiftlint:disable:this legacy_objc_type
+        return intVal
     }
 }
