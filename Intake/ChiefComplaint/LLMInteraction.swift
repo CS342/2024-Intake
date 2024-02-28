@@ -70,18 +70,16 @@ struct LLMInteraction: View {
     }
     
     @Binding var presentingAccount: Bool
-    @Environment(LLMRunner.self) var runner: LLMRunner
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
     @State var showOnboarding = true
     @State var greeting = true
-    @State var stringBox: StringBox
+    @State var stringBox: StringBox = .init()
     @State var showSheet = false
-    
-    @State var model: LLM
     
     var body: some View {
         LLMChatView(
-            model: model
+            session: $session
         )
         .navigationTitle("Chief Complaint")
         .navigationBarItems(trailing: SkipButton {
@@ -94,7 +92,7 @@ struct LLMInteraction: View {
         .onAppear {
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                model.context.insert(assistantMessage, at: 0)
+                session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
         }
@@ -106,12 +104,13 @@ struct LLMInteraction: View {
         }
     }
     
-    init(presentingAccount: Binding<Bool>) {
-        // swiftlint:disable closure_end_indentation
+    
+    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
         self._presentingAccount = presentingAccount
-        let stringBoxTemp = StringBox()
-        self.stringBox = stringBoxTemp
-        self.model = LLMOpenAI(
+        let temporaryStringBox = StringBox()
+        self.stringBox = temporaryStringBox
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
                     systemPrompt: """
@@ -156,9 +155,9 @@ struct LLMInteraction: View {
                     """
                 )
             ) {
-                SummarizeFunction(stringBox: stringBoxTemp)
+                SummarizeFunction(stringBox: temporaryStringBox)
             }
-        // swiftlint:enable closure_end_indentation
+        )
     }
 }
 
@@ -166,7 +165,7 @@ struct LLMInteraction: View {
     LLMInteraction(presentingAccount: .constant(false))
         .previewWith {
             LLMRunner {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
         }
 }
