@@ -186,9 +186,6 @@
     "DELETE_REACTION" : {
 
     },
-    "DELETE_SURGERY" : {
-
-    },
     "Do you currently smoke or have you in the past?" : {
 
     },
@@ -430,9 +427,6 @@
     "Please list your current medications." : {
 
     },
-    "Please list your previous surgeries." : {
-
-    },
     "Primary Concern" : {
 
     },
@@ -540,6 +534,9 @@
     "Share with provider of your choice." : {
 
     },
+    "Skip" : {
+
+    },
     "Social History" : {
 
     },
@@ -644,6 +641,9 @@
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
+
+    },
+    "What is your surgical history?" : {
 
     },
     "You can include decimal values (e.g., 0.25) for the number of packs per day." : {

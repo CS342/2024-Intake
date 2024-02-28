@@ -17,6 +17,22 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+struct SkipButton: View {
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text("Skip")
+                .font(.headline)
+                .foregroundColor(.blue)
+                .padding(8) // Add padding for better appearance
+                .background(Color.white) // Set background color to white
+                .cornerRadius(8) // Round the corners
+        }
+        .buttonStyle(PlainButtonStyle()) // Remove button border
+    }
+}
+
 struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
@@ -31,14 +47,12 @@ struct LLMInteraction: View {
         }
     }
     
-
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.
                     """
-
         
         @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
         
@@ -68,11 +82,10 @@ struct LLMInteraction: View {
             session: $session
         )
         .navigationTitle("Chief Complaint")
-        .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
-        }
+        .navigationBarItems(trailing: SkipButton {
+            self.showSheet = true
+        })
+        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
