@@ -10,30 +10,17 @@ import Spezi
 import SpeziFirebaseAccount
 import SwiftUI
 
-class NavigationPathWrapper: ObservableObject {
-    @Published var path = NavigationPath()
-    
-    func append_item(item: NavigationViews) {
-        path.append(item)
-    }
+@Observable
+class NavigationPathWrapper {
+    var path = NavigationPath()
 }
 
-class DataStore: ObservableObject {
-    @Published var allergyData: [AllergyItem] = []
-    @Published var conditionData: [MedicalHistoryItem] = []
-    @Published var medicationData: [MedicationItem] = []
+@Observable
+class DataStore {
+    var allergyData: [AllergyItem] = []
+    var conditionData: [MedicalHistoryItem] = []
+    var medicationData: [MedicationItem] = []
     
-    func addAllergy(item: AllergyItem) {
-        allergyData.append(item)
-    }
-    
-    func addCondition(item: MedicalHistoryItem) {
-        conditionData.append(item)
-    }
-    
-    func addMedication(item: MedicationItem) {
-        medicationData.append(item)
-    }
 }
 
 
@@ -59,8 +46,8 @@ struct Intake: App {
                 }
                 .testingSetup()
                 .spezi(appDelegate)
-                .environmentObject(navigationPath)
-                .environmentObject(data)
+                .environment(navigationPath)
+                .environment(data)
         }
     }
 }

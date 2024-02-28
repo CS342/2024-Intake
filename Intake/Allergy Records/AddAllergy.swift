@@ -12,12 +12,13 @@ import SpeziFHIR
 
 struct EditAllergyView: View {
     @State private var index: Int
+    @Environment(DataStore.self) private var data
     @Binding private var showingReaction: Bool
-    @Binding private var allergyRecords: [AllergyItem]
     var body: some View {
            NavigationView {
                VStack(alignment: .leading, spacing: 10) {
-                       TextField("Allergy Name", text: $allergyRecords[index].allergy)
+                   @Bindable var data = data
+                   TextField("Allergy Name", text: $data.allergyData[index].allergy)
                            .textFieldStyle(RoundedBorderTextFieldStyle())
                            .padding([.horizontal, .top])
                    Form { // Use Form instead of List
@@ -28,14 +29,14 @@ struct EditAllergyView: View {
                                 EditButton()
                             }
                         ) {
-                            ForEach($allergyRecords[index].reaction) { $item in
+                            ForEach($data.allergyData[index].reaction) { $item in
                                 HStack {
                                     TextField("Reactions", text: $item.reaction)
                                 }
                             }
                             .onDelete(perform: delete)
                             Button(action: {
-                                allergyRecords[index].reaction.append(ReactionItem(reaction: ""))
+                                data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
@@ -62,10 +63,9 @@ struct EditAllergyView: View {
            }
     }
     
-    init(index: Int, showingReaction: Binding<Bool>, allergyRecords: Binding<[AllergyItem]>) {
+    init(index: Int, showingReaction: Binding<Bool>) {
         self._index = State(initialValue: index)
         self._showingReaction = showingReaction
-        self._allergyRecords = allergyRecords
     }
            
     func saveCondition() {
@@ -73,7 +73,7 @@ struct EditAllergyView: View {
     }
     
     func delete(at offsets: IndexSet) {
-        self.allergyRecords[index].reaction.remove(atOffsets: offsets)
+        data.allergyData[index].reaction.remove(atOffsets: offsets)
     }
 }
 

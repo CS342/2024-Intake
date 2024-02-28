@@ -22,7 +22,7 @@ struct MedicationItem: Identifiable {
 
 struct MedicationView: View {
     @Environment(FHIRStore.self) private var fhirStore
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     @State private var medications: [MedicationItem] = []
 
         var body: some View {
@@ -68,7 +68,7 @@ struct MedicationView: View {
                     Button(action: {
                         // Save output to Firestore and navigate to next screen
                         // Still need to save output to Firestore
-                        self.navigationPath.append_item(item: NavigationViews.allergies)
+                        navigationPath.path.append(NavigationViews.allergies)
                     }) {
                         Text("Submit")
                             .foregroundColor(.white)

@@ -25,18 +25,18 @@ struct MedicalHistoryItem: Identifiable {
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
 //    @EnvironmentObject private var data: Data
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
-    @State private var medicalHistory: [MedicalHistoryItem] = []
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
     @State private var showAddSheet = false
     @State private var showingChat = false
     
     var body: some View {
         VStack {
-            NavigationView {
                 ZStack {
                     Form { // Use Form instead of List
                         Section(header: Text("Please list conditions you have had")) {
-                            ForEach($medicalHistory) { $item in
+                            @Bindable var data = data
+                            ForEach($data.conditionData) { $item in
                                 if item.active == true {
                                     HStack {
                                         TextField("Condition", text: $item.condition)
@@ -51,7 +51,7 @@ struct MedicalHistoryView: View {
                                 }
                             }
                             .onDelete(perform: delete)
-                            ForEach($medicalHistory) { $item in
+                            ForEach($data.conditionData) { $item in
                                 if item.active == false {
                                     HStack {
                                         TextField("Condition", text: $item.condition)
@@ -68,7 +68,7 @@ struct MedicalHistoryView: View {
                             .onDelete(perform: delete)
                             Button(action: {
                                 // Action to add new item
-                                medicalHistory.append(MedicalHistoryItem(condition: "", active: false))
+                                data.conditionData.append(MedicalHistoryItem(condition: "", active: false))
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
@@ -117,10 +117,10 @@ struct MedicalHistoryView: View {
                     }
                     .zIndex(1) // Make sure the chat button is above the Form
                 }
-            }
+            
 
             Button(action: {
-                self.navigationPath.append_item(item: NavigationViews.surgical)
+                navigationPath.path.append(NavigationViews.surgical)
             }) {
                 Text("Submit")
                     .foregroundColor(.white)
@@ -143,7 +143,7 @@ struct MedicalHistoryView: View {
             "Full-time employment (finding)"
         ]
         for condition in conditions {
-            if !invalid.contains(condition.displayName) && !medicalHistory.contains(where: {
+            if !invalid.contains(condition.displayName) && !data.conditionData.contains(where: {
                 $0.condition == condition.displayName }) {
                 let vr = condition.versionedResource
                 switch vr {
@@ -154,16 +154,17 @@ struct MedicalHistoryView: View {
                 }
                 
                 if active == "resolved" {
-                    medicalHistory.append(MedicalHistoryItem(condition: condition.displayName, active: false))
+                    data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: false))
                 } else {
-                    medicalHistory.append(MedicalHistoryItem(condition: condition.displayName, active: true))
+                    data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: true))
                 }
                 
             }
         }
+        print(data.conditionData)
     }
         func delete(at offsets: IndexSet) {
-            medicalHistory.remove(atOffsets: offsets)
+            data.conditionData.remove(atOffsets: offsets)
         }
     }
         

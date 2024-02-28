@@ -18,7 +18,7 @@ struct SummaryView: View {
     @State var chiefComplaint: String
     @Binding var isPresented: Bool
     
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -41,7 +41,7 @@ struct SummaryView: View {
             Button(action: {
                 // Save output to Firestore and navigate to next screen
                 // Still need to save output to Firestore
-                self.navigationPath.append_item(item: NavigationViews.medical)
+                navigationPath.path.append(NavigationViews.medical)
                 self.isPresented.toggle()
             }) {
                 Text("Submit")

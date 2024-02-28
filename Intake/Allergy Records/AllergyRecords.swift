@@ -51,8 +51,8 @@ struct ChatButton: View {
 
 struct AllergyList: View {
     @Environment(FHIRStore.self) private var fhirStore
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
-    @State private var allergyRecords: [AllergyItem] = []
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
     @State private var showingReaction = false
     @State private var selectedIndex = 0
     @State private var showingChat = false
@@ -64,13 +64,13 @@ struct AllergyList: View {
             NavigationView {
                 Form { // Use Form instead of List
                     Section(header: Text("What are your current allergies?")) {
-                        ForEach(0..<allergyRecords.count, id: \.self) { index in
+                        ForEach(0..<data.allergyData.count, id: \.self) { index in
                                 Button(action: {
                                     self.selectedIndex = index
                                     self.showingReaction = true
                                 }) {
                                     HStack {
-                                        Text(allergyRecords[index].allergy)
+                                        Text(data.allergyData[index].allergy)
                                             .foregroundColor(.black)
                                         Spacer()
                                         Image(systemName: "chevron.right")
@@ -83,7 +83,8 @@ struct AllergyList: View {
         
                         Button(action: {
                             // Action to add new item
-                            allergyRecords.append(AllergyItem(allergy: "", reaction: []))
+                            data.allergyData.append(AllergyItem(allergy: "", reaction: []))
+                            self.selectedIndex = data.allergyData.count - 1
                             showingReaction = true
                         }) {
                             HStack {
@@ -98,7 +99,7 @@ struct AllergyList: View {
                 }
                 .navigationBarItems(trailing: EditButton())
                 .sheet(isPresented: $showingReaction) {
-                    EditAllergyView(index: selectedIndex, showingReaction: $showingReaction, allergyRecords: $allergyRecords)
+                    EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
                 }
                 .navigationTitle("Allergies")
                 VStack {
@@ -111,7 +112,7 @@ struct AllergyList: View {
             }
         }
         Button(action: {
-            self.navigationPath.append_item(item: NavigationViews.social)
+            navigationPath.path.append(NavigationViews.social)
         }) {
             Text("Submit")
                 .foregroundColor(.white)
@@ -162,7 +163,7 @@ struct AllergyList: View {
         }
         if allergies.count > 0 {
             for i in 0...(allergies.count-1) {
-                self.allergyRecords.append(
+                data.allergyData.append(
                     AllergyItem(allergy: allergies[i].string, reaction: r[i])
                 )
             }
@@ -170,7 +171,7 @@ struct AllergyList: View {
     }
 
     func delete(at offsets: IndexSet) {
-        self.allergyRecords.remove(atOffsets: offsets)
+        data.allergyData.remove(atOffsets: offsets)
     }
 }
 

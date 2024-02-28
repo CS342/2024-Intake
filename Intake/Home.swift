@@ -27,9 +27,10 @@ struct HomeView: View {
     @State private var presentingAccount = false
     @State private var showSettings = false
     
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     
     var body: some View {
+        @Bindable var navigationPath = navigationPath
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
@@ -69,7 +70,7 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    self.navigationPath.append_item(item: NavigationViews.chat)
+                    navigationPath.path.append(NavigationViews.chat)
                 }) {
                     Text("Start")
                         .font(.headline)
