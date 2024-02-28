@@ -10,14 +10,12 @@ import SpeziHealthKit
 import SpeziOnboarding
 import SwiftUI
 
-
 struct HealthKitPermissions: View {
     @Environment(HealthKit.self) private var healthKitDataSource
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
+
     @State private var healthKitProcessing = false
-    
-    
+
     var body: some View {
         OnboardingView(
             contentView: {
@@ -52,7 +50,7 @@ struct HealthKitPermissions: View {
                             print("Could not request HealthKit permissions.")
                         }
                         healthKitProcessing = false
-                        
+
                         onboardingNavigationPath.nextStep()
                     }
                 )
@@ -63,7 +61,6 @@ struct HealthKitPermissions: View {
             .navigationTitle(Text(verbatim: ""))
     }
 }
-
 
 #if DEBUG
 #Preview {

@@ -21,7 +21,6 @@ struct MedicalHistoryItem: Identifiable {
     var active: Bool
 }
 
-
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
 //    @EnvironmentObject private var data: Data
@@ -29,7 +28,7 @@ struct MedicalHistoryView: View {
     @Environment(DataStore.self) private var data
     @State private var showAddSheet = false
     @State private var showingChat = false
-    
+
     var body: some View {
         VStack {
                 ZStack {
@@ -83,7 +82,7 @@ struct MedicalHistoryView: View {
                                 .foregroundColor(.gray)
                                 .zIndex(1)
                         }
-                        
+
                     }
                     .navigationTitle("Medical History")
                     .navigationBarItems(trailing: EditButton())
@@ -117,7 +116,6 @@ struct MedicalHistoryView: View {
                     }
                     .zIndex(1) // Make sure the chat button is above the Form
                 }
-            
 
             Button(action: {
                 navigationPath.path.append(NavigationViews.surgical)
@@ -132,7 +130,7 @@ struct MedicalHistoryView: View {
             .padding()
         }
     }
-        
+
     private func loadConditions() {
         let conditions = fhirStore.conditions
         var active = ""
@@ -152,13 +150,13 @@ struct MedicalHistoryView: View {
                     default:
                         print("The resource is not an R4 Allergy Intolerance")
                 }
-                
+
                 if active == "resolved" {
                     data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: false))
                 } else {
                     data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: true))
                 }
-                
+
             }
         }
         print(data.conditionData)
@@ -167,7 +165,6 @@ struct MedicalHistoryView: View {
             data.conditionData.remove(atOffsets: offsets)
         }
     }
-        
 
 #Preview {
     MedicalHistoryView()

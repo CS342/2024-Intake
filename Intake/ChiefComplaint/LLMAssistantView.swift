@@ -4,6 +4,12 @@
 //
 //  Created by Akash Gupta on 2/18/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SpeziChat
@@ -11,7 +17,6 @@ import SpeziLLM
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
-
 
 // My head hurts. 10/10 pain. Sharp. Top of head. Hurts for a week. No triggers. Nothing makes it better or worse. No further information that I have
 struct LLMAssistantView: View {
@@ -22,7 +27,7 @@ struct LLMAssistantView: View {
     @Binding var initialQuestion: String
     @Binding var prompt: String
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-    
+
     var body: some View {
         NavigationView {
             LLMChatView(
@@ -43,11 +48,11 @@ struct LLMAssistantView: View {
                     session.context.insert(assistantMessage, at: 0)
                 }
                 greeting = false
-            
+
             }
         }
     }
-    
+
     init(presentingAccount: Binding<Bool>, pageTitle: Binding<String>, initialQuestion: Binding<String>, prompt: Binding<String>) {
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
@@ -64,9 +69,6 @@ struct LLMAssistantView: View {
         self._prompt = prompt
     }
 }
-
-
-
 
 #Preview {
     LLMAssistantView(presentingAccount: .constant(false),

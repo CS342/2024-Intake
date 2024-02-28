@@ -16,9 +16,9 @@ import SwiftUI
 struct OnboardingFlow: View {
     @Environment(HealthKit.self) private var healthKitDataSource
     @Environment(IntakeScheduler.self) private var scheduler
-    
+
     @AppStorage(StorageKeys.onboardingFlowComplete) private var completedOnboardingFlow = false
-    
+
     private var healthKitAuthorization: Bool {
         // As HealthKit not available in preview simulator
         if ProcessInfo.processInfo.isPreviewSimulator {
@@ -26,21 +26,20 @@ struct OnboardingFlow: View {
         }
         return healthKitDataSource.authorized
     }
-    
-    
+
     var body: some View {
         OnboardingStack(onboardingFlowComplete: $completedOnboardingFlow) {
             Welcome()
             InterestingModules()
-            
+
             if !FeatureFlags.disableFirebase {
                 AccountOnboarding()
             }
-            
+
             #if !(targetEnvironment(simulator) && (arch(i386) || arch(x86_64)))
                 Consent()
             #endif
-            
+
             if HKHealthStore.isHealthDataAvailable() && !healthKitAuthorization {
                 HealthKitPermissions()
             }
@@ -48,7 +47,6 @@ struct OnboardingFlow: View {
             .interactiveDismissDisabled(!completedOnboardingFlow)
     }
 }
-
 
 #if DEBUG
 #Preview {

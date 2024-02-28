@@ -18,12 +18,12 @@ import SwiftUI
 // Provide a basic onboarding view to submit OpenAI API Key
 struct LLMOnboardingView: View {
     @Binding var showOnboarding: Bool
-    
+
     var body: some View {
         OnboardingStack(onboardingFlowComplete: !$showOnboarding) {
             // OpenAI Onboarding
             LLMOpenAITokenOnboarding()
-            
+
             // Local Onboarding
             // LLMLocalDownloadOnboarding()
         }

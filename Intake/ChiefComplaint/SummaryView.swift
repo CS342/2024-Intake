@@ -17,17 +17,17 @@ import SwiftUI
 struct SummaryView: View {
     @State var chiefComplaint: String
     @Binding var isPresented: Bool
-    
+
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Primary Concern")
                 .font(.title)
                 .padding(.top, 50)
-            
+
             Text("Here is a summary of your primary concern:")
-            
+
             TextEditor(text: $chiefComplaint)
                 .frame(height: 150)
                 .background(Color.white)
@@ -37,7 +37,7 @@ struct SummaryView: View {
                         .stroke(Color.secondary, lineWidth: 1)
                 )
                 .padding(.horizontal)
-            
+
             Button(action: {
                 // Save output to Firestore and navigate to next screen
                 // Still need to save output to Firestore
@@ -55,7 +55,7 @@ struct SummaryView: View {
         }
         .padding()
     }
-    
+
     init(chiefComplaint: String, isPresented: Binding<Bool>) {
         self.chiefComplaint = chiefComplaint
         self._isPresented = isPresented

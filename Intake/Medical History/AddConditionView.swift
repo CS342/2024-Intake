@@ -4,16 +4,21 @@
 //
 //  Created by Akash Gupta on 2/19/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SwiftUI
 import SpeziFHIR
 
-
 struct AddConditionView: View {
     @State private var conditionName: String = ""
     @State private var isActive: Bool?
-    
+
     var body: some View {
            NavigationView {
                VStack(alignment: .leading, spacing: 20) {
@@ -64,12 +69,11 @@ struct AddConditionView: View {
                .navigationBarTitleDisplayMode(.inline)
            }
     }
-           
+
     func saveCondition() {
         print("Condition Saved: \(conditionName), Active Status: \(String(describing: isActive))")
     }
 }
-
 
 #Preview {
     AddConditionView()

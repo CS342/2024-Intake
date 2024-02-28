@@ -23,12 +23,12 @@ struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-    
+
     @State private var presentingAccount = false
     @State private var showSettings = false
-    
+
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
+
     var body: some View {
         @Bindable var navigationPath = navigationPath
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
@@ -50,9 +50,9 @@ struct HomeView: View {
                     )
                     .padding()
                 }
-                
+
                 Spacer()
-                
+
                 Image(systemName: "waveform.path.ecg")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -66,9 +66,9 @@ struct HomeView: View {
                 Text("AI-assisted medical intake")
                     .font(.title2)
                     .foregroundColor(.gray)
-                
+
                 Spacer()
-                
+
                 Button(action: {
                     navigationPath.path.append(NavigationViews.chat)
                 }) {
@@ -81,7 +81,7 @@ struct HomeView: View {
                         .cornerRadius(10)
                 }
             }
-            
+
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
                 case .chat: MedicalHistoryView()
@@ -106,13 +106,12 @@ struct HomeView: View {
     }
 }
 
-
 #if DEBUG
 #Preview {
     let details = AccountDetails.Builder()
         .set(\.userId, value: "lelandstanford@stanford.edu")
         .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
+
     return HomeView()
         .previewWith(standard: IntakeStandard()) {
             IntakeScheduler()

@@ -16,7 +16,7 @@ import SwiftUI
 struct SubmitButton: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     var nextView: NavigationViews
-    
+
     var body: some View {
         Button(action: {
             // Save output to Firestore and navigate to next screen

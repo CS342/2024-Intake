@@ -28,7 +28,7 @@ struct SurgeryItem: Identifiable {
 
 struct AddSurgeryButton: View {
     @Binding var surgeries: [SurgeryItem]
-    
+
     var body: some View {
         Button(action: {
             // Action to add new item
@@ -46,7 +46,7 @@ struct AddSurgeryButton: View {
 struct InspectSurgeryView: View {
     @Environment(\.editMode) private var editMode
     @Binding var surgery: SurgeryItem
-    
+
     var body: some View {
         List {
             Section(header: Text("Surgery")) {
@@ -105,7 +105,7 @@ struct SurgeryView: View {
             SubmitButton(nextView: NavigationViews.medication)
             .padding()
         }
-        
+
         .onAppear {
             self.getProcedures()
         }
@@ -118,23 +118,22 @@ struct SurgeryView: View {
     func delete(at offsets: IndexSet) {
         surgeries.remove(atOffsets: offsets)
     }
-    
+
     func getProcedures() {
         let procedures = fhirStore.procedures
 //      print(procedures)
-        
+
         for pro in procedures where !self.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
             var newEntry = SurgeryItem(surgeryName: pro.displayName)
-            
+
             if let date = pro.date?.formatted() {
                 newEntry.date = date
             }
-            
+
             self.surgeries.append(newEntry)
         }
     }
 }
-        
 
 #Preview {
     SurgeryView()

@@ -4,11 +4,16 @@
 //
 //  Created by Akash Gupta on 2/19/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SwiftUI
 import SpeziFHIR
-
 
 struct EditAllergyView: View {
     @State private var index: Int
@@ -62,25 +67,24 @@ struct EditAllergyView: View {
                .navigationBarTitle("Allergy")
            }
     }
-    
+
     init(index: Int, showingReaction: Binding<Bool>) {
         self._index = State(initialValue: index)
         self._showingReaction = showingReaction
     }
-           
+
     func saveCondition() {
         print("Condition Saved:, Active Status:")
     }
-    
+
     func delete(at offsets: IndexSet) {
         data.allergyData[index].reaction.remove(atOffsets: offsets)
     }
 }
 
-
-//#Preview {
+// #Preview {
 //    EditAllergyView(allergyItem: AllergyItem(allergy: "", reaction: []), showingReaction: <#T##Binding<Bool>#>, allergyRecords: <#T##Binding<[AllergyItem]>#>, showingReaction: .constant(true), allergyRecords: .constant([]))
 //        .previewWith {
 //            FHIRStore()
 //        }
-//}
+// }

@@ -20,18 +20,17 @@ class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: [MedicationItem] = []
-    
-}
 
+}
 
 @main
 struct Intake: App {
     @UIApplicationDelegateAdaptor(IntakeDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
+
     let navigationPath = NavigationPathWrapper()
     let data = DataStore()
-    
+
     var body: some Scene {
         WindowGroup {
             ZStack {

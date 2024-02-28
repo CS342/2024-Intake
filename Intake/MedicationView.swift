@@ -44,7 +44,7 @@ struct MedicationView: View {
                             }
                         }
                         .onDelete(perform: delete)
-                        
+
                         Button(action: {
                             // Action to add new item
                             medications.append(MedicationItem(medicationName: ""))
@@ -88,12 +88,11 @@ struct MedicationView: View {
                 }
             }
         }
-        
+
         func delete(at offsets: IndexSet) {
             medications.remove(atOffsets: offsets)
         }
     }
-        
 
 #Preview {
     MedicationView()

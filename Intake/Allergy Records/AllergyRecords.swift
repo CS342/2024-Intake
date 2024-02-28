@@ -1,4 +1,3 @@
-
 //  MedicalHistoryView.swift
 //  Intake
 //
@@ -16,19 +15,16 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-
-
-
 struct AllergyItem: Identifiable {
     let id = UUID()
     var allergy: String
     var reaction: [ReactionItem]
 }
 
-//struct ReactionViewDetails {
+// struct ReactionViewDetails {
 //    var showingReaction: Bool
 //    var
-//}
+// }
 
 struct ChatButton: View {
     // Use @Binding to create a two-way binding to the parent view's showingChat state
@@ -57,7 +53,7 @@ struct AllergyList: View {
     @State private var selectedIndex = 0
     @State private var showingChat = false
     @State private var presentingAccount = false
-    
+
     var body: some View {
         VStack {
             ZStack {
@@ -80,7 +76,7 @@ struct AllergyList: View {
                                 }
                         }
                         .onDelete(perform: delete)
-        
+
                         Button(action: {
                             // Action to add new item
                             data.allergyData.append(AllergyItem(allergy: "", reaction: []))
@@ -94,7 +90,7 @@ struct AllergyList: View {
                         }
                         Text("*Click the details to view/edit the reactions")
                             .font(.caption)
-                            .foregroundColor(.gray) 
+                            .foregroundColor(.gray)
                     }
                 }
                 .navigationBarItems(trailing: EditButton())
@@ -133,7 +129,7 @@ struct AllergyList: View {
                         prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have."))
         }
     }
-    
+
     private func loadAllergies() {
         var allergies: [FHIRString] = []
         var r: [[ReactionItem]] = []
@@ -155,7 +151,7 @@ struct AllergyList: View {
                              }
                         }
                         r.append(reactions_for_allergy)
-                                    
+
                     default:
                         print("The resource is not an R4 Allergy Intolerance")
                 }
@@ -175,11 +171,9 @@ struct AllergyList: View {
     }
 }
 
-        
-
-//#Preview {
+// #Preview {
 //    AllergyList()
 //        .previewWith {
 //            FHIRStore()
 //        }
-//}
+// }

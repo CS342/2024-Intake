@@ -8,11 +8,9 @@
 
 import SwiftUI
 
-
 private struct IntakeAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
-    
-    
+
     func body(content: Content) -> some View {
         content
             .task {
@@ -25,7 +23,6 @@ private struct IntakeAppTestingSetup: ViewModifier {
             }
     }
 }
-
 
 extension View {
     func testingSetup() -> some View {
