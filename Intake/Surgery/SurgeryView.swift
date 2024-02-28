@@ -18,12 +18,12 @@ import SwiftUI
 struct SurgeryItem: Identifiable {
     var id = UUID()
     var surgeryName: String = ""
-    var date: String = ""
-//    var location: String
-//    var complications: String
-//    var notes: String
-//    var status: String
-//    var code: String
+    var date: String?
+//    var location: String?
+//    var complications: String?
+//    var notes: String?
+//    var status: String?
+//    var code: String?
 }
 
 struct AddSurgeryButton: View {
@@ -49,16 +49,26 @@ struct InspectSurgeryView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Date")) {
+            Section(header: Text("Surgery")) {
                 if editMode?.wrappedValue.isEditing == true {
-                    TextField("Date", text: $surgery.date)
+                    TextField("Surgery", text: $surgery.surgeryName)
                 } else {
-                    Text(surgery.date)
+                    Text(surgery.surgeryName)
                 }
             }
+//            if let date = surgery.date {
+//                @Bindable var date = date
+//                
+//                Section(header: Text("Date")) {
+//                    if editMode?.wrappedValue.isEditing == true {
+//                        TextField("Date", text: $date)
+//                    } else {
+//                        Text(date)
+//                    }
+//                }
+//            }
         }
         .listStyle(.grouped)
-        .navigationTitle(surgery.surgeryName)
         .toolbar {
             EditButton()
         }
