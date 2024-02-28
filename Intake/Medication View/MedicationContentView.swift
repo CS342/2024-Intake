@@ -24,10 +24,6 @@ struct MedicationContentView: View {
 
     @State private var medicationSettingsViewModel: IntakeMedicationSettingsViewModel?
 
-        init() {
-
-        }
-
     var body: some View {
         VStack {
             if let medicationSettingsViewModel {
@@ -35,7 +31,6 @@ struct MedicationContentView: View {
                     self.navigationPath.append_item(item: NavigationViews.allergies)
                 }
                         .navigationTitle("Medication Settings")
-
             } else {
                 ProgressView()
             }
@@ -45,6 +40,8 @@ struct MedicationContentView: View {
                 self.medicationSettingsViewModel = IntakeMedicationSettingsViewModel(existingMedications: patientMedications)
             }
     }
+    
+    init() {}
 }
 
 #Preview {

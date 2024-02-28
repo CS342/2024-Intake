@@ -12,7 +12,7 @@ import SwiftUI
 
 extension FHIRStore {
     var llmRelevantResources: [FHIRResource] {
-        return allergyIntolerances
+        allergyIntolerances
           + llmConditions
           + encounters.uniqueDisplayNames
           + immunizations

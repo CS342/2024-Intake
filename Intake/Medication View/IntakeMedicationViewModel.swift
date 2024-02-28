@@ -46,7 +46,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
             .joined(separator: ", ")
     }
 
-    init(existingMedications: [FHIRResource]) {
+    init(existingMedications: [FHIRResource]) { // swiftlint:disable:this function_body_length
         self.medicationOptions = [
             IntakeMedication(
                 localizedDescription: "Hydrochlorothiazide 25 MG Oral Tablet",
@@ -77,29 +77,36 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
         var foundMedications: [IntakeMedicationInstance] = []
         if !existingMedications.isEmpty {
             for medication in existingMedications {
-                for option in medicationOptions {
-                    if option.localizedDescription == medication.displayName {
-                        print("display", medication.displayName)
+                for option in medicationOptions where option.localizedDescription == medication.displayName {
                         var medSchedule: SpeziMedication.Schedule
                         let medRequest = medicationRequest(resource: medication)
                         if case .boolean(let asNeeded) = medRequest?.dosageInstruction?.first?.asNeeded {
                             if let asNeededbool = asNeeded.value?.bool {
-
                                 if asNeededbool {
                                     medSchedule = SpeziMedication.Schedule(frequency: .asNeeded)
-
                                 } else {
+                                    let intValue: Int
                                     let interval = medRequest?.dosageInstruction?.first?.timing?.repeat?.period?.value?.decimal
-                                    let intValue = NSDecimalNumber(decimal: interval!).intValue
+                                    if let interval = interval {
+                                        intValue = interval.int
+                                    } else {
+                                        continue
+                                    }
                                     medSchedule = Schedule(frequency: .regularDayIntervals(intValue))
                                 }
+                                
+                                guard let firstDosage = option.dosages.first else {
+                                    continue
+                                }
 
-                                let intakeMedicationInstance = IntakeMedicationInstance(type: option, dosage: option.dosages.first!, schedule: medSchedule)
+                                let intakeMedicationInstance = IntakeMedicationInstance(
+                                    type: option,
+                                    dosage: firstDosage,
+                                    schedule: medSchedule
+                                )
                                 foundMedications.append(intakeMedicationInstance)
                             }
                         }
-                        break
-                    }
                 }
             }
             self.medicationInstances = Set(foundMedications)
@@ -115,5 +122,11 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
             return nil
         }
         return medicationRequest
+    }
+}
+
+extension Decimal {
+    var int: Int {
+        return NSDecimalNumber(decimal: self).intValue  // swiftlint:disable:this legacy_objc_type
     }
 }
