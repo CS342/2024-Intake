@@ -113,6 +113,7 @@
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 		F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */; };
 		F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */; };
+		F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4F8802B8C6FC5008FBEED /* Elements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 		F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyViewTest.swift; sourceTree = "<group>"; };
+		F4F4F8802B8C6FC5008FBEED /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +473,7 @@
 		653A254F283387FE005D4D48 /* Intake */ = {
 			isa = PBXGroup;
 			children = (
+				F4F4F8802B8C6FC5008FBEED /* Elements.swift */,
 				519E830A2B7C4F1600A2D92D /* Medication View */,
 				511827942B740191002033A0 /* Surgery */,
 				AC2A17272B70684D00F560D0 /* SocialHistory */,
@@ -815,6 +818,7 @@
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
 				51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
+				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
 				51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
