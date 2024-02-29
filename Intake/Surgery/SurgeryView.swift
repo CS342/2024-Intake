@@ -17,7 +17,7 @@ import SwiftUI
 
 struct SurgeryItem: Identifiable {
     var id = UUID()
-    var surgeryName: String = ""
+    var surgeryName: String
     var date: String?
 //    var location: String?
 //    var complications: String?
@@ -32,7 +32,7 @@ struct AddSurgeryButton: View {
     var body: some View {
         Button(action: {
             // Action to add new item
-            surgeries.append(SurgeryItem(surgeryName: "", date: ""))
+            surgeries.append(SurgeryItem(surgeryName: "Surgery", date: ""))
         }) {
             HStack {
                 Image(systemName: "plus.circle.fill")
@@ -44,17 +44,12 @@ struct AddSurgeryButton: View {
 }
 
 struct InspectSurgeryView: View {
-    @Environment(\.editMode) private var editMode
     @Binding var surgery: SurgeryItem
     
     var body: some View {
-        List {
+        Form {
             Section(header: Text("Surgery")) {
-                if editMode?.wrappedValue.isEditing == true {
-                    TextField("Surgery", text: $surgery.surgeryName)
-                } else {
-                    Text(surgery.surgeryName)
-                }
+                TextField("Surgery Name", text: $surgery.surgeryName)
             }
 //            if let date = surgery.date {
 //                @Bindable var date = date
@@ -75,43 +70,69 @@ struct InspectSurgeryView: View {
     }
 }
 
+
+/*
+ List {
+     Section(header: Text("What is your surgical history?")) {
+         // Extension: Sort these by date
+         ForEach($data.surgeries) { $item in
+             if editMode?.wrappedValue.isEditing == true {
+                 TextField("Surgery", text: $item.surgeryName)
+             } else {
+                 NavigationLink(destination: InspectSurgeryView(surgery: $item)) {
+                     Label(item.surgeryName, systemImage: "arrowtriangle.right")
+                         .labelStyle(.titleOnly)
+                 }
+             }
+         }
+         .onDelete(perform: delete)
+         if editMode?.wrappedValue.isEditing == true {
+             AddSurgeryButton(surgeries: $data.surgeries)
+         }
+     }
+ }
+ */
+
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
     @Environment(\.editMode) private var editMode
 
     var body: some View {
-        @Bindable var data = data
         VStack {
-            List {
-                Section(header: Text("What is your surgical history?")) {
-                    // Extension: Sort these by date
-                    ForEach($data.surgeries) { $item in
-                        if editMode?.wrappedValue.isEditing == true {
-                            TextField("Surgery", text: $item.surgeryName)
-                        } else {
-                            NavigationLink(destination: InspectSurgeryView(surgery: $item)) {
-                                Label(item.surgeryName, systemImage: "arrowtriangle.right")
-                                    .labelStyle(.titleOnly)
-                            }
-                        }
-                    }
-                    .onDelete(perform: delete)
-                    if editMode?.wrappedValue.isEditing == true {
-                        AddSurgeryButton(surgeries: $data.surgeries)
-                    }
-                }
-            }
+            surgeryForm
             SubmitButton(nextView: NavigationViews.medication)
             .padding()
         }
-
         .onAppear {
             self.getProcedures()
         }
         .navigationTitle("Surgical History")
         .toolbar {
             EditButton()
+        }
+    }
+    
+    private var surgeryElements: some View {
+        Group {
+            @Bindable var data = data
+            ForEach($data.surgeries) { $item in
+                NavigationLink(destination: InspectSurgeryView(surgery: $item)) {
+                    Label(item.surgeryName, systemImage: "arrowtriangle.right")
+                        .labelStyle(.titleOnly)
+                }
+            }
+            .onDelete(perform: delete)
+        }
+    }
+    
+    private var surgeryForm: some View {
+        Form {
+            @Bindable var data = data
+            Section(header: Text("What is your surgical history?")) {
+                surgeryElements
+                AddSurgeryButton(surgeries: $data.surgeries)
+            }
         }
     }
 

@@ -39,7 +39,7 @@ struct SubmitButton: View {
             // Still need to save output to Firestore
             navigationPath.path.append(nextView)
         }) {
-            Text("Submit")
+            Text("Next")
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
