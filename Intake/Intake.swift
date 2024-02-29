@@ -27,6 +27,8 @@ class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: [MedicationItem] = []
+    var surgeries: [SurgeryItem] = []
+    var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: 0, sex: "")
     var chiefComplaint: String = ""
 }

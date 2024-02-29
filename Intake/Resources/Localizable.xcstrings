@@ -94,9 +94,6 @@
     "Auto-fill Intake Form" : {
 
     },
-    "Chief Complaint" : {
-
-    },
     "CLOSE" : {
       "comment" : "MARK: General",
       "localizations" : {
@@ -251,7 +248,7 @@
         }
       }
     },
-    "Here is a summary of your primary concern:" : {
+    "Here is a summary of the Primary Concern" : {
 
     },
     "HOME_LOGO" : {
@@ -371,6 +368,9 @@
           }
         }
       }
+    },
+    "Next" : {
+
     },
     "Next: Smoking History" : {
 
@@ -580,6 +580,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Name" : {
 
     },
     "Surgical History" : {

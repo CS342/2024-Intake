@@ -17,6 +17,7 @@ enum NavigationViews: String {
     case social
     case medication
     case chat
+    case concern
 }
 
 struct HomeView: View {
@@ -28,9 +29,12 @@ struct HomeView: View {
     @State private var showSettings = false
 
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
 
     var body: some View {
         @Bindable var navigationPath = navigationPath
+        @Bindable var data = data
+        
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
@@ -90,6 +94,7 @@ struct HomeView: View {
                 case .medical: ScrollablePDF()
                 case .social: SocialHistoryQuestionView()
                 case .medication: MedicationView()
+                case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
                 }
             }
         }
