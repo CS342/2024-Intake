@@ -17,6 +17,7 @@ import SpeziLLM
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
+import Foundation
 
 struct LLMInteraction: View {
     @Observable
@@ -34,15 +35,14 @@ struct LLMInteraction: View {
     
 
     struct SummarizeFunction: LLMFunction {
+        // swiftlint:disable line_length
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.\
                     Then call the summerize_complaint function.
                     """
-
-        
-        @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
+        @Parameter(description: "A summary of the patient's primary concern. Include a sentence introducing the patient's name, age, and gender, if you have access to this information.") var patientSummary: String
         
         let stringBox: StringBox
         
@@ -67,33 +67,135 @@ struct LLMInteraction: View {
     @State var showSheet = false
     
     @State var model: LLM
-    
+    // swiftlint:disable closure_body_length
     var body: some View {
         LLMChatView(
             model: model
         )
         .navigationTitle("Chief Complaint")
-//        .toolbar {  // Is this doing anything except causing problems?
-//            if AccountButton.shouldDisplay {
-//                AccountButton(isPresented: $presentingAccount)
-//            }
-        //}
+        .toolbar {  // Is this doing anything except causing problems?
+            if AccountButton.shouldDisplay {
+                AccountButton(isPresented: $presentingAccount)
+            }
+        }
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         .onAppear {
+            // swiftlint:disable line_length
+            var fullName: String = ""
+            var firstName: String = ""
+            var dob: String = ""
+            var gender: String = ""
+            
             if let patient = fhirStore.patient {
-                // let additionalInformation = ChatEntity(role: .system,
-                                                       // content: )
+                let jsonDescription = patient.jsonDescription
+                
+                func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
+                    if dobString.isEmpty{
+                        return ""
+                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = format
+                    
+                    guard let birthDate = dateFormatter.date(from: dobString) else {
+                        return "Invalid date format or date string."
+                    }
+                    
+                    let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
+                    if let age = ageComponents.year {
+                        return "\(age)"
+                    } else {
+                        return "Could not calculate age"
+                    }
+                }
+                
+                
+                func getValue(forKey key: String, from jsonString: String) -> String? {
+                    guard let jsonData = jsonString.data(using: .utf8) else {
+                        print("Error: Cannot create Data from JSON string")
+                        return nil
+                    }
+                    
+                    do {
+                        if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                            if key == "name" {
+                                if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
+                                    let nameDict = nameArray[0] // Accessing the first name object
+                                    if let family = nameDict["family"] as? String, let givenArray = nameDict["given"] as? [String], !givenArray.isEmpty {
+                                        let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
+                                        
+                                        return "\(given) \(family)"
+                                    }
+                                }
+                            } else {
+                                return dictionary[key] as? String
+                            }
+                        } else {
+                            print("Error: JSON is not a dictionary")
+                        }
+                    } catch {
+                        print("Error: \(error.localizedDescription)")
+                    }
+
+                    return nil
+                }
+
+
+                
+                if let fullNameValue = getValue(forKey: "name", from: jsonDescription) {
+                    print("Full name found: \(fullNameValue)")
+                    let fullNameFilter = fullNameValue.filter { !$0.isNumber }
+                    fullName = fullNameFilter
+                } else {
+                    print("Key 'name' not found")
+                }
+                
+                if let genderValue = getValue(forKey: "gender", from: jsonDescription) {
+                    print("Name found: \(genderValue)")
+                    gender = genderValue
+                } else {
+                    print("Key 'name' not found")
+                }
+
+                if let dobValue = getValue(forKey: "birthDate", from: jsonDescription) {
+                    print("Date of Birth found: \(dobValue)")
+                    dob = dobValue
+                } else {
+                    print("Key 'date_of_birth' not found")
+                }
+                
+                let age = calculateAge(from: dob)
+                let nameString = fullName.components(separatedBy: " ")
+                
+                if let firstNameValue = nameString.first {
+                    firstName = firstNameValue
+                } else {
+                    print("String is empty")
+                }
+                
                 model.context.append(
-                    systemMessage: "This is a JSON summary of the patient you are interacting with. When you ask them questions, use their name: "
-                    + patient.jsonDescription
+                    systemMessage: "The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: age)) years old. The patient's gender is \(String(describing: gender)) Please speak with the patient as you would a person of this age group, using as simple words as possible if the patient is young. Address them by their first name when you ask questions."
                 )
             }
+            
+            
             if greeting {
-                model.context.append(assistantOutput: "Hello! What brings you to the doctor's office?")
+//                model.context.append(assistantOutput: "Hello\(String(describing: firstName))! What brings you to the doctor's office?")
+                
+                if firstName.isEmpty {
+                    model.context.append(assistantOutput: "Hello! What brings you to the doctor's office?")
+                }
+                else{
+                    model.context.append(assistantOutput: "Hello \(String(describing: firstName))! What brings you to the doctor's office?")
+            }
+                
+                
+                
             }
             greeting = false
+            
+            
         }
         .onChange(of: self.stringBox.llmResponseSummary) { _, _ in
             self.showSheet = true
@@ -103,60 +205,14 @@ struct LLMInteraction: View {
         }
     }
     
-//    private func prepareSysPrompt(){
-//            
-//            return
-//        }
-//    
-
-// how do i get this json decoded so that i can iterate through it?
-// specifically want to use mock patient for testing and then use fhirstore later
-// then how do i get patient summary from llmonfhir from it?! .jsonDescription is used in LLMonFHIR
-    
-//    private func prepareSystemPrompt() {
-//        if chat.isEmpty {
-//            chat = [
-//                Chat(
-//                    role: .system,
-//                    content: FHIRPrompt.interpretMultipleResources.prompt
-//                )
-//            ]
-//        }
-//        if let patient = fhirStore.patient {
-//            print(patient.jsonDescrption)
-//            chat.append(
-//                Chat(
-//                    role: .system,
-//                    content: patient.jsonDescription
-//
-//                )
-//            )
-//        }
-//    }
-    
-//    var patient: FHIRResource? {
-//        let appBundlePath = Bundle.main.bundlePath
-//        if let bundle = Bundle(url: URL(fileURLWithPath: "[appBundlePath]/Resources/MockPatients/Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json")) {
-//            var fileContent = String?
-//            do {
-//                fileContent = try String(contentsOf: URL(fileURLWithPath: filePath), encoding: .utf8)
-//            } catch {
-//                print("Error reading file: \(error)")
-//            }
-//    
-//    func getPatientHistorySummary(){
-//        if let patient = FHIRStore.patient{
-//            let patientDescription = patient.jsonDescription
-//        }
-//    }
     
     init(presentingAccount: Binding<Bool>) {
+        
+        
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
         let stringBoxTemp = StringBox()
         self.stringBox = stringBoxTemp
-        
-        
         self.model = LLMOpenAI(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
