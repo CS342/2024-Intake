@@ -84,10 +84,10 @@ struct HomeView: View {
 
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
-                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
+                case .chat: MedicalHistoryView()
                 case .allergies: AllergyList()
-                case .surgical: SurgeryView()
-                case .medical: MedicalHistoryView()
+                case .surgical: ScrollablePDF()
+                case .medical: ScrollablePDF()
                 case .social: SocialHistoryQuestionView()
                 case .medication: MedicationView()
                 }

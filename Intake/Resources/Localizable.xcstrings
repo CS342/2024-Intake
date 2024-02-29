@@ -61,6 +61,9 @@
         }
       }
     },
+    "Active" : {
+
+    },
     "Add Field" : {
 
     },
@@ -116,6 +119,9 @@
       }
     },
     "Condition" : {
+
+    },
+    "Conditions" : {
 
     },
     "CONSENT_LOADING_ERROR" : {
@@ -255,6 +261,9 @@
 
     },
     "How many packs do you smoke a day?" : {
+
+    },
+    "Inactive" : {
 
     },
     "Integrate your Records" : {
@@ -425,6 +434,9 @@
 
     },
     "Other important questions." : {
+
+    },
+    "Patient Form" : {
 
     },
     "Please list conditions you have had" : {

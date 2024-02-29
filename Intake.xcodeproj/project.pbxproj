@@ -88,6 +88,7 @@
 		5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */; };
 		5AEA5F212B82DDD000F1577A /* LLMAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */; };
 		5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */; };
+		5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */; };
 		637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */; };
 		653A2551283387FE005D4D48 /* Intake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* Intake.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -190,6 +191,7 @@
 		5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMAssistantView.swift; sourceTree = "<group>"; };
 		5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAllergy.swift; sourceTree = "<group>"; };
+		5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollablePDF.swift; sourceTree = "<group>"; };
 		637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = Questionnaire.json.license; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* Intake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intake.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				2FE5DC3D29EDD7E4004B9AB4 /* Helper */,
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
+				5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */,
 			);
 			path = Intake;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
 				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
+				5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */,
 				F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
 				653A2551283387FE005D4D48 /* Intake.swift in Sources */,

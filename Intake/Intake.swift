@@ -15,11 +15,20 @@ class NavigationPathWrapper {
     var path = NavigationPath()
 }
 
+struct PatientData {
+    var name: String
+    var birthdate: String
+    var age: Int
+    var sex: String
+}
+
 @Observable
 class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: [MedicationItem] = []
+    var generalData = PatientData(name: "", birthdate: "", age: 0, sex: "")
+    var chiefComplaint: String = ""
 }
 
 @main
