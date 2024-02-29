@@ -13,6 +13,23 @@
 
 import SwiftUI
 
+struct SkipButton: View {
+    var action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text("Skip")
+                .font(.headline)
+                .foregroundColor(.blue)
+                .padding(8) // Add padding for better appearance
+                .background(Color.white) // Set background color to white
+                .cornerRadius(8) // Round the corners
+        }
+        .buttonStyle(PlainButtonStyle()) // Remove button border
+    }
+}
+
+
 struct SubmitButton: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     var nextView: NavigationViews

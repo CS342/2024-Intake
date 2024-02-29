@@ -14,50 +14,28 @@
 import Foundation
 import SwiftUI
 
-struct SummaryView: View {
-    @State var chiefComplaint: String
-    @Binding var isPresented: Bool
+struct ComplaintForm: View {
+    @Binding var chiefComplaint: String
+    
+    var body: some View {
+        Form {
+            Section(header: Text("Here is a summary of the Primary Concern")) {
+                TextField("Primary Concern", text: $chiefComplaint, axis: .vertical)
+            }
+        }
+        .navigationTitle("Primary Concern")
+    }
+}
 
+struct SummaryView: View {
+    @Binding var chiefComplaint: String
     @Environment(NavigationPathWrapper.self) private var navigationPath
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Primary Concern")
-                .font(.title)
-                .padding(.top, 50)
-
-            Text("Here is a summary of your primary concern:")
-
-            TextEditor(text: $chiefComplaint)
-                .frame(height: 150)
-                .background(Color.white)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.secondary, lineWidth: 1)
-                )
-                .padding(.horizontal)
-
-            Button(action: {
-                // Save output to Firestore and navigate to next screen
-                // Still need to save output to Firestore
-                navigationPath.path.append(NavigationViews.medical)
-                self.isPresented.toggle()
-            }) {
-                Text("Submit")
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-            }
-            .padding(.horizontal)
+            ComplaintForm(chiefComplaint: $chiefComplaint)
+            SubmitButton(nextView: NavigationViews.medical)
+                .padding()
         }
-        .padding()
-    }
-
-    init(chiefComplaint: String, isPresented: Binding<Bool>) {
-        self.chiefComplaint = chiefComplaint
-        self._isPresented = isPresented
     }
 }

@@ -17,21 +17,6 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-struct SkipButton: View {
-    var action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Text("Skip")
-                .font(.headline)
-                .foregroundColor(.blue)
-                .padding(8) // Add padding for better appearance
-                .background(Color.white) // Set background color to white
-                .cornerRadius(8) // Round the corners
-        }
-        .buttonStyle(PlainButtonStyle()) // Remove button border
-    }
-}
 
 struct LLMInteraction: View {
     @Observable
@@ -68,27 +53,36 @@ struct LLMInteraction: View {
             return nil
         }
     }
-
+    
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
     @State var showOnboarding = true
     @State var greeting = true
     @State var stringBox: StringBox = .init()
-    @State var showSheet = false
-
+    
+    private func showSummary() {
+        navigationPath.path.append(NavigationViews.concern)
+    }
+    
     var body: some View {
+        @Bindable var data = data
+        
         LLMChatView(
             session: $session
         )
-        .navigationTitle("Chief Complaint")
+        .navigationTitle("Primary Concern")
         .navigationBarItems(trailing: SkipButton {
-            self.showSheet = true
+            self.showSummary()
         })
-
+        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
+        
         .onAppear {
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
@@ -96,11 +90,10 @@ struct LLMInteraction: View {
             }
             greeting = false
         }
-        .onChange(of: self.stringBox.llmResponseSummary) { _, _ in
-            self.showSheet = true
-        }
-        .sheet(isPresented: $showSheet) {
-            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
+        
+        .onChange(of: self.stringBox.llmResponseSummary) { _, newComplaint in
+            data.chiefComplaint = newComplaint
+            self.showSummary()
         }
     }
 
