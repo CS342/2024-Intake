@@ -8,12 +8,10 @@
 
 import SwiftUI
 
-
 struct AccountButton: View {
     static let shouldDisplay = !FeatureFlags.disableFirebase || ProcessInfo.processInfo.isPreviewSimulator
 
     @Binding private var isPresented: Bool
-
 
     var body: some View {
         Button(action: {
@@ -24,12 +22,10 @@ struct AccountButton: View {
             .accessibilityLabel("ACCOUNT_TITLE")
     }
 
-
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
     }
 }
-
 
 #if DEBUG
 #Preview(traits: .sizeThatFitsLayout) {

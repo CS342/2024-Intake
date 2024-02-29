@@ -9,11 +9,9 @@
 import SpeziOnboarding
 import SwiftUI
 
-
 struct Welcome: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
-    
+
     var body: some View {
         OnboardingView(
             title: "Welcome to ReForm",
@@ -52,7 +50,6 @@ struct Welcome: View {
             .padding(.top, 24)
     }
 }
-
 
 #if DEBUG
 #Preview {

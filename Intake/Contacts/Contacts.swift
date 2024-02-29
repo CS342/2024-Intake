@@ -10,7 +10,6 @@ import Foundation
 import SpeziContact
 import SwiftUI
 
-
 /// Displays the contacts for the Intake.
 struct Contacts: View {
     let contacts = [
@@ -49,10 +48,9 @@ struct Contacts: View {
             ]
         )
     ]
-    
+
     @Binding var presentingAccount: Bool
-    
-    
+
     var body: some View {
         NavigationStack {
             ContactsList(contacts: contacts)
@@ -64,13 +62,11 @@ struct Contacts: View {
                 }
         }
     }
-    
-    
+
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
 }
-
 
 #if DEBUG
 #Preview {

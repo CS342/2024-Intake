@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 extension Foundation.Bundle {
     /// Loads an image from the `Bundle` instance.
     /// - Parameters:
@@ -19,12 +18,12 @@ extension Foundation.Bundle {
         guard let resourceURL = self.url(forResource: name, withExtension: fileExtension) else {
             fatalError("Could not find the file \"\(name).\(fileExtension)\" in the bundle.")
         }
-        
+
         guard let resourceData = try? Data(contentsOf: resourceURL),
               let image = UIImage(data: resourceData) else {
             fatalError("Decode the image named \"\(name).\(fileExtension)\"")
         }
-        
+
         return image
     }
 }

@@ -10,7 +10,6 @@
 // import SpeziOpenAI
 import SwiftUI
 
-
 struct SettingsView: View {
     private enum SettingsDestinations {
         case openAIKey
@@ -20,11 +19,10 @@ struct SettingsView: View {
         case promptInterpretation
         case promptMultipleResourceInterpretation
     }
-    
+
     @State private var path = NavigationPath()
     @Environment(\.dismiss) private var dismiss
-    
-    
+
     var body: some View {
         NavigationStack(path: $path) {
             List {
@@ -47,7 +45,7 @@ struct SettingsView: View {
                 }
         }
     }
-    
+
     /*
     private var speechSettings: some View {
         Section("SETTINGS_SPEECH") {
@@ -65,7 +63,7 @@ struct SettingsView: View {
         }
     }
      */
-    
+
     private var resourcesSettings: some View {
         Section("Resource Selection") {
             NavigationLink(value: SettingsDestinations.resourceSelection) {
@@ -73,7 +71,7 @@ struct SettingsView: View {
             }
         }
     }
-    
+
     /*
     private var openAISettings: some View {
         Section("SETTINGS_OPENAI") {
@@ -100,7 +98,7 @@ struct SettingsView: View {
         }
     }
     */
-    
+
     private func navigationDesination(for destination: SettingsDestinations) -> some View {
         Group {
             switch destination {

@@ -9,12 +9,10 @@
 import SpeziAccount
 import SwiftUI
 
-
 struct AccountSetupHeader: View {
     @Environment(Account.self) private var account
     @Environment(\._accountSetupState) private var setupState
-    
-    
+
     var body: some View {
         VStack {
             Text("ACCOUNT_TITLE")
@@ -33,7 +31,6 @@ struct AccountSetupHeader: View {
             .multilineTextAlignment(.center)
     }
 }
-
 
 #if DEBUG
 #Preview {

@@ -9,10 +9,9 @@
 import SpeziMockWebService
 import SwiftUI
 
-
 struct MockUpload: View {
     @Binding var presentingAccount: Bool
-    
+
     var body: some View {
         NavigationStack {
             RequestList()
@@ -23,13 +22,11 @@ struct MockUpload: View {
                 }
         }
     }
-    
-    
+
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
 }
-
 
 #if DEBUG
 #Preview {

@@ -11,22 +11,18 @@ import SpeziQuestionnaire
 import SpeziScheduler
 import SwiftUI
 
-
 struct ScheduleView: View {
     @Environment(IntakeStandard.self) private var standard
     @Environment(IntakeScheduler.self) private var scheduler
     @State private var eventContextsByDate: [Date: [EventContext]] = [:]
     @State private var presentedContext: EventContext?
 
-
     @Binding private var presentingAccount: Bool
-    
-    
+
     private var startOfDays: [Date] {
         Array(eventContextsByDate.keys)
     }
-    
-    
+
     var body: some View {
         NavigationStack {
             List(startOfDays, id: \.timeIntervalSinceNow) { startOfDay in
@@ -58,13 +54,11 @@ struct ScheduleView: View {
                 .navigationTitle("SCHEDULE_LIST_TITLE")
         }
     }
-    
-    
+
     init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
     }
-    
-    
+
     private func destination(withContext eventContext: EventContext) -> some View {
         @ViewBuilder var destination: some View {
             switch eventContext.task.context {
@@ -87,15 +81,14 @@ struct ScheduleView: View {
         }
         return destination
     }
-    
-    
+
     private func format(startOfDay: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         return dateFormatter.string(from: startOfDay)
     }
-    
+
     private func calculateEventContextsByDate() {
         let eventContexts = scheduler.tasks.flatMap { task in
             task
@@ -108,15 +101,14 @@ struct ScheduleView: View {
                 }
         }
             .sorted()
-        
+
         let newEventContextsByDate = Dictionary(grouping: eventContexts) { eventContext in
             Calendar.current.startOfDay(for: eventContext.event.scheduledAt)
         }
-        
+
         eventContextsByDate = newEventContextsByDate
     }
 }
-
 
 #if DEBUG
 #Preview("ScheduleView") {

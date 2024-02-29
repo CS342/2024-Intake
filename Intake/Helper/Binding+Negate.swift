@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 extension Binding where Value == Bool {
     /// Negates a `Binding`.
     prefix static func ! (value: Binding<Bool>) -> Binding<Bool> {

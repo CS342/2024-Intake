@@ -22,7 +22,7 @@ struct ReactionItem: Identifiable {
 struct ReactionView: View {
     @State private var reactionRecords: [ReactionItem]
     @State private var name: String
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -40,7 +40,7 @@ struct ReactionView: View {
                         }
                     }
                 }
-                
+
                 Button(action: {
                     // Action to add new item
                     reactionRecords.append(ReactionItem(reaction: ""))
@@ -63,13 +63,12 @@ struct ReactionView: View {
             }
         }
     }
-    
+
     init(reactionRecords: [ReactionItem], name: String) {
         self._reactionRecords = State(initialValue: reactionRecords)
         self._name = State(initialValue: name)
     }
 }
-
 
 #Preview {
     ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: "Diabetes")

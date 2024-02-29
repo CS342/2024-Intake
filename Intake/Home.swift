@@ -23,18 +23,18 @@ struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-    
+
     @State private var presentingAccount = false
     @State private var showSettings = false
-    
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
-    
+
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+
     var body: some View {
+        @Bindable var navigationPath = navigationPath
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
                     Spacer()
-                    
                     Button(
                         action: {
                             showSettings.toggle()
@@ -48,12 +48,11 @@ struct HomeView: View {
                                 .accessibilityLabel(Text("SETTINGS"))
                         }
                     )
-                    
                     .padding()
                 }
-                
+
                 Spacer()
-                
+
                 Image(systemName: "waveform.path.ecg")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -67,11 +66,11 @@ struct HomeView: View {
                 Text("AI-assisted medical intake")
                     .font(.title2)
                     .foregroundColor(.gray)
-                
+
                 Spacer()
-                
+
                 Button(action: {
-                    self.navigationPath.append_item(item: NavigationViews.chat)
+                    navigationPath.path.append(NavigationViews.chat)
                 }) {
                     Text("Start")
                         .font(.headline)
@@ -82,11 +81,11 @@ struct HomeView: View {
                         .cornerRadius(10)
                 }
             }
-            
+
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
                 case .chat: LLMInteraction(presentingAccount: $presentingAccount)
-                case .allergies: AllergyView()
+                case .allergies: AllergyList()
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
                 case .social: SocialHistoryQuestionView()
@@ -107,13 +106,12 @@ struct HomeView: View {
     }
 }
 
-
 #if DEBUG
 #Preview {
     let details = AccountDetails.Builder()
         .set(\.userId, value: "lelandstanford@stanford.edu")
         .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-    
+
     return HomeView()
         .previewWith(standard: IntakeStandard()) {
             IntakeScheduler()

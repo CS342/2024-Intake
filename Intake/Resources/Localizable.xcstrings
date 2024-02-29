@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
+
+    },
+    "*Click the details to view/edit the reactions" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -58,12 +64,6 @@
     "Add Field" : {
 
     },
-    "ADD_ALLERGY" : {
-
-    },
-    "ADD_CONDITION" : {
-
-    },
     "ADD_MEDICATION" : {
 
     },
@@ -80,6 +80,12 @@
 
     },
     "Allergies" : {
+
+    },
+    "Allergy" : {
+
+    },
+    "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
@@ -174,19 +180,13 @@
         }
       }
     },
-    "DELETE_ALLERGY" : {
-
-    },
-    "DELETE_CONDITION" : {
-
-    },
     "DELETE_MEDICATION" : {
 
     },
     "DELETE_REACTION" : {
 
     },
-    "DELETE_SURGERY" : {
+    "DETAILS" : {
 
     },
     "Do you currently smoke or have you in the past?" : {
@@ -302,6 +302,9 @@
 
     },
     "Medications" : {
+
+    },
+    "Message" : {
 
     },
     "MOCK_ALLERGY_RECORDS_TITLE" : {
@@ -424,13 +427,10 @@
     "Other important questions." : {
 
     },
-    "Please list current conditions you have" : {
+    "Please list conditions you have had" : {
 
     },
     "Please list your current medications." : {
-
-    },
-    "Please list your previous surgeries." : {
 
     },
     "Primary Concern" : {
@@ -540,6 +540,9 @@
     "Share with provider of your choice." : {
 
     },
+    "Skip" : {
+
+    },
     "Social History" : {
 
     },
@@ -644,6 +647,9 @@
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
+
+    },
+    "What is your surgical history?" : {
 
     },
     "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
