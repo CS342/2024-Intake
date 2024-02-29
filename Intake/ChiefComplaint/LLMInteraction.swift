@@ -64,10 +64,6 @@ struct LLMInteraction: View {
     @State var greeting = true
     @State var stringBox: StringBox = .init()
     
-    private func showSummary() {
-        navigationPath.path.append(NavigationViews.concern)
-    }
-    
     var body: some View {
         @Bindable var data = data
         
@@ -150,6 +146,10 @@ struct LLMInteraction: View {
                 SummarizeFunction(stringBox: temporaryStringBox)
             }
         )
+    }
+    
+    private func showSummary() {
+        navigationPath.path.append(NavigationViews.concern)
     }
 }
 
