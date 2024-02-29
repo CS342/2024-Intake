@@ -71,7 +71,7 @@ struct YesNoButtonView: View {
         formatter.minimum = 0
         return formatter
     }()
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Do you currently smoke or have you in the past?")
@@ -83,7 +83,7 @@ struct YesNoButtonView: View {
                 .keyboardType(.decimalPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.bottom, 8)
-            
+
             Text("You can include decimal values (e.g., 0.25) for the number of packs per day.")
                 .font(.caption)
                 .foregroundColor(.gray)
@@ -93,8 +93,7 @@ struct YesNoButtonView: View {
                 .keyboardType(.decimalPad)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.bottom, 8)
-            
-            
+
             Button("Submit") {
                     calculateTotalPacksPerYear()
                     navigateToSummary = true
@@ -103,7 +102,7 @@ struct YesNoButtonView: View {
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-            
+
             // NOTE: Ask Zoya about deprecated NavigationLink -- replace with sheet? Integrate into main navigation stack?
             NavigationLink(
                 destination: SmokingSummaryView(
@@ -119,7 +118,7 @@ struct YesNoButtonView: View {
         }
             .padding()
     }
-    
+
     func calculateTotalPacksPerYear() {
         let days = daysPerYear ?? 0
         let packs = packsPerDay ?? 0
@@ -142,7 +141,7 @@ struct SocialHistoryQuestionView: View {
             }
         }
     }
-    
+
     private var menstrualCycleButtons: some View {
         VStack {
             Button(action: {
@@ -172,7 +171,7 @@ struct SocialHistoryQuestionView: View {
             .buttonStyle(BorderlessButtonStyle())
         }
     }
-    
+
     private var menstrualCycleInformationSection: some View {
         Section(header: SectionHeader(title: "Menstrual Cycle Information", subtitle: "Select the dates of your last period.")) {
             menstrualCycleButtons
@@ -180,7 +179,7 @@ struct SocialHistoryQuestionView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }
     }
-    
+
     @State private var dateString: String = ""
     @State private var additionalDetails: String = ""
     @State private var isFemale = false
@@ -192,7 +191,7 @@ struct SocialHistoryQuestionView: View {
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var lastPeriodDate: Date?
-    
+
     @State private var daysPerYear: Double?
     @State private var packsPerDay: Double?
     @State private var totalPacksPerYear: Double = 0
@@ -225,7 +224,7 @@ struct SocialHistoryQuestionView: View {
                 VStack {
                     DatePicker("Select Start Date", selection: $startDate, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
-                    
+
                     Button("Save") {
                         lastPeriodDate = startDate
                         isSelectingStartDate = false
@@ -236,7 +235,7 @@ struct SocialHistoryQuestionView: View {
                 VStack {
                     DatePicker("Select End Date", selection: $endDate, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
-                    
+
                     Button("Save") {
                         // Handle saving the end date here
                         isSelectingEndDate = false
@@ -245,24 +244,24 @@ struct SocialHistoryQuestionView: View {
             })
         }
     }
-    
+
     private func fetchHealthKitData() {
         let infoToRead = Set([HKObjectType.characteristicType(forIdentifier: .biologicalSex)].compactMap { $0 })
 
         Task {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: infoToRead)
-                
+
                 if let bioSex = try? healthStore.biologicalSex() {
                     DispatchQueue.main.async {
                         self.isFemale = getIsFemaleBiologicalSex(biologicalSex: bioSex.biologicalSex)
                         self.showMaleSlide = !self.isFemale
                     }
                 }
-                
+
                 // Fetch and auto-populate the last menstrual period date from HealthKit
                 // Update the startDate and endDate variables accordingly
-                
+
             } catch {
                 print("HealthKit authorization failed: \(error.localizedDescription)")
             }

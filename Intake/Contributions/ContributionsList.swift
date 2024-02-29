@@ -9,10 +9,9 @@
 import SwiftPackageList
 import SwiftUI
 
-
 struct ContributionsList: View {
     var packages: [Package] = PackageHelper.getPackageList()
-    
+
     var body: some View {
             List {
                 Section(footer: Text("PROJECT_LICENSE_DESCRIPTION")) {
@@ -31,7 +30,6 @@ struct ContributionsList: View {
                 .navigationBarTitleDisplayMode(.inline)
     }
 }
-
 
 #if DEBUG
 #Preview {

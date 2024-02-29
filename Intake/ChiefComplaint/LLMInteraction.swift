@@ -19,7 +19,7 @@ import SwiftUI
 
 struct SkipButton: View {
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             Text("Skip")
@@ -37,46 +37,46 @@ struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
-        
+
         init() {
             self.llmResponseSummary = ""
         }
-        
+
         static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
             lhs.llmResponseSummary == rhs.llmResponseSummary
         }
     }
-    
+
     struct SummarizeFunction: LLMFunction {
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
                     summarize the conversation into a concise Chief Complaint.
                     """
-        
+
         @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
-        
+
         let stringBox: StringBox
-        
+
         init(stringBox: StringBox) {
             self.stringBox = stringBox
         }
-        
+
         func execute() async throws -> String? {
             let summary = patientSummary
             self.stringBox.llmResponseSummary = summary
             return nil
         }
     }
-    
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-    
+
     @State var showOnboarding = true
     @State var greeting = true
     @State var stringBox: StringBox = .init()
     @State var showSheet = false
-    
+
     var body: some View {
         LLMChatView(
             session: $session
@@ -85,7 +85,7 @@ struct LLMInteraction: View {
         .navigationBarItems(trailing: SkipButton {
             self.showSheet = true
         })
-        
+
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
@@ -103,8 +103,7 @@ struct LLMInteraction: View {
             SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
         }
     }
-    
-    
+
     init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
         self._presentingAccount = presentingAccount
         let temporaryStringBox = StringBox()

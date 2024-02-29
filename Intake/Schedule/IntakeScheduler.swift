@@ -9,11 +9,9 @@
 import Foundation
 import SpeziScheduler
 
-
 /// A `Scheduler` using the ``IntakeTaskContext`` to schedule and manage tasks and events in the
 /// Intake.
 typealias IntakeScheduler = Scheduler<IntakeTaskContext>
-
 
 extension IntakeScheduler {
     static var socialSupportTask: SpeziScheduler.Task<IntakeTaskContext> {

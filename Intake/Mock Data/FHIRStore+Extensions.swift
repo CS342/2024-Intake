@@ -10,7 +10,6 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-
 extension FHIRStore {
     var llmRelevantResources: [FHIRResource] {
         allergyIntolerances
@@ -21,7 +20,7 @@ extension FHIRStore {
             + observations.uniqueDisplayNames
             + procedures.uniqueDisplayNames
     }
-    
+
     var allResources: [FHIRResource] {
         allergyIntolerances
             + conditions
@@ -33,7 +32,7 @@ extension FHIRStore {
             + otherResources
             + procedures
     }
-    
+
     var patient: FHIRResource? {
         otherResources
             .first { resource in
@@ -41,11 +40,11 @@ extension FHIRStore {
                       resource is ModelsR4.Patient else {
                     return false
                 }
-                
+
                 return true
             }
     }
-    
+
     private var llmConditions: [FHIRResource] {
         conditions
             .filter { resource in
@@ -53,28 +52,28 @@ extension FHIRStore {
                       let condition = resource as? ModelsR4.Condition else {
                     return false
                 }
-                
+
                 return condition.clinicalStatus?.coding?.contains { coding in
                     guard coding.system?.value?.url == URL(string: "http://terminology.hl7.org/CodeSystem/condition-clinical"),
                           coding.code?.value?.string == "active" else {
                         return false
                     }
-                    
+
                     return true
                 } ?? false
             }
     }
-    
+
     private var llmMedications: [FHIRResource] {
         func medicationRequest(resource: FHIRResource) -> MedicationRequest? {
             guard case let .r4(resource) = resource.versionedResource,
                   let medicationRequest = resource as? ModelsR4.MedicationRequest else {
                 return nil
             }
-            
+
             return medicationRequest
         }
-        
+
         let outpatientMedications = medications
             .filter { medication in
                 guard let medicationRequest = medicationRequest(resource: medication),
@@ -85,25 +84,25 @@ extension FHIRStore {
                           ?? false else {
                     return false
                 }
-                
+
                 return true
             }
             .uniqueDisplayNames
-        
+
         let activeMedications = medications
             .filter { medication in
                 guard let medicationRequest = medicationRequest(resource: medication),
                       medicationRequest.status == .active else {
                     return false
                 }
-                
+
                 return true
             }
             .uniqueDisplayNames
-        
+
         return outpatientMedications + activeMedications
     }
-    
+
 //    var allResourcesFunctionCallIdentifier: [String] {
 //        @AppStorage(StorageKeys.resourceLimit) var resourceLimit = StorageKeys.Defaults.resourceLimit
 //        
@@ -147,7 +146,6 @@ extension FHIRStore {
 //    }
 }
 
-
 extension Array where Element == FHIRResource {
     fileprivate var uniqueDisplayNames: [FHIRResource] {
         let reducedEncounters = Dictionary(
@@ -160,11 +158,10 @@ extension Array where Element == FHIRResource {
                 }
             }
         )
-        
+
         return Array(reducedEncounters.values)
     }
-    
-    
+
     fileprivate func dateSuffix(maxLength: Int) -> [FHIRResource] {
         self.lazy.sorted(by: { $0.date ?? .distantPast < $1.date ?? .distantPast }).suffix(maxLength)
     }

@@ -9,11 +9,9 @@
 import SpeziOnboarding
 import SwiftUI
 
-
 struct InterestingModules: View {
     @Environment(OnboardingNavigationPath.self) private var onboardingNavigationPath
-    
-    
+
     var body: some View {
         SequentialOnboardingView(
             title: "Medical Intake Form",
@@ -51,7 +49,6 @@ struct InterestingModules: View {
         )
     }
 }
-
 
 #if DEBUG
 #Preview {

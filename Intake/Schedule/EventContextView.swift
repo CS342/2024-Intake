@@ -9,11 +9,9 @@
 import SpeziScheduler
 import SwiftUI
 
-
 struct EventContextView: View {
     let eventContext: EventContext
-    
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -52,8 +50,7 @@ struct EventContextView: View {
             .disabled(eventContext.event.complete)
             .contentShape(Rectangle())
     }
-    
-    
+
     private func format(eventDate: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
@@ -62,11 +59,10 @@ struct EventContextView: View {
     }
 }
 
-
 #if DEBUG
 #Preview(traits: .sizeThatFitsLayout) {
     let task = IntakeScheduler.socialSupportTask
-    
+
     return EventContextView(
         eventContext: EventContext(
             // We use a force unwrap in the preview as we can not recover from an error here
