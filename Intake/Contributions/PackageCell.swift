@@ -9,10 +9,9 @@
 import SwiftPackageList
 import SwiftUI
 
-
 struct PackageCell: View {
     let package: Package
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
@@ -41,7 +40,7 @@ struct PackageCell: View {
                 .accessibilityLabel(Text("Repository Link"))
         }
     }
-    
+
     func getPackageDetails(package: Package) -> String {
         if let branch = package.branch {
             return "Branch: \(branch)"
@@ -52,7 +51,6 @@ struct PackageCell: View {
         }
     }
 }
-
 
 #if DEBUG
 #Preview(traits: .sizeThatFitsLayout) {
@@ -67,7 +65,7 @@ struct PackageCell: View {
         repositoryURL: URL(string: "github.com")!,
         license: "MIT License"
     )
-    
+
     return PackageCell(package: mockPackage)
 }
 #endif

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 extension Array: RawRepresentable where Element: Codable {
     public var rawValue: String {
         guard let data = try? JSONEncoder().encode(self),
@@ -17,7 +16,7 @@ extension Array: RawRepresentable where Element: Codable {
         }
         return rawValue
     }
-    
+
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8),
               let result = try? JSONDecoder().decode([Element].self, from: data) else {

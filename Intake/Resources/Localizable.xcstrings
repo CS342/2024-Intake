@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
+
+    },
+    "*Click the details to view/edit the reactions" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -58,12 +64,6 @@
     "Add Field" : {
 
     },
-    "ADD_ALLERGY" : {
-
-    },
-    "ADD_CONDITION" : {
-
-    },
     "ADD_MEDICATION" : {
 
     },
@@ -88,10 +88,13 @@
     "Allergies" : {
 
     },
-    "Auto-fill Intake Form" : {
+    "Allergy" : {
 
     },
-    "Chief Complaint" : {
+    "Allergy Name" : {
+
+    },
+    "Auto-fill Intake Form" : {
 
     },
     "CLOSE" : {
@@ -180,19 +183,13 @@
         }
       }
     },
-    "DELETE_ALLERGY" : {
-
-    },
-    "DELETE_CONDITION" : {
-
-    },
     "DELETE_MEDICATION" : {
 
     },
     "DELETE_REACTION" : {
 
     },
-    "DELETE_SURGERY" : {
+    "DETAILS" : {
 
     },
     "Download your medical records from your health system." : {
@@ -257,7 +254,7 @@
         }
       }
     },
-    "Here is a summary of your primary concern:" : {
+    "Here is a summary of the Primary Concern" : {
 
     },
     "HOME_LOGO" : {
@@ -319,6 +316,9 @@
     "Medications" : {
 
     },
+    "Message" : {
+
+    },
     "Menstrual Information" : {
 
     },
@@ -377,6 +377,9 @@
           }
         }
       }
+    },
+    "Next" : {
+
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
@@ -443,9 +446,6 @@
 
     },
     "Please list your current medications." : {
-
-    },
-    "Please list your previous surgeries." : {
 
     },
     "Primary Concern" : {
@@ -555,6 +555,9 @@
     "Share with provider of your choice." : {
 
     },
+    "Skip" : {
+
+    },
     "Smoking History" : {
 
     },
@@ -583,6 +586,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Name" : {
 
     },
     "Surgical History" : {
@@ -661,8 +667,21 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    "Your Responses" : {
+    "What is your surgical history?" : {
 
+    },
+    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
+
+    },
+    "Your last period was from %@ to %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your last period was from %1$@ to %2$@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
