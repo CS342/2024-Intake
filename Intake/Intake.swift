@@ -19,7 +19,7 @@ class NavigationPathWrapper {
 class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
-    var medicationData: [MedicationItem] = []
+    var medicationData: Set<IntakeMedicationInstance> = []
     var surgeries: [SurgeryItem] = []
     var chiefComplaint: String = ""
 }

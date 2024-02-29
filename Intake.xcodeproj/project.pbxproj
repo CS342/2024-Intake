@@ -58,7 +58,12 @@
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */; };
 		511827962B740192002033A0 /* SurgeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827952B740191002033A0 /* SurgeryView.swift */; };
-		511827982B7401A8002033A0 /* MedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827972B7401A8002033A0 /* MedicationView.swift */; };
+		51805C122B81853800D17109 /* IntakeMedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C112B81853700D17109 /* IntakeMedication.swift */; };
+		51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */; };
+		51805C182B81898700D17109 /* SpeziMedication in Frameworks */ = {isa = PBXBuildFile; productRef = 51805C172B81898700D17109 /* SpeziMedication */; };
+		51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C192B818A1A00D17109 /* IntakeDosage.swift */; };
+		51805C1D2B818A4400D17109 /* IntakeMedicationInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */; };
+		51A027672B82CDA300A195C8 /* MedicationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A027662B82CDA300A195C8 /* MedicationContentView.swift */; };
 		5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 5661551C2AB8384200209B80 /* SwiftPackageList */; };
 		566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566155282AB8447C00209B80 /* Package+LicenseType.swift */; };
 		5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661552D2AB854C000209B80 /* PackageHelper.swift */; };
@@ -164,7 +169,11 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeStandard.swift; sourceTree = "<group>"; };
 		511827952B740191002033A0 /* SurgeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryView.swift; sourceTree = "<group>"; };
-		511827972B7401A8002033A0 /* MedicationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationView.swift; sourceTree = "<group>"; };
+		51805C112B81853700D17109 /* IntakeMedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedication.swift; sourceTree = "<group>"; };
+		51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationViewModel.swift; sourceTree = "<group>"; };
+		51805C192B818A1A00D17109 /* IntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeDosage.swift; sourceTree = "<group>"; };
+		51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationInstance.swift; sourceTree = "<group>"; };
+		51A027662B82CDA300A195C8 /* MedicationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationContentView.swift; sourceTree = "<group>"; };
 		566155282AB8447C00209B80 /* Package+LicenseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package+LicenseType.swift"; sourceTree = "<group>"; };
 		5661552D2AB854C000209B80 /* PackageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHelper.swift; sourceTree = "<group>"; };
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
@@ -222,6 +231,7 @@
 				F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
+				51805C182B81898700D17109 /* SpeziMedication in Frameworks */,
 				F42AB1D82B6379B5002E13A6 /* SpeziLLMOpenAI in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
 				5A0C1A1B2B69691000120506 /* SpeziFHIRHealthKit in Frameworks */,
@@ -363,6 +373,18 @@
 			path = Surgery;
 			sourceTree = "<group>";
 		};
+		519E830A2B7C4F1600A2D92D /* Medication View */ = {
+			isa = PBXGroup;
+			children = (
+				51805C112B81853700D17109 /* IntakeMedication.swift */,
+				51805C192B818A1A00D17109 /* IntakeDosage.swift */,
+				51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */,
+				51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */,
+				51A027662B82CDA300A195C8 /* MedicationContentView.swift */,
+			);
+			path = "Medication View";
+			sourceTree = "<group>";
+		};
 		56F6F29E2AB441640022FE5A /* Contributions */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,7 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F4F8802B8C6FC5008FBEED /* Elements.swift */,
-				511827972B7401A8002033A0 /* MedicationView.swift */,
+				519E830A2B7C4F1600A2D92D /* Medication View */,
 				511827942B740191002033A0 /* Surgery */,
 				AC2A17272B70684D00F560D0 /* SocialHistory */,
 				5A2B9FB32B6AFE1F005CA63F /* Allergy Records */,
@@ -594,6 +616,7 @@
 				5A0C1A182B69691000120506 /* SpeziFHIR */,
 				5A0C1A1A2B69691000120506 /* SpeziFHIRHealthKit */,
 				5A2B9F892B69E0AF005CA63F /* SpeziFHIRMockPatients */,
+				51805C172B81898700D17109 /* SpeziMedication */,
 			);
 			productName = Intake;
 			productReference = 653A254D283387FE005D4D48 /* Intake.app */;
@@ -690,6 +713,7 @@
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
 				F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */,
 				5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
+				51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -782,12 +806,12 @@
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
+				51805C1D2B818A4400D17109 /* IntakeMedicationInstance.swift in Sources */,
 				AC2A17292B70686000F560D0 /* SocialHistoryQuestions.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
-				511827982B7401A8002033A0 /* MedicationView.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
@@ -799,7 +823,9 @@
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
 				5A2B9F872B69E06B005CA63F /* ResourceSelection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
+				51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
+				51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */,
 				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
@@ -815,7 +841,9 @@
 				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
 				F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */,
+				51805C122B81853800D17109 /* IntakeMedication.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
+				51A027672B82CDA300A195C8 /* MedicationContentView.swift in Sources */,
 				653A2551283387FE005D4D48 /* Intake.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */,
@@ -1466,6 +1494,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziMedication.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
@@ -1604,6 +1640,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE750CA2A87240100723EAE /* XCRemoteSwiftPackageReference "SpeziMockWebService" */;
 			productName = SpeziMockWebService;
+		};
+		51805C172B81898700D17109 /* SpeziMedication */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */;
+			productName = SpeziMedication;
 		};
 		5661551C2AB8384200209B80 /* SwiftPackageList */ = {
 			isa = XCSwiftPackageProductDependency;

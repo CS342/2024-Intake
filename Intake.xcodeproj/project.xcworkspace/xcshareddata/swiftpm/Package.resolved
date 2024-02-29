@@ -246,10 +246,19 @@
     {
       "identity" : "spezillm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziLLM",
       "state" : {
         "revision" : "6892c5dfe258371b6f3287f02b8fec57a611ba70",
         "version" : "0.7.0"
+      }
+    },
+    {
+      "identity" : "spezimedication",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziMedication.git",
+      "state" : {
+        "revision" : "95ca9aebbd23f3842639d6e322785a0ff3620aac",
+        "version" : "0.4.0"
       }
     },
     {
