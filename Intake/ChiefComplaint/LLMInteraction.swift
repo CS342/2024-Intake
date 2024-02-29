@@ -17,6 +17,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+
 struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
@@ -52,51 +53,52 @@ struct LLMInteraction: View {
             return nil
         }
     }
-
+    
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    
     @Binding var presentingAccount: Bool
-    @Environment(LLMRunner.self) var runner: LLMRunner
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
     @State var showOnboarding = true
     @State var greeting = true
-    @State var stringBox: StringBox
-    @State var showSheet = false
-
-    @State var model: LLM
-
+    @State var stringBox: StringBox = .init()
+    
     var body: some View {
+        @Bindable var data = data
+        
         LLMChatView(
-            model: model
+            session: $session
         )
-        .navigationTitle("Chief Complaint")
-        .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
-        }
+        .navigationTitle("Primary Concern")
+        .navigationBarItems(trailing: SkipButton {
+            self.showSummary()
+        })
+        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
+        
         .onAppear {
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                model.context.insert(assistantMessage, at: 0)
+                session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
         }
-        .onChange(of: self.stringBox.llmResponseSummary) { _, _ in
-            self.showSheet = true
-        }
-        .sheet(isPresented: $showSheet) {
-            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
+        
+        .onChange(of: self.stringBox.llmResponseSummary) { _, newComplaint in
+            data.chiefComplaint = newComplaint
+            self.showSummary()
         }
     }
 
-    init(presentingAccount: Binding<Bool>) {
-        // swiftlint:disable closure_end_indentation
+    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
         self._presentingAccount = presentingAccount
-        let stringBoxTemp = StringBox()
-        self.stringBox = stringBoxTemp
-        self.model = LLMOpenAI(
+        let temporaryStringBox = StringBox()
+        self.stringBox = temporaryStringBox
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
                     systemPrompt: """
@@ -141,9 +143,13 @@ struct LLMInteraction: View {
                     """
                 )
             ) {
-                SummarizeFunction(stringBox: stringBoxTemp)
+                SummarizeFunction(stringBox: temporaryStringBox)
             }
-        // swiftlint:enable closure_end_indentation
+        )
+    }
+    
+    private func showSummary() {
+        navigationPath.path.append(NavigationViews.concern)
     }
 }
 
@@ -151,7 +157,7 @@ struct LLMInteraction: View {
     LLMInteraction(presentingAccount: .constant(false))
         .previewWith {
             LLMRunner {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
         }
 }
