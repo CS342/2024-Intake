@@ -20,6 +20,8 @@ class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: [MedicationItem] = []
+    var surgeries: [SurgeryItem] = []
+    var chiefComplaint: String = ""
 }
 
 @main

@@ -46,7 +46,7 @@ struct AddSurgeryButton: View {
 struct InspectSurgeryView: View {
     @Environment(\.editMode) private var editMode
     @Binding var surgery: SurgeryItem
-
+    
     var body: some View {
         List {
             Section(header: Text("Surgery")) {
@@ -77,16 +77,16 @@ struct InspectSurgeryView: View {
 
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
+    @Environment(DataStore.self) private var data
     @Environment(\.editMode) private var editMode
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    @State private var surgeries: [SurgeryItem] = []
 
     var body: some View {
+        @Bindable var data = data
         VStack {
             List {
                 Section(header: Text("What is your surgical history?")) {
                     // Extension: Sort these by date
-                    ForEach($surgeries) { $item in
+                    ForEach($data.surgeries) { $item in
                         if editMode?.wrappedValue.isEditing == true {
                             TextField("Surgery", text: $item.surgeryName)
                         } else {
@@ -98,7 +98,7 @@ struct SurgeryView: View {
                     }
                     .onDelete(perform: delete)
                     if editMode?.wrappedValue.isEditing == true {
-                        AddSurgeryButton(surgeries: $surgeries)
+                        AddSurgeryButton(surgeries: $data.surgeries)
                     }
                 }
             }
@@ -116,21 +116,21 @@ struct SurgeryView: View {
     }
 
     func delete(at offsets: IndexSet) {
-        surgeries.remove(atOffsets: offsets)
+        data.surgeries.remove(atOffsets: offsets)
     }
 
     func getProcedures() {
         let procedures = fhirStore.procedures
 //      print(procedures)
 
-        for pro in procedures where !self.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
+        for pro in procedures where !data.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
             var newEntry = SurgeryItem(surgeryName: pro.displayName)
 
             if let date = pro.date?.formatted() {
                 newEntry.date = date
             }
 
-            self.surgeries.append(newEntry)
+            data.surgeries.append(newEntry)
         }
     }
 }
