@@ -64,9 +64,6 @@
     "Add Field" : {
 
     },
-    "ADD_MEDICATION" : {
-
-    },
     "ADD_REACTION" : {
 
     },
@@ -182,9 +179,6 @@
           }
         }
       }
-    },
-    "DELETE_MEDICATION" : {
-
     },
     "DELETE_REACTION" : {
 
@@ -310,7 +304,7 @@
     "Medical Intake Form" : {
 
     },
-    "Medication" : {
+    "Medication Settings" : {
 
     },
     "Medications" : {
@@ -443,9 +437,6 @@
 
     },
     "Please list current conditions you have" : {
-
-    },
-    "Please list your current medications." : {
 
     },
     "Primary Concern" : {

@@ -94,7 +94,7 @@ struct HomeView: View {
 //                    case .allergies: AllergyList()
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
-                case .medication: MedicationView()
+                case .medication: MedicationContentView()
                 case .menstrual: SocialHistoryQuestionView()
                 default: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
