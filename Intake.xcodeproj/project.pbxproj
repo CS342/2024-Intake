@@ -87,9 +87,7 @@
 		5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */; };
 		5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */; };
 		5AEA5F212B82DDD000F1577A /* LLMAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */; };
-		5AEA5F292B8487A300F1577A /* AddConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F282B8487A300F1577A /* AddConditionView.swift */; };
 		5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */; };
-		5AEA5F2F2B8C0A9D00F1577A /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2E2B8C0A9D00F1577A /* GlobalData.swift */; };
 		637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */; };
 		653A2551283387FE005D4D48 /* Intake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* Intake.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -191,9 +189,7 @@
 		5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyRecords.swift; sourceTree = "<group>"; };
 		5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMAssistantView.swift; sourceTree = "<group>"; };
-		5AEA5F282B8487A300F1577A /* AddConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConditionView.swift; sourceTree = "<group>"; };
 		5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAllergy.swift; sourceTree = "<group>"; };
-		5AEA5F2E2B8C0A9D00F1577A /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalData.swift; path = Intake/GlobalData.swift; sourceTree = SOURCE_ROOT; };
 		637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = Questionnaire.json.license; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* Intake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intake.swift; sourceTree = "<group>"; };
@@ -382,7 +378,6 @@
 			isa = PBXGroup;
 			children = (
 				5A2B9F792B69AE2C005CA63F /* MedicalHistoryView.swift */,
-				5AEA5F282B8487A300F1577A /* AddConditionView.swift */,
 			);
 			path = "Medical History";
 			sourceTree = "<group>";
@@ -461,7 +456,6 @@
 		653A254F283387FE005D4D48 /* Intake */ = {
 			isa = PBXGroup;
 			children = (
-				5AEA5F2E2B8C0A9D00F1577A /* GlobalData.swift */,
 				F4F4F8802B8C6FC5008FBEED /* Elements.swift */,
 				511827972B7401A8002033A0 /* MedicationView.swift */,
 				511827942B740191002033A0 /* Surgery */,
@@ -520,14 +514,6 @@
 				A9DFE8A82ABE551400428242 /* AccountButton.swift */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
-			isa = PBXGroup;
-			children = (
-				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
-			);
-			path = SocialHistory;
 			sourceTree = "<group>";
 		};
 		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
@@ -812,7 +798,6 @@
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
 				5A2B9F872B69E06B005CA63F /* ResourceSelection.swift in Sources */,
-				5AEA5F292B8487A300F1577A /* AddConditionView.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
 				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
@@ -820,7 +805,6 @@
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
 				2FE5DC5129EDD7FA004B9AB4 /* IntakeTaskContext.swift in Sources */,
 				56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */,
-				5AEA5F2F2B8C0A9D00F1577A /* GlobalData.swift in Sources */,
 				5A2B9F7A2B69AE2C005CA63F /* MedicalHistoryView.swift in Sources */,
 				5A2B9F8F2B69E286005CA63F /* MockData.swift in Sources */,
 				5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */,

@@ -12,8 +12,9 @@
 //
 
 import Foundation
-import SwiftUI
 import SpeziFHIR
+import SwiftUI
+
 
 struct EditAllergyView: View {
     @State private var index: Int
@@ -27,13 +28,7 @@ struct EditAllergyView: View {
                            .textFieldStyle(RoundedBorderTextFieldStyle())
                            .padding([.horizontal, .top])
                    Form { // Use Form instead of List
-                        Section(header:
-                            HStack {
-                                Text("Reactions")
-                                Spacer()
-                                EditButton()
-                            }
-                        ) {
+                        Section(header: headerTitle) {
                             ForEach($data.allergyData[index].reaction) { $item in
                                 HStack {
                                     TextField("Reactions", text: $item.reaction)
@@ -52,29 +47,38 @@ struct EditAllergyView: View {
                         }
                    }
                    Spacer()
-                   Button(action: {
-                       showingReaction = false
-                   }) {
-                       Text("Save")
-                           .foregroundColor(.white)
-                           .padding()
-                           .frame(maxWidth: .infinity)
-                           .background(Color.blue)
-                           .cornerRadius(10)
-                   }
-                   .padding(.horizontal)
+                   saveButton
                }
                .navigationBarTitle("Allergy")
            }
     }
+    
+    private var saveButton: some View {
+        Button(action: {
+            showingReaction = false
+        }) {
+            Text("Save")
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+        .padding()
+    }
+    
+    private var headerTitle: some View {
+        HStack {
+            Text("Reactions")
+            Spacer()
+            EditButton()
+        }
+    }
 
+    
     init(index: Int, showingReaction: Binding<Bool>) {
         self._index = State(initialValue: index)
         self._showingReaction = showingReaction
-    }
-
-    func saveCondition() {
-        print("Condition Saved:, Active Status:")
     }
 
     func delete(at offsets: IndexSet) {

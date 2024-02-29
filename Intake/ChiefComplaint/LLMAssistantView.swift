@@ -48,13 +48,11 @@ struct LLMAssistantView: View {
                     session.context.insert(assistantMessage, at: 0)
                 }
                 greeting = false
-
             }
         }
     }
 
     init(presentingAccount: Binding<Bool>, pageTitle: Binding<String>, initialQuestion: Binding<String>, prompt: Binding<String>) {
-        // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
         self._session = LLMSessionProvider(
                 schema: LLMOpenAISchema(
@@ -71,10 +69,12 @@ struct LLMAssistantView: View {
 }
 
 #Preview {
-    LLMAssistantView(presentingAccount: .constant(false),
-                     pageTitle: .constant("Allergy Assistant"),
-                     initialQuestion: .constant("Do you have any questions about your allergies"),
-                     prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have."))
+    LLMAssistantView(
+        presentingAccount: .constant(false),
+        pageTitle: .constant("Allergy Assistant"),
+        initialQuestion: .constant("Do you have any questions about your allergies"),
+        prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have.")
+    )
         .previewWith {
             LLMRunner {
                 LLMOpenAIPlatform()

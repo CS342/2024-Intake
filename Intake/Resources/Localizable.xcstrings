@@ -61,12 +61,6 @@
         }
       }
     },
-    "Active" : {
-
-    },
-    "Add Condition" : {
-
-    },
     "Add Field" : {
 
     },
@@ -122,9 +116,6 @@
       }
     },
     "Condition" : {
-
-    },
-    "Condition Name" : {
 
     },
     "CONSENT_LOADING_ERROR" : {
@@ -266,9 +257,6 @@
     "How many packs do you smoke a day?" : {
 
     },
-    "Inactive" : {
-
-    },
     "Integrate your Records" : {
 
     },
@@ -314,6 +302,9 @@
 
     },
     "Medications" : {
+
+    },
+    "Message" : {
 
     },
     "MOCK_ALLERGY_RECORDS_TITLE" : {

@@ -41,6 +41,7 @@ struct ChatButton: View {
                 .background(Color.blue)
                 .foregroundColor(Color.white)
                 .clipShape(Circle())
+                .accessibilityLabel("Message")
         }
     }
 }
@@ -56,60 +57,46 @@ struct AllergyList: View {
 
     var body: some View {
         VStack {
-            ZStack {
-            NavigationView {
-                Form { // Use Form instead of List
-                    Section(header: Text("What are your current allergies?")) {
-                        ForEach(0..<data.allergyData.count, id: \.self) { index in
-                                Button(action: {
-                                    self.selectedIndex = index
-                                    self.showingReaction = true
-                                }) {
-                                    HStack {
-                                        Text(data.allergyData[index].allergy)
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                            .foregroundColor(.gray)
-                                            .accessibilityLabel(Text("DETAILS"))
-                                    }
-                                }
-                        }
-                        .onDelete(perform: delete)
-
-                        Button(action: {
-                            // Action to add new item
-                            data.allergyData.append(AllergyItem(allergy: "", reaction: []))
-                            self.selectedIndex = data.allergyData.count - 1
-                            showingReaction = true
-                        }) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                Text("Add Field")
-                            }
-                        }
-                        Text("*Click the details to view/edit the reactions")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                    }
-                }
-                .navigationBarItems(trailing: EditButton())
-                .sheet(isPresented: $showingReaction) {
-                    EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
-                }
-                .navigationTitle("Allergies")
-                VStack {
-                    Spacer() // Pushes everything to the bottom
-                    ChatButton(showingChat: $showingChat) // Utilize the ChatButton view
-                        .padding(.trailing, 20) // Adjust padding as needed
-                        .padding(.bottom, 20) // Adjust for spacing from the bottom edge
-                }
-                .zIndex(1) // Ensure the chat button is above the form
+            allergyForm
+            submitButton
+        }
+        .onAppear(perform: loadAllergies)
+        .sheet(isPresented: $showingChat, content: chatSheetView)
+        .sheet(isPresented: $showingReaction, content: editAllergySheetView)
+    }
+    private var allergyForm: some View {
+        Form {
+            Section(header: Text("What are your current allergies?")) {
+                allergyEntries
+                addAllergyButton
+                Text("*Click the details to view/edit the reactions")
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
         }
-        Button(action: {
-            navigationPath.path.append(NavigationViews.social)
-        }) {
+        .navigationBarItems(trailing: EditButton())
+        .navigationTitle("Allergies")
+    }
+        
+    private var allergyEntries: some View {
+        ForEach(0..<data.allergyData.count, id: \.self) { index in
+            allergyButton(index: index)
+        }
+        .onDelete(perform: delete)
+    }
+
+    private var addAllergyButton: some View {
+        Button(action: addAllergyAction) {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                    .accessibilityHidden(true)
+                Text("Add Field")
+            }
+        }
+    }
+
+    private var submitButton: some View {
+        Button(action: submitAction) {
             Text("Submit")
                 .foregroundColor(.white)
                 .padding()
@@ -119,48 +106,81 @@ struct AllergyList: View {
         }
         .padding()
     }
-    .onAppear {
-        loadAllergies()
-    }
-    .sheet(isPresented: $showingChat) {
-        LLMAssistantView(presentingAccount: .constant(false),
-                        pageTitle: .constant("Allergy Assistant"),
-                        initialQuestion: .constant("Do you have any questions about your allergies"),
-                        prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have."))
+        
+    private func allergyEntryRow(index: Int) -> some View {
+        HStack {
+            Text(data.allergyData[index].allergy)
+                .foregroundColor(.black)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+                .accessibilityLabel(Text("DETAILS"))
         }
+    }
+    
+    private func allergyButton(index: Int) -> some View {
+        Button(action: {
+            self.selectedIndex = index
+            self.showingReaction = true
+        }) {
+            allergyEntryRow(index: index)
+        }
+    }
+    
+    private func submitAction() {
+        navigationPath.path.append(NavigationViews.social)
+    }
+    
+    private func addAllergyAction() {
+        data.allergyData.append(AllergyItem(allergy: "", reaction: []))
+        self.selectedIndex = data.allergyData.count - 1
+        showingReaction = true
+    }
+
+    private func chatSheetView() -> some View {
+        LLMAssistantView(
+            presentingAccount: .constant(false),
+            pageTitle: .constant("Allergy Assistant"),
+            initialQuestion: .constant("Do you have any questions about your allergies?"),
+            prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have.")
+        )
+    }
+
+    private func editAllergySheetView() -> some View {
+        EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
     }
 
     private func loadAllergies() {
         var allergies: [FHIRString] = []
-        var r: [[ReactionItem]] = []
+        var allReactions: [[ReactionItem]] = []
         let intolerances = fhirStore.allergyIntolerances
-        if intolerances.count > 0 {
-            for i in 0...(intolerances.count-1) {
-                let vr = intolerances[i].versionedResource
-                switch vr {
-                    case .r4(let result as AllergyIntolerance):
-                        allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
-                        let reactions_per_allergy = result.reaction
-                        var reactions_for_allergy: [ReactionItem] = []
-                        if let reactions = reactions_per_allergy {
-                            for reaction in reactions {
-                                let manifestations = reaction.manifestation
-                                for manifestation in manifestations {
-                                    reactions_for_allergy.append(ReactionItem(reaction: manifestation.text?.value?.string ?? "Default"))
-                                }
-                             }
+        if !intolerances.isEmpty {
+            for index in 0...(intolerances.count - 1) {
+                let vresource = intolerances[index].versionedResource
+                switch vresource {
+                case .r4(let result as AllergyIntolerance):
+                    allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
+                    let reactionsPerAllergy = result.reaction
+                    var reactionsForAllergy: [ReactionItem] = []
+                    if let reactions = reactionsPerAllergy {
+                        for reaction in reactions {
+                            let manifestations = reaction.manifestation
+                            for manifestation in manifestations {
+                                reactionsForAllergy.append(ReactionItem(reaction: manifestation.text?.value?.string ?? "Default"))
+                            }
                         }
-                        r.append(reactions_for_allergy)
+                    }
+                    allReactions.append(reactionsForAllergy)
 
-                    default:
+                default:
                         print("The resource is not an R4 Allergy Intolerance")
                 }
             }
         }
-        if allergies.count > 0 {
-            for i in 0...(allergies.count-1) {
+        if !allergies.isEmpty {
+            for index in 0...(allergies.count - 1) {
                 data.allergyData.append(
-                    AllergyItem(allergy: allergies[i].string, reaction: r[i])
+                    AllergyItem(allergy: allergies[index].string, reaction: allReactions[index])
                 )
             }
         }
