@@ -13,13 +13,13 @@ import SwiftUI
 extension FHIRStore {
     var llmRelevantResources: [FHIRResource] {
         allergyIntolerances
-          + llmConditions
-          + encounters.uniqueDisplayNames
-          + immunizations
-          + llmMedications
-          + observations.uniqueDisplayNames
-          + procedures.uniqueDisplayNames
-      }
+            + llmConditions
+            + encounters.uniqueDisplayNames
+            + immunizations
+            + llmMedications
+            + observations.uniqueDisplayNames
+            + procedures.uniqueDisplayNames
+    }
 
     var allResources: [FHIRResource] {
         allergyIntolerances

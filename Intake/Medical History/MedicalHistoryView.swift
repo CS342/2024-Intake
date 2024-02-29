@@ -1,4 +1,3 @@
-//
 //  MedicalHistoryView.swift
 //  Intake
 //
@@ -12,95 +11,164 @@
 //
 
 import Foundation
+import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
 struct MedicalHistoryItem: Identifiable {
     var id = UUID()
     var condition: String
+    var active: Bool
 }
 
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
-    @State private var medicalHistory: [MedicalHistoryItem] = []
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
+    @State private var showAddSheet = false
+    @State private var showingChat = false
 
-        var body: some View {
-            NavigationView { // swiftlint:disable:this closure_body_length
-                VStack { // swiftlint:disable:this closure_body_length
-                    List {
-                        ForEach($medicalHistory) { $item in
-                            HStack {
-                                TextField("Condition", text: $item.condition)
-                                Button(action: {
-                                    // Action to delete this item
-                                    if let index = medicalHistory.firstIndex(where: { $0.id == item.id }) {
-                                        medicalHistory.remove(at: index)
-                                    }
-                                }) {
-                                    Image(systemName: "xmark.circle")
-                                        .accessibilityLabel(Text("DELETE_CONDITION"))
-                                }
-                            }
-                        }
-                        .onDelete(perform: delete)
+    var body: some View {
+        VStack {
+            medicalHistoryForm
+            submitButton
+        }
+        .onAppear(perform: loadConditions)
+        .sheet(isPresented: $showingChat, content: chatSheetView)
+    }
 
-                        Button(action: {
-                            // Action to add new item
-                            medicalHistory.append(MedicalHistoryItem(condition: ""))
-                        }) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                    .accessibilityLabel(Text("ADD_CONDITION"))
-                                Text("Add Field")
-                            }
-                        }
-                    }
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("Please list current conditions you have")
-                                .font(.system(size: 28)) // Choose a size that fits
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5) // Adjusts the font size to fit the width of the line
-                        }
-                    }
-                    Button(action: {
-                        // Navigate to next screen
-                        self.navigationPath.append_item(item: NavigationViews.surgical)
-                    }) {
-                        Text("Submit")
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                    }
-                    .padding()
+    private var medicalHistoryForm: some View {
+        Form {
+            Section(header: Text("Please list conditions you have had")) {
+                conditionEntries
+                addConditionButton
+                instructionText
+            }
+        }
+        .navigationTitle("Medical History")
+        .navigationBarItems(trailing: EditButton())
+        .sheet(isPresented: $showAddSheet) {
+            // Your add condition sheet content here
+        }
+    }
+
+    private var conditionEntries: some View {
+        Group {
+            @Bindable var data = data
+            ForEach($data.conditionData) { $item in
+                if item.active {
+                    conditionEntry(item: $item)
                 }
-                .onAppear {
-                    // Set a breakpoint on the next line to inspect `fhirStore.conditions`
-                    let conditions = fhirStore.conditions
-                    print(conditions)
-                    let invalid = [
-                        "Medication review due (situation)",
-                        "Part-time employment (finding)",
-                        "Stress (finding)",
-                        "Full-time employment (finding)"
-                    ]
-                    for condition in conditions {
-                        if !invalid.contains(condition.displayName) && !self.medicalHistory.contains(where: {
-                                                                    $0.condition == condition.displayName }) {
-                            self.medicalHistory.append(MedicalHistoryItem(condition: condition.displayName))
-                        }
-                    }
+            }
+            .onDelete(perform: delete)
+            
+            ForEach($data.conditionData) { $item in
+                if !item.active {
+                    conditionEntry(item: $item)
+                }
+            }
+            .onDelete(perform: delete)
+        }
+    }
+
+    private var addConditionButton: some View {
+        Button(action: addConditionAction) {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                    .accessibilityHidden(true)
+                Text("Add Field")
+            }
+        }
+    }
+
+    private var instructionText: some View {
+        Text("""
+            *Check the box if you currently have the condition. /
+            *Uncheck the box if you had the condition in the past
+            """)
+        .font(.caption)
+        .foregroundColor(.gray)
+    }
+
+    private var submitButton: some View {
+        Button(action: {
+            navigationPath.path.append(NavigationViews.surgical)
+        }) {
+            Text("Submit")
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+        }
+        .padding()
+    }
+    
+    private func addConditionAction() {
+        data.conditionData.append(MedicalHistoryItem(condition: "", active: false))
+    }
+    
+    private func conditionEntry(item: Binding<MedicalHistoryItem>) -> some View {
+        HStack {
+            TextField("Condition", text: item.condition)
+            Spacer()
+            Button(action: {
+                item.active.wrappedValue.toggle()
+            }) {
+                Image(systemName: item.active.wrappedValue ? "checkmark.square" : "square")
+                    .accessibilityHidden(true)
+            }
+            .buttonStyle(BorderlessButtonStyle())
+        }
+    }
+
+    private func chatSheetView() -> some View {
+        LLMAssistantView(
+            presentingAccount: .constant(false),
+            pageTitle: .constant("Medical History Assistant"),
+            initialQuestion: .constant("Do you have any questions about your medical conditions"),
+            prompt: .constant(
+                """
+                Pretend you are a nurse. Your job is to help the patient
+                understand what allergies they have.
+                """
+            )
+        )
+    }
+
+    private func loadConditions() {
+        let conditions = fhirStore.conditions
+        var active = ""
+        let invalid = [
+            "Medication review due (situation)",
+            "Part-time employment (finding)",
+            "Stress (finding)",
+            "Full-time employment (finding)"
+        ]
+        for condition in conditions {
+            if !invalid.contains(condition.displayName) && !data.conditionData.contains(where: {
+                $0.condition == condition.displayName }) {
+                let vresource = condition.versionedResource
+                switch vresource {
+                case .r4(let result as Condition):
+                    active = result.clinicalStatus?.coding?[0].code?.value?.string ?? "None"
+                default:
+                    print("The resource is not an R4 Allergy Intolerance")
+                }
+
+                if active == "resolved" {
+                    data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: false))
+                } else {
+                    data.conditionData.append(MedicalHistoryItem(condition: condition.displayName, active: true))
                 }
             }
         }
-
-        func delete(at offsets: IndexSet) {
-            medicalHistory.remove(atOffsets: offsets)
-        }
+        print(data.conditionData)
+    }
+    
+    func delete(at offsets: IndexSet) {
+        data.conditionData.remove(atOffsets: offsets)
+    }
     }
 
 #Preview {

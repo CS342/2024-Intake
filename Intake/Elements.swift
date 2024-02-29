@@ -14,14 +14,14 @@
 import SwiftUI
 
 struct SubmitButton: View {
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     var nextView: NavigationViews
-    
+
     var body: some View {
         Button(action: {
             // Save output to Firestore and navigate to next screen
             // Still need to save output to Firestore
-            self.navigationPath.append_item(item: nextView)
+            navigationPath.path.append(nextView)
         }) {
             Text("Submit")
                 .foregroundColor(.white)
