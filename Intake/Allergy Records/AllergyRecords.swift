@@ -72,7 +72,7 @@ struct AllergyView: View {
                 }
                 Button(action: {
                     // Navigate to next screen
-                    self.navigationPath.append_item(item: NavigationViews.social)
+                    self.navigationPath.append_item(item: NavigationViews.menstrual)
                 }) {
                     Text("Submit")
                         .foregroundColor(.white)
