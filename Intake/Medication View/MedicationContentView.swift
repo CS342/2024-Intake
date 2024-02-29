@@ -20,6 +20,7 @@ import SwiftUI
 struct MedicationContentView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
     @State private var presentSettings = false
 
     @State private var medicationSettingsViewModel: IntakeMedicationSettingsViewModel?
@@ -28,7 +29,8 @@ struct MedicationContentView: View {
         VStack {
             if let medicationSettingsViewModel {
                 MedicationSettings(allowEmtpySave: true, medicationSettingsViewModel: medicationSettingsViewModel) {
-                    navigationPath.path.append(NavigationViews.allergies) //maybe need self?
+                    data.medicationData = medicationSettingsViewModel.medicationInstances
+                    navigationPath.path.append(NavigationViews.allergies)
                 }
                         .navigationTitle("Medication Settings")
             } else {
