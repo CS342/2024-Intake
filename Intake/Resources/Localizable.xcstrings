@@ -79,6 +79,9 @@
     "Additional details: %@" : {
 
     },
+    "Age" : {
+
+    },
     "AI-assisted medical intake" : {
 
     },
@@ -92,6 +95,9 @@
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "Chief Complaint" : {
 
     },
     "CLOSE" : {
@@ -183,6 +189,12 @@
         }
       }
     },
+    "Date of Birth" : {
+
+    },
+    "Date of Birth:" : {
+
+    },
     "DELETE_MEDICATION" : {
 
     },
@@ -196,6 +208,9 @@
 
     },
     "Download your medical records from your health system." : {
+
+    },
+    "EDIT" : {
 
     },
     "END_CALENDAR" : {
@@ -369,6 +384,12 @@
         }
       }
     },
+    "Name" : {
+
+    },
+    "Name:" : {
+
+    },
     "Next" : {
 
     },
@@ -437,6 +458,9 @@
 
     },
     "Patient Form" : {
+
+    },
+    "Patient Information" : {
 
     },
     "Please list conditions you have had" : {
@@ -547,6 +571,9 @@
 
     },
     "SETTINGS_TITLE" : {
+
+    },
+    "Sex" : {
 
     },
     "Share with provider of your choice." : {

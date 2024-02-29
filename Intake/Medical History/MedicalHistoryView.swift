@@ -31,7 +31,7 @@ struct MedicalHistoryView: View {
     var body: some View {
         VStack {
             medicalHistoryForm
-            submitButton
+            SubmitButton(nextView: NavigationViews.surgical)
         }
         .onAppear(perform: loadConditions)
         .sheet(isPresented: $showingChat, content: chatSheetView)
@@ -88,20 +88,6 @@ struct MedicalHistoryView: View {
             """)
         .font(.caption)
         .foregroundColor(.gray)
-    }
-
-    private var submitButton: some View {
-        Button(action: {
-            navigationPath.path.append(NavigationViews.surgical)
-        }) {
-            Text("Submit")
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(8)
-        }
-        .padding()
     }
     
     private func addConditionAction() {
@@ -169,7 +155,7 @@ struct MedicalHistoryView: View {
     func delete(at offsets: IndexSet) {
         data.conditionData.remove(atOffsets: offsets)
     }
-    }
+}
 
 #Preview {
     MedicalHistoryView()

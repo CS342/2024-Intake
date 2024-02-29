@@ -18,7 +18,7 @@ class NavigationPathWrapper {
 struct PatientData {
     var name: String
     var birthdate: String
-    var age: Int
+    var age: String
     var sex: String
 }
 
@@ -29,8 +29,7 @@ class DataStore {
     var medicationData: [MedicationItem] = []
     var surgeries: [SurgeryItem] = []
     var chiefComplaint: String = ""
-    var generalData = PatientData(name: "", birthdate: "", age: 0, sex: "")
-    var chiefComplaint: String = ""
+    var generalData = PatientData(name: "Akash", birthdate: "01/08/2003", age: "21", sex: "Male")
 }
 
 @main

@@ -9,52 +9,41 @@ import Foundation
 import SpeziFHIR
 import SwiftUI
 
+var reachedEnd = false
+
 struct ScrollablePDF: View {
     @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
 
     var body: some View {
         Form {
-            patientInfo
-            chiefComplaint
+            PatientInfo()
+            ChiefComplaint()
             ConditionSection()
-            surgicalHistorySection
+            SurgerySection()
             medicationsSection
-            allergiesSection
+            AllergySection()
 //                    DatePicker("Last Menstrual Period", selection: $lastMenstrualPeriod, displayedComponents: .date)
 //            smokingHistorySection
         }
         .navigationTitle("Patient Form")
-    }
-        
-    
-    private var patientInfo: some View {
-        Group {
-            DetailSection(header: "Patient Information", content: ["Name: Akash Gupta", "Date of Birth: 01/08/2003", "Age: 21", "Sex: Male"])
-        }
-    }
-    
-    private var chiefComplaint: some View {
-        DetailSection(header: "Chief Complaint:", content: ["I hurt my knee and it hurts a lot on the outside for the last 10 days..."])
-    }
-        
-    private var surgicalHistorySection: some View {
-        DetailSection(header: "Past Surgical History:", content: ["Appendectomy, 2005", "Left Femur Fracture Repair, 2012"])
+        .onAppear(perform: {
+            reachedEnd = true
+        })
     }
         
     private var medicationsSection: some View {
         DetailSection(header: "Medications:", content: ["Oxycontin 20mg, twice a day", "Lisinopril 5mg, once a day"])
     }
         
-    private var allergiesSection: some View {
-        DetailSection(header: "Allergies:", content: ["Peanuts - Anaphylactic Shock", "Penicillin - Rash"])
-    }
         
 //    private var smokingHistorySection: some View {
 //        DetailRow(label: "Smoking History:", value: "20 pack years")
 //    }
     
     private struct ConditionSection: View {
-        @Environment(DataStore.self) private var data// Assuming DataStore contains 'conditionData'
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
             Section(header: headerTitle) {
@@ -75,25 +64,162 @@ struct ScrollablePDF: View {
             HStack {
                 Text("Conditions")
                 Spacer()
-                EditButton()
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.medical)
+                }) {
+                    Text("EDIT")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .cornerRadius(10)
+                }
             }
         }
     }
     
+    private struct SurgerySection: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: headerTitle) {
+                VStack(alignment: .leading) {
+                    ForEach(data.surgeries) { item in
+                        HStack {
+                            Text(item.surgeryName)
+                                .padding(.leading)
+                            Spacer()
+                            Text(item.date ?? "")
+                        }
+                    }
+                }
+            }
+        }
+
+        var headerTitle: some View {
+            HStack {
+                Text("Surgical History")
+                Spacer()
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.surgical)
+                }) {
+                    Text("EDIT")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .cornerRadius(10)
+                }
+            }
+        }
+    }
+    
+    private struct AllergySection: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: headerTitle) {
+                VStack(alignment: .leading) {
+                    ForEach(data.allergyData) { item in
+                        Text(item.allergy)
+                            .padding(.leading)
+                        ForEach(item.reaction) { reaction in
+                            Text(reaction.reaction)
+                                .padding(.leading, 50)
+                        }
+                    }
+                }
+            }
+        }
+
+        var headerTitle: some View {
+            HStack {
+                Text("Allergies")
+                Spacer()
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.allergies)
+                }) {
+                    Text("EDIT")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .cornerRadius(10)
+                }
+            }
+        }
+    }
+    
+    private struct ChiefComplaint: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: headerTitle) {
+                Text(data.chiefComplaint)
+            }
+        }
+
+        var headerTitle: some View {
+            HStack {
+                Text("Chief Complaint")
+                Spacer()
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.concern)
+                }) {
+                    Text("EDIT")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .cornerRadius(10)
+                }
+            }
+        }
+    }
+    
+    private struct PatientInfo: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: headerTitle) {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Name:")
+                            .bold()
+                        Text(data.generalData.name)
+                    }
+                    HStack {
+                        Text("Date of Birth:")
+                            .bold()
+                        Text(data.generalData.birthdate)
+                    }
+                    HStack {
+                        Text("Age")
+                            .bold()
+                        Text(data.generalData.age)
+                    }
+                    HStack {
+                        Text("Sex")
+                            .bold()
+                        Text(data.generalData.sex)
+                    }
+                }
+            }
+        }
+
+        var headerTitle: some View {
+            HStack {
+                Text("Patient Information")
+                Spacer()
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.patient)
+                }) {
+                    Text("EDIT")
+                        .foregroundColor(.blue)
+                        .padding()
+                        .cornerRadius(10)
+                }
+            }
+        }
+    }
 }
 
-//struct DetailRow: View {
-//    var label: String
-//    var value: String
-//        
-//    var body: some View {
-//        HStack {
-//            Text(label)
-//            Spacer()
-//            Text(value)
-//        }
-//    }
-//}
 
 struct DetailSection: View {
     var header: String
@@ -119,8 +245,6 @@ struct DetailSection: View {
         }
     }
 }
-
-
 
 
 #Preview {
