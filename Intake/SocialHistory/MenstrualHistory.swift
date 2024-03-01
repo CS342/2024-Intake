@@ -4,6 +4,11 @@
 //
 //  Created by Zoya Garg on 2/28/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
 
 import Foundation
 import HealthKit
@@ -13,14 +18,14 @@ import SwiftUI
 struct SectionHeader: View {
     let title: String
     let subtitle: String
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
                 .font(.title)
                 .multilineTextAlignment(.leading)
                 .padding(.bottom, 2)
-
+            
             if !subtitle.isEmpty {
                 Text(subtitle)
                     .font(.subheadline)
@@ -35,7 +40,7 @@ struct SectionHeader: View {
 struct SocialHistoryQuestionView: View {
     struct SectionHeader: View {
         let title: String
-
+        
         var body: some View {
             VStack(alignment: .leading) {
                 Text(title)
@@ -57,9 +62,9 @@ struct SocialHistoryQuestionView: View {
                 }
             }
             .buttonStyle(BorderlessButtonStyle())
-
+            
             Spacer().frame(height: 16)
-
+            
             Button(action: {
                 isSelectingEndDate = true
             }) {
@@ -102,33 +107,27 @@ struct SocialHistoryQuestionView: View {
     @State private var isFemale = false
     @State private var showMaleSlide = false
     @State private var healthStore = HKHealthStore()
-
+    
     @State private var isSelectingStartDate = false
     @State private var isSelectingEndDate = false
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var lastPeriodDate: Date?
     
-    @EnvironmentObject private var navigationPath: NavigationPathWrapper
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     
     private var shouldDisplayResponses: Bool {
-            !additionalDetails.isEmpty || startDate != Date() || endDate != Date()
-        }
-
-    private func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: date)
+        !additionalDetails.isEmpty || startDate != Date() || endDate != Date()
     }
-
-
+    
+    
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimum = 0
         return formatter
     }()
-
+    
     var body: some View {
         NavigationView { // swiftlint:disable:this closure_body_length
             VStack { // swiftlint:disable:this closure_body_length
@@ -162,7 +161,7 @@ struct SocialHistoryQuestionView: View {
                 })
                 Spacer()
                 Button(action: {
-                    self.navigationPath.append_item(item: NavigationViews.smoking)
+                    navigationPath.path.append(NavigationViews.smoking)
                 }) {
                     Text("Submit")
                         .foregroundColor(.white)
@@ -176,9 +175,15 @@ struct SocialHistoryQuestionView: View {
         }
     }
     
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: date)
+    }
+    
     private func fetchHealthKitData() {
         let infoToRead = Set([HKObjectType.characteristicType(forIdentifier: .biologicalSex)].compactMap { $0 })
-
+        
         Task {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: infoToRead)
@@ -194,7 +199,7 @@ struct SocialHistoryQuestionView: View {
             }
         }
     }
-
+    
     private func getIsFemaleBiologicalSex(biologicalSex: HKBiologicalSex) -> Bool {
         switch biologicalSex {
         case .female: return true

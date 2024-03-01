@@ -4,6 +4,11 @@
 //
 //  Created by Zoya Garg on 2/28/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
 
 import SwiftUI
 
@@ -21,12 +26,12 @@ struct SmokingHistoryView: View {
                     Section(header: Text("Smoking History").foregroundColor(.gray)) {
                         TextField("How many days a year do you smoke?", text: $daysPerYear)
                             .keyboardType(.decimalPad)
-                            .onChange(of: daysPerYear) { _ in calculatePackYears() }
+                            .onChange(of: daysPerYear) { calculatePackYears() }
                             .padding(.bottom, 8)
                         
                         TextField("How many packs do you smoke a day?", text: $packsPerDay)
                             .keyboardType(.decimalPad)
-                            .onChange(of: packsPerDay) { _ in calculatePackYears() }
+                            .onChange(of: packsPerDay) { calculatePackYears() }
                             .padding(.bottom, 8)
                     }
                     
