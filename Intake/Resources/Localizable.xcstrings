@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
+
+    },
+    "*Click the details to view/edit the reactions" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -58,15 +64,6 @@
     "Add Field" : {
 
     },
-    "ADD_ALLERGY" : {
-
-    },
-    "ADD_CONDITION" : {
-
-    },
-    "ADD_MEDICATION" : {
-
-    },
     "ADD_REACTION" : {
 
     },
@@ -82,10 +79,13 @@
     "Allergies" : {
 
     },
-    "Auto-fill Intake Form" : {
+    "Allergy" : {
 
     },
-    "Chief Complaint" : {
+    "Allergy Name" : {
+
+    },
+    "Auto-fill Intake Form" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -185,19 +185,10 @@
         }
       }
     },
-    "DELETE_ALLERGY" : {
-
-    },
-    "DELETE_CONDITION" : {
-
-    },
-    "DELETE_MEDICATION" : {
-
-    },
     "DELETE_REACTION" : {
 
     },
-    "DELETE_SURGERY" : {
+    "DETAILS" : {
 
     },
     "Do you currently smoke or have you in the past?" : {
@@ -256,7 +247,7 @@
         }
       }
     },
-    "Here is a summary of your primary concern:" : {
+    "Here is a summary of the Primary Concern" : {
 
     },
     "HOME_LOGO" : {
@@ -309,10 +300,13 @@
     "Medical Intake Form" : {
 
     },
-    "Medication" : {
+    "Medication Settings" : {
 
     },
     "Medications" : {
+
+    },
+    "Message" : {
 
     },
     "MOCK_ALLERGY_RECORDS_TITLE" : {
@@ -370,6 +364,9 @@
           }
         }
       }
+    },
+    "Next" : {
+
     },
     "Next: Smoking History" : {
 
@@ -435,13 +432,7 @@
     "Other important questions." : {
 
     },
-    "Please list current conditions you have" : {
-
-    },
-    "Please list your current medications." : {
-
-    },
-    "Please list your previous surgeries." : {
+    "Please list conditions you have had" : {
 
     },
     "Primary Concern" : {
@@ -551,6 +542,9 @@
     "Share with provider of your choice." : {
 
     },
+    "Skip" : {
+
+    },
     "Social History" : {
 
     },
@@ -576,6 +570,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Name" : {
 
     },
     "Surgical History" : {
@@ -655,6 +652,9 @@
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
+
+    },
+    "What is your surgical history?" : {
 
     },
     "You can include decimal values (e.g., 0.25) for the number of packs per day." : {

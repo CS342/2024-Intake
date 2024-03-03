@@ -9,7 +9,6 @@
 import Foundation
 import SwiftPackageList
 
-
 // This section of code is based on the SwiftPackageList package:
 // - Original code: https://github.com/FelixHerrmann/swift-package-list/issues/43
 enum LicenseType {
@@ -21,7 +20,7 @@ enum LicenseType {
     case bsd3
     case bsd4
     case zlib
-    
+
     /// SPDX-License-Identifier for the UI
     var spdxIdentifier: String {
         switch self {
@@ -35,12 +34,12 @@ enum LicenseType {
         case .zlib: return "Zlib"
         }
     }
-    
+
     /// Initializer that scans the license document for common licenses and versions
     init?(license: String) {
         let license = license
             .replacingOccurrences(of: "\\s+|\\n", with: " ", options: .regularExpression)
-        
+
         if license.contains(mitText) {
             self = .mit
         } else if license.contains(apacheText) && license.contains("Version 2.0") {
@@ -62,7 +61,6 @@ enum LicenseType {
         }
     }
 }
-
 
 // Constants representing typical text and regular expression patterns often found in license files.
 // They are used for matching and identifying different types of licenses within text documents.
@@ -90,7 +88,6 @@ private let zlibPattern =
     Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.(.*) \
     This notice may not be removed or altered from any source distribution.
     """
-
 
 extension Package {
     /// Generates the `LicenseType` from a license document of `String`

@@ -11,14 +11,13 @@ import SpeziFHIR
 import SpeziFHIRMockPatients
 import SwiftUI
 
-
 struct ResourceSelection: View {
     @Environment(IntakeStandard.self) private var standard
     @Environment(FHIRStore.self) private var store
-    
+
     @State private var bundles: [ModelsR4.Bundle] = []
     @State private var showBundleSelection = false
-    
+
     @MainActor var useHealthKitResources: Binding<Bool> {
         Binding(
             get: {
@@ -36,8 +35,7 @@ struct ResourceSelection: View {
             }
         )
     }
-    
-    
+
     var body: some View {
         Form {
             Section {
@@ -53,7 +51,7 @@ struct ResourceSelection: View {
                             guard let firstMockPatient = bundles.first else {
                                 return
                             }
-                            
+
                             store.removeAllResources()
                             store.load(bundle: firstMockPatient)
                         }

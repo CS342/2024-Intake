@@ -19,20 +19,20 @@ import SpeziLLMOpenAI
 import SwiftUI
 import Foundation
 
+
 struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
-        
+
         init() {
             self.llmResponseSummary = ""
         }
-        
+
         static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
             lhs.llmResponseSummary == rhs.llmResponseSummary
         }
     }
-    
 
     struct SummarizeFunction: LLMFunction {
         // swiftlint:disable line_length
@@ -42,14 +42,15 @@ struct LLMInteraction: View {
                     summarize the conversation into a concise Chief Complaint.\
                     Then call the summerize_complaint function.
                     """
+      
         @Parameter(description: "A summary of the patient's primary concern. Include a sentence introducing the patient's name, age, and gender, if you have access to this information.") var patientSummary: String
         
         let stringBox: StringBox
-        
+
         init(stringBox: StringBox) {
             self.stringBox = stringBox
         }
-        
+
         func execute() async throws -> String? {
             let summary = patientSummary
             self.stringBox.llmResponseSummary = summary
@@ -57,30 +58,37 @@ struct LLMInteraction: View {
         }
     }
     
-    @Binding var presentingAccount: Bool
     @Environment(LLMRunner.self) var runner: LLMRunner
     @Environment(FHIRStore.self) private var fhirStore
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
     
+    @Binding var presentingAccount: Bool
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+
     @State var showOnboarding = true
     @State var greeting = true
-    @State var stringBox: StringBox
+
+    @State var stringBox: StringBox = .init()
     @State var showSheet = false
     
     @State var model: LLM
-    // swiftlint:disable closure_body_length
+  
     var body: some View {
+        @Bindable var data = data
+        
         LLMChatView(
-            model: model
+            session: $session
         )
-        .navigationTitle("Chief Complaint")
-        .toolbar {  // Is this doing anything except causing problems?
-            if AccountButton.shouldDisplay {
-                AccountButton(isPresented: $presentingAccount)
-            }
-        }
+        .navigationTitle("Primary Concern")
+        .navigationBarItems(trailing: SkipButton {
+            self.showSummary()
+        })
+        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
+        
         .onAppear {
             // swiftlint:disable line_length
             var fullName: String = ""
@@ -190,38 +198,37 @@ struct LLMInteraction: View {
                     model.context.append(assistantOutput: "Hello \(String(describing: firstName))! What brings you to the doctor's office?")
             }
                 
-                
-                
             }
             greeting = false
             
             
         }
-        .onChange(of: self.stringBox.llmResponseSummary) { _, _ in
-            self.showSheet = true
-        }
-        .sheet(isPresented: $showSheet) {
-            SummaryView(chiefComplaint: self.stringBox.llmResponseSummary, isPresented: $showSheet)
+        
+        .onChange(of: self.stringBox.llmResponseSummary) { _, newComplaint in
+            data.chiefComplaint = newComplaint
+            self.showSummary()
         }
     }
-    
-    
+  
     init(presentingAccount: Binding<Bool>) {
-        
-        
         // swiftlint:disable closure_end_indentation
         self._presentingAccount = presentingAccount
-        let stringBoxTemp = StringBox()
-        self.stringBox = stringBoxTemp
-        self.model = LLMOpenAI(
+        let temporaryStringBox = StringBox()
+        self.stringBox = temporaryStringBox
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
                     systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT".localized().localizedString()
                 )
             ) {
-                SummarizeFunction(stringBox: stringBoxTemp)
+                SummarizeFunction(stringBox: temporaryStringBox)
             }
-        // swiftlint:enable closure_end_indentation
+        )
+    }
+    
+    private func showSummary() {
+        navigationPath.path.append(NavigationViews.concern)
     }
 }
 
@@ -229,7 +236,7 @@ struct LLMInteraction: View {
     LLMInteraction(presentingAccount: .constant(false))
         .previewWith {
             LLMRunner {
-                LLMOpenAIRunnerSetupTask()
+                LLMOpenAIPlatform()
             }
         }
 }

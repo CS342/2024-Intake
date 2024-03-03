@@ -20,7 +20,6 @@ import SpeziOnboarding
 import SpeziScheduler
 import SwiftUI
 
-
 class IntakeDelegate: SpeziAppDelegate {
     override var configuration: Configuration {
         Configuration(standard: IntakeStandard()) {
@@ -28,7 +27,7 @@ class IntakeDelegate: SpeziAppDelegate {
                 AccountConfiguration(configuration: [
                     .requires(\.userId),
                     .requires(\.name),
-                    
+
                     // additional values stored using the `FirestoreAccountStorage` within our Standard implementation
                     .collects(\.genderIdentity),
                     .collects(\.dateOfBirth)
@@ -51,19 +50,14 @@ class IntakeDelegate: SpeziAppDelegate {
             if HKHealthStore.isHealthDataAvailable() {
                 healthKit
             }
-            LLMRunner(
-                runnerConfig: .init(
-                    taskPriority: .medium
-                )
-            ) {
-                LLMOpenAIRunnerSetupTask()
+            LLMRunner {
+                LLMOpenAIPlatform()
             }
             IntakeScheduler()
             OnboardingDataSource()
         }
     }
-    
-    
+
     private var firestore: Firestore {
         let settings = FirestoreSettings()
         if FeatureFlags.useFirebaseEmulator {
@@ -71,12 +65,12 @@ class IntakeDelegate: SpeziAppDelegate {
             settings.cacheSettings = MemoryCacheSettings()
             settings.isSSLEnabled = false
         }
-        
+
         return Firestore(
             settings: settings
         )
     }
-    
+
     // swiftlint:disable trailing_newline
     private var healthKit: HealthKit {
         HealthKit {
