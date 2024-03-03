@@ -32,6 +32,7 @@ struct MedicalHistoryView: View {
         VStack {
             medicalHistoryForm
             SubmitButton(nextView: NavigationViews.surgical)
+                .padding()
         }
         .onAppear(perform: loadConditions)
         .sheet(isPresented: $showingChat, content: chatSheetView)
@@ -47,9 +48,6 @@ struct MedicalHistoryView: View {
         }
         .navigationTitle("Medical History")
         .navigationBarItems(trailing: EditButton())
-        .sheet(isPresented: $showAddSheet) {
-            // Your add condition sheet content here
-        }
     }
 
     private var conditionEntries: some View {

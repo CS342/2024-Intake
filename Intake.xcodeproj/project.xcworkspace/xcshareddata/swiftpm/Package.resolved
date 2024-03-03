@@ -253,6 +253,15 @@
       }
     },
     {
+      "identity" : "spezimedication",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/StanfordSpezi/SpeziMedication.git",
+      "state" : {
+        "revision" : "95ca9aebbd23f3842639d6e322785a0ff3620aac",
+        "version" : "0.4.0"
+      }
+    },
+    {
       "identity" : "spezimockwebservice",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziMockWebService.git",

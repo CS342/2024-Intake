@@ -26,7 +26,7 @@ struct PatientData {
 class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
-    var medicationData: [MedicationItem] = []
+    var medicationData: Set<IntakeMedicationInstance> = []
     var surgeries: [SurgeryItem] = []
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "Akash", birthdate: "01/08/2003", age: "21", sex: "Male")

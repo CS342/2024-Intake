@@ -63,8 +63,36 @@ extension FHIRStore {
                 } ?? false
             }
     }
+    var llmMedications: [FHIRResource] {
+            let outpatientMedications = medications
+                .filter { medication in
+                    guard let medicationRequest = medicationRequest(resource: medication),
+                         medicationRequest.category?
+                              .contains(where: { codableconcept in
+                                  codableconcept.text?.value?.string.lowercased() == "outpatient"
+                              })
+                              ?? false else {
+                        return false
+                    }
 
-    private var llmMedications: [FHIRResource] {
+                    return true
+                }
+                .uniqueDisplayNames
+
+            let activeMedications = medications
+                .filter { medication in
+                    guard let medicationRequest = medicationRequest(resource: medication),
+                          medicationRequest.status == .active else {
+                        return false
+                    }
+
+                    return true
+                }
+                .uniqueDisplayNames
+
+            return outpatientMedications + activeMedications
+        }
+
         func medicationRequest(resource: FHIRResource) -> MedicationRequest? {
             guard case let .r4(resource) = resource.versionedResource,
                   let medicationRequest = resource as? ModelsR4.MedicationRequest else {
@@ -73,77 +101,6 @@ extension FHIRStore {
 
             return medicationRequest
         }
-
-        let outpatientMedications = medications
-            .filter { medication in
-                guard let medicationRequest = medicationRequest(resource: medication),
-                     medicationRequest.category?
-                          .contains(where: { codableconcept in
-                              codableconcept.text?.value?.string.lowercased() == "outpatient"
-                          })
-                          ?? false else {
-                    return false
-                }
-
-                return true
-            }
-            .uniqueDisplayNames
-
-        let activeMedications = medications
-            .filter { medication in
-                guard let medicationRequest = medicationRequest(resource: medication),
-                      medicationRequest.status == .active else {
-                    return false
-                }
-
-                return true
-            }
-            .uniqueDisplayNames
-
-        return outpatientMedications + activeMedications
-    }
-
-//    var allResourcesFunctionCallIdentifier: [String] {
-//        @AppStorage(StorageKeys.resourceLimit) var resourceLimit = StorageKeys.Defaults.resourceLimit
-//        
-//        let relevantResources: [FHIRResource]
-//        
-//        if llmRelevantResources.count > resourceLimit {
-//            relevantResources = llmRelevantResources
-//                .lazy
-//                .filter {
-//                    $0.date != nil
-//                }
-//                .sorted {
-//                    $0.date ?? .distantPast < $1.date ?? .distantPast
-//                }
-//                .suffix(resourceLimit)
-//        } else {
-//            relevantResources = llmRelevantResources
-//        }
-//        
-//        return Array(Set(relevantResources.map { $0.functionCallIdentifier }))
-//    }
-//    
-//    
-//    func loadMockResources() {
-//        if FeatureFlags.testMode {
-//            let mockObservation = Observation(
-//                code: CodeableConcept(coding: [Coding(code: "1234".asFHIRStringPrimitive())]),
-//                id: FHIRPrimitive<FHIRString>("1234"),
-//                issued: FHIRPrimitive<Instant>(try? Instant(date: .now)),
-//                status: FHIRPrimitive(ObservationStatus.final)
-//            )
-//            
-//            let mockFHIRResource = FHIRResource(
-//                versionedResource: .r4(mockObservation),
-//                displayName: "Mock Resource"
-//            )
-//            
-//            removeAllResources()
-//            insert(resource: mockFHIRResource)
-//        }
-//    }
 }
 
 extension Array where Element == FHIRResource {

@@ -11,67 +11,82 @@ import SwiftUI
 
 var reachedEnd = false
 
+struct HeaderTitle: View {
+    let title: String
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    var nextView: NavigationViews
+
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Button(action: {
+                navigationPath.path.append(nextView) // You would change this to use the `path` variable
+            }) {
+                Text("EDIT")
+                    .foregroundColor(.blue)
+                    .padding()
+                    .cornerRadius(10)
+            }
+        }
+    }
+}
+
 struct ScrollablePDF: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
 
     var body: some View {
-        Form {
-            PatientInfo()
-            ChiefComplaint()
-            ConditionSection()
-            SurgerySection()
-            medicationsSection
-            AllergySection()
-//                    DatePicker("Last Menstrual Period", selection: $lastMenstrualPeriod, displayedComponents: .date)
-//            smokingHistorySection
+        VStack {
+            Form {
+                PatientInfo()
+                ChiefComplaint()
+                ConditionSection()
+                SurgerySection()
+                MedicationSection()
+                Allergy()
+                //                    DatePicker("Last Menstrual Period", selection: $lastMenstrualPeriod, displayedComponents: .date)
+                //            smokingHistorySection
+            }
+            .navigationTitle("Patient Form")
+            .onAppear(perform: {
+                reachedEnd = true
+            })
+            ExportButton()
+                .padding()
         }
-        .navigationTitle("Patient Form")
-        .onAppear(perform: {
-            reachedEnd = true
-        })
     }
-        
-    private var medicationsSection: some View {
-        DetailSection(header: "Medications:", content: ["Oxycontin 20mg, twice a day", "Lisinopril 5mg, once a day"])
-    }
-        
-        
-//    private var smokingHistorySection: some View {
-//        DetailRow(label: "Smoking History:", value: "20 pack years")
-//    }
     
     private struct ConditionSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: headerTitle) {
-                VStack(alignment: .leading) {
-                    ForEach(data.conditionData) { item in // Removed id: \.self since items are Identifiable
-                        HStack {
-                            Text(item.condition)
-                                .padding(.leading)
-                            Spacer()
-                            Text(item.active ? "Active" : "Inactive" )
-                        }
+            Section(header: HeaderTitle(title: "Conditions", nextView: NavigationViews.medical)) {
+                List(data.conditionData, id: \.id) { item in
+                    HStack {
+                    Text(item.condition)
+                    Spacer()
+                    Text(item.active ? "Active" : "Inactive")
+                        .foregroundColor(.secondary)
                     }
                 }
             }
         }
+    }
+    
+    private struct ExportButton: View {
+        @Environment(NavigationPathWrapper.self) private var navigationPath
 
-        var headerTitle: some View { // Moved this inside ConditionSection
-            HStack {
-                Text("Conditions")
-                Spacer()
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.medical)
-                }) {
-                    Text("EDIT")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .cornerRadius(10)
-                }
+        var body: some View {
+            Button(action: {
+            }) {
+                Text("Export to PDF")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(8)
             }
         }
     }
@@ -81,66 +96,33 @@ struct ScrollablePDF: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: headerTitle) {
-                VStack(alignment: .leading) {
-                    ForEach(data.surgeries) { item in
-                        HStack {
-                            Text(item.surgeryName)
-                                .padding(.leading)
-                            Spacer()
-                            Text(item.date ?? "")
-                        }
+            Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.surgical)) {
+                List(data.surgeries, id: \.id) { item in
+                    HStack {
+                    Text(item.surgeryName)
+                    Spacer()
+                    Text(item.date ?? "")
+                        .foregroundColor(.secondary)
                     }
-                }
-            }
-        }
-
-        var headerTitle: some View {
-            HStack {
-                Text("Surgical History")
-                Spacer()
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.surgical)
-                }) {
-                    Text("EDIT")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .cornerRadius(10)
                 }
             }
         }
     }
     
-    private struct AllergySection: View {
+    private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: headerTitle) {
+            Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
                 VStack(alignment: .leading) {
-                    ForEach(data.allergyData) { item in
-                        Text(item.allergy)
-                            .padding(.leading)
-                        ForEach(item.reaction) { reaction in
-                            Text(reaction.reaction)
-                                .padding(.leading, 50)
+                    ForEach(Array(data.medicationData)) { item in
+                        HStack {
+                            Text(item.type.localizedDescription)
+                                .padding(.leading)
+                            Spacer()
                         }
                     }
-                }
-            }
-        }
-
-        var headerTitle: some View {
-            HStack {
-                Text("Allergies")
-                Spacer()
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.allergies)
-                }) {
-                    Text("EDIT")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .cornerRadius(10)
                 }
             }
         }
@@ -151,23 +133,8 @@ struct ScrollablePDF: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: headerTitle) {
+            Section(header: HeaderTitle(title: "Chief Complaint", nextView: NavigationViews.concern)) {
                 Text(data.chiefComplaint)
-            }
-        }
-
-        var headerTitle: some View {
-            HStack {
-                Text("Chief Complaint")
-                Spacer()
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.concern)
-                }) {
-                    Text("EDIT")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .cornerRadius(10)
-                }
             }
         }
     }
@@ -175,76 +142,75 @@ struct ScrollablePDF: View {
     private struct PatientInfo: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
         var body: some View {
-            Section(header: headerTitle) {
-                VStack(alignment: .leading) {
+            Section(header: HeaderTitle(title: "Patient Information", nextView: NavigationViews.patient)) {
+                List {
                     HStack {
                         Text("Name:")
-                            .bold()
+                        Spacer()
                         Text(data.generalData.name)
+                            .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("Date of Birth:")
-                            .bold()
+                        Spacer()
                         Text(data.generalData.birthdate)
+                            .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("Age")
-                            .bold()
+                        Spacer()
                         Text(data.generalData.age)
+                            .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("Sex")
-                            .bold()
+                        Spacer()
                         Text(data.generalData.sex)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
         }
-
-        var headerTitle: some View {
-            HStack {
-                Text("Patient Information")
-                Spacer()
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.patient)
-                }) {
-                    Text("EDIT")
-                        .foregroundColor(.blue)
-                        .padding()
-                        .cornerRadius(10)
+    }
+    
+    private struct Allergy: View {
+        @Environment(DataStore.self) private var data
+        @State private var showingReaction = false
+        @State private var selectedIndex = 0
+        var body: some View {
+            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
+                List {
+                    ForEach(0..<data.allergyData.count, id: \.self) { index in
+                        allergyButton(index: index)
+                    }
                 }
+                .sheet(isPresented: $showingReaction, content: reactionPDFView)
             }
         }
-    }
-}
-
-
-struct DetailSection: View {
-    var header: String
-    var content: [String]
-    
         
-    var body: some View {
-        Section(header: headerTitle) {
-            VStack(alignment: .leading) {
-                ForEach(content, id: \.self) { item in
-                    Text(item)
-                        .padding(.leading)
+        private func reactionPDFView() -> some View {
+            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
+        }
+            
+        private func allergyButton(index: Int) -> some View {
+            Button(action: {
+                self.selectedIndex = index
+                self.showingReaction = true
+            }) {
+                HStack {
+                    Text(data.allergyData[index].allergy)
+                        .foregroundColor(.black)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
+                        .accessibilityLabel(Text("DETAILS"))
                 }
             }
         }
     }
-    
-    private var headerTitle: some View {
-        HStack {
-            Text(header)
-            Spacer()
-            EditButton()
-        }
-    }
 }
+
 
 
 #Preview {
