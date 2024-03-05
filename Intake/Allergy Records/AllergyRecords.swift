@@ -58,7 +58,8 @@ struct AllergyList: View {
     var body: some View {
         VStack {
             allergyForm
-            submitButton
+            SubmitButton(nextView: NavigationViews.social)
+                .padding()
         }
         .onAppear(perform: loadAllergies)
         .sheet(isPresented: $showingChat, content: chatSheetView)
@@ -94,18 +95,6 @@ struct AllergyList: View {
             }
         }
     }
-
-    private var submitButton: some View {
-        Button(action: submitAction) {
-            Text("Submit")
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(8)
-        }
-        .padding()
-    }
         
     private func allergyEntryRow(index: Int) -> some View {
         HStack {
@@ -125,10 +114,6 @@ struct AllergyList: View {
         }) {
             allergyEntryRow(index: index)
         }
-    }
-    
-    private func submitAction() {
-        navigationPath.path.append(NavigationViews.social)
     }
     
     private func addAllergyAction() {
@@ -178,7 +163,7 @@ struct AllergyList: View {
             }
         }
         if !allergies.isEmpty {
-            for index in 0...(allergies.count - 1) {
+            for index in 0...(allergies.count - 1) where !data.allergyData.contains(where: { $0.allergy == allergies[index].string }) {
                 data.allergyData.append(
                     AllergyItem(allergy: allergies[index].string, reaction: allReactions[index])
                 )

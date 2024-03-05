@@ -246,7 +246,7 @@
     {
       "identity" : "spezillm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziLLM",
+      "location" : "https://github.com/StanfordSpezi/SpeziLLM.git",
       "state" : {
         "revision" : "6892c5dfe258371b6f3287f02b8fec57a611ba70",
         "version" : "0.7.0"

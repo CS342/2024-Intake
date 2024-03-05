@@ -37,7 +37,11 @@ struct SubmitButton: View {
         Button(action: {
             // Save output to Firestore and navigate to next screen
             // Still need to save output to Firestore
-            navigationPath.path.append(nextView)
+            if reachedEnd {
+                navigationPath.path.append(NavigationViews.pdfs)
+            } else {
+                navigationPath.path.append(nextView)
+            }
         }) {
             Text("Next")
                 .foregroundColor(.white)
