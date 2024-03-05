@@ -12,39 +12,44 @@
 //
 
 import Foundation
+import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
+
 struct SurgeryItem: Identifiable {
     var id = UUID()
-    var surgeryName: String
+    var surgeryName: String = ""
+    var dateLabel: String?
     var date: String?
 //    var location: String?
-//    var complications: String?
+    var complications: [String] = []
 //    var notes: String?
 //    var status: String?
 //    var code: String?
 }
 
-struct AddSurgeryButton: View {
+struct AddSurgery: View {
     @Binding var surgeries: [SurgeryItem]
-
+    @Environment(DataStore.self) var data
+    @Environment(NavigationPathWrapper.self) var navigationPath
+    
     var body: some View {
         Button(action: {
-            // Action to add new item
-            surgeries.append(SurgeryItem(surgeryName: "Surgery", date: ""))
+            let newSurgery = SurgeryItem(surgeryName: "Surgery")
+            data.surgeries.append(newSurgery)
+            navigationPath.path.append(NavigationViews.inspect)
         }) {
-            HStack {
-                Image(systemName: "plus.circle.fill")
-                    .accessibilityLabel(Text("ADD_SURGERY"))
-                Text("Add Field")
-            }
+            Image(systemName: "plus")
+                .accessibilityLabel(Text("ADD_SURGERY"))
         }
     }
 }
-
+ 
 struct InspectSurgeryView: View {
     @Binding var surgery: SurgeryItem
+    
+    var isNew: Bool
     
     var body: some View {
         Form {
@@ -64,50 +69,31 @@ struct InspectSurgeryView: View {
 //            }
         }
         .listStyle(.grouped)
-        .toolbar {
-            EditButton()
-        }
+        .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
+//        .toolbar {
+//            EditButton()
+//        }
     }
 }
-
-
-/*
- List {
-     Section(header: Text("What is your surgical history?")) {
-         // Extension: Sort these by date
-         ForEach($data.surgeries) { $item in
-             if editMode?.wrappedValue.isEditing == true {
-                 TextField("Surgery", text: $item.surgeryName)
-             } else {
-                 NavigationLink(destination: InspectSurgeryView(surgery: $item)) {
-                     Label(item.surgeryName, systemImage: "arrowtriangle.right")
-                         .labelStyle(.titleOnly)
-                 }
-             }
-         }
-         .onDelete(perform: delete)
-         if editMode?.wrappedValue.isEditing == true {
-             AddSurgeryButton(surgeries: $data.surgeries)
-         }
-     }
- }
- */
 
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
-    @Environment(\.editMode) private var editMode
-
+    
+    @State private var addingNewSurgery = false
+    
     var body: some View {
+        @Bindable var data = data
         VStack {
             surgeryForm
             SubmitButton(nextView: NavigationViews.medication)
-            .padding()
+                .padding()
         }
         .onAppear {
             self.getProcedures()
         }
         .navigationTitle("Surgical History")
+        .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
         .toolbar {
             EditButton()
         }
@@ -117,7 +103,7 @@ struct SurgeryView: View {
         Group {
             @Bindable var data = data
             ForEach($data.surgeries) { $item in
-                NavigationLink(destination: InspectSurgeryView(surgery: $item)) {
+                NavigationLink(destination: InspectSurgeryView(surgery: $item, isNew: false)) {
                     Label(item.surgeryName, systemImage: "arrowtriangle.right")
                         .labelStyle(.titleOnly)
                 }
@@ -129,9 +115,8 @@ struct SurgeryView: View {
     private var surgeryForm: some View {
         Form {
             @Bindable var data = data
-            Section(header: Text("What is your surgical history?")) {
+            Section(header: Text("Please add your past surgeries")) {
                 surgeryElements
-                AddSurgeryButton(surgeries: $data.surgeries)
             }
         }
     }
@@ -142,17 +127,58 @@ struct SurgeryView: View {
 
     func getProcedures() {
         let procedures = fhirStore.procedures
-//      print(procedures)
 
         for pro in procedures where !data.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
-            var newEntry = SurgeryItem(surgeryName: pro.displayName)
-
-            if let date = pro.date?.formatted() {
-                newEntry.date = date
+            let vrs = pro.versionedResource
+            switch vrs {
+            case .r4(let result as ModelsR4.Procedure):
+                addNewProcedure(procedure: result)
+            default:
+                print("This recourse is not an r4 Proceure")
             }
-
-            data.surgeries.append(newEntry)
         }
+    }
+    
+    func addNewProcedure(procedure: ModelsR4.Procedure) {
+        var newEntry = SurgeryItem()
+        
+        if let name = procedure.code {
+            newEntry.surgeryName = name.text?.value?.string ?? "Surgery"
+        }
+        
+        // allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
+        
+        var newDate: String
+        var dateLabel: String
+        if let date = procedure.performed {
+            switch date {
+            case .age:
+                newDate = date.rawValue
+                    
+//                    .code?.text?.string ?? ""
+                dateLabel = "Age"
+            case .dateTime:
+                
+                dateLabel = "Date"
+            case .period:
+                
+                dateLabel = "Period"
+            case .range:
+                
+                dateLabel = "Range"
+            case .string:
+                
+                dateLabel = "Date"
+            default:
+                print("Invalid date format")
+            }
+        }
+        
+        if let complications = procedure.complication {
+            newEntry.complications = complications.map { $0.text?.value?.string ?? "" }
+        }
+        
+        data.surgeries.append(newEntry)
     }
 }
 

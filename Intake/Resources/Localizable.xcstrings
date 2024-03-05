@@ -197,6 +197,9 @@
     "Download your medical records from your health system." : {
 
     },
+    "Edit Surgery" : {
+
+    },
     "END_CALENDAR" : {
 
     },
@@ -365,6 +368,9 @@
         }
       }
     },
+    "New Surgery" : {
+
+    },
     "Next" : {
 
     },
@@ -430,6 +436,9 @@
 
     },
     "Other important questions." : {
+
+    },
+    "Please add your past surgeries" : {
 
     },
     "Please list conditions you have had" : {
@@ -652,9 +661,6 @@
 
     },
     "What brings you in today? Identify your primary concern(s)." : {
-
-    },
-    "What is your surgical history?" : {
 
     },
     "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
