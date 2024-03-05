@@ -104,7 +104,6 @@
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
-		AC8709F02B86F146001C7D13 /* AllergiesLLM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8709EF2B86F146001C7D13 /* AllergiesLLM.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
 		ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */; };
 		ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */; };
@@ -212,7 +211,6 @@
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
-		AC8709EF2B86F146001C7D13 /* AllergiesLLM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergiesLLM.swift; sourceTree = "<group>"; };
 		ACAA47802B571C7F0032D21F /* Questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Questionnaire.json; sourceTree = "<group>"; };
 		ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokingHistory.swift; sourceTree = "<group>"; };
 		ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenstrualHistory.swift; sourceTree = "<group>"; };
@@ -545,14 +543,6 @@
 		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
 			isa = PBXGroup;
 			children = (
-				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
-			);
-			path = SocialHistory;
-			sourceTree = "<group>";
-		};
-		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
-			isa = PBXGroup;
-			children = (
 				ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */,
 				ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */,
 			);
@@ -565,7 +555,6 @@
 				F42AB1E12B637CAC002E13A6 /* OpenAI */,
 				F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */,
 				5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */,
-				AC8709EF2B86F146001C7D13 /* AllergiesLLM.swift */,
 				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
 				F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */,
 				F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */,
@@ -812,7 +801,6 @@
 				2FE5DC4129EDD7EE004B9AB4 /* StorageKeys.swift in Sources */,
 				2FE5DCB129EE6107004B9AB4 /* AccountOnboarding.swift in Sources */,
 				2F4FC8D729EE69D300BFFE26 /* MockUpload.swift in Sources */,
-				AC8709F02B86F146001C7D13 /* AllergiesLLM.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */,
 				F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */,
