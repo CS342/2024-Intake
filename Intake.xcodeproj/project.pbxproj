@@ -325,7 +325,7 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A2B9F912B69E32A005CA63F /* Mock Patients */,
+				5A2B9F912B69E32A005CA63F /* MockPatients */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
@@ -427,7 +427,7 @@
 			path = "Mock Data";
 			sourceTree = "<group>";
 		};
-		5A2B9F912B69E32A005CA63F /* Mock Patients */ = {
+		5A2B9F912B69E32A005CA63F /* MockPatients */ = {
 			isa = PBXGroup;
 			children = (
 				5A2B9F922B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json */,
@@ -443,7 +443,7 @@
 				5A2B9F9C2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license */,
 				5A2B9F9D2B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license */,
 			);
-			path = "Mock Patients";
+			path = MockPatients;
 			sourceTree = "<group>";
 		};
 		5A2B9FB32B6AFE1F005CA63F /* Allergy Records */ = {
