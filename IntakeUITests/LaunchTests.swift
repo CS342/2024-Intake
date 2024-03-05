@@ -24,5 +24,6 @@ class LaunchTests: XCTestCase {
     func testApplicationLaunch() throws {
         let app = XCUIApplication()
         XCTAssertEqual(app.state, .runningForeground)
+        app.buttons["Start"].tap()
     }
 }

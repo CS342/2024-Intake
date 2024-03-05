@@ -271,9 +271,6 @@
     "How many packs do you smoke a day?" : {
 
     },
-    "Intake Form Assitant" : {
-
-    },
     "Integrate your Records" : {
 
     },
@@ -321,10 +318,10 @@
     "Medications" : {
 
     },
-    "Message" : {
+    "Menstrual Information" : {
 
     },
-    "Menstrual Information" : {
+    "Message" : {
 
     },
     "MOCK_ALLERGY_RECORDS_TITLE" : {
@@ -447,7 +444,7 @@
     "Pack years: %.2f" : {
 
     },
-    "Please list current conditions you have" : {
+    "Please list conditions you have had" : {
 
     },
     "Primary Concern" : {
@@ -672,18 +669,8 @@
     "What is your surgical history?" : {
 
     },
-    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
+    "Your Responses" : {
 
-    },
-    "Your last period was from %@ to %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Your last period was from %1$@ to %2$@"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"
