@@ -131,7 +131,7 @@ struct AllergyList: View {
     }
     
     private func submitAction() {
-        navigationPath.path.append(NavigationViews.social)
+        navigationPath.path.append(NavigationViews.menstrual)
     }
     
     private func addAllergyAction() {
