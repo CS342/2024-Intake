@@ -83,12 +83,12 @@ struct SmokingHistoryView: View {
                 Section(header: Text("Smoking History").foregroundColor(.gray)) {
                     TextField("How many days a year do you smoke?", text: $daysPerYear)
                         .keyboardType(.decimalPad)
-                        .onChange(of: daysPerYear) {calculatePackYears() }
+                        .onChange(of: daysPerYear) { calculatePackYears() }
                         .padding(.bottom, 8)
                     
                     TextField("How many packs do you smoke a day?", text: $packsPerDay)
                         .keyboardType(.decimalPad)
-                        .onChange(of: packsPerDay) {calculatePackYears() }
+                        .onChange(of: packsPerDay) { calculatePackYears() }
                         .padding(.bottom, 8)
                 }
                 Section(header: Text("Additional Details").foregroundColor(.gray)) {
