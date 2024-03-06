@@ -1,50 +1,81 @@
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
-//  ExportView.swift
-//  Intake
+// SPDX-FileCopyrightText: 2023 Stanford University
 //
-//  Created by Zoya Garg on 3/4/24.
+// SPDX-License-Identifier: MIT
 //
 
-import Foundation
-import UIKit
+
+import SwiftUI
 import PDFKit
 
-func generatePDF() -> Data {
-    let pdfData = NSMutableData()
-    UIGraphicsBeginPDFContextToData(pdfData, CGRect(x: 0, y: 0, width: 612, height: 792), nil)
-    
-    guard let pdfContext = UIGraphicsGetCurrentContext() else { return Data() }
-    
-    UIGraphicsBeginPDFPage()
-    
-    let titleAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.boldSystemFont(ofSize: 18),
-        .foregroundColor: UIColor.black
-    ]
-    
-    let textAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 12),
-        .foregroundColor: UIColor.black
-    ]
-    
-    let title = "Sample Title"
-    title.draw(at: CGPoint(x: 20, y: 20), withAttributes: titleAttributes)
-    
-    let text = "This is some sample content for the PDF."
-    text.draw(at: CGPoint(x: 20, y: 50), withAttributes: textAttributes)
-    
-    UIGraphicsEndPDFContext()
-    
-    return pdfData as Data
+struct SimplePDFView: View {
+    @State private var pdfData: Data?
+    @State private var isSharingPDF = false
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("Hello, PDF!")
+                    .font(.title)
+                Text("This is a simple PDF rendering example.")
+                Spacer()
+            }
+            .padding()
+            .navigationBarItems(trailing: Button(action: {
+                pdfData = exportAsPDF()
+                isSharingPDF = true
+            }) {
+                Image(systemName: "square.and.arrow.up")
+            })
+            .sheet(isPresented: $isSharingPDF) {
+                if let pdfData = pdfData {
+                    ShareSheet(activityItems: [pdfData])
+                }
+            }
+        }
+    }
+
+    @MainActor func exportAsPDF() -> Data? {
+        let renderer = ImageRenderer(content: self)
+        
+        let size = CGSize(width: 8.5 * 72, height: 11 * 72) // Size for standard US Letter
+        renderer.proposedSize = ProposedViewSize(size)
+        
+        let pdfData = NSMutableData()
+        renderer.render { _, context in
+            var box = CGRect(origin: .zero, size: size)
+            guard let consumer = CGDataConsumer(data: pdfData),
+                  let pdfContext = CGContext(consumer: consumer, mediaBox: &box, nil) else {
+                return
+            }
+            
+            pdfContext.beginPDFPage(nil)
+            context(pdfContext)
+            pdfContext.endPDFPage()
+            pdfContext.closePDF()
+        }
+        
+        return pdfData as Data
+    }
 }
 
-func displayPDF() {
-    let pdfData = generatePDF()
-    let pdfView = PDFView(frame: self.view.bounds)
-    pdfView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    self.view.addSubview(pdfView)
-    
-    if let document = PDFDocument(data: pdfData) {
-        pdfView.document = document
+// Wrapper for UIActivityViewController for sharing
+struct ShareSheet: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+    }
+}
+
+struct SimplePDFView_Previews: PreviewProvider {
+    static var previews: some View {
+        SimplePDFView()
     }
 }
