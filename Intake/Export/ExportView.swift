@@ -22,7 +22,6 @@ struct SimplePDFView: View {
 
 // swiftlint:disable closure_body_length
     var body: some View {
-        
         NavigationView {
             VStack {
                 Text("MEDICAL HISTORY").fontWeight(.bold)
@@ -32,9 +31,7 @@ struct SimplePDFView: View {
                 }
                 
                 
-                VStack(alignment: .leading){
-                    
-                    
+                VStack(alignment: .leading) {
                     Group {
                         HStack {
                             Text("Date:").fontWeight(.bold)
@@ -62,9 +59,6 @@ struct SimplePDFView: View {
                         HStack {
                             Text(" ")
                         }
-                        
-                        
-                        
                         VStack(alignment: .leading) {
                             Text("Chief Complaint:").fontWeight(.bold)
                             // Replace with dynamic date of birth
@@ -74,9 +68,6 @@ struct SimplePDFView: View {
                         HStack {
                             Text(" ")
                         }
-                        
-                        
-                        
                         VStack(alignment: .leading) {
                             Text("Past Medical History:").fontWeight(.bold)
                             // Replace with dynamic date of birth
@@ -86,8 +77,6 @@ struct SimplePDFView: View {
                         HStack {
                             Text(" ")
                         }
-                        
-                        
                         VStack(alignment: .leading) {
                             Text("Past Surgical History:").fontWeight(.bold)
                             // Replace with dynamic date of birth
@@ -104,15 +93,12 @@ struct SimplePDFView: View {
                             Text("Medications:").fontWeight(.bold)
                             // Replace with dynamic date of birth
 //                            
-                            HStack{
+                            HStack {
                                 Text("Medication")
                                 Text("Dosage")
                                 Text("by mouth")
                                 Text("once a day")
-                                
                             }
-                            
-                            
                         }.padding(.leading, -50)
                         
                         
@@ -124,13 +110,10 @@ struct SimplePDFView: View {
                             Text("Allergies:").fontWeight(.bold)
                             // Replace with dynamic date of birth
 //
-                            HStack{
+                            HStack {
                                 Text("Allergy")
                                 Text("Reaction")
-                                
                             }
-                            
-                            
                         }.padding(.leading, -50)
                         
                         HStack {
@@ -142,33 +125,22 @@ struct SimplePDFView: View {
                             Text("Review of Systems:").fontWeight(.bold)
                             // Replace with dynamic date of birth
 //
-                            HStack{
+                            HStack {
                                 Text("Last Menstrural Period")
                                 Text("Date")
-                                
                             }
                             
-                            HStack{
+                            HStack {
                                 Text("Smoking history")
                                 Text("20 pack years")
-                                
                             }
-                            
-                            
-                            
                         }.padding(.leading, -50)
-                        
-                        
-                        
-                        
                     }
-                    
-                    
                 }
 
 
                         Spacer()
-                    }
+            }
             .padding()
             .navigationBarItems(trailing: Button(action: {
                 pdfData = exportAsPDF()
@@ -209,6 +181,9 @@ struct SimplePDFView: View {
 }
 
 // Wrapper for UIActivityViewController for sharing
+// swiftlint disable: discouraged_optional_collection
+// swiftlint disable: file_types_order
+// swiftlint disable: conditional_returns_on_newline
 struct ShareSheet: UIViewControllerRepresentable {
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil
