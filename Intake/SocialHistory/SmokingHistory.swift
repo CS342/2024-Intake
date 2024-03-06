@@ -10,6 +10,7 @@
 //
 // SPDX-License-Identifier: MIT
 
+
 import SwiftUI
 
 struct SmokingHistoryView: View {
@@ -56,7 +57,7 @@ struct SmokingHistoryView: View {
     
     private var yesNoQuestionView: some View {
         VStack {
-            Text("Do you currently or have you smoked in the past?")
+            Text("Do you currently smoke or have you smoked in the past?")
                 .foregroundColor(.gray)
                 .padding()
             
