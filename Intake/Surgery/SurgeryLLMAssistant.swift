@@ -54,7 +54,7 @@ struct SurgeryLLMAssistant: View {
         
         .onAppear {
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your medications?")
+                let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your surgeries?")
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
