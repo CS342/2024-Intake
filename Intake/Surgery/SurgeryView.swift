@@ -23,7 +23,7 @@ struct SurgeryItem: Identifiable {
     var dateLabel: String?
     var date: String?
 //    var location: String?
-    var complications: [String] = []
+    var complications: [CodeableConcept]?
 //    var notes: String?
 //    var status: String?
 //    var code: String?
@@ -45,7 +45,7 @@ struct AddSurgery: View {
         }
     }
 }
- 
+
 struct InspectSurgeryView: View {
     @Binding var surgery: SurgeryItem
     
@@ -53,26 +53,26 @@ struct InspectSurgeryView: View {
     
     var body: some View {
         Form {
-            Section(header: Text("Surgery")) {
+            Section(header: Text("Procedure")) {
                 TextField("Surgery Name", text: $surgery.surgeryName)
             }
-//            if let date = surgery.date {
-//                @Bindable var date = date
-//                
-//                Section(header: Text("Date")) {
-//                    if editMode?.wrappedValue.isEditing == true {
-//                        TextField("Date", text: $date)
-//                    } else {
-//                        Text(date)
+            // Date first
+//            Section(header: Text("Complications")) {
+//                if surgery.complications != nil {
+//                    ForEach(surgery.complications.indices, id: \.self) { index in
+//                        TextField("Complication", text: $surgery.complications?[index].text)
+//                    }
+//                }
+//            }
+//            if let complications = surgery.complications {
+//                Section(header: Text("Complications")) {
+//                    ForEach(complications.indices, id: \.self) { index in
+//                        TextField("Complication", text: $surgery.complications?[index].text ?? "")
 //                    }
 //                }
 //            }
         }
-        .listStyle(.grouped)
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
-//        .toolbar {
-//            EditButton()
-//        }
     }
 }
 
@@ -153,9 +153,6 @@ struct SurgeryView: View {
         if let date = procedure.performed {
             switch date {
             case .age:
-                newDate = date.rawValue
-                    
-//                    .code?.text?.string ?? ""
                 dateLabel = "Age"
             case .dateTime:
                 
@@ -167,15 +164,12 @@ struct SurgeryView: View {
                 
                 dateLabel = "Range"
             case .string:
-                
                 dateLabel = "Date"
-            default:
-                print("Invalid date format")
             }
         }
         
         if let complications = procedure.complication {
-            newEntry.complications = complications.map { $0.text?.value?.string ?? "" }
+            newEntry.complications = complications
         }
         
         data.surgeries.append(newEntry)

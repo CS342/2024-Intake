@@ -447,6 +447,9 @@
     "Primary Concern" : {
 
     },
+    "Procedure" : {
+
+    },
     "PROJECT_LICENSE_DESCRIPTION" : {
       "localizations" : {
         "en" : {
@@ -576,9 +579,6 @@
 
     },
     "Summary" : {
-
-    },
-    "Surgery" : {
 
     },
     "Surgery Name" : {
