@@ -76,6 +76,9 @@ struct AllergyList: View {
         }
         .navigationBarItems(trailing: EditButton())
         .navigationTitle("Allergies")
+        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
+            Text("Chat")
+        })
     }
         
     private var allergyEntries: some View {

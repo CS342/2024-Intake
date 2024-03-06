@@ -64,6 +64,10 @@
 		51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C192B818A1A00D17109 /* IntakeDosage.swift */; };
 		51805C1D2B818A4400D17109 /* IntakeMedicationInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */; };
 		51A027672B82CDA300A195C8 /* MedicationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A027662B82CDA300A195C8 /* MedicationContentView.swift */; };
+		51A360102B944517004E7E12 /* MedicationLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A3600F2B944517004E7E12 /* MedicationLLMAssistant.swift */; };
+		51A360142B9648A7004E7E12 /* SurgeryLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A360132B9648A7004E7E12 /* SurgeryLLMAssistant.swift */; };
+		51A360162B965819004E7E12 /* AllergyLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A360152B965819004E7E12 /* AllergyLLMAssistant.swift */; };
+		51A360182B9659AE004E7E12 /* MedicalHistoryLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A360172B9659AE004E7E12 /* MedicalHistoryLLMAssistant.swift */; };
 		5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 5661551C2AB8384200209B80 /* SwiftPackageList */; };
 		566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566155282AB8447C00209B80 /* Package+LicenseType.swift */; };
 		5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661552D2AB854C000209B80 /* PackageHelper.swift */; };
@@ -175,6 +179,10 @@
 		51805C192B818A1A00D17109 /* IntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeDosage.swift; sourceTree = "<group>"; };
 		51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationInstance.swift; sourceTree = "<group>"; };
 		51A027662B82CDA300A195C8 /* MedicationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationContentView.swift; sourceTree = "<group>"; };
+		51A3600F2B944517004E7E12 /* MedicationLLMAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationLLMAssistant.swift; sourceTree = "<group>"; };
+		51A360132B9648A7004E7E12 /* SurgeryLLMAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurgeryLLMAssistant.swift; sourceTree = "<group>"; };
+		51A360152B965819004E7E12 /* AllergyLLMAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyLLMAssistant.swift; sourceTree = "<group>"; };
+		51A360172B9659AE004E7E12 /* MedicalHistoryLLMAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalHistoryLLMAssistant.swift; sourceTree = "<group>"; };
 		566155282AB8447C00209B80 /* Package+LicenseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package+LicenseType.swift"; sourceTree = "<group>"; };
 		5661552D2AB854C000209B80 /* PackageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHelper.swift; sourceTree = "<group>"; };
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
@@ -371,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				511827952B740191002033A0 /* SurgeryView.swift */,
+				51A360132B9648A7004E7E12 /* SurgeryLLMAssistant.swift */,
 			);
 			path = Surgery;
 			sourceTree = "<group>";
@@ -383,6 +392,7 @@
 				51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */,
 				51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */,
 				51A027662B82CDA300A195C8 /* MedicationContentView.swift */,
+				51A3600F2B944517004E7E12 /* MedicationLLMAssistant.swift */,
 			);
 			path = "Medication View";
 			sourceTree = "<group>";
@@ -402,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				5A2B9F792B69AE2C005CA63F /* MedicalHistoryView.swift */,
+				51A360172B9659AE004E7E12 /* MedicalHistoryLLMAssistant.swift */,
 			);
 			path = "Medical History";
 			sourceTree = "<group>";
@@ -450,6 +461,7 @@
 				5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */,
 				5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */,
 				5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */,
+				51A360152B965819004E7E12 /* AllergyLLMAssistant.swift */,
 			);
 			path = "Allergy Records";
 			sourceTree = "<group>";
@@ -803,9 +815,11 @@
 				2F4FC8D729EE69D300BFFE26 /* MockUpload.swift in Sources */,
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */,
+				51A360162B965819004E7E12 /* AllergyLLMAssistant.swift in Sources */,
 				F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,
+				51A360182B9659AE004E7E12 /* MedicalHistoryLLMAssistant.swift in Sources */,
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
@@ -820,6 +834,7 @@
 				5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				51A360142B9648A7004E7E12 /* SurgeryLLMAssistant.swift in Sources */,
 				ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */,
 				F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */,
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
@@ -833,6 +848,7 @@
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
 				2FE5DC5129EDD7FA004B9AB4 /* IntakeTaskContext.swift in Sources */,
+				51A360102B944517004E7E12 /* MedicationLLMAssistant.swift in Sources */,
 				56F6F2A02AB441930022FE5A /* ContributionsList.swift in Sources */,
 				5A2B9F7A2B69AE2C005CA63F /* MedicalHistoryView.swift in Sources */,
 				5A2B9F8F2B69E286005CA63F /* MockData.swift in Sources */,

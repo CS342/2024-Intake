@@ -85,14 +85,17 @@
     "Allergy" : {
 
     },
+    "Allergy Assistant" : {
+
+    },
     "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
 
     },
-    "Calculation" : {
 
+    "Calculation" : {
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
       "extractionState" : "manual",
@@ -312,6 +315,9 @@
     "Medical History" : {
 
     },
+    "Medical History Assistant" : {
+
+    },
     "Medical Intake Form" : {
 
     },
@@ -319,6 +325,9 @@
 
     },
     "Medications" : {
+
+    },
+    "Medications Assistant" : {
 
     },
     "Menstrual Information" : {
@@ -573,6 +582,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Assistant" : {
 
     },
     "Surgery Name" : {
