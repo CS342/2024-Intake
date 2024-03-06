@@ -82,10 +82,16 @@
     "Allergy" : {
 
     },
+    "Allergy Assistant" : {
+
+    },
     "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "Chat" : {
 
     },
     "CLOSE" : {
@@ -286,6 +292,9 @@
     "Medical History" : {
 
     },
+    "Medical History Assistant" : {
+
+    },
     "Medical Intake Form" : {
 
     },
@@ -293,6 +302,9 @@
 
     },
     "Medications" : {
+
+    },
+    "Medications Assistant" : {
 
     },
     "Message" : {
@@ -559,6 +571,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Assistant" : {
 
     },
     "Surgery Name" : {

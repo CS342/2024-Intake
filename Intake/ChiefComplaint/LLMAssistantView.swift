@@ -18,7 +18,6 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-// My head hurts. 10/10 pain. Sharp. Top of head. Hurts for a week. No triggers. Nothing makes it better or worse. No further information that I have
 struct LLMAssistantView: View {
     @Binding var presentingAccount: Bool
     @State var showOnboarding = true

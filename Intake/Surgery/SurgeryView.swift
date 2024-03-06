@@ -108,6 +108,9 @@ struct SurgeryView: View {
             self.getProcedures()
         }
         .navigationTitle("Surgical History")
+        .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
+            Text("Chat")
+        })
         .toolbar {
             EditButton()
         }

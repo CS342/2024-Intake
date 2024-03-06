@@ -46,6 +46,9 @@ struct MedicalHistoryView: View {
             }
         }
         .navigationTitle("Medical History")
+        .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant(presentingAccount: .constant(false))) {
+            Text("Chat")
+        })
         .navigationBarItems(trailing: EditButton())
         .sheet(isPresented: $showAddSheet) {
             // Your add condition sheet content here

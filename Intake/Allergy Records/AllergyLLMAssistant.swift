@@ -4,6 +4,12 @@
 //
 //  Created by Kate Callon on 3/4/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SpeziChat
@@ -15,25 +21,19 @@ import SwiftUI
 func getCurrentPatientAllergy(allergyList: [AllergyItem]) -> String? {
     var allergyDetails = "The patient has several allergies described in the next sentences."
     
-    for allergy in allergyList{
+    for allergy in allergyList {
         let allergyName = allergy.allergy
         if let allergyReaction = allergy.reaction.first?.reaction {
             allergyDetails += "The patient has allergy \(allergyName) with the reaction \(allergyReaction).\n"
-        }
-        else{
+        } else {
             allergyDetails += "The patient has allergy \(allergyName).\n"
         }
     }
     
     return allergyDetails.isEmpty ? nil : allergyDetails
-                
-    
 }
 
-
-
 struct AllergyLLMAssistant: View {
-    
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     
@@ -56,7 +56,7 @@ struct AllergyLLMAssistant: View {
         }
         
         .onAppear {
-            if let currentallergy = getCurrentPatientAllergy(allergyList: data.allergyData){
+            if let currentallergy = getCurrentPatientAllergy(allergyList: data.allergyData) {
                 session.context.append(
                                     systemMessage: currentallergy
                                 )
@@ -67,12 +67,10 @@ struct AllergyLLMAssistant: View {
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
-            
         }
-        
     }
 
-    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
+    init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
@@ -88,7 +86,6 @@ struct AllergyLLMAssistant: View {
             }
         )
     }
-    
 }
 
 #Preview {
@@ -99,4 +96,3 @@ struct AllergyLLMAssistant: View {
             }
         }
 }
-

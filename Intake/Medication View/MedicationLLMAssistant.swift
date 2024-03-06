@@ -19,9 +19,9 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>) -> String? {
-    var medicationDetails = "The patient is currently taking several medications."
-    
-    for medication in medicationList{
+    var medicationDetails = "The patient is currently taking several medications:"
+    print(medicationList)
+    for medication in medicationList {
         let medName = medication.type.localizedDescription
         let dose = medication.dosage.localizedDescription
         let frequency = medication.schedule.frequency
@@ -29,14 +29,9 @@ func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>)
     }
     
     return medicationDetails.isEmpty ? nil : medicationDetails
-                
-    
 }
 
-
-
 struct MedicationLLMAssistant: View {
-    
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     
@@ -59,24 +54,21 @@ struct MedicationLLMAssistant: View {
         }
         
         .onAppear {
-            if let currentMed = getCurrentPatientMedications(medicationList: data.medicationData){
-                session.context.append(
-                                    systemMessage: currentMed
-                                )
-                
-            }
-            
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your medications?")
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
             
+            if let currentMed = getCurrentPatientMedications(medicationList: data.medicationData) {
+                session.context.append(
+                                    systemMessage: currentMed
+                                )
+            }
         }
-        
     }
 
-    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
+    init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
@@ -92,7 +84,6 @@ struct MedicationLLMAssistant: View {
             }
         )
     }
-    
 }
 
 #Preview {

@@ -4,6 +4,12 @@
 //
 //  Created by Kate Callon on 3/4/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SpeziChat
@@ -13,29 +19,22 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> String? {
-    var medHistoryDetails = "The patient has had several conditions in their medical history described in the following setneces."
+    var medHistoryDetails = "The patient has had several conditions in their medical history described in the following sentences."
     
-    for medHistory in medHistoryList{
+    for medHistory in medHistoryList {
         let medHistoryName = medHistory.condition
         let active = medHistory.active
-        if active{
+        if active {
             medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an active condition.\n"
-        }
-        else{
+        } else {
             medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an inactive condition.\n"
         }
-        
     }
     
     return medHistoryDetails.isEmpty ? nil : medHistoryDetails
-                
-    
 }
 
-
-
 struct MedicalHistoryLLMAssistant: View {
-    
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     
@@ -58,7 +57,7 @@ struct MedicalHistoryLLMAssistant: View {
         }
         
         .onAppear {
-            if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData){
+            if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData) {
                 session.context.append(
                                     systemMessage: currentMedHistory
                                 )
@@ -69,12 +68,10 @@ struct MedicalHistoryLLMAssistant: View {
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
-            
         }
-        
     }
 
-    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
+    init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
@@ -90,7 +87,6 @@ struct MedicalHistoryLLMAssistant: View {
             }
         )
     }
-    
 }
 
 #Preview {
