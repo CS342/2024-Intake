@@ -11,11 +11,76 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Foundation
 import SpeziChat
+import SpeziFHIR
 import SpeziLLM
 import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
+
+func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
+    if dobString.isEmpty {
+        return ""
+    }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
+    
+    guard let birthDate = dateFormatter.date(from: dobString) else {
+        return "Invalid date format or date string."
+    }
+    
+    let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
+    if let age = ageComponents.year {
+        return "\(age)"
+    } else {
+        return "Could not calculate age"
+    }
+}
+
+func getValue(forKey key: String, from jsonString: String) -> String? {
+    guard let jsonData = jsonString.data(using: .utf8) else {
+        print("Error: Cannot create Data from JSON string")
+        return nil
+    }
+    
+    do {
+        if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            if key == "name" {
+                if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
+                    let nameDict = nameArray[0] // Accessing the first name object
+                    if let family = nameDict["family"] as? String,
+                       let givenArray = nameDict["given"] as? [String],
+                       !givenArray.isEmpty {
+                        let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
+                        
+                        return "\(given) \(family)"
+                    }
+                }
+            } else {
+                return dictionary[key] as? String
+            }
+        } else {
+            print("Error: JSON is not a dictionary")
+        }
+    } catch {
+        print("Error: \(error.localizedDescription)")
+    }
+
+    return nil
+}
+
+func getInfo(patient: FHIRResource, field: String) -> String {
+    let jsonDescription = patient.jsonDescription
+
+    if let infoValue = getValue(forKey: field, from: jsonDescription) {
+        print("Info found: \(infoValue)")
+        return infoValue
+    }
+    
+    print("Key \(field) not found")
+    return ""
+}
 
 
 struct LLMInteraction: View {
@@ -36,11 +101,16 @@ struct LLMInteraction: View {
         static let name: String = "summarize_complaint"
         static let description: String = """
                     When there is enough information to give to the doctor,\
-                    summarize the conversation into a concise Chief Complaint.
+                    summarize the conversation into a concise Chief Complaint.\
+                    Then call the summerize_complaint function.
                     """
-
-        @Parameter(description: "A summary of the patient's primary concern.") var patientSummary: String
-
+      
+        static let summaryDescription = """
+                A summary of the patient's primary concern. Include a sentence introducing the patient's name,\
+                age, and gender, if you have access to this information.
+        """
+        @Parameter(description: summaryDescription) var patientSummary: String
+        
         let stringBox: StringBox
 
         init(stringBox: StringBox) {
@@ -54,6 +124,8 @@ struct LLMInteraction: View {
         }
     }
     
+    @Environment(LLMRunner.self) var runner: LLMRunner
+    @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     
@@ -62,8 +134,10 @@ struct LLMInteraction: View {
 
     @State var showOnboarding = true
     @State var greeting = true
+
     @State var stringBox: StringBox = .init()
-    
+    @State var showSheet = false
+  
     var body: some View {
         @Bindable var data = data
         
@@ -80,9 +154,42 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
+            var fullName: String = ""
+            var firstName: String = ""
+            var dob: String = ""
+            var gender: String = ""
+            
+            if let patient = fhirStore.patient {
+                fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
+                dob = getInfo(patient: patient, field: "birthDate")
+                gender = getInfo(patient: patient, field: "gender")
+                
+                let age = calculateAge(from: dob)
+                let nameString = fullName.components(separatedBy: " ")
+                
+                if let firstNameValue = nameString.first {
+                    firstName = firstNameValue
+                } else {
+                    print("First Name is empty")
+                }
+                
+                let systemMessage = """
+                    The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: age))\
+                    years old. The patient's gender is \(String(describing: gender)) Please speak with\
+                    the patient as you would a person of this age group, using as simple words as possible\
+                    if the patient is young. Address them by their first name when you ask questions.
+                """
+                session.context.append(
+                    systemMessage: systemMessage
+                )
+            }
+            
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Hello! What brings you to the doctor's office?")
-                session.context.insert(assistantMessage, at: 0)
+                if firstName.isEmpty {
+                    session.context.append(assistantOutput: "Hello! What brings you to the doctor's office?")
+                } else {
+                    session.context.append(assistantOutput: "Hello \(String(describing: firstName))! What brings you to the doctor's office?")
+                }
             }
             greeting = false
         }
@@ -92,8 +199,8 @@ struct LLMInteraction: View {
             self.showSummary()
         }
     }
-
-    init(presentingAccount: Binding<Bool>) {    // swiftlint:disable:this function_body_length
+  
+    init(presentingAccount: Binding<Bool>) {
         self._presentingAccount = presentingAccount
         let temporaryStringBox = StringBox()
         self.stringBox = temporaryStringBox
@@ -101,46 +208,7 @@ struct LLMInteraction: View {
             schema: LLMOpenAISchema(
                 parameters: .init(
                     modelType: .gpt3_5Turbo,
-                    systemPrompt: """
-                        Pretend you are a nurse. Your job is to gather information about the medical concern of a patient.\
-                        Your job is to provide a summary of the patient’s chief medical complaint to the doctor so that the doctor\
-                        has all of the information they need to begin the appointment. Ask questions specific to the concern of the\
-                        patient in order to help clarify their chief complaint into a concise, specific concern. Ask the patient to\
-                        elaborate a little bit if you feel that they are not providing sufficient information. You should always ask about\
-                        severity and onset, and if relevant to the specific condition, you might specific questions about the location,\
-                        laterality, triggers, character, timing, description, progression, and associated symptoms unique to the complaint.\
-                        Ask with empathy.\
-                        Headache:\
-                        Onset: When did the headache start? Location: Where is the pain located? Duration: How long does each headache episode last?\
-                        Severity: On a scale of 1 to 10, how would you rate the pain? Triggers: Are there any specific triggers\
-                        that seem to bring on the headache? Associated Symptoms: Do you experience nausea, vomiting, sensitivity to light or sound?\
-                        Abdominal Pain:\
-                        Location: Where is the pain located abdomen? Character: How would you describe the pain (e.g., sharp, dull, cramping)?\
-                        Severity: On a scale of 1 to 10, how severe is the pain? Timing: Does the pain come and go, or is it constant?\
-                        Associated Symptoms: Any nausea, vomiting, or other changes in your bowl?\
-                        Fever:\
-                        Temperature: What is your current temperature?\
-                        Onset: When did the fever start?\
-                        Duration: How long have you had the fever?\
-                        Associated Symptoms: Any chills, sweating, body aches?\
-                        Recent Travel or Exposure: Have you traveled recently?\
-                        Have you been around anyone who was sick?
-                        Rash:\
-                        Onset: When did the rash first appear? Location: Where is the rash located on your body? Description: How would you\
-                        describe the rash (e.g., raised, itchy, red)? Progression: Has the rash changed in appearance since it first appeared?\
-                        Associated Symptoms: Any fever, itching, pain?\
-                        Joint Pain:\
-                        Location: Which joints are affected? Onset: When did the joint pain start? Character: How would you describe the pain\
-                        (e.g., sharp, dull, achy)? Timing: Does the pain occur at specific times of the day or with certain activities?\
-                        Associated Symptoms: Any swelling, redness, stiffness?\
-                        Fatigue: Onset: When did you start feeling fatigued? Duration: How long have you been experiencing fatigue?\
-                        Severity: On a scale of 1 to 10, how would you rate your fatigue? Triggers: Is there anything that seems to\
-                        make your fatigue better or worse? Associated Symptoms: Any changes in appetite, sleep disturbances?\
-                        As you can see by the examples, you should ask questions specific to the patient's symptoms. If relevant, you should\
-                        ask follow-up questions to the patient's responses in order to gather more information if you feel it is needed. \
-                        Please use everyday layman terms and avoid using complex medical terminology.\
-                        Only ask one question or prompt at a time, and keep your questions brief (one to two short sentences).
-                    """
+                    systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT".localized().localizedString()
                 )
             ) {
                 SummarizeFunction(stringBox: temporaryStringBox)

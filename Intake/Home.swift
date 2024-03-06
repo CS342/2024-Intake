@@ -14,7 +14,8 @@ enum NavigationViews: String {
     case allergies
     case surgical
     case medical
-    case social
+    case menstrual
+    case smoking
     case medication
     case chat
     case concern
@@ -90,12 +91,14 @@ struct HomeView: View {
 
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
-                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
-                case .allergies: AllergyList()
+                case .smoking: SmokingHistoryView()
+//                    case .chat: LLMAssistantView(presentingAccount: $presentingAccount)
+//                    case .allergies: AllergyList()
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
                 case .social: ScrollablePDF()
-                case .medication: MedicationView()
+                case .medication: MedicationContentView()
+                case .menstrual: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
                 case .patient: EditPatientView()
                 case .pdfs: ScrollablePDF()

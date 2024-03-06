@@ -59,6 +59,7 @@ struct AllergyList: View {
         VStack {
             allergyForm
             SubmitButton(nextView: NavigationViews.social)
+                .padding()
         }
         .onAppear(perform: loadAllergies)
         .sheet(isPresented: $showingChat, content: chatSheetView)
@@ -76,6 +77,9 @@ struct AllergyList: View {
         }
         .navigationBarItems(trailing: EditButton())
         .navigationTitle("Allergies")
+        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
+                      Text("Chat")
+        })
     }
         
     private var allergyEntries: some View {
@@ -113,6 +117,10 @@ struct AllergyList: View {
         }) {
             allergyEntryRow(index: index)
         }
+    }
+    
+    private func submitAction() {
+        navigationPath.path.append(NavigationViews.menstrual)
     }
     
     private func addAllergyAction() {
@@ -162,7 +170,7 @@ struct AllergyList: View {
             }
         }
         if !allergies.isEmpty {
-            for index in 0...(allergies.count - 1) {
+            for index in 0...(allergies.count - 1) where !data.allergyData.contains(where: { $0.allergy == allergies[index].string }) {
                 data.allergyData.append(
                     AllergyItem(allergy: allergies[index].string, reaction: allReactions[index])
                 )

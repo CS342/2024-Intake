@@ -61,13 +61,7 @@
         }
       }
     },
-    "Active" : {
-
-    },
     "Add Field" : {
-
-    },
-    "ADD_MEDICATION" : {
 
     },
     "ADD_REACTION" : {
@@ -76,10 +70,13 @@
     "ADD_SURGERY" : {
 
     },
+    "Additional Details" : {
+
+    },
     "Additional details: %@" : {
 
     },
-    "Age" : {
+    "Additional Symptoms" : {
 
     },
     "AI-assisted medical intake" : {
@@ -97,8 +94,16 @@
     "Auto-fill Intake Form" : {
 
     },
-    "Chief Complaint" : {
-
+    "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pretend you are a nurse. Your job is to gather information about the medical concern of a patient.\\\n                        Your job is to provide a summary of the patient’s chief medical complaint to the doctor so that the doctor\\\n                        has all of the information they need to begin the appointment. Ask questions specific to the concern of the\\\n                        patient in order to help clarify their chief complaint into a concise, specific concern. Ask the patient to\\\n                        elaborate a little bit if you feel that they are not providing sufficient information. You should always ask about\\\n                        severity and onset, and if relevant to the specific condition, you might specific questions about the location,\\\n                        laterality, triggers, character, timing, description, progression, and associated symptoms unique to the complaint. If you are able to find the answer to a question based on the patient's past responses, then do not ask the question. \\\n                        Ask with empathy.\\\n                        Headache:\\\n                        Onset: When did the headache start? Location: Where is the pain located? Duration: How long does each headache episode last?\\\n                        Severity: On a scale of 1 to 10, how would you rate the pain? Triggers: Are there any specific triggers\\\n                        that seem to bring on the headache? Associated Symptoms: Do you experience nausea, vomiting, sensitivity to light or sound?\\\n                        Abdominal Pain:\\\n                        Location: Where is the pain located abdomen? Character: How would you describe the pain (e.g., sharp, dull, cramping)?\\\n                        Severity: On a scale of 1 to 10, how severe is the pain? Timing: Does the pain come and go, or is it constant?\\\n                        Associated Symptoms: Any nausea, vomiting, or other changes in your bowl?\\\n                        Fever:\\\n                        Temperature: What is your current temperature?\\\n                        Onset: When did the fever start?\\\n                        Duration: How long have you had the fever?\\\n                        Associated Symptoms: Any chills, sweating, body aches?\\\n                        Recent Travel or Exposure: Have you traveled recently?\\\n                        Have you been around anyone who was sick?\n                        Rash:\\\n                        Onset: When did the rash first appear? Location: Where is the rash located on your body? Description: How would you\\\n                        describe the rash (e.g., raised, itchy, red)? Progression: Has the rash changed in appearance since it first appeared?\\\n                        Associated Symptoms: Any fever, itching, pain?\\\n                        Joint Pain:\\\n                        Location: Which joints are affected? Onset: When did the joint pain start? Character: How would you describe the pain\\\n                        (e.g., sharp, dull, achy)? Timing: Does the pain occur at specific times of the day or with certain activities?\\\n                        Associated Symptoms: Any swelling, redness, stiffness?\\\n                        Fatigue: Onset: When did you start feeling fatigued? Duration: How long have you been experiencing fatigue?\\\n                        Severity: On a scale of 1 to 10, how would you rate your fatigue? Triggers: Is there anything that seems to\\\n                        make your fatigue better or worse? Associated Symptoms: Any changes in appetite, sleep disturbances?\\\n                        As you can see by the examples, you should ask questions specific to the patient's symptoms. If relevant, you should\\\n                        ask follow-up questions to the patient's responses in order to gather more information if you feel it is needed. \\\n                        Please use everyday layman terms and avoid using complex medical terminology.\\\n                        Only ask one question or prompt at a time, and keep your questions brief (one to two short sentences).\\\n                        As a nurse, you should decline to answer any user inputs that are completely irrelevant to your objective of\\\n                        understanding your patient's chief complaint and past health history."
+          }
+        }
+      }
     },
     "CLOSE" : {
       "comment" : "MARK: General",
@@ -124,7 +129,671 @@
     "Condition" : {
 
     },
-    "Conditions" : {
+    "CONSENT_LOADING_ERROR" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please include a markdown based document named \"ConsentDocument\" in your module Bundle."
+          }
+        }
+      }
+    },
+    "CONTACTS_NAVIGATION_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacts"
+          }
+        }
+      }
+    },
+    "CONTACTS_TAB_TITLE" : {
+      "comment" : "MARK: - Contacts",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacts"
+          }
+        }
+      }
+    },
+    "CONTRIBUTIONS_LIST_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The following list contains all Swift Package dependencies of the SpeziIntake."
+          }
+        }
+      }
+    },
+    "CONTRIBUTIONS_LIST_FOOTER" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please refer to the individual repository links for packages without license labels."
+          }
+        }
+      }
+    },
+    "CONTRIBUTIONS_LIST_HEADER" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Packages"
+          }
+        }
+      }
+    },
+    "DELETE_REACTION" : {
+
+    },
+    "DETAILS" : {
+
+    },
+    "Download your medical records from your health system." : {
+
+    },
+    "End Date: %@" : {
+
+    },
+    "END_CALENDAR" : {
+
+    },
+    "Ex: Heavy bleeding on second day, fatigue..." : {
+
+    },
+    "Ex: Smoked for 10 years, quit 5 years ago..." : {
+
+    },
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
+
+    },
+    "Get Started" : {
+
+    },
+    "HEALTHKIT_PERMISSIONS_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grant Access"
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intake will use your different types of your health records in order to most effectively aid you with your intake form."
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intake would like to access to your health records to fill out your intake form."
+          }
+        }
+      }
+    },
+    "HEALTHKIT_PERMISSIONS_TITLE" : {
+      "comment" : "MARK: HealthKit",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HealthKit Access"
+          }
+        }
+      }
+    },
+    "Here is a summary of the Primary Concern" : {
+
+    },
+    "HOME_LOGO" : {
+
+    },
+    "How many days a year do you smoke?" : {
+
+    },
+    "How many packs do you smoke a day?" : {
+
+    },
+    "Integrate your Records" : {
+
+    },
+    "INTERESTING_MODULES_BUTTON" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
+    "LICENSE_INFO_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "License Information"
+          }
+        }
+      }
+    },
+    "List all your allgeries." : {
+
+    },
+    "List your current medications." : {
+
+    },
+    "Main reason(s) for visit" : {
+
+    },
+    "Medical History" : {
+
+    },
+    "Medical Intake Form" : {
+
+    },
+    "Medication Settings" : {
+
+    },
+    "Medications" : {
+
+    },
+    "Menstrual Information" : {
+
+    },
+    "Message" : {
+
+    },
+    "MOCK_ALLERGY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allergy Records"
+          }
+        }
+      }
+    },
+    "MOCK_MEDICAL_HISTORY_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medical History"
+          }
+        }
+      }
+    },
+    "MOCK_MEDICATIONS_RECORDS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medications"
+          }
+        }
+      }
+    },
+    "MOCK_SURGERY_RECORDS_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surgery"
+          }
+        }
+      }
+    },
+    "MOCK_WEB_SERVICE_TAB_TITLE" : {
+      "comment" : "MARK: - Mock Upload Data Storage Provider",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Service"
+          }
+        }
+      }
+    },
+    "Next" : {
+
+    },
+    "NOTIFICATION_PERMISSIONS_BUTTON" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Notifications"
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_DESCRIPTION" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Spezi Scheduler module enables to send out local notifications when a new event of a task is scheduled."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_SUBTITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spezi Scheduler Notifications."
+          }
+        }
+      }
+    },
+    "NOTIFICATION_PERMISSIONS_TITLE" : {
+      "comment" : "MARK: Notifications",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "OLIVER_AALAMI_BIO" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dr. Oliver O. Aalami is a Clinical Professor of Surgery at Stanford University and a vascular surgeon based in Palo Alto, California. He is affiliated with Stanford Health Care and the VA Palo Alto Health Care System.\nDr. Aalami is also the Director of Biodesign for Digital Health at the Stanford Byers Center for Biodesign. He co-founded Spezi (formerly CardinalKit) and is passionate about clinically validating smartphone and smartwatch sensors in patients with cardiovascular disease."
+          }
+        }
+      }
+    },
+    "Other important questions." : {
+
+    },
+    "Pack years: %.2f" : {
+
+    },
+    "Please list conditions you have had" : {
+
+    },
+    "Primary Concern" : {
+
+    },
+    "PROJECT_LICENSE_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This project is licensed under the MIT License."
+          }
+        }
+      }
+    },
+    "QUESTIONNAIRE_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please fill out the Questionnaire every day."
+          }
+        }
+      }
+    },
+    "QUESTIONNAIRE_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questionnaire"
+          }
+        }
+      }
+    },
+    "Reactions" : {
+
+    },
+    "ReForm" : {
+
+    },
+    "Repository Link" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repository Link"
+          }
+        }
+      }
+    },
+    "Resource Selection" : {
+
+    },
+    "Resource Settings" : {
+
+    },
+    "Review of Systems" : {
+
+    },
+    "Review summary of your medical history." : {
+
+    },
+    "Save" : {
+
+    },
+    "SCHEDULE_LIST_TITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "SCHEDULE_TAB_TITLE" : {
+      "comment" : "MARK: - Schedule",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schedule"
+          }
+        }
+      }
+    },
+    "Select End Date" : {
+
+    },
+    "Select Start Date" : {
+
+    },
+    "Select your last period's end date" : {
+
+    },
+    "Select your last period's start date" : {
+
+    },
+    "SETTINGS" : {
+
+    },
+    "SETTINGS_TITLE" : {
+
+    },
+    "Share with provider of your choice." : {
+
+    },
+    "Skip" : {
+
+    },
+    "Smoking History" : {
+
+    },
+    "Social History" : {
+
+    },
+    "Start" : {
+
+    },
+    "Start Date: %@" : {
+
+    },
+    "START_CALENDAR" : {
+
+    },
+    "Submit" : {
+
+    },
+    "Submit your Form" : {
+
+    },
+    "Summarize your medical history." : {
+
+    },
+    "Summarize your surgical history." : {
+
+    },
+    "Surgery" : {
+
+    },
+    "Surgery Name" : {
+
+    },
+    "Surgical History" : {
+
+    },
+    "Symptoms: %@" : {
+
+    },
+    "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Questionnaire"
+          }
+        }
+      }
+    },
+    "TASK_CONTEXT_ACTION_TEST" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start Test"
+          }
+        }
+      }
+    },
+    "TASK_LABEL %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task: %@"
+          }
+        }
+      }
+    },
+    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_DESCRIPTION" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please fill out the Social Support Questionnaire every day."
+          }
+        }
+      }
+    },
+    "TASK_SOCIAL_SUPPORT_QUESTIONNAIRE_TITLE" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Social Support Questionnaire"
+          }
+        }
+      }
+    },
+    "This application will help autocomplete your medical intake form." : {
+
+    },
+    "Together we will summarize..." : {
+
+    },
+    "Use HealthKit Resources" : {
+
+    },
+    "Welcome to ReForm" : {
+
+    },
+    "What are your current allergies?" : {
+
+    },
+    "What brings you in today? Identify your primary concern(s)." : {
+
+    },
+    "What is your surgical history?" : {
+
+    },
+    "Your Responses" : {
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
+
+    },
+    "*Click the details to view/edit the reactions" : {
+
+    },
+    "%@ Reactions" : {
+
+    },
+    "ACCOUNT_NEXT" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        }
+      }
+    },
+    "ACCOUNT_SETUP_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You may login to your existing account. Or create a new one if you don't have one already. You will have to connect a name and email to your account. You may enter additional details such as your date of birth."
+          }
+        }
+      }
+    },
+    "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are already logged in with the account shown below. Continue or change your account by logging out. You can also update your details of name, date of birth, and your preferred email."
+          }
+        }
+      }
+    },
+    "ACCOUNT_SUBTITLE" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Intake demonstrates the usage of the Firebase Account Module."
+          }
+        }
+      }
+    },
+    "ACCOUNT_TITLE" : {
+      "comment" : "MARK: Account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Account"
+          }
+        }
+      }
+    },
+    "Active" : {
+
+    },
+    "Add Field" : {
+
+    },
+    "ADD_REACTION" : {
+
+    },
+    "ADD_SURGERY" : {
+
+    },
+    "Additional details: %@" : {
+
+    },
+    "Age" : {
+
+    },
+    "AI-assisted medical intake" : {
+
+    },
+    "Allergies" : {
+
+    },
+    "Allergy" : {
+
+    },
+    "Allergy Assistant" : {
+
+    },
+    "Allergy Name" : {
+
+    },
+    "Auto-fill Intake Form" : {
+
+    },
+    "Chat" : {
+
+    },
+    "CLOSE" : {
+      "comment" : "MARK: General",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "COMPLETED_TASK_LABEL %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed Task: %@"
+          }
+        }
+      }
+    },
+    "Condition" : {
 
     },
     "CONSENT_LOADING_ERROR" : {
@@ -195,9 +864,6 @@
     "Date of Birth:" : {
 
     },
-    "DELETE_MEDICATION" : {
-
-    },
     "DELETE_REACTION" : {
 
     },
@@ -214,6 +880,9 @@
 
     },
     "END_CALENDAR" : {
+
+    },
+    "Export to PDF" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -319,7 +988,7 @@
     "Medical Intake Form" : {
 
     },
-    "Medication" : {
+    "Medication Settings" : {
 
     },
     "Medications" : {
@@ -460,13 +1129,7 @@
     "Patient Form" : {
 
     },
-    "Patient Information" : {
-
-    },
     "Please list conditions you have had" : {
-
-    },
-    "Please list your current medications." : {
 
     },
     "Primary Concern" : {
@@ -696,16 +1359,6 @@
     },
     "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
 
-    },
-    "Your last period was from %@ to %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Your last period was from %1$@ to %2$@"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

@@ -58,7 +58,12 @@
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */; };
 		511827962B740192002033A0 /* SurgeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827952B740191002033A0 /* SurgeryView.swift */; };
-		511827982B7401A8002033A0 /* MedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827972B7401A8002033A0 /* MedicationView.swift */; };
+		51805C122B81853800D17109 /* IntakeMedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C112B81853700D17109 /* IntakeMedication.swift */; };
+		51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */; };
+		51805C182B81898700D17109 /* SpeziMedication in Frameworks */ = {isa = PBXBuildFile; productRef = 51805C172B81898700D17109 /* SpeziMedication */; };
+		51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C192B818A1A00D17109 /* IntakeDosage.swift */; };
+		51805C1D2B818A4400D17109 /* IntakeMedicationInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */; };
+		51A027672B82CDA300A195C8 /* MedicationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A027662B82CDA300A195C8 /* MedicationContentView.swift */; };
 		5661551D2AB8384200209B80 /* SwiftPackageList in Frameworks */ = {isa = PBXBuildFile; productRef = 5661551C2AB8384200209B80 /* SwiftPackageList */; };
 		566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566155282AB8447C00209B80 /* Package+LicenseType.swift */; };
 		5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5661552D2AB854C000209B80 /* PackageHelper.swift */; };
@@ -90,6 +95,8 @@
 		5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */; };
 		5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */; };
 		5AEA5F422B90710B00F1577A /* EditPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F412B90710B00F1577A /* EditPatient.swift */; };
+		5AEA5F472B93034A00F1577A /* ReactionPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F462B93034A00F1577A /* ReactionPDF.swift */; };
+		5AEA5F4A2B96F63A00F1577A /* AllergyLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F492B96F63A00F1577A /* AllergyLLMAssistant.swift */; };
 		637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */; };
 		653A2551283387FE005D4D48 /* Intake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* Intake.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -101,8 +108,9 @@
 		A9D83F962B083794000D0C78 /* SpeziFirebaseAccountStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A9D83F952B083794000D0C78 /* SpeziFirebaseAccountStorage */; };
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
-		AC2A17292B70686000F560D0 /* SocialHistoryQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
+		ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */; };
+		ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */; };
 		F42AB1D22B6379B5002E13A6 /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D12B6379B5002E13A6 /* SpeziLLM */; };
 		F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */; };
 		F42AB1D62B6379B5002E13A6 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D52B6379B5002E13A6 /* SpeziLLMLocalDownload */; };
@@ -166,7 +174,11 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeStandard.swift; sourceTree = "<group>"; };
 		511827952B740191002033A0 /* SurgeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryView.swift; sourceTree = "<group>"; };
-		511827972B7401A8002033A0 /* MedicationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationView.swift; sourceTree = "<group>"; };
+		51805C112B81853700D17109 /* IntakeMedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedication.swift; sourceTree = "<group>"; };
+		51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationViewModel.swift; sourceTree = "<group>"; };
+		51805C192B818A1A00D17109 /* IntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeDosage.swift; sourceTree = "<group>"; };
+		51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationInstance.swift; sourceTree = "<group>"; };
+		51A027662B82CDA300A195C8 /* MedicationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationContentView.swift; sourceTree = "<group>"; };
 		566155282AB8447C00209B80 /* Package+LicenseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package+LicenseType.swift"; sourceTree = "<group>"; };
 		5661552D2AB854C000209B80 /* PackageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHelper.swift; sourceTree = "<group>"; };
 		5680DD382AB8983D004E6D4A /* PackageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCell.swift; sourceTree = "<group>"; };
@@ -194,6 +206,8 @@
 		5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAllergy.swift; sourceTree = "<group>"; };
 		5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollablePDF.swift; sourceTree = "<group>"; };
 		5AEA5F412B90710B00F1577A /* EditPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPatient.swift; sourceTree = "<group>"; };
+		5AEA5F462B93034A00F1577A /* ReactionPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionPDF.swift; sourceTree = "<group>"; };
+		5AEA5F492B96F63A00F1577A /* AllergyLLMAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyLLMAssistant.swift; sourceTree = "<group>"; };
 		637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = Questionnaire.json.license; sourceTree = "<group>"; };
 		653A254D283387FE005D4D48 /* Intake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Intake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653A2550283387FE005D4D48 /* Intake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intake.swift; sourceTree = "<group>"; };
@@ -205,8 +219,9 @@
 		A9720E422ABB68CC00872D23 /* AccountSetupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetupHeader.swift; sourceTree = "<group>"; };
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
-		AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialHistoryQuestions.swift; sourceTree = "<group>"; };
 		ACAA47802B571C7F0032D21F /* Questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Questionnaire.json; sourceTree = "<group>"; };
+		ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokingHistory.swift; sourceTree = "<group>"; };
+		ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenstrualHistory.swift; sourceTree = "<group>"; };
 		F42AB1DB2B637C8C002E13A6 /* LLMOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOnboardingView.swift; sourceTree = "<group>"; };
 		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
@@ -226,6 +241,7 @@
 				F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */,
 				2FB099AF2A875DF100B20952 /* FirebaseAuth in Frameworks */,
 				97D73D6A2AD860AD00B47FA0 /* SpeziFirebaseStorage in Frameworks */,
+				51805C182B81898700D17109 /* SpeziMedication in Frameworks */,
 				F42AB1D82B6379B5002E13A6 /* SpeziLLMOpenAI in Frameworks */,
 				2FE5DC6729EDD894004B9AB4 /* SpeziContact in Frameworks */,
 				5A0C1A1B2B69691000120506 /* SpeziFHIRHealthKit in Frameworks */,
@@ -315,7 +331,7 @@
 		2FE5DC2D29EDD792004B9AB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A2B9F912B69E32A005CA63F /* Mock Patients */,
+				5A2B9F912B69E32A005CA63F /* MockPatients */,
 				653A255428338800005D4D48 /* Assets.xcassets */,
 				2FA0BFEC2ACC977500E0EF83 /* Localizable.xcstrings */,
 				2FE5DC2C29EDD78E004B9AB4 /* ConsentDocument.md */,
@@ -367,6 +383,18 @@
 			path = Surgery;
 			sourceTree = "<group>";
 		};
+		519E830A2B7C4F1600A2D92D /* Medication View */ = {
+			isa = PBXGroup;
+			children = (
+				51805C112B81853700D17109 /* IntakeMedication.swift */,
+				51805C192B818A1A00D17109 /* IntakeDosage.swift */,
+				51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */,
+				51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */,
+				51A027662B82CDA300A195C8 /* MedicationContentView.swift */,
+			);
+			path = "Medication View";
+			sourceTree = "<group>";
+		};
 		56F6F29E2AB441640022FE5A /* Contributions */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,7 +433,7 @@
 			path = "Mock Data";
 			sourceTree = "<group>";
 		};
-		5A2B9F912B69E32A005CA63F /* Mock Patients */ = {
+		5A2B9F912B69E32A005CA63F /* MockPatients */ = {
 			isa = PBXGroup;
 			children = (
 				5A2B9F922B69E32A005CA63F /* Beatris270_Bogan287_5b3645de-a2d0-d016-0839-bab3757c4c58.json */,
@@ -421,7 +449,7 @@
 				5A2B9F9C2B69E32A005CA63F /* Edythe31_Morar593_9c3df38a-d3b7-2198-3898-51f9153d023d.json.license */,
 				5A2B9F9D2B69E32A005CA63F /* Milton509_Ortiz186_d66b5418-06cb-fc8a-8c13-85685b6ac939.json.license */,
 			);
-			path = "Mock Patients";
+			path = MockPatients;
 			sourceTree = "<group>";
 		};
 		5A2B9FB32B6AFE1F005CA63F /* Allergy Records */ = {
@@ -429,7 +457,9 @@
 			children = (
 				5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */,
 				5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */,
+				5AEA5F492B96F63A00F1577A /* AllergyLLMAssistant.swift */,
 				5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */,
+				5AEA5F462B93034A00F1577A /* ReactionPDF.swift */,
 			);
 			path = "Allergy Records";
 			sourceTree = "<group>";
@@ -461,7 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F4F8802B8C6FC5008FBEED /* Elements.swift */,
-				511827972B7401A8002033A0 /* MedicationView.swift */,
+				519E830A2B7C4F1600A2D92D /* Medication View */,
 				511827942B740191002033A0 /* Surgery */,
 				AC2A17272B70684D00F560D0 /* SocialHistory */,
 				5A2B9FB32B6AFE1F005CA63F /* Allergy Records */,
@@ -525,7 +555,8 @@
 		AC2A17272B70684D00F560D0 /* SocialHistory */ = {
 			isa = PBXGroup;
 			children = (
-				AC2A17282B70686000F560D0 /* SocialHistoryQuestions.swift */,
+				ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */,
+				ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */,
 			);
 			path = SocialHistory;
 			sourceTree = "<group>";
@@ -600,6 +631,7 @@
 				5A0C1A182B69691000120506 /* SpeziFHIR */,
 				5A0C1A1A2B69691000120506 /* SpeziFHIRHealthKit */,
 				5A2B9F892B69E0AF005CA63F /* SpeziFHIRMockPatients */,
+				51805C172B81898700D17109 /* SpeziMedication */,
 			);
 			productName = Intake;
 			productReference = 653A254D283387FE005D4D48 /* Intake.app */;
@@ -696,6 +728,7 @@
 				5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */,
 				F42AB1D02B6379B5002E13A6 /* XCRemoteSwiftPackageReference "SpeziLLM" */,
 				5A0C1A162B69667B00120506 /* XCRemoteSwiftPackageReference "SpeziFHIR" */,
+				51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */,
 			);
 			productRefGroup = 653A254E283387FE005D4D48 /* Products */;
 			projectDirPath = "";
@@ -788,24 +821,27 @@
 				2FE5DC4529EDD7F2004B9AB4 /* Binding+Negate.swift in Sources */,
 				2FC975A82978F11A00BA99FE /* Home.swift in Sources */,
 				2FE5DC4E29EDD7FA004B9AB4 /* ScheduleView.swift in Sources */,
-				AC2A17292B70686000F560D0 /* SocialHistoryQuestions.swift in Sources */,
+				51805C1D2B818A4400D17109 /* IntakeMedicationInstance.swift in Sources */,
 				A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */,
 				2FE5DC3729EDD7CA004B9AB4 /* OnboardingFlow.swift in Sources */,
 				2F1AC9DF2B4E840E00C24973 /* Intake.docc in Sources */,
 				2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */,
-				511827982B7401A8002033A0 /* MedicationView.swift in Sources */,
 				2FE5DC4729EDD7F2004B9AB4 /* CodableArray+RawRepresentable.swift in Sources */,
 				5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */,
+				5AEA5F472B93034A00F1577A /* ReactionPDF.swift in Sources */,
 				A9720E432ABB68CC00872D23 /* AccountSetupHeader.swift in Sources */,
 				5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */,
 				2FE5DC4029EDD7EE004B9AB4 /* FeatureFlags.swift in Sources */,
 				2FE5DC4629EDD7F2004B9AB4 /* Bundle+Image.swift in Sources */,
+				ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */,
 				F42AB1DC2B637C8C002E13A6 /* LLMOnboardingView.swift in Sources */,
 				2FE5DC4F29EDD7FA004B9AB4 /* EventContext.swift in Sources */,
 				2FE5DC5029EDD7FA004B9AB4 /* EventContextView.swift in Sources */,
 				5A2B9F872B69E06B005CA63F /* ResourceSelection.swift in Sources */,
 				2F4E23832989D51F0013F3D9 /* IntakeTestingSetup.swift in Sources */,
+				51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */,
 				5A2B9F862B69E06B005CA63F /* SettingsView.swift in Sources */,
+				51805C1A2B818A1A00D17109 /* IntakeDosage.swift in Sources */,
 				F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */,
 				2FE5DC5329EDD7FA004B9AB4 /* Bundle+Questionnaire.swift in Sources */,
 				5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */,
@@ -816,14 +852,18 @@
 				5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */,
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
+				ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */,
 				5AEA5F422B90710B00F1577A /* EditPatient.swift in Sources */,
 				F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */,
+				5AEA5F4A2B96F63A00F1577A /* AllergyLLMAssistant.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
 				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
 				5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */,
 				F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */,
+				51805C122B81853800D17109 /* IntakeMedication.swift in Sources */,
 				A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */,
+				51A027672B82CDA300A195C8 /* MedicationContentView.swift in Sources */,
 				653A2551283387FE005D4D48 /* Intake.swift in Sources */,
 				2FE5DC3629EDD7CA004B9AB4 /* HealthKitPermissions.swift in Sources */,
 				5661552E2AB854C000209B80 /* PackageHelper.swift in Sources */,
@@ -1474,6 +1514,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordSpezi/SpeziMedication.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 		5661551B2AB8384200209B80 /* XCRemoteSwiftPackageReference "swift-package-list" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FelixHerrmann/swift-package-list";
@@ -1612,6 +1660,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2FE750CA2A87240100723EAE /* XCRemoteSwiftPackageReference "SpeziMockWebService" */;
 			productName = SpeziMockWebService;
+		};
+		51805C172B81898700D17109 /* SpeziMedication */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51805C162B81898700D17109 /* XCRemoteSwiftPackageReference "SpeziMedication" */;
+			productName = SpeziMedication;
 		};
 		5661551C2AB8384200209B80 /* SwiftPackageList */ = {
 			isa = XCSwiftPackageProductDependency;
