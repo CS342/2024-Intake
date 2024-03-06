@@ -90,14 +90,13 @@ struct HomeView: View {
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
                 case .smoking: SmokingHistoryView()
-//                    case .chat: LLMAssistantView(presentingAccount: $presentingAccount)
-//                    case .allergies: AllergyList()
+                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
+                case .allergies: AllergyList()
                 case .surgical: SurgeryView()
                 case .medical: MedicalHistoryView()
                 case .medication: MedicationContentView()
                 case .menstrual: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
-                default: SocialHistoryQuestionView()
                 }
             }
         }
