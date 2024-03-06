@@ -4,16 +4,21 @@
 //
 //  Created by Akash Gupta on 2/28/24.
 //
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
+//
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
 
 import Foundation
 import SpeziFHIR
 import SwiftUI
 
-var reachedEnd = false
 
 struct HeaderTitle: View {
-    let title: String
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    let title: String
     var nextView: NavigationViews
 
     var body: some View {
@@ -21,7 +26,7 @@ struct HeaderTitle: View {
             Text(title)
             Spacer()
             Button(action: {
-                navigationPath.path.append(nextView) // You would change this to use the `path` variable
+                navigationPath.path.append(nextView)
             }) {
                 Text("EDIT")
                     .foregroundColor(.blue)
@@ -33,30 +38,6 @@ struct HeaderTitle: View {
 }
 
 struct ScrollablePDF: View {
-    @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-
-    var body: some View {
-        VStack {
-            Form {
-                PatientInfo()
-                ChiefComplaint()
-                ConditionSection()
-                SurgerySection()
-                MedicationSection()
-                Allergy()
-                //                    DatePicker("Last Menstrual Period", selection: $lastMenstrualPeriod, displayedComponents: .date)
-                //            smokingHistorySection
-            }
-            .navigationTitle("Patient Form")
-            .onAppear(perform: {
-                reachedEnd = true
-            })
-            ExportButton()
-                .padding()
-        }
-    }
-    
     private struct ConditionSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -209,13 +190,30 @@ struct ScrollablePDF: View {
             }
         }
     }
-}
+    
+    
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(ReachedEndWrapper.self) private var end
 
-
-
-#Preview {
-    ScrollablePDF()
-        .previewWith {
-            FHIRStore()
+    
+    var body: some View {
+        VStack {
+            Form {
+                PatientInfo()
+                ChiefComplaint()
+                ConditionSection()
+                SurgerySection()
+                MedicationSection()
+                Allergy()
+            }
+            .navigationTitle("Patient Form")
+            .onAppear(perform: {
+                end.reachedEnd = true
+            })
+            ExportButton()
+                .padding()
         }
+    }
 }
+

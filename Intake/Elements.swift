@@ -31,13 +31,12 @@ struct SkipButton: View {
 
 struct SubmitButton: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(ReachedEndWrapper.self) private var end
     var nextView: NavigationViews
 
     var body: some View {
         Button(action: {
-            // Save output to Firestore and navigate to next screen
-            // Still need to save output to Firestore
-            if reachedEnd {
+            if end.reachedEnd {
                 navigationPath.path.append(NavigationViews.pdfs)
             } else {
                 navigationPath.path.append(nextView)
