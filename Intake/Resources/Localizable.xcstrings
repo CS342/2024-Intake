@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " " : {
+
+    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -8,6 +11,12 @@
 
     },
     "%@ Reactions" : {
+
+    },
+    "20 pack years" : {
+
+    },
+    "35" : {
 
     },
     "ACCOUNT_NEXT" : {
@@ -73,10 +82,16 @@
     "Additional details: %@" : {
 
     },
+    "Age:" : {
+
+    },
     "AI-assisted medical intake" : {
 
     },
     "Allergies" : {
+
+    },
+    "Allergies:" : {
 
     },
     "Allergy" : {
@@ -86,6 +101,15 @@
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "by mouth" : {
+
+    },
+    "Chief Complaint here" : {
+
+    },
+    "Chief Complaint:" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -185,6 +209,15 @@
         }
       }
     },
+    "Date" : {
+
+    },
+    "Date of Birth:" : {
+
+    },
+    "Date:" : {
+
+    },
     "DELETE_REACTION" : {
 
     },
@@ -194,10 +227,16 @@
     "Do you currently smoke or have you in the past?" : {
 
     },
+    "Dosage" : {
+
+    },
     "Download your medical records from your health system." : {
 
     },
     "END_CALENDAR" : {
+
+    },
+    "Female" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -275,6 +314,15 @@
     "It looks like an unexpected view was appended to the NavigationPath!" : {
 
     },
+    "January 1, 1980" : {
+
+    },
+    "John Doe" : {
+
+    },
+    "Last Menstrural Period" : {
+
+    },
     "LICENSE_INFO_TITLE" : {
       "localizations" : {
         "en" : {
@@ -297,13 +345,25 @@
     "Medical History" : {
 
     },
+    "MEDICAL HISTORY" : {
+
+    },
+    "Medical History Here" : {
+
+    },
     "Medical Intake Form" : {
+
+    },
+    "Medication" : {
 
     },
     "Medication Settings" : {
 
     },
     "Medications" : {
+
+    },
+    "Medications:" : {
 
     },
     "Message" : {
@@ -364,6 +424,9 @@
           }
         }
       }
+    },
+    "Name:" : {
+
     },
     "Next" : {
 
@@ -426,10 +489,19 @@
         }
       }
     },
+    "once a day" : {
+
+    },
     "Optional symptoms: heavy bleeding, cramps, etc." : {
 
     },
     "Other important questions." : {
+
+    },
+    "Past Medical History:" : {
+
+    },
+    "Past Surgical History:" : {
 
     },
     "PDF Export Placeholder" : {
@@ -471,6 +543,9 @@
         }
       }
     },
+    "Reaction" : {
+
+    },
     "Reactions" : {
 
     },
@@ -494,6 +569,9 @@
 
     },
     "Review of Systems" : {
+
+    },
+    "Review of Systems:" : {
 
     },
     "Review summary of your medical history." : {
@@ -542,10 +620,16 @@
     "SETTINGS_TITLE" : {
 
     },
+    "Sex:" : {
+
+    },
     "Share with provider of your choice." : {
 
     },
     "Skip" : {
+
+    },
+    "Smoking history" : {
 
     },
     "Social History" : {
