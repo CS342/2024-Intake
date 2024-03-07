@@ -40,8 +40,8 @@ struct AddSurgery: View {
     var body: some View {
         Button(action: {
             let newSurgery = SurgeryItem(surgeryName: "Surgery")
-            data.surgeries.append(newSurgery)
             navigationPath.path.append(NavigationViews.inspect)
+            data.surgeries.append(newSurgery)
         }) {
             Image(systemName: "plus")
                 .accessibilityLabel(Text("ADD_SURGERY"))
@@ -82,18 +82,22 @@ struct SurgeryView: View {
     
     var body: some View {
         @Bindable var data = data
-        VStack {
-            surgeryForm
-            SubmitButton(nextView: NavigationViews.medication)
-                .padding()
-        }
-        .task {
-            await self.getProcedures()
-        }
-        .navigationTitle("Surgical History")
-        .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
-        .toolbar {
-            EditButton()
+        if data.surgeriesLoaded {
+            VStack {
+                surgeryForm
+                SubmitButton(nextView: NavigationViews.medication)
+                    .padding()
+            }
+            .navigationTitle("Surgical History")
+            .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
+            .toolbar {
+                EditButton()
+            }
+        } else {
+            ProgressView()
+                .task {
+                    await self.getProcedures()
+                }
         }
     }
     
@@ -168,6 +172,7 @@ struct SurgeryView: View {
         }
         
         data.surgeries = await self.filter(surgeries: data.surgeries)
+        data.surgeriesLoaded = true
     }
     
     func addNewProcedure(procedure: ModelsR4.Procedure) {
@@ -280,6 +285,9 @@ struct SurgeryView: View {
         var LLMResponse = try await self.queryLLM(surgeryNames: surgeryNames)
         
         var filteredNames = LLMResponse.components(separatedBy: ", ")
+        var filteredSurgeries = surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
+        
+        
         print("FILTER: ")
         print(filteredNames)
         print("________________")
@@ -289,10 +297,10 @@ struct SurgeryView: View {
         print("________________")
         
         print("AFTER")
-        print(surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) })
+        print(self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames))
         print("________________")
         
-        return surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
+        return self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames)
     }
     
     func queryLLM(surgeryNames: [String]) async throws -> String {
@@ -306,6 +314,17 @@ struct SurgeryView: View {
         }
         
         return responseText
+    }
+    
+    func cleanSurgeryNames(surgeries: [SurgeryItem], filteredNames: [String]) -> [SurgeryItem] {
+        var cleaned = surgeries
+        for index in cleaned.indices {
+            let oldName = cleaned[index].surgeryName
+            if let newName: String = filteredNames.first(where: { oldName.contains($0) }) {
+                cleaned[index].surgeryName = newName
+            }
+        }
+        return cleaned
     }
 }
 
