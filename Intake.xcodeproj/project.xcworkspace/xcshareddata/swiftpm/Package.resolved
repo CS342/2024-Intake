@@ -192,7 +192,7 @@
     {
       "identity" : "spezichat",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/StanfordSpezi/SpeziChat.git",
+      "location" : "https://github.com/StanfordSpezi/SpeziChat",
       "state" : {
         "revision" : "eae5c15b211f18e09aa98de63ce119629320afeb",
         "version" : "0.1.8"

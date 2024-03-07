@@ -76,6 +76,9 @@ struct AllergyList: View {
         }
         .navigationBarItems(trailing: EditButton())
         .navigationTitle("Allergies")
+        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
+            Text("Chat")
+        })
     }
         
     private var allergyEntries: some View {
@@ -128,7 +131,7 @@ struct AllergyList: View {
     }
     
     private func submitAction() {
-        navigationPath.path.append(NavigationViews.social)
+        navigationPath.path.append(NavigationViews.menstrual)
     }
     
     private func addAllergyAction() {
