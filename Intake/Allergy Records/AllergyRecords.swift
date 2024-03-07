@@ -15,10 +15,14 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-struct AllergyItem: Identifiable {
+struct AllergyItem: Identifiable, Equatable {
     let id = UUID()
     var allergy: String
     var reaction: [ReactionItem]
+    
+    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
+        lhs.allergy == rhs.allergy
+    }
 }
 
 // struct ReactionViewDetails {

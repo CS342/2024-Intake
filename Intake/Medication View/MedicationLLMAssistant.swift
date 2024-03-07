@@ -76,6 +76,7 @@ struct MedicationLLMAssistant: View {
                     modelType: .gpt3_5Turbo,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medications.\
+                        You do not have the ability to add or delete medications, so please tell the patient that.\
                         Please use everyday layman terms and avoid using complex medical terminology.\
                         Only ask one question or prompt at a time, and keep your questions brief (one to two short sentences).
                     """

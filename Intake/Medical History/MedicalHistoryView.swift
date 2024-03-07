@@ -15,7 +15,7 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-struct MedicalHistoryItem: Identifiable {
+struct MedicalHistoryItem: Identifiable, Equatable {
     var id = UUID()
     var condition: String
     var active: Bool
