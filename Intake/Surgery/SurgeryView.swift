@@ -24,9 +24,9 @@ struct SurgeryItem: Identifiable {
     var endDate: FHIRDate?
     var status: String?
     var location: String?
-    var notes: [String]?
-    var bodySites: [String]?
-    var complications: [CodeableConcept]?
+    var notes: [String] = []
+    var bodySites: [String] = []
+    var complications: [String] = []
 }
 
 struct AddSurgery: View {
@@ -56,21 +56,12 @@ struct InspectSurgeryView: View {
             Section(header: Text("Procedure")) {
                 TextField("Surgery Name", text: $surgery.surgeryName)
             }
-            // Date first
-//            Section(header: Text("Complications")) {
-//                if surgery.complications != nil {
-//                    ForEach(surgery.complications.indices, id: \.self) { index in
-//                        TextField("Complication", text: $surgery.complications?[index].text)
-//                    }
-//                }
-//            }
-//            if let complications = surgery.complications {
-//                Section(header: Text("Complications")) {
-//                    ForEach(complications.indices, id: \.self) { index in
-//                        TextField("Complication", text: $surgery.complications?[index].text ?? "")
-//                    }
-//                }
-//            }
+            // Date
+            // Status
+            // Location
+            // Body Sites (if any)
+            // Complications (if any)
+            // Notes (if any)
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
     }
@@ -146,28 +137,10 @@ struct SurgeryView: View {
             newEntry.surgeryName = name.coding?[0].display?.value?.string ?? "Unknown"
         }
         
-        let status = procedure.status
-        newEntry.status =
-            switch status.value ?? EventStatus.unknown {
-            case .completed: "Completed"
-            case .inProgress: "In Progress"
-            case .notDone: "Not Done"
-            case .onHold: "On Hold"
-            case .stopped: "Stopped"
-            case .enteredInError: "Entered in Error"
-            default: "Unknown"
-            }
+        newEntry.status = self.getStatus(status: procedure.status)
         
         if let date = procedure.performed {
-            switch date {
-            case .period(let period):
-                newEntry.startDate = period.start?.value?.date
-                newEntry.endDate = period.end?.value?.date
-            case .dateTime(let dateTime):
-                newEntry.startDate = dateTime.value?.date
-            default:
-                print("No Date")
-            }
+            newEntry = self.unpackDate(performed: date, surgery: newEntry)
         }
         
         if let location = procedure.location {
@@ -175,7 +148,7 @@ struct SurgeryView: View {
         }
         
         if let notes = procedure.note {
-            let stringNotes: [String?] = notes.map { $0.text.value?.string}
+            let stringNotes: [String?] = notes.map { $0.text.value?.string }
             newEntry.notes = stringNotes.compactMap { $0 }
         }
         
@@ -185,11 +158,39 @@ struct SurgeryView: View {
         }
         
         if let complications = procedure.complication {
-            let stringComplications: [String?] = complications.map { $0.text }
-            newEntry.complications = complications
+            let stringComplications: [String?] = complications.map { $0.text?.value?.string }
+            newEntry.complications = stringComplications.compactMap { $0 }
         }
         
+        print(newEntry)
+        
         data.surgeries.append(newEntry)
+    }
+    
+    func getStatus(status: FHIRPrimitive<EventStatus>) -> String {
+        switch status.value ?? EventStatus.unknown {
+        case .completed: "Completed"
+        case .inProgress: "In Progress"
+        case .notDone: "Not Done"
+        case .onHold: "On Hold"
+        case .stopped: "Stopped"
+        case .enteredInError: "Entered in Error"
+        default: "Unknown"
+        }
+    }
+    
+    func unpackDate(performed: Procedure.PerformedX, surgery: SurgeryItem) -> SurgeryItem {
+        var result = surgery
+        switch performed {
+        case .period(let period):
+            result.startDate = period.start?.value?.date
+            result.endDate = period.end?.value?.date
+        case .dateTime(let dateTime):
+            result.startDate = dateTime.value?.date
+        default:
+            print("No Date")
+        }
+        return result
     }
 }
 
