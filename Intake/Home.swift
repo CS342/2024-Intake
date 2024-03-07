@@ -96,7 +96,7 @@ struct HomeView: View {
                 case .social: SocialHistoryQuestionView()
                 case .medication: MedicationContentView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
-                case .export: ExportView()
+                case .export: ContentView()
                 }
             }
         }
