@@ -20,13 +20,13 @@ import SwiftUI
 struct SurgeryItem: Identifiable {
     var id = UUID()
     var surgeryName: String = ""
-    var dateLabel: String?
-    var date: String?
-//    var location: String?
+    var startDate: FHIRDate?
+    var endDate: FHIRDate?
+    var status: String?
+    var location: String?
+    var notes: [String]?
+    var bodySites: [String]?
     var complications: [CodeableConcept]?
-//    var notes: String?
-//    var status: String?
-//    var code: String?
 }
 
 struct AddSurgery: View {
@@ -143,32 +143,49 @@ struct SurgeryView: View {
         var newEntry = SurgeryItem()
         
         if let name = procedure.code {
-            newEntry.surgeryName = name.text?.value?.string ?? "Surgery"
+            newEntry.surgeryName = name.coding?[0].display?.value?.string ?? "Unknown"
         }
         
-        // allergies.append(result.code?.text?.value as? FHIRString ?? "No Allergy")
+        let status = procedure.status
+        newEntry.status =
+            switch status.value ?? EventStatus.unknown {
+            case .completed: "Completed"
+            case .inProgress: "In Progress"
+            case .notDone: "Not Done"
+            case .onHold: "On Hold"
+            case .stopped: "Stopped"
+            case .enteredInError: "Entered in Error"
+            default: "Unknown"
+            }
         
-        var newDate: String
-        var dateLabel: String
         if let date = procedure.performed {
             switch date {
-            case .age:
-                dateLabel = "Age"
-            case .dateTime:
-                
-                dateLabel = "Date"
-            case .period:
-                
-                dateLabel = "Period"
-            case .range:
-                
-                dateLabel = "Range"
-            case .string:
-                dateLabel = "Date"
+            case .period(let period):
+                newEntry.startDate = period.start?.value?.date
+                newEntry.endDate = period.end?.value?.date
+            case .dateTime(let dateTime):
+                newEntry.startDate = dateTime.value?.date
+            default:
+                print("No Date")
             }
         }
         
+        if let location = procedure.location {
+            newEntry.location = location.display?.value?.string ?? ""
+        }
+        
+        if let notes = procedure.note {
+            let stringNotes: [String?] = notes.map { $0.text.value?.string}
+            newEntry.notes = stringNotes.compactMap { $0 }
+        }
+        
+        if let bodySites = procedure.bodySite {
+            let stringBodySites: [String?] = bodySites.map { $0.text?.value?.string }
+            newEntry.bodySites = stringBodySites.compactMap { $0 }
+        }
+        
         if let complications = procedure.complication {
+            let stringComplications: [String?] = complications.map { $0.text }
             newEntry.complications = complications
         }
         
