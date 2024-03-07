@@ -18,9 +18,7 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
-
-// In the future: make this a class for easier pass by reference
-struct SurgeryItem: Identifiable {
+struct SurgeryItem: Identifiable, Equatable {
     var id = UUID()
     var surgeryName: String = ""
     var date: String = ""
