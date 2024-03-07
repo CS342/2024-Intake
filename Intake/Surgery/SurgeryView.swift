@@ -14,9 +14,12 @@
 import Foundation
 import ModelsR4
 import SpeziFHIR
+import SpeziLLM
+import SpeziLLMOpenAI
 import SwiftUI
 
 
+// In the future: make this a class for easier pass by reference
 struct SurgeryItem: Identifiable {
     var id = UUID()
     var surgeryName: String = ""
@@ -70,8 +73,12 @@ struct InspectSurgeryView: View {
 struct SurgeryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
+    @Environment(LLMRunner.self) var runner
     
     @State private var addingNewSurgery = false
+    
+    private var LLMFiltering = true
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
     var body: some View {
         @Bindable var data = data
@@ -80,8 +87,8 @@ struct SurgeryView: View {
             SubmitButton(nextView: NavigationViews.medication)
                 .padding()
         }
-        .onAppear {
-            self.getProcedures()
+        .task {
+            await self.getProcedures()
         }
         .navigationTitle("Surgical History")
         .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
@@ -111,12 +118,43 @@ struct SurgeryView: View {
             }
         }
     }
+    
+    init() {
+        let systemPrompt = """
+            You are a helpful assistant that filters lists of procedures. You will be given\
+            an array of strings. Each string will be the name of a procedure, but we only want
+            to keep the names of relevant surgeries.
+        
+            For example, if you are given the following list:
+            Mammography (procedure), Certification procedure (procedure), Cytopathology\
+            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
+            (procedure),
+        
+            you should return something like this:
+            Transplant of kidney, Mammography.
+        
+            In your response, return only the name of the surgeries. Ignore words in parenthesis
+            like (procedure) or (regime/treatment).
+        
+            Do not make anything up, and do not change the name of the surgeries under any
+            circumstances. Thank you!
+        """
+        
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: systemPrompt
+                )
+            )
+        )
+    }
 
     func delete(at offsets: IndexSet) {
         data.surgeries.remove(atOffsets: offsets)
     }
 
-    func getProcedures() {
+    func getProcedures() async {
         let procedures = fhirStore.procedures
 
         for pro in procedures where !data.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
@@ -128,6 +166,8 @@ struct SurgeryView: View {
                 print("This recourse is not an r4 Proceure")
             }
         }
+        
+        data.surgeries = await self.filter(surgeries: data.surgeries)
     }
     
     func addNewProcedure(procedure: ModelsR4.Procedure) {
@@ -162,8 +202,6 @@ struct SurgeryView: View {
             newEntry.complications = stringComplications.compactMap { $0 }
         }
         
-        print(newEntry)
-        
         data.surgeries.append(newEntry)
     }
     
@@ -191,6 +229,83 @@ struct SurgeryView: View {
             print("No Date")
         }
         return result
+    }
+    
+    // Filter procedures
+    
+    func filter(surgeries: [SurgeryItem]) async -> [SurgeryItem] {
+        let stopWords = [
+            "screen",
+            "medication",
+            "examination",
+            "assess",
+            "development",
+            "notification",
+            "clarification",
+            "discussion ",
+            "option",
+            "review",
+            "evaluation",
+            "management",
+            "consultation",
+            "referral",
+            "interpretation",
+            "discharge",
+            "certification",
+            "preparation"
+        ]
+        
+        var manualFilter = surgeries.filter { !self.containsAnyWords(item: $0.surgeryName.lowercased(), words: stopWords) }
+        
+        if !self.LLMFiltering {
+            return manualFilter
+        }
+        
+        do {
+            return try await self.LLMFilter(surgeries: manualFilter)
+        } catch {
+            print("Error filtering with LLM: \(error)")
+            print("Returning manually filtered surgeries")
+            return manualFilter
+        }
+    }
+    
+    func containsAnyWords(item: String, words: [String]) -> Bool {
+        words.contains { item.contains($0) }
+    }
+    
+    func LLMFilter(surgeries: [SurgeryItem]) async throws -> [SurgeryItem] {
+        let surgeryNames = surgeries.map { $0.surgeryName }
+        
+        var LLMResponse = try await self.queryLLM(surgeryNames: surgeryNames)
+        
+        var filteredNames = LLMResponse.components(separatedBy: ", ")
+        print("FILTER: ")
+        print(filteredNames)
+        print("________________")
+        
+        print("BEFORE")
+        print(surgeries)
+        print("________________")
+        
+        print("AFTER")
+        print(surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) })
+        print("________________")
+        
+        return surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
+    }
+    
+    func queryLLM(surgeryNames: [String]) async throws -> String {
+        var responseText = ""
+        
+        await MainActor.run {
+            session.context.append(userInput: surgeryNames.joined(separator: ", "))
+        }
+        for try await token in try await session.generate() {
+            responseText.append(token)
+        }
+        
+        return responseText
     }
 }
 
