@@ -23,7 +23,7 @@ import SwiftUI
 struct SurgeryItem: Identifiable {
     var id = UUID()
     var surgeryName: String = ""
-    var startDate: String = ""
+    var date: String = ""
     var endDate: String = ""
     var status: String = ""
     var location: String = ""
@@ -61,7 +61,7 @@ struct InspectSurgeryView: View {
             }
             // Date
             Section(header: Text("Performed")) {
-                TextField("YYYY-MM-DD", text: $surgery.startDate)
+                TextField("YYYY-MM-DD", text: $surgery.date)
             }
             // Status
             Section(header: Text("Status")) {
@@ -232,10 +232,10 @@ struct SurgeryView: View {
         var result = surgery
         switch performed {
         case .period(let period):
-            result.startDate = period.start?.value?.date.description ?? ""
+            result.date = period.start?.value?.date.description ?? ""
             result.endDate = period.end?.value?.date.description ?? ""
         case .dateTime(let dateTime):
-            result.startDate = dateTime.value?.date.description ?? ""
+            result.date = dateTime.value?.date.description ?? ""
         default:
             print("No Date")
         }
@@ -266,7 +266,7 @@ struct SurgeryView: View {
             "preparation"
         ]
         
-        var manualFilter = surgeries.filter { !self.containsAnyWords(item: $0.surgeryName.lowercased(), words: stopWords) }
+        let manualFilter = surgeries.filter { !self.containsAnyWords(item: $0.surgeryName.lowercased(), words: stopWords) }
         
         if !self.LLMFiltering {
             return manualFilter
@@ -288,9 +288,9 @@ struct SurgeryView: View {
     func LLMFilter(surgeries: [SurgeryItem]) async throws -> [SurgeryItem] {
         let surgeryNames = surgeries.map { $0.surgeryName }
         
-        var LLMResponse = try await self.queryLLM(surgeryNames: surgeryNames)
+        let LLMResponse = try await self.queryLLM(surgeryNames: surgeryNames)
         
-        var filteredNames = LLMResponse.components(separatedBy: ", ")
+        let filteredNames = LLMResponse.components(separatedBy: ", ")
         var filteredSurgeries = surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
         
         return self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames)
