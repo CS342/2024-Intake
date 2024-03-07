@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -294,6 +297,9 @@
     "List your current medications." : {
 
     },
+    "Location" : {
+
+    },
     "Main reason(s) for visit" : {
 
     },
@@ -438,6 +444,9 @@
     "Other important questions." : {
 
     },
+    "Performed" : {
+
+    },
     "Please add your past surgeries" : {
 
     },
@@ -566,6 +575,9 @@
     "START_CALENDAR" : {
 
     },
+    "Status" : {
+
+    },
     "Submit" : {
 
     },
@@ -579,9 +591,6 @@
 
     },
     "Summary" : {
-
-    },
-    "Surgery Name" : {
 
     },
     "Surgical History" : {
@@ -675,6 +684,9 @@
           }
         }
       }
+    },
+    "YYYY-MM-DD" : {
+
     }
   },
   "version" : "1.0"

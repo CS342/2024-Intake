@@ -23,10 +23,10 @@ import SwiftUI
 struct SurgeryItem: Identifiable {
     var id = UUID()
     var surgeryName: String = ""
-    var startDate: FHIRDate?
-    var endDate: FHIRDate?
-    var status: String?
-    var location: String?
+    var startDate: String = ""
+    var endDate: String = ""
+    var status: String = ""
+    var location: String = ""
     var notes: [String] = []
     var bodySites: [String] = []
     var complications: [String] = []
@@ -57,14 +57,20 @@ struct InspectSurgeryView: View {
     var body: some View {
         Form {
             Section(header: Text("Procedure")) {
-                TextField("Surgery Name", text: $surgery.surgeryName)
+                TextField("", text: $surgery.surgeryName)
             }
             // Date
+            Section(header: Text("Performed")) {
+                TextField("YYYY-MM-DD", text: $surgery.startDate)
+            }
             // Status
+            Section(header: Text("Status")) {
+                TextField("", text: $surgery.status)
+            }
             // Location
-            // Body Sites (if any)
-            // Complications (if any)
-            // Notes (if any)
+            Section(header: Text("Location")) {
+                TextField("", text: $surgery.location)
+            }
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
     }
@@ -226,10 +232,10 @@ struct SurgeryView: View {
         var result = surgery
         switch performed {
         case .period(let period):
-            result.startDate = period.start?.value?.date
-            result.endDate = period.end?.value?.date
+            result.startDate = period.start?.value?.date.description ?? ""
+            result.endDate = period.end?.value?.date.description ?? ""
         case .dateTime(let dateTime):
-            result.startDate = dateTime.value?.date
+            result.startDate = dateTime.value?.date.description ?? ""
         default:
             print("No Date")
         }
@@ -286,19 +292,6 @@ struct SurgeryView: View {
         
         var filteredNames = LLMResponse.components(separatedBy: ", ")
         var filteredSurgeries = surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
-        
-        
-        print("FILTER: ")
-        print(filteredNames)
-        print("________________")
-        
-        print("BEFORE")
-        print(surgeries)
-        print("________________")
-        
-        print("AFTER")
-        print(self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames))
-        print("________________")
         
         return self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames)
     }
