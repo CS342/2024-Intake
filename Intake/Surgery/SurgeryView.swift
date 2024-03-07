@@ -96,6 +96,9 @@ struct SurgeryView: View {
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
+//             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
+//                 Text("Chat")
+//             })
             .toolbar {
                 EditButton()
             }

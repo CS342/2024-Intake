@@ -73,7 +73,13 @@
     "ADD_SURGERY" : {
 
     },
+    "Additional Details" : {
+
+    },
     "Additional details: %@" : {
+
+    },
+    "Additional Symptoms" : {
 
     },
     "AI-assisted medical intake" : {
@@ -85,10 +91,16 @@
     "Allergy" : {
 
     },
+    "Allergy Assistant" : {
+
+    },
     "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "Chat" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -194,16 +206,22 @@
     "DETAILS" : {
 
     },
-    "Do you currently smoke or have you in the past?" : {
+    "Download your medical records from your health system." : {
 
     },
-    "Download your medical records from your health system." : {
+    "End Date: %@" : {
 
     },
     "Edit Surgery" : {
 
     },
     "END_CALENDAR" : {
+
+    },
+    "Ex: Heavy bleeding on second day, fatigue..." : {
+
+    },
+    "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -306,6 +324,9 @@
     "Medical History" : {
 
     },
+    "Medical History Assistant" : {
+
+    },
     "Medical Intake Form" : {
 
     },
@@ -313,6 +334,12 @@
 
     },
     "Medications" : {
+
+    },
+    "Medications Assistant" : {
+
+    },
+    "Menstrual Information" : {
 
     },
     "Message" : {
@@ -380,9 +407,6 @@
     "Next" : {
 
     },
-    "Next: Smoking History" : {
-
-    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -438,10 +462,10 @@
         }
       }
     },
-    "Optional symptoms: heavy bleeding, cramps, etc." : {
+    "Other important questions." : {
 
     },
-    "Other important questions." : {
+    "Pack years: %.2f" : {
 
     },
     "Performed" : {
@@ -542,16 +566,16 @@
         }
       }
     },
-    "Select approx. end date." : {
-
-    },
-    "Select approx. start date." : {
-
-    },
     "Select End Date" : {
 
     },
     "Select Start Date" : {
+
+    },
+    "Select your last period's end date" : {
+
+    },
+    "Select your last period's start date" : {
 
     },
     "SETTINGS" : {
@@ -566,10 +590,16 @@
     "Skip" : {
 
     },
+    "Smoking History" : {
+
+    },
     "Social History" : {
 
     },
     "Start" : {
+
+    },
+    "Start Date: %@" : {
 
     },
     "START_CALENDAR" : {
@@ -590,10 +620,19 @@
     "Summarize your surgical history." : {
 
     },
-    "Summary" : {
+    "Surgery" : {
+
+    },
+    "Surgery Assistant" : {
+
+    },
+    "Surgery Name" : {
 
     },
     "Surgical History" : {
+
+    },
+    "Symptoms: %@" : {
 
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
@@ -648,16 +687,10 @@
         }
       }
     },
-    "Thank you for completing Social History!" : {
-
-    },
     "This application will help autocomplete your medical intake form." : {
 
     },
     "Together we will summarize..." : {
-
-    },
-    "Total calculated result for smoking: %.2f pack years" : {
 
     },
     "Use HealthKit Resources" : {
@@ -672,21 +705,12 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
+    
+    "What is your surgical history?" : {
 
     },
-    "Your last period was from %@ to %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Your last period was from %1$@ to %2$@"
-          }
-        }
-      }
-    },
-    "YYYY-MM-DD" : {
-
+    "Your Responses" : {
+    
     }
   },
   "version" : "1.0"
