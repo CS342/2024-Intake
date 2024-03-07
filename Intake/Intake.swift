@@ -22,6 +22,7 @@ class DataStore {
     var medicationData: Set<IntakeMedicationInstance> = []
     var surgeries: [SurgeryItem] = []
     var chiefComplaint: String = ""
+    var surgeriesLoaded = false
 }
 
 @main

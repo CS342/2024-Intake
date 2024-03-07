@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -209,6 +212,9 @@
     "End Date: %@" : {
 
     },
+    "Edit Surgery" : {
+
+    },
     "END_CALENDAR" : {
 
     },
@@ -309,6 +315,9 @@
     "List your current medications." : {
 
     },
+    "Location" : {
+
+    },
     "Main reason(s) for visit" : {
 
     },
@@ -392,6 +401,9 @@
         }
       }
     },
+    "New Surgery" : {
+
+    },
     "Next" : {
 
     },
@@ -456,10 +468,19 @@
     "Pack years: %.2f" : {
 
     },
+    "Performed" : {
+
+    },
+    "Please add your past surgeries" : {
+
+    },
     "Please list conditions you have had" : {
 
     },
     "Primary Concern" : {
+
+    },
+    "Procedure" : {
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
@@ -584,6 +605,9 @@
     "START_CALENDAR" : {
 
     },
+    "Status" : {
+
+    },
     "Submit" : {
 
     },
@@ -681,11 +705,12 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
+    
     "What is your surgical history?" : {
 
     },
     "Your Responses" : {
-
+    
     }
   },
   "version" : "1.0"
