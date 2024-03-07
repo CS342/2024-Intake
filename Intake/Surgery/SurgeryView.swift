@@ -15,7 +15,7 @@ import Foundation
 import SpeziFHIR
 import SwiftUI
 
-struct SurgeryItem: Identifiable {
+struct SurgeryItem: Identifiable, Equatable {
     var id = UUID()
     var surgeryName: String
     var date: String?
