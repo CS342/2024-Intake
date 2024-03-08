@@ -10,7 +10,7 @@
     "%@ Reactions" : {
 
     },
-    "20 pack years" : {
+    "0 pack years" : {
 
     },
     "35" : {
@@ -413,6 +413,9 @@
     "Next: Smoking History" : {
 
     },
+    "No known allergies" : {
+
+    },
     "No medical conditions" : {
 
     },
@@ -489,6 +492,9 @@
     "Past Surgical History:" : {
 
     },
+    "Patient did not enter chief complaint." : {
+
+    },
     "Please list conditions you have had" : {
 
     },
@@ -524,9 +530,6 @@
           }
         }
       }
-    },
-    "Reaction" : {
-
     },
     "Reactions" : {
 

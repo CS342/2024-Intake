@@ -7,10 +7,10 @@
 //
 
 // swiftlint disable: closure_body_length
+import PDFKit
+import SpeziFHIR
 import SwiftUI
 import UIKit
-import SpeziFHIR
-import PDFKit
 
 
 struct ContentView_Previews: PreviewProvider {
@@ -112,13 +112,12 @@ struct ContentView: View {
                     Spacer()
                         .frame(height: 20)
                     
-
                     
                     VStack(alignment: .leading) {
                         Text("Chief Complaint:").fontWeight(.bold)
                         if data.chiefComplaint.isEmpty {
                             Text("Patient did not enter chief complaint.")
-                        }else {
+                        } else {
                             Text(data.chiefComplaint)
                         }
                     }
@@ -160,7 +159,7 @@ struct ContentView: View {
                         if data.medicationData.isEmpty {
                             Text("No medications")
                         } else {
-                            List(Array(data.medicationData), id: \.id){ item in
+                            List(Array(data.medicationData), id: \.id) { item in
                                 HStack {
                                     Text(item.type.localizedDescription)
                                     Text(item.dosage.localizedDescription)
@@ -184,7 +183,6 @@ struct ContentView: View {
                                         Text(reactionItem.reaction)
                                     }
                                 }
-                                
                             }
                         }
                     }
@@ -228,7 +226,10 @@ struct ContentView: View {
             return nil
         }
         
-        let pageSize = CGSize(width: 612, height: proposedHeight)  // US Letter
+        // error: proposed height is not expanding as necessary
+        //let pageSize = CGSize(width: 612, height: proposedHeight)  // US Letter
+        
+        let pageSize = CGSize(width: 612, height: 920)  // US Letter
         
         renderer.proposedSize = .init(pageSize)
         
@@ -245,7 +246,7 @@ struct ContentView: View {
                 }
                 
                 pdf.beginPDFPage(nil)
-                pdf.translateBy(x: 0, y: 0)
+                pdf.translateBy(x: 50, y: -50)
                 
                 context(pdf)
                 
