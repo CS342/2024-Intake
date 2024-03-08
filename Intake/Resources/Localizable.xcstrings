@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -88,10 +91,16 @@
     "Allergy" : {
 
     },
+    "Allergy Assistant" : {
+
+    },
     "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "Chat" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -203,6 +212,9 @@
     "End Date: %@" : {
 
     },
+    "Edit Surgery" : {
+
+    },
     "END_CALENDAR" : {
 
     },
@@ -303,10 +315,16 @@
     "List your current medications." : {
 
     },
+    "Location" : {
+
+    },
     "Main reason(s) for visit" : {
 
     },
     "Medical History" : {
+
+    },
+    "Medical History Assistant" : {
 
     },
     "Medical Intake Form" : {
@@ -316,6 +334,9 @@
 
     },
     "Medications" : {
+
+    },
+    "Medications Assistant" : {
 
     },
     "Menstrual Information" : {
@@ -379,6 +400,9 @@
           }
         }
       }
+    },
+    "New Surgery" : {
+
     },
     "Next" : {
 
@@ -444,10 +468,19 @@
     "Pack years: %.2f" : {
 
     },
+    "Performed" : {
+
+    },
+    "Please add your past surgeries" : {
+
+    },
     "Please list conditions you have had" : {
 
     },
     "Primary Concern" : {
+
+    },
+    "Procedure" : {
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
@@ -572,6 +605,9 @@
     "START_CALENDAR" : {
 
     },
+    "Status" : {
+
+    },
     "Submit" : {
 
     },
@@ -585,6 +621,9 @@
 
     },
     "Surgery" : {
+
+    },
+    "Surgery Assistant" : {
 
     },
     "Surgery Name" : {
@@ -666,6 +705,7 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
+    
     "What is your surgical history?" : {
 
     },
@@ -674,7 +714,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
-
+    
     },
     "*Click the details to view/edit the reactions" : {
 

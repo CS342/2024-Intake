@@ -15,7 +15,7 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-struct MedicalHistoryItem: Identifiable {
+struct MedicalHistoryItem: Identifiable, Equatable {
     var id = UUID()
     var condition: String
     var active: Bool
@@ -47,6 +47,9 @@ struct MedicalHistoryView: View {
             }
         }
         .navigationTitle("Medical History")
+        .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant(presentingAccount: .constant(false))) {
+            Text("Chat")
+        })
         .navigationBarItems(trailing: EditButton())
     }
 

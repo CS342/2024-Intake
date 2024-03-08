@@ -35,6 +35,7 @@ class DataStore {
 @Observable
 class ReachedEndWrapper {
     var reachedEnd = false
+    var surgeriesLoaded = false
 }
 
 @main
