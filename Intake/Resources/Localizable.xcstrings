@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " " : {
-
-    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -11,9 +8,6 @@
 
     },
     "%@ Reactions" : {
-
-    },
-    "07/03" : {
 
     },
     "20 pack years" : {
@@ -101,9 +95,6 @@
 
     },
     "Auto-fill Intake Form" : {
-
-    },
-    "by mouth" : {
 
     },
     "Chief Complaint:" : {
@@ -224,9 +215,6 @@
     "Do you currently smoke or have you in the past?" : {
 
     },
-    "Dosage" : {
-
-    },
     "Download your medical records from your health system." : {
 
     },
@@ -345,13 +333,7 @@
     "MEDICAL HISTORY" : {
 
     },
-    "Medical History Here" : {
-
-    },
     "Medical Intake Form" : {
-
-    },
-    "Medication" : {
 
     },
     "Medication Settings" : {
@@ -431,6 +413,15 @@
     "Next: Smoking History" : {
 
     },
+    "No medical conditions" : {
+
+    },
+    "No medications" : {
+
+    },
+    "No past surgeries" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -485,9 +476,6 @@
           }
         }
       }
-    },
-    "once a day" : {
-
     },
     "Optional symptoms: heavy bleeding, cramps, etc." : {
 

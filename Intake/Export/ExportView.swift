@@ -37,30 +37,47 @@ struct ContentView: View {
         ScrollView {
             self.wrappedBody
         }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        Task { await shareButtonTapped() }
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                            .accessibilityLabel("Share Intake form")
-                    }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    Task { await shareButtonTapped() }
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .accessibilityLabel("Share Intake form")
                 }
             }
-            .sheet(isPresented: $isSharing) {
-                if let pdfData = self.pdfData {
-                    ShareSheet(sharedItem: pdfData)
-                        .presentationDetents([.medium])
-                } else {
-                    ProgressView()
-                        .padding()
-                        .presentationDetents([.medium])
-                }
+        }
+        .sheet(isPresented: $isSharing) {
+            if let pdfData = self.pdfData {
+                ShareSheet(sharedItem: pdfData)
+                    .presentationDetents([.medium])
+            } else {
+                ProgressView()
+                    .padding()
+                    .presentationDetents([.medium])
             }
-            .onChange(of: pdfData) {
-                print("PDF data changed")
-            }
+        }
+        .onChange(of: pdfData) {
+            print("PDF data changed")
+        }
     }
+    
+    // FOR UPDATED SURGERY STRUCT
+//    ForEach(data.surgeries, id: \.self) { item in
+//        if !item.startDate.isEmpty && !item.endDate.isEmpty && !item.complications.isEmpty{
+//            HStack {
+//                Text(item.surgeryName)
+//                Text(item.startDate)
+//                Text(item.endDate)
+//                Text(item.complications)
+//            }
+//        }
+//    }
+    
+//                    ForEach([1,2,3], id: \.self) { item in
+//                        Text(String(item))
+//                    }
+    
     
     private var wrappedBody: some View {
         VStack {
@@ -73,7 +90,7 @@ struct ContentView: View {
                 Group {
                     HStack {
                         Text("Date:").fontWeight(.bold)
-                        Text("07/03")   // TODO
+                        Text(todayDateString())
                     }
                     HStack {
                         Text("Name:").fontWeight(.bold)
@@ -81,81 +98,99 @@ struct ContentView: View {
                     }
                     HStack {
                         Text("Date of Birth:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
                         Text("January 1, 1980")
                     }
                     HStack {
                         Text("Age:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
                         Text("35")
                     }
                     HStack {
                         Text("Sex:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
                         Text("Female")
                     }
-                    HStack {
-                        Text(" ")
-                    }
                     
-                    ForEach([1,2,3], id: \.self) { item in
-                        Text(String(item))
-                    }
+                    Spacer()
+                        .frame(height: 20)
+                    
+
                     
                     VStack(alignment: .leading) {
                         Text("Chief Complaint:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
-                        Text(data.chiefComplaint)
-                        //Text(data.chiefComplaint)
+                        if data.chiefComplaint.isEmpty {
+                            Text("Patient did not enter chief complaint.")
+                        }else {
+                            Text(data.chiefComplaint)
+                        }
                     }
                     
-                    HStack {
-                        Text(" ")
-                    }
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    
                     VStack(alignment: .leading) {
                         Text("Past Medical History:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
-                        Text("Medical History Here")
+                        if data.conditionData.isEmpty {
+                            Text("No medical conditions")
+                        } else {
+                            List(data.conditionData, id: \.id) { item in
+                                Text(item.condition)
+                            }
+                        }
                     }
                     
-                    HStack {
-                        Text(" ")
-                    }
+                    Spacer()
+                        .frame(height: 20)
+                    
                     VStack(alignment: .leading) {
                         Text("Past Surgical History:").fontWeight(.bold)
-                        // Replace with dynamic date of birth
-                        Text("Medical History Here")
+                        if data.surgeries.isEmpty {
+                            Text("No past surgeries")
+                        } else {
+                            List(data.surgeries, id: \.id) { item in
+                                Text(item.surgeryName)
+                            }
+                        }
                     }
                     
-                    HStack {
-                        Text(" ")
-                    }
+                    Spacer()
+                        .frame(height: 20)
                     
                     VStack(alignment: .leading) {
                         Text("Medications:").fontWeight(.bold)
-                        HStack {
-                            Text("Medication")
-                            Text("Dosage")
-                            Text("by mouth")
-                            Text("once a day")
+                        if data.medicationData.isEmpty {
+                            Text("No medications")
+                        } else {
+                            List(Array(data.medicationData), id: \.id){ item in
+                                HStack {
+                                    Text(item.type.localizedDescription)
+                                    Text(item.dosage.localizedDescription)
+                                }
+                            }
                         }
-                    }.padding(.leading, -50)
-                    
-                    HStack {
-                        Text(" ")
                     }
+                    
+                    Spacer()
+                        .frame(height: 20)
                     
                     VStack(alignment: .leading) {
                         Text("Allergies:").fontWeight(.bold)
-                        HStack {
-                            Text("Allergy")
-                            Text("Reaction")
+                        if data.allergyData.isEmpty {
+                            Text("No known allergies")
+                        } else {
+                            List(data.allergyData, id: \.id) { item in
+                                HStack {
+                                    Text(item.allergy)
+                                    List(item.reaction, id: \.id) { reactionItem in
+                                        Text(reactionItem.reaction)
+                                    }
+                                }
+                                
+                            }
                         }
                     }
                     
-                    HStack {
-                        Text(" ")
-                    }
+                    Spacer()
+                        .frame(height: 20)
                     
                     VStack(alignment: .leading) {
                         Text("Review of Systems:").fontWeight(.bold)
@@ -166,7 +201,7 @@ struct ContentView: View {
                         
                         HStack {
                             Text("Smoking history")
-                            Text("20 pack years")
+                            Text("0 pack years")
                         }
                     }
                 }
