@@ -64,6 +64,9 @@
         }
       }
     },
+    "Active" : {
+
+    },
     "Add Field" : {
 
     },
@@ -80,6 +83,9 @@
 
     },
     "Additional Symptoms" : {
+
+    },
+    "Age" : {
 
     },
     "AI-assisted medical intake" : {
@@ -200,6 +206,12 @@
         }
       }
     },
+    "Date of Birth" : {
+
+    },
+    "Date of Birth:" : {
+
+    },
     "DELETE_REACTION" : {
 
     },
@@ -209,10 +221,13 @@
     "Download your medical records from your health system." : {
 
     },
-    "End Date: %@" : {
+    "EDIT" : {
 
     },
     "Edit Surgery" : {
+
+    },
+    "End Date: %@" : {
 
     },
     "END_CALENDAR" : {
@@ -222,6 +237,9 @@
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
+
+    },
+    "Export to PDF" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -281,6 +299,9 @@
 
     },
     "How many packs do you smoke a day?" : {
+
+    },
+    "Inactive" : {
 
     },
     "Integrate your Records" : {
@@ -401,6 +422,12 @@
         }
       }
     },
+    "Name" : {
+
+    },
+    "Name:" : {
+
+    },
     "New Surgery" : {
 
     },
@@ -466,6 +493,9 @@
 
     },
     "Pack years: %.2f" : {
+
+    },
+    "Patient Form" : {
 
     },
     "Performed" : {
@@ -584,6 +614,9 @@
     "SETTINGS_TITLE" : {
 
     },
+    "Sex" : {
+
+    },
     "Share with provider of your choice." : {
 
     },
@@ -620,13 +653,7 @@
     "Summarize your surgical history." : {
 
     },
-    "Surgery" : {
-
-    },
     "Surgery Assistant" : {
-
-    },
-    "Surgery Name" : {
 
     },
     "Surgical History" : {
@@ -705,12 +732,11 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    
-    "What is your surgical history?" : {
+    "Your Responses" : {
 
     },
-    "Your Responses" : {
-    
+    "YYYY-MM-DD" : {
+
     }
   },
   "version" : "1.0"

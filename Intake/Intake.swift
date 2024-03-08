@@ -15,13 +15,27 @@ class NavigationPathWrapper {
     var path = NavigationPath()
 }
 
+struct PatientData {
+    var name: String
+    var birthdate: String
+    var age: String
+    var sex: String
+}
+
 @Observable
 class DataStore {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: Set<IntakeMedicationInstance> = []
     var surgeries: [SurgeryItem] = []
+    var surgeriesLoaded = false
     var chiefComplaint: String = ""
+    var generalData = PatientData(name: "Akash", birthdate: "01/08/2003", age: "21", sex: "Male")
+}
+
+@Observable
+class ReachedEndWrapper {
+    var reachedEnd = false
     var surgeriesLoaded = false
 }
 
@@ -32,6 +46,7 @@ struct Intake: App {
 
     let navigationPath = NavigationPathWrapper()
     let data = DataStore()
+    let reachedEnd = ReachedEndWrapper()
 
     var body: some Scene {
         WindowGroup {
@@ -49,6 +64,7 @@ struct Intake: App {
                 .spezi(appDelegate)
                 .environment(navigationPath)
                 .environment(data)
+                .environment(reachedEnd)
         }
     }
 }
