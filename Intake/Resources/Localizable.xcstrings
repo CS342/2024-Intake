@@ -13,6 +13,9 @@
     "%@ Reactions" : {
 
     },
+    "07/03" : {
+
+    },
     "20 pack years" : {
 
     },
@@ -85,9 +88,6 @@
     "Age:" : {
 
     },
-    "AI-assisted medical intake" : {
-
-    },
     "Allergies" : {
 
     },
@@ -104,9 +104,6 @@
 
     },
     "by mouth" : {
-
-    },
-    "Chief Complaint here" : {
 
     },
     "Chief Complaint:" : {
@@ -289,13 +286,13 @@
     "Here is a summary of the Primary Concern" : {
 
     },
-    "HOME_LOGO" : {
-
-    },
     "How many days a year do you smoke?" : {
 
     },
     "How many packs do you smoke a day?" : {
+
+    },
+    "Intake Form" : {
 
     },
     "Integrate your Records" : {
@@ -504,9 +501,6 @@
     "Past Surgical History:" : {
 
     },
-    "PDF Export Placeholder" : {
-
-    },
     "Please list conditions you have had" : {
 
     },
@@ -547,9 +541,6 @@
 
     },
     "Reactions" : {
-
-    },
-    "ReForm" : {
 
     },
     "Repository Link" : {
@@ -614,13 +605,13 @@
     "Select Start Date" : {
 
     },
-    "SETTINGS" : {
-
-    },
     "SETTINGS_TITLE" : {
 
     },
     "Sex:" : {
+
+    },
+    "Share Intake form" : {
 
     },
     "Share with provider of your choice." : {
@@ -633,9 +624,6 @@
 
     },
     "Social History" : {
-
-    },
-    "Start" : {
 
     },
     "START_CALENDAR" : {
