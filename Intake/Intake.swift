@@ -28,6 +28,7 @@ class DataStore {
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: Set<IntakeMedicationInstance> = []
     var surgeries: [SurgeryItem] = []
+    var surgeriesLoaded = false
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "Akash", birthdate: "01/08/2003", age: "21", sex: "Male")
 }

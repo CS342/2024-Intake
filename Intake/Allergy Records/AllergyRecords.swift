@@ -62,7 +62,7 @@ struct AllergyList: View {
     var body: some View {
         VStack {
             allergyForm
-            SubmitButton(nextView: NavigationViews.social)
+            SubmitButton(nextView: NavigationViews.menstrual)
                 .padding()
         }
         .onAppear(perform: loadAllergies)
