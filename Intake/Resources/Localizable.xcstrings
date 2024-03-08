@@ -94,8 +94,11 @@
     "Auto-fill Intake Form" : {
 
     },
-
     "Calculation" : {
+
+    },
+    "Chat" : {
+
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
       "extractionState" : "manual",
@@ -200,7 +203,7 @@
     "DETAILS" : {
 
     },
-    "Do you currently or have you smoked in the past?" : {
+    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
