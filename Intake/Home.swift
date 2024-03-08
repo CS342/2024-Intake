@@ -19,6 +19,7 @@ enum NavigationViews: String {
     case medication
     case chat
     case concern
+    case inspect
 }
 
 struct HomeView: View {
@@ -97,6 +98,7 @@ struct HomeView: View {
                 case .medication: MedicationContentView()
                 case .menstrual: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
+                case .inspect: InspectSurgeryView(surgery: $data.surgeries[data.surgeries.count - 1], isNew: true)
                 }
             }
         }
