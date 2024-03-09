@@ -79,9 +79,6 @@
     "Additional Details" : {
 
     },
-    "Additional details: %@" : {
-
-    },
     "Additional Symptoms" : {
 
     },
@@ -104,6 +101,9 @@
 
     },
     "Auto-fill Intake Form" : {
+
+    },
+    "Calculation" : {
 
     },
     "Chat" : {
@@ -218,6 +218,9 @@
     "DETAILS" : {
 
     },
+    "Do you currently smoke or have you smoked in the past?" : {
+
+    },
     "Download your medical records from your health system." : {
 
     },
@@ -225,12 +228,6 @@
 
     },
     "Edit Surgery" : {
-
-    },
-    "End Date: %@" : {
-
-    },
-    "END_CALENDAR" : {
 
     },
     "Ex: Heavy bleeding on second day, fatigue..." : {
@@ -318,6 +315,12 @@
       }
     },
     "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
+    "Last period's end date" : {
+
+    },
+    "Last period's start date" : {
 
     },
     "LICENSE_INFO_TITLE" : {
@@ -432,6 +435,9 @@
 
     },
     "Next" : {
+
+    },
+    "No" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -596,18 +602,6 @@
         }
       }
     },
-    "Select End Date" : {
-
-    },
-    "Select Start Date" : {
-
-    },
-    "Select your last period's end date" : {
-
-    },
-    "Select your last period's start date" : {
-
-    },
     "SETTINGS" : {
 
     },
@@ -632,16 +626,7 @@
     "Start" : {
 
     },
-    "Start Date: %@" : {
-
-    },
-    "START_CALENDAR" : {
-
-    },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {
@@ -657,9 +642,6 @@
 
     },
     "Surgical History" : {
-
-    },
-    "Symptoms: %@" : {
 
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
@@ -732,7 +714,7 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    "Your Responses" : {
+    "Yes" : {
 
     },
     "YYYY-MM-DD" : {

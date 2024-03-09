@@ -100,7 +100,6 @@
 		5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */; };
 		5AEA5F422B90710B00F1577A /* EditPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F412B90710B00F1577A /* EditPatient.swift */; };
 		5AEA5F472B93034A00F1577A /* ReactionPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F462B93034A00F1577A /* ReactionPDF.swift */; };
-		5AEA5F4A2B96F63A00F1577A /* AllergyLLMAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F492B96F63A00F1577A /* AllergyLLMAssistant.swift */; };
 		637BE1D52B572B4800EA19C6 /* Questionnaire.json.license in Resources */ = {isa = PBXBuildFile; fileRef = 637BE1D42B572B4800EA19C6 /* Questionnaire.json.license */; };
 		653A2551283387FE005D4D48 /* Intake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A2550283387FE005D4D48 /* Intake.swift */; };
 		653A255528338800005D4D48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 653A255428338800005D4D48 /* Assets.xcassets */; };
@@ -114,7 +113,6 @@
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
 		ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */; };
-		ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */; };
 		F42AB1D22B6379B5002E13A6 /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D12B6379B5002E13A6 /* SpeziLLM */; };
 		F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */; };
 		F42AB1D62B6379B5002E13A6 /* SpeziLLMLocalDownload in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D52B6379B5002E13A6 /* SpeziLLMLocalDownload */; };
@@ -868,11 +866,8 @@
 				5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */,
 				566155292AB8447C00209B80 /* Package+LicenseType.swift in Sources */,
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
-				ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */,
 				5AEA5F422B90710B00F1577A /* EditPatient.swift in Sources */,
-				ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */,
 				F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */,
-				5AEA5F4A2B96F63A00F1577A /* AllergyLLMAssistant.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
 				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
