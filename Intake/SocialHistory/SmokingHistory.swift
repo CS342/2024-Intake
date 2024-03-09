@@ -14,6 +14,8 @@ import SwiftUI
 
 
 struct SmokingHistoryView: View {
+    @Environment(DataStore.self) private var data
+    
     @State private var daysPerYear: String = ""
     @State private var packsPerDay: String = ""
     @State private var packYears: Double = 0
@@ -48,10 +50,10 @@ struct SmokingHistoryView: View {
                     }
                 }
                 .navigationTitle("Social History")
-                
-                // The Submit button can remain for explicit submission, if required
                 Button("Submit") {
                     calculatePackYears()
+                    data.smokingHistory?.packYears = packYears
+                    data.smokingHistory?.additionalDetails = additionalDetails
                 }
                 .foregroundColor(.white)
                 .padding()

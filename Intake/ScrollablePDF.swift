@@ -191,7 +191,50 @@ struct ScrollablePDF: View {
         }
     }
     
-    
+    private struct MenstrualHistorySection: View {
+        @Environment(DataStore.self) private var data
+
+        var body: some View {
+            Section(header: HeaderTitle(title: "Menstrual History", nextView: .menstrual)) {
+                    VStack(alignment: .leading) {
+                        Text("Start Date: \(formatDate(date: data.menstrualHistory.startDate))")
+                        Text("End Date: \(formatDate(date: data.menstrualHistory.endDate))")
+                        if !data.menstrualHistory.additionalDetails.isEmpty {
+                            Text("Symptoms: \(data.menstrualHistory.additionalDetails)")
+                        }
+                    }
+                
+            }
+        }
+        
+        private func formatDate(date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            return formatter.string(from: date)
+        }
+    }
+
+    private struct SmokingHistorySection: View {
+        @Environment(DataStore.self) private var data
+
+        var body: some View {
+            Section(header: HeaderTitle(title: "Smoking History", nextView: .smoking)) {
+                if let smokingHistory = data.smokingHistory {
+                    VStack(alignment: .leading) {
+                        Text("Days per year: \(smokingHistory.daysPerYear)")
+                        Text("Packs per day: \(smokingHistory.packsPerDay)")
+                        Text("Pack years: \(smokingHistory.packYears, specifier: "%.2f")")
+                        if !smokingHistory.additionalDetails.isEmpty {
+                            Text("Additional details: \(smokingHistory.additionalDetails)")
+                        }
+                    }
+                } else {
+                    Text("No data available")
+                }
+            }
+        }
+    }
+
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
@@ -206,6 +249,8 @@ struct ScrollablePDF: View {
                 SurgerySection()
                 MedicationSection()
                 Allergy()
+                MenstrualHistorySection()
+                SmokingHistorySection()
             }
             .navigationTitle("Patient Form")
             .onAppear(perform: {

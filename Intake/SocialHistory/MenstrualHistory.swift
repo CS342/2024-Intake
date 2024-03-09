@@ -81,12 +81,13 @@ struct SocialHistoryQuestionView: View {
     
     private var menstrualCycleInformationSection: some View {
         Group {
-            Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
-                menstrualCycleButtons
-            }
-            
+//            Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
+//                menstrualCycleButtons
+//            }
             Section(header: Text("Additional Symptoms")) {
-                TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
+                @Bindable var data = data
+                TextField("Ex: Heavy bleeding on second day, fatigue...", text: $data.menstrualHistory.additionalDetails)
+                
             }
             if shouldDisplayResponses {
                 Section(header: Text("Your Responses").foregroundColor(.gray)) {
@@ -101,6 +102,7 @@ struct SocialHistoryQuestionView: View {
             }
         }
     }
+    @Environment(DataStore.self) private var data
     
     @State private var dateString: String = ""
     @State private var additionalDetails: String = ""
@@ -115,6 +117,7 @@ struct SocialHistoryQuestionView: View {
     @State private var lastPeriodDate: Date?
     
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    
     
     private var shouldDisplayResponses: Bool {
         !additionalDetails.isEmpty || startDate != Date() || endDate != Date()
@@ -142,6 +145,9 @@ struct SocialHistoryQuestionView: View {
                     VStack {
                         DatePicker("Select Start Date", selection: $startDate, displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
+                            .onChange(of: startDate) { newDate in
+                                data.menstrualHistory.endDate = startDate
+                                }
                         
                         Button("Save") {
                             lastPeriodDate = startDate
@@ -153,6 +159,9 @@ struct SocialHistoryQuestionView: View {
                     VStack {
                         DatePicker("Select End Date", selection: $endDate, displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
+                            .onChange(of: endDate) { newDate in
+                                data.menstrualHistory.endDate = newDate
+                                }
                         
                         Button("Save") {
                             isSelectingEndDate = false
@@ -160,7 +169,15 @@ struct SocialHistoryQuestionView: View {
                     }
                 })
                 Spacer()
-                Button(action: {
+                
+                SubmitButton(nextView: NavigationViews.smoking)
+                    .padding()
+                
+                /*Button(action: {
+                    data.menstrualHistory?.startDate = startDate
+                    data.menstrualHistory?.endDate = endDate
+                    data.menstrualHistory?.additionalDetails = additionalDetails
+                    
                     navigationPath.path.append(NavigationViews.smoking)
                 }) {
                     Text("Submit")
@@ -170,7 +187,7 @@ struct SocialHistoryQuestionView: View {
                         .background(Color.blue)
                         .cornerRadius(8)
                 }
-                .padding()
+                .padding()*/
             }
         }
     }
