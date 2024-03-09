@@ -16,6 +16,46 @@ import SpeziFHIR
 import SwiftUI
 
 
+struct ReactionSectionView: View {
+    @Environment(DataStore.self) private var data
+    var index: Int
+    
+    var body: some View {
+            Form { // Use Form instead of List
+                Section(header: headerTitle) {
+                    @Bindable var data = data
+                    ForEach($data.allergyData[index].reaction) { $item in
+                        HStack {
+                            TextField("Reactions", text: $item.reaction)
+                        }
+                    }
+                    .onDelete(perform: delete)
+                    Button(action: {
+                        data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .accessibilityLabel(Text("ADD_REACTION"))
+                            Text("Add Field")
+                        }
+                    }
+                }
+            }
+        }
+    
+    private var headerTitle: some View {
+        HStack {
+            Text("Reactions")
+            Spacer()
+            EditButton()
+        }
+    }
+    func delete(at offsets: IndexSet) {
+        data.allergyData[index].reaction.remove(atOffsets: offsets)
+    }
+}
+
+
 struct EditAllergyView: View {
     @State private var index: Int
     @Environment(DataStore.self) private var data
@@ -27,25 +67,7 @@ struct EditAllergyView: View {
                    TextField("Allergy Name", text: $data.allergyData[index].allergy)
                            .textFieldStyle(RoundedBorderTextFieldStyle())
                            .padding([.horizontal, .top])
-                   Form { // Use Form instead of List
-                        Section(header: headerTitle) {
-                            ForEach($data.allergyData[index].reaction) { $item in
-                                HStack {
-                                    TextField("Reactions", text: $item.reaction)
-                                }
-                            }
-                            .onDelete(perform: delete)
-                            Button(action: {
-                                data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
-                            }) {
-                                HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                        .accessibilityLabel(Text("ADD_REACTION"))
-                                    Text("Add Field")
-                                }
-                            }
-                        }
-                   }
+                   ReactionSectionView(index: index)
                    Spacer()
                    saveButton
                }
@@ -67,22 +89,9 @@ struct EditAllergyView: View {
         .padding()
     }
     
-    private var headerTitle: some View {
-        HStack {
-            Text("Reactions")
-            Spacer()
-            EditButton()
-        }
-    }
-
-    
     init(index: Int, showingReaction: Binding<Bool>) {
         self._index = State(initialValue: index)
         self._showingReaction = showingReaction
-    }
-
-    func delete(at offsets: IndexSet) {
-        data.allergyData[index].reaction.remove(atOffsets: offsets)
     }
 }
 

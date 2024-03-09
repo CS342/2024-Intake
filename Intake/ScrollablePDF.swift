@@ -62,7 +62,7 @@ struct ScrollablePDF: View {
         var body: some View {
             Button(action: {
             }) {
-                Text("Export to PDF")
+                Text("Share")
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -82,7 +82,7 @@ struct ScrollablePDF: View {
                     HStack {
                     Text(item.surgeryName)
                     Spacer()
-                    Text(item.date ?? "")
+                    Text(item.date)
                         .foregroundColor(.secondary)
                     }
                 }

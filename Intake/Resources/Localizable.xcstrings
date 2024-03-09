@@ -239,9 +239,6 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Export to PDF" : {
-
-    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
@@ -615,6 +612,9 @@
 
     },
     "Sex" : {
+
+    },
+    "Share" : {
 
     },
     "Share with provider of your choice." : {

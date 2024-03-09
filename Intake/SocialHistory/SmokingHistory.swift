@@ -53,6 +53,7 @@ struct SmokingHistoryView: View {
                 Button("Submit") {
                     calculatePackYears()
                 }
+                SubmitButton(nextView: NavigationViews.pdfs)
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)

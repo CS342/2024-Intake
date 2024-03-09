@@ -30,7 +30,7 @@ class DataStore {
     var surgeries: [SurgeryItem] = []
     var surgeriesLoaded = false
     var chiefComplaint: String = ""
-    var generalData = PatientData(name: "Akash", birthdate: "01/08/2003", age: "21", sex: "Male")
+    var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
 }
 
 @Observable
