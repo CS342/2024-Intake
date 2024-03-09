@@ -15,6 +15,44 @@ import Foundation
 import SpeziFHIR
 import SwiftUI
 
+struct EditAllergyView: View {
+    @State private var index: Int
+    @Environment(DataStore.self) private var data
+    @Binding private var showingReaction: Bool
+    var body: some View {
+           NavigationView {
+               VStack(alignment: .leading, spacing: 10) {
+                   @Bindable var data = data
+                   TextField("Allergy Name", text: $data.allergyData[index].allergy)
+                           .textFieldStyle(RoundedBorderTextFieldStyle())
+                           .padding([.horizontal, .top])
+                   ReactionSectionView(index: index)
+                   Spacer()
+                   saveButton
+               }
+               .navigationBarTitle("Allergy")
+           }
+    }
+    
+    private var saveButton: some View {
+        Button(action: {
+            showingReaction = false
+        }) {
+            Text("Save")
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+        .padding()
+    }
+    
+    init(index: Int, showingReaction: Binding<Bool>) {
+        self._index = State(initialValue: index)
+        self._showingReaction = showingReaction
+    }
+}
 
 struct ReactionSectionView: View {
     @Environment(DataStore.self) private var data
@@ -52,46 +90,6 @@ struct ReactionSectionView: View {
     }
     func delete(at offsets: IndexSet) {
         data.allergyData[index].reaction.remove(atOffsets: offsets)
-    }
-}
-
-
-struct EditAllergyView: View {
-    @State private var index: Int
-    @Environment(DataStore.self) private var data
-    @Binding private var showingReaction: Bool
-    var body: some View {
-           NavigationView {
-               VStack(alignment: .leading, spacing: 10) {
-                   @Bindable var data = data
-                   TextField("Allergy Name", text: $data.allergyData[index].allergy)
-                           .textFieldStyle(RoundedBorderTextFieldStyle())
-                           .padding([.horizontal, .top])
-                   ReactionSectionView(index: index)
-                   Spacer()
-                   saveButton
-               }
-               .navigationBarTitle("Allergy")
-           }
-    }
-    
-    private var saveButton: some View {
-        Button(action: {
-            showingReaction = false
-        }) {
-            Text("Save")
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-        }
-        .padding()
-    }
-    
-    init(index: Int, showingReaction: Binding<Bool>) {
-        self._index = State(initialValue: index)
-        self._showingReaction = showingReaction
     }
 }
 

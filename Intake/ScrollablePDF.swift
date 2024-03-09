@@ -82,7 +82,7 @@ struct ScrollablePDF: View {
                     HStack {
                     Text(item.surgeryName)
                     Spacer()
-                    Text(item.date)
+                        Text(item.date)
                         .foregroundColor(.secondary)
                     }
                 }
@@ -97,13 +97,7 @@ struct ScrollablePDF: View {
         var body: some View {
             Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
                 VStack(alignment: .leading) {
-                    ForEach(Array(data.medicationData)) { item in
-                        HStack {
-                            Text(item.type.localizedDescription)
-                                .padding(.leading)
-                            Spacer()
-                        }
-                    }
+                    Text("fix medication")
                 }
             }
         }
@@ -191,11 +185,9 @@ struct ScrollablePDF: View {
         }
     }
     
-    
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
-
     
     var body: some View {
         VStack {
