@@ -22,6 +22,13 @@ struct PatientData {
     var sex: String
 }
 
+struct PatientData {
+    var name: String
+    var birthdate: String
+    var age: String
+    var sex: String
+}
+
 @Observable
 class DataStore {
     var allergyData: [AllergyItem] = []
