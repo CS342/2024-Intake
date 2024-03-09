@@ -90,23 +90,6 @@ struct ScrollablePDF: View {
         }
     }
     
-    private struct SocialHistoryView: View {
-        @Environment(DataStore.self) private var data
-        @Environment(NavigationPathWrapper.self) private var navigationPath
-
-        var body: some View {
-            Section(header: HeaderTitle(title: "Social History", nextView: NavigationViews.surgical)) {
-                List(data.surgeries, id: \.id) { item in
-                    HStack {
-                    Text(item.surgeryName)
-                    Spacer()
-                        Text(item.date)
-                        .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
     
     private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
