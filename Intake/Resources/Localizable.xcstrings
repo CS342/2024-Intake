@@ -230,12 +230,6 @@
     "Edit Surgery" : {
 
     },
-    "End Date: %@" : {
-
-    },
-    "END_CALENDAR" : {
-
-    },
     "Ex: Heavy bleeding on second day, fatigue..." : {
 
     },
@@ -723,8 +717,11 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    "Your Responses" : {
-    
+    "Yes" : {
+
+    },
+    "YYYY-MM-DD" : {
+
     }
   },
   "version" : "1.0"
