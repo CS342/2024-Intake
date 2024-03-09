@@ -90,6 +90,58 @@ struct ScrollablePDF: View {
         }
     }
     
+    private struct MenstrualSection: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: HeaderTitle(title: "Menstrual Cycle", nextView: NavigationViews.menstrual)) {
+                List {
+                    HStack {
+                        Text("Start:")
+                        Spacer()
+                        Text("start date")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("End")
+                        Spacer()
+                        Text("end date")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Additional Details:  ")
+                        Text("details")
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+    
+    private struct SmokingSection: View {
+        @Environment(DataStore.self) private var data
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+
+        var body: some View {
+            Section(header: HeaderTitle(title: "Smoking", nextView: NavigationViews.smoking)) {
+                List {
+                    HStack {
+                        Text("Pack Years:")
+                        Spacer()
+                        Text("start date")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Additional Details:  ")
+                        Text("details")
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+    
     
     private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
@@ -199,6 +251,8 @@ struct ScrollablePDF: View {
                 SurgerySection()
                 MedicationSection()
                 Allergy()
+                MenstrualSection()
+                SmokingSection()
             }
             .navigationTitle("Patient Form")
             .onAppear(perform: {

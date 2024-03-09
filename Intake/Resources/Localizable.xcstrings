@@ -67,9 +67,6 @@
     "Active" : {
 
     },
-    "Active" : {
-
-    },
     "Add Field" : {
 
     },
@@ -80,6 +77,9 @@
 
     },
     "Additional Details" : {
+
+    },
+    "Additional Details:  " : {
 
     },
     "Additional details: %@" : {
@@ -218,6 +218,9 @@
     "DELETE_REACTION" : {
 
     },
+    "details" : {
+
+    },
     "DETAILS" : {
 
     },
@@ -230,6 +233,12 @@
     "Edit Surgery" : {
 
     },
+    "End" : {
+
+    },
+    "end date" : {
+
+    },
     "End Date: %@" : {
 
     },
@@ -240,9 +249,6 @@
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
-
-    },
-    "Export to PDF" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -498,6 +504,9 @@
     "Other important questions." : {
 
     },
+    "Pack Years:" : {
+
+    },
     "Pack years: %.2f" : {
 
     },
@@ -641,10 +650,16 @@
     "Start" : {
 
     },
+    "start date" : {
+
+    },
     "Start Date: %@" : {
 
     },
     "START_CALENDAR" : {
+
+    },
+    "Start:" : {
 
     },
     "Status" : {
