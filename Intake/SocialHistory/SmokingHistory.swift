@@ -101,7 +101,21 @@ struct SmokingHistoryView: View {
                         Text("Pack years: \(packYears, specifier: "%.2f")")
                     }
                 }
+                
+                // The Submit button can remain for explicit submission, if required
+                Button("Submit") {
+                    calculatePackYears()
+                }
+                SubmitButton(nextView: NavigationViews.pdfs)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+                .padding(.horizontal)
+                .padding(.bottom)
             }
+            .navigationTitle("Social History")
         }
     }
     
