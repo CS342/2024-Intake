@@ -109,6 +109,9 @@
     "Auto-fill Intake Form" : {
 
     },
+    "Calculation" : {
+
+    },
     "Chat" : {
 
     },
@@ -224,6 +227,9 @@
     "DETAILS" : {
 
     },
+    "Do you currently smoke or have you smoked in the past?" : {
+
+    },
     "Download your medical records from your health system." : {
 
     },
@@ -251,10 +257,10 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "FHIR_RESOURCES_CHAT_CANCEL" : {
+    "Export to PDF" : {
 
     },
-    "fix medication" : {
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "Get Started" : {
@@ -330,6 +336,12 @@
       }
     },
     "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
+    "Last period's end date" : {
+
+    },
+    "Last period's start date" : {
 
     },
     "LICENSE_INFO_TITLE" : {
@@ -444,6 +456,9 @@
 
     },
     "Next" : {
+
+    },
+    "No" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -611,18 +626,6 @@
         }
       }
     },
-    "Select End Date" : {
-
-    },
-    "Select Start Date" : {
-
-    },
-    "Select your last period's end date" : {
-
-    },
-    "Select your last period's start date" : {
-
-    },
     "SETTINGS" : {
 
     },
@@ -681,9 +684,6 @@
 
     },
     "Surgical History" : {
-
-    },
-    "Symptoms: %@" : {
 
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
@@ -757,10 +757,7 @@
 
     },
     "Your Responses" : {
-
-    },
-    "YYYY-MM-DD" : {
-
+    
     }
   },
   "version" : "1.0"
