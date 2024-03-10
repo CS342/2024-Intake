@@ -167,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/Spezi",
       "state" : {
-        "revision" : "0ced3efbc2af9513c07ac913ad762c773a00a6c8",
-        "version" : "1.2.1"
+        "revision" : "c43e4fa3d3938a847de2b677091a34ddaea5bc76",
+        "version" : "1.2.3"
       }
     },
     {
@@ -212,8 +212,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziFirebase.git",
       "state" : {
-        "revision" : "ca1edf678ec59e76c9869ee3448e6e165d9c2789",
-        "version" : "1.0.0"
+        "revision" : "e05e665b7da39aa399ecd7fba393aab49b8f3034",
+        "version" : "1.0.1"
       }
     },
     {
@@ -230,8 +230,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziHealthKit.git",
       "state" : {
-        "revision" : "b40695ffa4d1c9d58c5a0ee277640c2343fb5516",
-        "version" : "0.5.1"
+        "revision" : "35628084d3977aa897015b0b0c21cfe4d556f1aa",
+        "version" : "0.5.2"
       }
     },
     {
@@ -284,8 +284,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziScheduler.git",
       "state" : {
-        "revision" : "ba391084109a9a16622b07e9dcefe2ab1552d2a2",
-        "version" : "0.8.1"
+        "revision" : "eed3980f20b01a788720c869010e3fe2fbfcd1fd",
+        "version" : "0.8.2"
       }
     },
     {

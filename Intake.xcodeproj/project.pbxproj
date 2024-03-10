@@ -95,6 +95,7 @@
 		5A2B9FAB2B69E430005CA63F /* FHIRStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FAA2B69E430005CA63F /* FHIRStore+Extensions.swift */; };
 		5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */; };
 		5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */; };
+		5AAB83A72B9C04E70008407A /* LLMFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB83A62B9C04E70008407A /* LLMFiltering.swift */; };
 		5AEA5F212B82DDD000F1577A /* LLMAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */; };
 		5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */; };
 		5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */; };
@@ -210,6 +211,7 @@
 		5A2B9FAA2B69E430005CA63F /* FHIRStore+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRStore+Extensions.swift"; sourceTree = "<group>"; };
 		5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyRecords.swift; sourceTree = "<group>"; };
 		5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
+		5AAB83A62B9C04E70008407A /* LLMFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMFiltering.swift; sourceTree = "<group>"; };
 		5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMAssistantView.swift; sourceTree = "<group>"; };
 		5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAllergy.swift; sourceTree = "<group>"; };
 		5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollablePDF.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				2FE5DC2D29EDD792004B9AB4 /* Resources */,
 				2FC9759D2978E30800BA99FE /* Supporting Files */,
 				5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */,
+				5AAB83A62B9C04E70008407A /* LLMFiltering.swift */,
 				5AEA5F412B90710B00F1577A /* EditPatient.swift */,
 			);
 			path = Intake;
@@ -870,6 +873,7 @@
 				5680DD392AB8983D004E6D4A /* PackageCell.swift in Sources */,
 				ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */,
 				5AEA5F422B90710B00F1577A /* EditPatient.swift in Sources */,
+				5AAB83A72B9C04E70008407A /* LLMFiltering.swift in Sources */,
 				ACFFA1D12B8FD8BB0006E6D4 /* MenstrualHistory.swift in Sources */,
 				F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */,
 				5AEA5F4A2B96F63A00F1577A /* AllergyLLMAssistant.swift in Sources */,
