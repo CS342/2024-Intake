@@ -48,7 +48,8 @@ struct SmokingHistoryView: View {
                     }
                 }
                 Spacer()
-                submitButton
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
             }
             .navigationTitle("Social History")
             .background(Color(UIColor.systemGroupedBackground))
@@ -102,21 +103,6 @@ struct SmokingHistoryView: View {
                 }
             }
         }
-    }
-    
-    private var submitButton: some View {
-        Button("Submit") {
-            // Implement submission logic
-            // If hasSmoked is nil or false, submit "No" as the answer
-            // If hasSmoked is true, submit the form details
-        }
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(8)
-        .padding(.horizontal)
-        .padding(.bottom)
     }
     
     func calculatePackYears() {
