@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "*Check the box if you currently have the condition. /\n*Uncheck the box if you had the condition in the past" : {
 
     },
@@ -67,6 +70,9 @@
         }
       }
     },
+    "Active" : {
+
+    },
     "Add Field" : {
 
     },
@@ -76,7 +82,13 @@
     "ADD_SURGERY" : {
 
     },
-    "Additional details: %@" : {
+    "Additional Details" : {
+
+    },
+    "Additional Symptoms" : {
+
+    },
+    "Age" : {
 
     },
     "Age:" : {
@@ -94,13 +106,21 @@
     "Allergy" : {
 
     },
+    "Allergy Assistant" : {
+
+    },
     "Allergy Name" : {
 
     },
     "Auto-fill Intake Form" : {
 
     },
-    "Chief Complaint:" : {
+    
+    
+    "Calculation" : {
+
+    },
+    "Chat" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -200,7 +220,7 @@
         }
       }
     },
-    "Date" : {
+    "Date of Birth" : {
 
     },
     "Date of Birth:" : {
@@ -215,16 +235,31 @@
     "DETAILS" : {
 
     },
-    "Do you currently smoke or have you in the past?" : {
+    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
 
     },
+    "EDIT" : {
+
+    },
+    "Edit Surgery" : {
+
+    },
+    "End Date: %@" : {
+
+    },
     "END_CALENDAR" : {
 
     },
-    "Female" : {
+    "Ex: Heavy bleeding on second day, fatigue..." : {
+
+    },
+    "Ex: Smoked for 10 years, quit 5 years ago..." : {
+
+    },
+    "Export to PDF" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -286,7 +321,7 @@
     "How many packs do you smoke a day?" : {
 
     },
-    "Intake Form" : {
+    "Inactive" : {
 
     },
     "Integrate your Records" : {
@@ -311,7 +346,11 @@
     "John Doe" : {
 
     },
-    "Last Menstrural Period" : {
+    
+    "Last period's end date" : {
+
+    },
+    "Last period's start date" : {
 
     },
     "LICENSE_INFO_TITLE" : {
@@ -330,13 +369,18 @@
     "List your current medications." : {
 
     },
+    "Location" : {
+
+    },
     "Main reason(s) for visit" : {
 
     },
     "Medical History" : {
 
     },
-    "MEDICAL HISTORY" : {
+
+    "Medical History Assistant" : {
+
 
     },
     "Medical Intake Form" : {
@@ -348,7 +392,12 @@
     "Medications" : {
 
     },
-    "Medications:" : {
+
+    "Medications Assistant" : {
+
+    },
+    "Menstrual Information" : {
+
 
     },
     "Message" : {
@@ -410,13 +459,19 @@
         }
       }
     },
+    "Name" : {
+
+    },
     "Name:" : {
+
+    },
+    "New Surgery" : {
 
     },
     "Next" : {
 
     },
-    "Next: Smoking History" : {
+    "No" : {
 
     },
     "No known allergies" : {
@@ -486,10 +541,19 @@
         }
       }
     },
-    "Optional symptoms: heavy bleeding, cramps, etc." : {
+    "Other important questions." : {
 
     },
-    "Other important questions." : {
+    "Pack years: %.2f" : {
+
+    },
+    "Patient Form" : {
+
+    },
+    "Performed" : {
+
+    },
+    "Please add your past surgeries" : {
 
     },
     "Past Medical History:" : {
@@ -505,6 +569,9 @@
 
     },
     "Primary Concern" : {
+
+    },
+    "Procedure" : {
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
@@ -593,18 +660,6 @@
         }
       }
     },
-    "Select approx. end date." : {
-
-    },
-    "Select approx. start date." : {
-
-    },
-    "Select End Date" : {
-
-    },
-    "Select Start Date" : {
-
-    },
     "SETTINGS" : {
 
     },
@@ -614,7 +669,7 @@
     "Sex:" : {
 
     },
-    "Share Intake form" : {
+    "Sex" : {
 
     },
     "Share with provider of your choice." : {
@@ -623,7 +678,7 @@
     "Skip" : {
 
     },
-    "Smoking history" : {
+    "Smoking History" : {
 
     },
     "Social History" : {
@@ -632,7 +687,7 @@
     "Start" : {
 
     },
-    "START_CALENDAR" : {
+    "Status" : {
 
     },
     "Submit" : {
@@ -647,13 +702,7 @@
     "Summarize your surgical history." : {
 
     },
-    "Summary" : {
-
-    },
-    "Surgery" : {
-
-    },
-    "Surgery Name" : {
+    "Surgery Assistant" : {
 
     },
     "Surgical History" : {
@@ -711,16 +760,10 @@
         }
       }
     },
-    "Thank you for completing Social History!" : {
-
-    },
     "This application will help autocomplete your medical intake form." : {
 
     },
     "Together we will summarize..." : {
-
-    },
-    "Total calculated result for smoking: %.2f pack years" : {
 
     },
     "Use HealthKit Resources" : {
@@ -735,21 +778,8 @@
     "What brings you in today? Identify your primary concern(s)." : {
 
     },
-    "What is your surgical history?" : {
-
-    },
-    "You can include decimal values (e.g., 0.25) for the number of packs per day." : {
-
-    },
-    "Your last period was from %@ to %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Your last period was from %1$@ to %2$@"
-          }
-        }
-      }
+    "Your Responses" : {
+    
     }
   },
   "version" : "1.0"
