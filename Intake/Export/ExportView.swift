@@ -214,7 +214,7 @@ struct ExportView: View {
         // issue: proposed height is not expanding as necessary
         // let pageSize = CGSize(width: 612, height: proposedHeight)  // Fix this later
         
-        let pageSize = CGSize(width: 612, height: 920)  // US Letter
+        let pageSize = CGSize(width: 612, height: 920)
         
         renderer.proposedSize = .init(pageSize)
         
