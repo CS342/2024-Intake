@@ -79,7 +79,7 @@
     "Additional Details" : {
 
     },
-    "Additional details: %@" : {
+    "Additional Details:  " : {
 
     },
     "Additional Symptoms" : {
@@ -239,16 +239,13 @@
     "End" : {
 
     },
-    "END_CALENDAR" : {
+    "end date" : {
 
     },
     "Ex: Heavy bleeding on second day, fatigue..." : {
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
-
-    },
-    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -648,9 +645,6 @@
 
     },
     "start date" : {
-
-    },
-    "START_CALENDAR" : {
 
     },
     "Start:" : {

@@ -6,33 +6,19 @@
 //
 
 import Foundation
-import SwiftUI
 import SpeziLLM
 import SpeziLLMOpenAI
+import SwiftUI
 
 
-struct LLMFiltering: View {
+class LLMFiltering {
     private var LLMFiltering = true
-    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+    private var session: LLMOpenAISession
+    private var data: DataStore
     
-    init(systemPrompt: String) {
-        self._session = LLMSessionProvider(
-            schema: LLMOpenAISchema(
-                parameters: .init(
-                    modelType: .gpt3_5Turbo,
-                    systemPrompt: systemPrompt
-                )
-            )
-        )
-    }
-    
-    var body: some View {
-        Button(action: {
-            let newSurgery = SurgeryItem(surgeryName: "Surgery")
-        }) {
-            Image(systemName: "plus")
-                .accessibilityLabel(Text("ADD_SURGERY"))
-        }
+    init(session: LLMOpenAISession, data: DataStore) {
+        self.session = session
+        self.data = data
     }
     
     func filter(surgeries: [String]) async -> [String] {
@@ -78,9 +64,7 @@ struct LLMFiltering: View {
     
     func LLMFilter(names: [String]) async throws -> [String] {
         let LLMResponse = try await self.queryLLM(names: names)
-        
         let filteredNames = LLMResponse.components(separatedBy: ", ")
-        let filteredSurgeries = names.filter { self.containsAnyWords(item: $0, words: filteredNames) }
         
         return filteredNames
     }
@@ -113,18 +97,23 @@ struct LLMFiltering: View {
         return cleaned
     }
     
-    func filterConditions() async throws -> [MedicalHistoryItem] {
-        @Environment(DataStore.self) var data
-        let filteredNames = try await self.LLMFilter(names: [])
-        let filteredSurgeries = data.conditionData.filter { self.containsAnyWords(item: $0.condition, words: filteredNames) }
-        var cleaned = filteredSurgeries
+    func filterConditions() async throws {
+        let conditions = data.conditionData.map { $0.condition }
+        print("conditions:")
+        print(conditions)
+        let filteredNames = try await self.LLMFilter(names: conditions)
+        print("filtered names:")
+        print(filteredNames)
+        let filteredConditions = data.conditionData.filter { self.containsAnyWords(item: $0.condition, words: filteredNames) }
+        var cleaned = filteredConditions
+
         for index in cleaned.indices {
+            print(index)
             let oldName = cleaned[index].condition
             if let newName: String = filteredNames.first(where: { oldName.contains($0) }) {
                 cleaned[index].condition = newName
             }
         }
-        return cleaned
+        data.conditionData = cleaned
     }
 }
-
