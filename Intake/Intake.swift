@@ -42,8 +42,8 @@ class DataStore {
     var surgeriesLoaded = false
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
-    var menstrualHistory: MenstrualHistoryItem = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
-    var smokingHistory: SmokingHistoryItem = SmokingHistoryItem(packYears: Double(), additionalDetails: "")
+    var menstrualHistory = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
+    var smokingHistory = SmokingHistoryItem(packYears: 0.0, additionalDetails: "")
 }
 
 @Observable

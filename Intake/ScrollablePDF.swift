@@ -243,8 +243,6 @@ struct ScrollablePDF: View {
             }
         }
     }
-
-
     
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath

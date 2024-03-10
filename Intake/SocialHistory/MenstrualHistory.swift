@@ -15,8 +15,6 @@ import HealthKit
 import SwiftUI
 
 struct SocialHistoryQuestionView: View {
-    
-    
     @State private var additionalDetails: String = ""
     @State private var startDate = Date()
     @State private var endDate = Date()
