@@ -101,7 +101,6 @@ struct SmokingHistoryView: View {
                         Text("Pack years: \(packYears, specifier: "%.2f")")
                     }
                 }
-                .navigationTitle("Social History")
                 
                 // The Submit button can remain for explicit submission, if required
                 Button("Submit") {
@@ -116,6 +115,7 @@ struct SmokingHistoryView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
             }
+            .navigationTitle("Social History")
         }
     }
     

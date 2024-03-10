@@ -82,9 +82,6 @@
     "Additional Details:  " : {
 
     },
-    "Additional details: %@" : {
-
-    },
     "Additional Symptoms" : {
 
     },
@@ -245,22 +242,16 @@
     "end date" : {
 
     },
-    "End Date: %@" : {
-
-    },
-    "END_CALENDAR" : {
-
-    },
     "Ex: Heavy bleeding on second day, fatigue..." : {
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Export to PDF" : {
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
-    "FHIR_RESOURCES_CHAT_CANCEL" : {
+    "fix medication" : {
 
     },
     "Get Started" : {
@@ -656,16 +647,13 @@
     "start date" : {
 
     },
-    "Start Date: %@" : {
-
-    },
-    "START_CALENDAR" : {
-
-    },
     "Start:" : {
 
     },
     "Status" : {
+
+    },
+    "Submit" : {
 
     },
     "Submit your Form" : {
@@ -754,7 +742,10 @@
 
     },
     "Yes" : {
-    
+
+    },
+    "YYYY-MM-DD" : {
+
     }
   },
   "version" : "1.0"
