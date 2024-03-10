@@ -12,6 +12,7 @@ import SpeziFHIR
 import SwiftUI
 import UIKit
 
+// swiftlint:disable file_types_order
 struct ExportView: View {
     @Environment(DataStore.self) var data
     @State private var isSharing = false
@@ -205,14 +206,15 @@ struct ExportView: View {
     func exportToPDF() async -> PDFDocument? {
         let renderer = ImageRenderer(content: self.wrappedBody)
         
+        // issue: proposed height is not expanding as necessary. uncomment to attempt to fix this.
+        
         // var proposedHeightOptional = renderer.uiImage?.size.height
         
-//        guard let proposedHeight = proposedHeightOptional else {
-//            return nil
-//        }
+        // guard let proposedHeight = proposedHeightOptional else {
+        //    return nil
+        // }
         
-        // issue: proposed height is not expanding as necessary
-        // let pageSize = CGSize(width: 612, height: proposedHeight)  // Fix this later
+        // let pageSize = CGSize(width: 612, height: proposedHeight)
         
         let pageSize = CGSize(width: 612, height: 920)
         
