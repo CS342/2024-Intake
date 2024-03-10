@@ -131,7 +131,7 @@ struct ScrollablePDF: View {
         @State private var dob: String = ""
         @State private var gender: String = ""
         
-        // swiftlint:disable type_contents_order
+
         func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
             if dobString.isEmpty {
                 return ""
@@ -225,7 +225,7 @@ struct ScrollablePDF: View {
                     }
                 } .onAppear {
                     loadData()
-                }
+                            }
             }
         }
         
