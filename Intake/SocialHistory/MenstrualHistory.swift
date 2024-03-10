@@ -43,20 +43,8 @@ struct SocialHistoryQuestionView: View {
                 .onAppear {
                     fetchHealthKitData()
                 }
-
-                // Adding the Submit button outside the Form
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.smoking)
-                }) {
-                    Text("Submit")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                }
-                .padding(.horizontal)
-                .padding(.bottom)
+                SubmitButton(nextView: NavigationViews.smoking)
+                    .padding()
             }
         }
     }

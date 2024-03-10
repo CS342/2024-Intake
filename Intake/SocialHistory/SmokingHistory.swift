@@ -48,7 +48,8 @@ struct SmokingHistoryView: View {
                     }
                 }
                 Spacer()
-                submitButton
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
             }
             .navigationTitle("Social History")
             .background(Color(UIColor.systemGroupedBackground))
