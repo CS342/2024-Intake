@@ -33,6 +33,9 @@ struct MedicationContentView: View {
                     navigationPath.path.append(NavigationViews.allergies)
                 }
                         .navigationTitle("Medication Settings")
+                        .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant(presentingAccount: .constant(false))) {
+                            Text("Chat")
+                        })
             } else {
                 ProgressView()
             }
@@ -40,6 +43,11 @@ struct MedicationContentView: View {
             .task {
                 let patientMedications = fhirStore.llmMedications
                 self.medicationSettingsViewModel = IntakeMedicationSettingsViewModel(existingMedications: patientMedications)
+                var initialData: Set<IntakeMedicationInstance> = []
+                if let newMed = self.medicationSettingsViewModel?.medicationInstances {
+                    initialData = newMed
+                }
+                data.medicationData = initialData
             }
     }
     

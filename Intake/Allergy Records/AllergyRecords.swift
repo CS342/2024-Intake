@@ -15,10 +15,14 @@ import ModelsR4
 import SpeziFHIR
 import SwiftUI
 
-struct AllergyItem: Identifiable {
+struct AllergyItem: Identifiable, Equatable {
     let id = UUID()
     var allergy: String
     var reaction: [ReactionItem]
+    
+    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
+        lhs.allergy == rhs.allergy
+    }
 }
 
 // struct ReactionViewDetails {
@@ -58,7 +62,8 @@ struct AllergyList: View {
     var body: some View {
         VStack {
             allergyForm
-            submitButton
+            SubmitButton(nextView: NavigationViews.menstrual)
+                .padding()
         }
         .onAppear(perform: loadAllergies)
         .sheet(isPresented: $showingChat, content: chatSheetView)
@@ -76,6 +81,9 @@ struct AllergyList: View {
         }
         .navigationBarItems(trailing: EditButton())
         .navigationTitle("Allergies")
+        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
+            Text("Chat")
+        })
     }
         
     private var allergyEntries: some View {
@@ -93,18 +101,6 @@ struct AllergyList: View {
                 Text("Add Field")
             }
         }
-    }
-
-    private var submitButton: some View {
-        Button(action: submitAction) {
-            Text("Submit")
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(8)
-        }
-        .padding()
     }
         
     private func allergyEntryRow(index: Int) -> some View {
@@ -128,7 +124,7 @@ struct AllergyList: View {
     }
     
     private func submitAction() {
-        navigationPath.path.append(NavigationViews.social)
+        navigationPath.path.append(NavigationViews.menstrual)
     }
     
     private func addAllergyAction() {
@@ -178,7 +174,7 @@ struct AllergyList: View {
             }
         }
         if !allergies.isEmpty {
-            for index in 0...(allergies.count - 1) {
+            for index in 0...(allergies.count - 1) where !data.allergyData.contains(where: { $0.allergy == allergies[index].string }) {
                 data.allergyData.append(
                     AllergyItem(allergy: allergies[index].string, reaction: allReactions[index])
                 )
