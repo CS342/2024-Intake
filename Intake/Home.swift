@@ -39,7 +39,7 @@ struct HomeView: View {
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
             
             // uncommment for pdf testing
-           // ContentView()
+//            ExportView()
             
             // comment out below for pdf testing
             VStack { // swiftlint:disable:this closure_body_length
@@ -101,7 +101,7 @@ struct HomeView: View {
                 case .social: SocialHistoryQuestionView()
                 case .medication: MedicationContentView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
-                case .export: ContentView()
+                case .export: ExportView()
                 }
             }
             

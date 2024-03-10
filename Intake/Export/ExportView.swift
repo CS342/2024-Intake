@@ -13,24 +13,10 @@ import SwiftUI
 import UIKit
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-func todayDateString() -> String {
-    let today = Date()
-    let formatter = DateFormatter()
-    formatter.dateStyle = .long
-    return formatter.string(from: today)
-}
-
-struct ContentView: View {
+struct ExportView: View {
     @Environment(DataStore.self) var data
     @State private var isSharing = false
     @State private var pdfData: PDFDocument?
-    
     
     // swiftlint:disable closure_body_length
     var body: some View {
@@ -220,14 +206,14 @@ struct ContentView: View {
     func exportToPDF() async -> PDFDocument? {
         let renderer = ImageRenderer(content: self.wrappedBody)
         
-        var proposedHeightOptional = renderer.uiImage?.size.height
+        // var proposedHeightOptional = renderer.uiImage?.size.height
         
-        guard let proposedHeight = proposedHeightOptional else {
-            return nil
-        }
+//        guard let proposedHeight = proposedHeightOptional else {
+//            return nil
+//        }
         
-        // error: proposed height is not expanding as necessary
-        //let pageSize = CGSize(width: 612, height: proposedHeight)  // US Letter
+        // issue: proposed height is not expanding as necessary
+        // let pageSize = CGSize(width: 612, height: proposedHeight)  // US Letter
         
         let pageSize = CGSize(width: 612, height: 920)  // US Letter
         
@@ -283,4 +269,17 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+func todayDateString() -> String {
+    let today = Date()
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    return formatter.string(from: today)
+}
+
+struct ExportView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExportView()
+    }
 }

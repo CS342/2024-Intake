@@ -82,6 +82,9 @@
     "Age:" : {
 
     },
+    "AI-assisted medical intake" : {
+
+    },
     "Allergies" : {
 
     },
@@ -272,6 +275,9 @@
       }
     },
     "Here is a summary of the Primary Concern" : {
+
+    },
+    "HOME_LOGO" : {
 
     },
     "How many days a year do you smoke?" : {
@@ -534,6 +540,9 @@
     "Reactions" : {
 
     },
+    "ReForm" : {
+
+    },
     "Repository Link" : {
       "localizations" : {
         "en" : {
@@ -596,6 +605,9 @@
     "Select Start Date" : {
 
     },
+    "SETTINGS" : {
+
+    },
     "SETTINGS_TITLE" : {
 
     },
@@ -615,6 +627,9 @@
 
     },
     "Social History" : {
+
+    },
+    "Start" : {
 
     },
     "START_CALENDAR" : {
