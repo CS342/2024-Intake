@@ -15,6 +15,8 @@ import HealthKit
 import SwiftUI
 
 struct SocialHistoryQuestionView: View {
+    
+    
     @State private var additionalDetails: String = ""
     @State private var startDate = Date()
     @State private var endDate = Date()
@@ -22,6 +24,7 @@ struct SocialHistoryQuestionView: View {
     @State private var isFemale = false
     @State private var showMaleSlide = false
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
 
     var body: some View {
         NavigationView {
@@ -42,6 +45,10 @@ struct SocialHistoryQuestionView: View {
                 .navigationTitle("Social History")
                 .onAppear {
                     fetchHealthKitData()
+                }
+                .onDisappear {
+                                    // Update the MenstrualHistoryItem in the data store right before the view disappears
+                data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                 }
                 SubmitButton(nextView: NavigationViews.smoking)
                     .padding()

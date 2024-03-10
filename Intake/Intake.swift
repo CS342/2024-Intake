@@ -22,6 +22,17 @@ struct PatientData {
     var sex: String
 }
 
+struct MenstrualHistoryItem {
+    var startDate: Date
+    var endDate: Date
+    var additionalDetails: String
+}
+
+struct SmokingHistoryItem {
+    var packYears: Double
+    var additionalDetails: String
+}
+
 @Observable
 class DataStore {
     var allergyData: [AllergyItem] = []
@@ -31,6 +42,8 @@ class DataStore {
     var surgeriesLoaded = false
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
+    var menstrualHistory: MenstrualHistoryItem = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
+    var smokingHistory: SmokingHistoryItem = SmokingHistoryItem(packYears: Double(), additionalDetails: "")
 }
 
 @Observable
