@@ -37,69 +37,78 @@ struct HomeView: View {
         @Bindable var data = data
         
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
-            ContentView()
-//            VStack { // swiftlint:disable:this closure_body_length
-//                HStack {
-//                    Spacer()
-//                    Button(
-//                        action: {
-//                            showSettings.toggle()
-//                        },
-//                        label: {
-//                            Image(systemName: "gear")
-//                                .resizable()
-//                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: 30, height: 30)
-//                                .foregroundColor(.blue)
-//                                .accessibilityLabel(Text("SETTINGS"))
-//                        }
-//                    )
-//                    .padding()
-//                }
-//
-//                Spacer()
-//
-//                Image(systemName: "waveform.path.ecg")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 100, height: 100)
-//                    .foregroundColor(.blue)
-//                    .accessibilityLabel(Text("HOME_LOGO"))
-//                Text("ReForm")
-//                    .font(.largeTitle)
-//                    .fontWeight(.bold)
-//                    .foregroundColor(.black)
-//                Text("AI-assisted medical intake")
-//                    .font(.title2)
-//                    .foregroundColor(.gray)
-//
-//                Spacer()
-//
-//                Button(action: {
-//                    navigationPath.path.append(NavigationViews.chat)
-//                }) {
-//                    Text("Start")
-//                        .font(.headline)
-//                        .fontWeight(.bold)
-//                        .foregroundColor(.white)
-//                        .padding()
-//                        .background(Color.blue)
-//                        .cornerRadius(10)
-//                }
-//            }
+            
+            // uncommment for pdf testing
+           // ContentView()
+            
+            // comment out below for pdf testing
+            VStack { // swiftlint:disable:this closure_body_length
+                HStack {
+                    Spacer()
+                    Button(
+                        action: {
+                            showSettings.toggle()
+                        },
+                        label: {
+                            Image(systemName: "gear")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.blue)
+                                .accessibilityLabel(Text("SETTINGS"))
+                        }
+                    )
+                    .padding()
+                }
 
-//            .navigationDestination(for: NavigationViews.self) { view in
-//                switch view {
-//                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
-//                case .allergies: AllergyList()
-//                case .surgical: SurgeryView()
-//                case .medical: MedicalHistoryView()
-//                case .social: SocialHistoryQuestionView()
-//                case .medication: MedicationContentView()
-//                case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
-//                case .export: ContentView()
-//                }
-//            }
+                Spacer()
+
+                Image(systemName: "waveform.path.ecg")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100)
+                    .foregroundColor(.blue)
+                    .accessibilityLabel(Text("HOME_LOGO"))
+                Text("ReForm")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                Text("AI-assisted medical intake")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+
+                Spacer()
+
+                Button(action: {
+                    navigationPath.path.append(NavigationViews.chat)
+                }) {
+                    Text("Start")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+            }
+
+            .navigationDestination(for: NavigationViews.self) { view in
+                switch view {
+                case .chat: LLMInteraction(presentingAccount: $presentingAccount)
+                case .allergies: AllergyList()
+                case .surgical: SurgeryView()
+                case .medical: MedicalHistoryView()
+                case .social: SocialHistoryQuestionView()
+                case .medication: MedicationContentView()
+                case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
+                case .export: ContentView()
+                }
+            }
+            
+            
+            // comment out above for pdf testing
+            
+            
         }
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
@@ -107,10 +116,13 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
-//        .accountRequired(Self.accountEnabled) {
-//            AccountSheet()
-//        }
-//        .verifyRequiredAccountDetails(Self.accountEnabled)
+// comment out below for pdf testing
+        .accountRequired(Self.accountEnabled) {
+            AccountSheet()
+        }
+        .verifyRequiredAccountDetails(Self.accountEnabled)
+        
+// comment out above for pdf testing
     }
 }
 
