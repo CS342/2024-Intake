@@ -10,9 +10,29 @@
 //
 // SPDX-License-Identifier: MIT
 
+
 import SwiftUI
 
 struct SmokingHistoryView: View {
+    struct YesNoButtonStyle: ButtonStyle {
+        var isSelected: Bool
+        
+        func makeBody(configuration: Self.Configuration) -> some View {
+            configuration.label
+                .padding()
+                .background(isSelected ? Color.blue : Color.white)
+                .foregroundColor(isSelected ? .white : .blue)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.blue, lineWidth: 2)
+                )
+                .scaleEffect(configuration.isPressed ? 0.95 : 1)
+        }
+    }
+    
+    
+    @State private var hasSmoked: Bool? // swiftlint:disable:this discouraged_optional_boolean
     struct YesNoButtonStyle: ButtonStyle {
         var isSelected: Bool
         
