@@ -82,7 +82,6 @@ struct ScrollablePDF: View {
                     HStack {
                     Text(item.surgeryName)
                     Spacer()
-                        Text(item.date)
                         .foregroundColor(.secondary)
                     }
                 }
