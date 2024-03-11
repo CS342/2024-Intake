@@ -27,10 +27,6 @@ struct AllergyItem: Identifiable, Equatable {
     }
 }
 
-// struct ReactionViewDetails {
-//    var showingReaction: Bool
-//    var
-// }
 
 struct ChatButton: View {
     // Use @Binding to create a two-way binding to the parent view's showingChat state
