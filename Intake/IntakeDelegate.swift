@@ -71,21 +71,12 @@ class IntakeDelegate: SpeziAppDelegate {
         )
     }
 
-    // swiftlint:disable trailing_newline
     private var healthKit: HealthKit {
         HealthKit {
             CollectSample(
                 HKQuantityType(.stepCount),
-                deliverySetting: .anchorQuery(.afterAuthorizationAndApplicationWillLaunch)
+                deliverySetting: .anchorQuery(.automatic)
             )
-            /*
-            CollectSample(
-                HKCharacteristicType(.biologicalSex),
-                deliverySetting: .anchorQuery(saveAnchor: false)
-            )
-             */
         }
     }
 }
-// swiftlint:enable trailing newline
-
