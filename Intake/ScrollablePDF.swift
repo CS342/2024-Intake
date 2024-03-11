@@ -20,7 +20,7 @@ struct HeaderTitle: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     let title: String
     var nextView: NavigationViews
-
+    
     var body: some View {
         HStack {
             Text(title)
@@ -41,15 +41,15 @@ struct ScrollablePDF: View {
     private struct ConditionSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Conditions", nextView: NavigationViews.medical)) {
                 List(data.conditionData, id: \.id) { item in
                     HStack {
-                    Text(item.condition)
-                    Spacer()
-                    Text(item.active ? "Active" : "Inactive")
-                        .foregroundColor(.secondary)
+                        Text(item.condition)
+                        Spacer()
+                        Text(item.active ? "Active" : "Inactive")
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -58,7 +58,7 @@ struct ScrollablePDF: View {
     
     private struct ExportButton: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Button(action: {
             }) {
@@ -75,13 +75,12 @@ struct ScrollablePDF: View {
     private struct SurgerySection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.surgical)) {
                 List(data.surgeries, id: \.id) { item in
                     HStack {
                     Text(item.surgeryName)
-                    Spacer()
                         .foregroundColor(.secondary)
                     }
                 }
@@ -92,7 +91,7 @@ struct ScrollablePDF: View {
     private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
                 VStack(alignment: .leading) {
@@ -105,7 +104,7 @@ struct ScrollablePDF: View {
     private struct ChiefComplaint: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Chief Complaint", nextView: NavigationViews.concern)) {
                 Text(data.chiefComplaint)
@@ -116,6 +115,8 @@ struct ScrollablePDF: View {
     private struct PatientInfo: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
+        @Environment(FHIRStore.self) private var fhirStore
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Patient Information", nextView: NavigationViews.patient)) {
                 List {
@@ -166,7 +167,7 @@ struct ScrollablePDF: View {
         private func reactionPDFView() -> some View {
             ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
         }
-            
+        
         private func allergyButton(index: Int) -> some View {
             Button(action: {
                 self.selectedIndex = index
