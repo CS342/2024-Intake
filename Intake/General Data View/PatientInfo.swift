@@ -12,7 +12,7 @@
 //
 import SpeziFHIR
 import SwiftUI
-
+// swiftlint:disable type_contents_order
 struct PatientInfo: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
