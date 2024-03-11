@@ -13,6 +13,16 @@
     "%.2f" : {
 
     },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@ Reactions" : {
 
     },
@@ -263,6 +273,9 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
+    "Female" : {
+
+    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
@@ -353,6 +366,12 @@
     "Last Menstrural Period" : {
 
     },
+    "John Doe" : {
+
+    },
+    "Last Menstrural Period" : {
+
+    },
     "Last period's end date" : {
 
     },
@@ -391,9 +410,6 @@
 
     },
     "Medical Intake Form" : {
-
-    },
-    "Medication Settings" : {
 
     },
     "Medications" : {
