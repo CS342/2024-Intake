@@ -29,7 +29,7 @@ struct StartButton: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(NavigationViews.medical)
+            navigationPath.append(NavigationViews.chat)
         }) {
             Text("Start")
                 .font(.headline)
@@ -42,18 +42,10 @@ struct StartButton: View {
     }
 }
 
-struct HomeView: View {
-    static var accountEnabled: Bool {
-        !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
-    }
-
-    @State private var presentingAccount = false
-    @State private var showSettings = false
-
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    @Environment(DataStore.self) private var data
+struct SettingsButton: View {
+    @Binding var showSettings: Bool
     
-    private var SettingsButton: some View {
+    var body: some View {
         Button(
             action: {
                 showSettings.toggle()
@@ -68,8 +60,20 @@ struct HomeView: View {
             }
         )
     }
+}
+
+struct HomeView: View {
+    static var accountEnabled: Bool {
+        !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
+    }
+
+    @State private var presentingAccount = false
+    @State private var showSettings = false
+
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
     
-    private var HomeLogo: some View {
+    private var homeLogo: some View {
         Image(systemName: "waveform.path.ecg")
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -78,7 +82,7 @@ struct HomeView: View {
             .accessibilityLabel(Text("HOME_LOGO"))
     }
     
-    private var HomeTitle: some View {
+    private var homeTitle: some View {
         Group {
             Text("ReForm")
                 .font(.largeTitle)
@@ -97,13 +101,13 @@ struct HomeView: View {
         NavigationStack(path: $navigationPath.path) {
             VStack {
                 Spacer()
-                HomeLogo
-                HomeTitle
+                homeLogo
+                homeTitle
                 Spacer()
                 StartButton(navigationPath: $navigationPath.path)
                 
                 .toolbar {
-                    EditButton()
+                    SettingsButton(showSettings: $showSettings)
                 }
             }
 

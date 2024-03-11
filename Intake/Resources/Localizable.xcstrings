@@ -218,7 +218,13 @@
     "Date of Birth:" : {
 
     },
+    "Delete" : {
+
+    },
     "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
 
     },
     "DETAILS" : {
@@ -613,6 +619,9 @@
           }
         }
       }
+    },
+    "Select + to add a surgery" : {
+
     },
     "SETTINGS" : {
 
