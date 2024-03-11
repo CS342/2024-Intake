@@ -54,7 +54,7 @@ struct SmokingHistoryView: View {
                     data.smokingHistory = SmokingHistoryItem(packYears: packYears, additionalDetails: additionalDetails)
                 }
 
-                SubmitButton(nextView: NavigationViews.pdfs)
+                SubmitButton(nextView: NavigationViews.chat)
                     .padding()
             }
             .navigationTitle("Social History")
