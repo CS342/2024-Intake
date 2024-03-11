@@ -249,7 +249,13 @@
     "Date:" : {
 
     },
+    "Delete" : {
+
+    },
     "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
 
     },
     "DETAILS" : {
@@ -280,9 +286,6 @@
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
-    },
-    "fix medication" : {
 
     },
     "Full name" : {
@@ -692,6 +695,9 @@
           }
         }
       }
+    },
+    "Select + to add a surgery" : {
+
     },
     "SETTINGS" : {
 
