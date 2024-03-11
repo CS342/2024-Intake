@@ -128,6 +128,9 @@
     "Auto-fill Intake Form" : {
 
     },
+    "Back" : {
+
+    },
     "Calculation" : {
 
     },
@@ -246,7 +249,13 @@
     "Date:" : {
 
     },
+    "Delete" : {
+
+    },
     "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
 
     },
     "DETAILS" : {
@@ -498,6 +507,9 @@
     "No past surgeries" : {
 
     },
+    "No Reactions" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -677,6 +689,9 @@
           }
         }
       }
+    },
+    "Select + to add a surgery" : {
+
     },
     "SETTINGS" : {
 
