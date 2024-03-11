@@ -13,6 +13,16 @@
     "%.2f" : {
 
     },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@ Reactions" : {
 
     },
@@ -403,9 +413,6 @@
 
     },
     "Medical Intake Form" : {
-
-    },
-    "Medication Settings" : {
 
     },
     "Medications" : {
