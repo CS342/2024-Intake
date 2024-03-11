@@ -149,8 +149,6 @@ struct ScrollablePDF: View {
                 }
             }
         }
-        
-
     }
     
     private struct Allergy: View {
