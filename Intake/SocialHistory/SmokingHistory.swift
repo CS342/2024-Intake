@@ -37,6 +37,7 @@ struct SmokingHistoryView: View {
     @State private var packsPerDay: String = ""
     @State private var packYears: Double = 0
     @State private var additionalDetails: String = ""
+    @Environment(DataStore.self) private var data
     
     var body: some View {
         NavigationView {
@@ -48,6 +49,11 @@ struct SmokingHistoryView: View {
                     }
                 }
                 Spacer()
+                .onDisappear {
+                    calculatePackYears()
+                    data.smokingHistory = SmokingHistoryItem(packYears: packYears, additionalDetails: additionalDetails)
+                }
+
                 SubmitButton(nextView: NavigationViews.pdfs)
                     .padding()
             }
