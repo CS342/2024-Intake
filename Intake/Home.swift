@@ -24,6 +24,24 @@ enum NavigationViews: String {
     case inspect
 }
 
+struct StartButton: View {
+    @Binding var navigationPath: NavigationPath
+    
+    var body: some View {
+        Button(action: {
+            navigationPath.append(NavigationViews.medical)
+        }) {
+            Text("Start")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+}
+
 struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
@@ -34,59 +52,58 @@ struct HomeView: View {
 
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
+    
+    private var SettingsButton: some View {
+        Button(
+            action: {
+                showSettings.toggle()
+            },
+            label: {
+                Image(systemName: "gear")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.blue)
+                    .accessibilityLabel(Text("SETTINGS"))
+            }
+        )
+    }
+    
+    private var HomeLogo: some View {
+        Image(systemName: "waveform.path.ecg")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 100, height: 100)
+            .foregroundColor(.blue)
+            .accessibilityLabel(Text("HOME_LOGO"))
+    }
+    
+    private var HomeTitle: some View {
+        Group {
+            Text("ReForm")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+            Text("AI-assisted medical intake")
+                .font(.title2)
+                .foregroundColor(.gray)
+        }
+    }
 
     var body: some View {
         @Bindable var navigationPath = navigationPath
         @Bindable var data = data
         
-        NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
-            VStack { // swiftlint:disable:this closure_body_length
-                HStack {
-                    Spacer()
-                    Button(
-                        action: {
-                            showSettings.toggle()
-                        },
-                        label: {
-                            Image(systemName: "gear")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.blue)
-                                .accessibilityLabel(Text("SETTINGS"))
-                        }
-                    )
-                    .padding()
-                }
-
+        NavigationStack(path: $navigationPath.path) {
+            VStack {
                 Spacer()
-
-                Image(systemName: "waveform.path.ecg")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.blue)
-                    .accessibilityLabel(Text("HOME_LOGO"))
-                Text("ReForm")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                Text("AI-assisted medical intake")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-
+                HomeLogo
+                HomeTitle
                 Spacer()
-
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.chat)
-                }) {
-                    Text("Start")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                StartButton(navigationPath: $navigationPath.path)
+                
+                .toolbar {
+                    EditButton()
                 }
             }
 
