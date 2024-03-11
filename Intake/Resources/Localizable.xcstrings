@@ -10,6 +10,9 @@
     "*Click the details to view/edit the reactions" : {
 
     },
+    "%.2f" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -79,7 +82,7 @@
     "Additional Details" : {
 
     },
-    "Additional Details:  " : {
+    "Additional Details:" : {
 
     },
     "Additional Symptoms" : {
@@ -218,9 +221,6 @@
     "DELETE_REACTION" : {
 
     },
-    "details" : {
-
-    },
     "DETAILS" : {
 
     },
@@ -236,10 +236,7 @@
     "Edit Surgery" : {
 
     },
-    "End" : {
-
-    },
-    "end date" : {
+    "End Date:" : {
 
     },
     "Ex: Heavy bleeding on second day, fatigue..." : {
@@ -644,10 +641,7 @@
     "Start" : {
 
     },
-    "start date" : {
-
-    },
-    "Start:" : {
+    "Start Date:" : {
 
     },
     "Status" : {
