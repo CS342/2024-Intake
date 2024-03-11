@@ -42,6 +42,7 @@ class ReachedEndWrapper {
 @Observable
 class LoadedWrapper {
     var conditionData = false
+    var allergyData = false
 }
 
 @main

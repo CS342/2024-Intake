@@ -13,6 +13,8 @@
 import Foundation
 import ModelsR4
 import SpeziFHIR
+import SpeziLLM
+import SpeziLLMOpenAI
 import SwiftUI
 
 struct AllergyItem: Identifiable, Equatable {
@@ -54,10 +56,44 @@ struct AllergyList: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
+    @Environment(LoadedWrapper.self) private var loaded
+    
     @State private var showingReaction = false
     @State private var selectedIndex = 0
     @State private var showingChat = false
     @State private var presentingAccount = false
+    
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+    
+    init() {
+        let systemPrompt = """
+            You are a helpful assistant that filters lists of allergies. You will be given\
+            an array of strings. Each string will be the name of a allergy.
+        
+            For example, if you are given the following list:
+            Mammography (procedure), Certification procedure (procedure), Cytopathology\
+            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
+            (procedure),
+        
+            you should return something like this:
+            Transplant of kidney, Mammography.
+        
+            In your response, return only the name of the allergy. Remove words in parenthesis
+            like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
+        
+            Do not make anything up, and do not change the name of the condition under any
+            circumstances. Thank you!
+        """
+        
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: systemPrompt
+                )
+            )
+        )
+    }
 
     var body: some View {
         VStack {
@@ -65,7 +101,16 @@ struct AllergyList: View {
             SubmitButton(nextView: NavigationViews.menstrual)
                 .padding()
         }
-        .onAppear(perform: loadAllergies)
+        .task {
+            if !loaded.allergyData {
+                do {
+                    try await loadAllergies()
+                } catch {
+                    print("Failed to load")
+                }
+                loaded.allergyData = true
+            }
+        }
         .sheet(isPresented: $showingChat, content: chatSheetView)
         .sheet(isPresented: $showingReaction, content: editAllergySheetView)
     }
@@ -146,7 +191,7 @@ struct AllergyList: View {
         EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
     }
 
-    private func loadAllergies() {
+    private func loadAllergies() async throws {
         var allergies: [FHIRString] = []
         var allReactions: [[ReactionItem]] = []
         let intolerances = fhirStore.allergyIntolerances
@@ -180,6 +225,9 @@ struct AllergyList: View {
                 )
             }
         }
+        
+        let filter = LLMFiltering(session: session, data: data)
+        try await filter.filterAllergies()
     }
 
     func delete(at offsets: IndexSet) {

@@ -99,11 +99,7 @@ class LLMFiltering {
     
     func filterConditions() async throws {
         let conditions = data.conditionData.map { $0.condition }
-        print("conditions:")
-        print(conditions)
         let filteredNames = try await self.LLMFilter(names: conditions)
-        print("filtered names:")
-        print(filteredNames)
         let filteredConditions = data.conditionData.filter { self.containsAnyWords(item: $0.condition, words: filteredNames) }
         var cleaned = filteredConditions
 
@@ -115,5 +111,20 @@ class LLMFiltering {
             }
         }
         data.conditionData = cleaned
+    }
+    
+    func filterAllergies() async throws {
+        let allergies = data.allergyData.map { $0.allergy }
+        let filteredNames = try await self.LLMFilter(names: allergies)
+        let filteredAllergies = data.allergyData.filter { self.containsAnyWords(item: $0.allergy, words: filteredNames) }
+        var cleaned = filteredAllergies
+
+        for index in cleaned.indices {
+            let oldName = cleaned[index].allergy
+            if let newName: String = filteredNames.first(where: { oldName.contains($0) }) {
+                cleaned[index].allergy = newName
+            }
+        }
+        data.allergyData = cleaned
     }
 }
