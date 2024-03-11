@@ -119,26 +119,6 @@ struct AllergyList: View {
             }
         }
     }
-        
-    private func allergyEntryRow(index: Int) -> some View {
-        HStack {
-            Text(data.allergyData[index].allergy)
-                .foregroundColor(.black)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-                .accessibilityLabel(Text("DETAILS"))
-        }
-    }
-    
-    private func allergyButton(index: Int) -> some View {
-        Button(action: {
-            self.selectedIndex = index
-            self.showingReaction = true
-        }) {
-            allergyEntryRow(index: index)
-        }
-    }
     
     init() {
         let systemPrompt = """
@@ -168,6 +148,26 @@ struct AllergyList: View {
                 )
             )
         )
+    }
+    
+    private func allergyEntryRow(index: Int) -> some View {
+        HStack {
+            Text(data.allergyData[index].allergy)
+                .foregroundColor(.black)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+                .accessibilityLabel(Text("DETAILS"))
+        }
+    }
+    
+    private func allergyButton(index: Int) -> some View {
+        Button(action: {
+            self.selectedIndex = index
+            self.showingReaction = true
+        }) {
+            allergyEntryRow(index: index)
+        }
     }
     
     private func submitAction() {
