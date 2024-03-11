@@ -19,79 +19,35 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
-    if dobString.isEmpty {
-        return ""
-    }
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = format
-    
-    guard let birthDate = dateFormatter.date(from: dobString) else {
-        return "Invalid date format or date string."
-    }
-    
-    let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
-    if let age = ageComponents.year {
-        return "\(age)"
-    } else {
-        return "Could not calculate age"
-    }
-}
-
-func getValue(forKey key: String, from jsonString: String) -> String? {
-    guard let jsonData = jsonString.data(using: .utf8) else {
-        print("Error: Cannot create Data from JSON string")
-        return nil
-    }
-    
-    do {
-        if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-            if key == "name" {
-                if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
-                    let nameDict = nameArray[0] // Accessing the first name object
-                    if let family = nameDict["family"] as? String,
-                       let givenArray = nameDict["given"] as? [String],
-                       !givenArray.isEmpty {
-                        let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
-                        
-                        return "\(given) \(family)"
-                    }
-                }
-            } else {
-                return dictionary[key] as? String
-            }
-        } else {
-            print("Error: JSON is not a dictionary")
-        }
-    } catch {
-        print("Error: \(error.localizedDescription)")
-    }
-
-    return nil
-}
-
-func getInfo(patient: FHIRResource, field: String) -> String {
-    let jsonDescription = patient.jsonDescription
-
-    if let infoValue = getValue(forKey: field, from: jsonDescription) {
-        print("Info found: \(infoValue)")
-        return infoValue
-    }
-    
-    print("Key \(field) not found")
-    return ""
-}
-
 
 struct LLMInteraction: View {
+    // swiftlint:disable type_contents_order
+    @State private var fullName: String = ""
+    @State private var firstName: String = ""
+    @State private var dob: String = ""
+    @State private var gender: String = ""
+    @Environment(LLMRunner.self) var runner: LLMRunner
+    @Environment(FHIRStore.self) private var fhirStore
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    
+    @Binding var presentingAccount: Bool
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+
+    @State var showOnboarding = true
+    @State var greeting = true
+
+    @State var stringBox: StringBox = .init()
+    @State var showSheet = false
+    
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
-
+        
         init() {
             self.llmResponseSummary = ""
         }
-
+        
         static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
             lhs.llmResponseSummary == rhs.llmResponseSummary
         }
@@ -123,20 +79,6 @@ struct LLMInteraction: View {
             return nil
         }
     }
-    
-    @Environment(LLMRunner.self) var runner: LLMRunner
-    @Environment(FHIRStore.self) private var fhirStore
-    @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    
-    @Binding var presentingAccount: Bool
-    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-
-    @State var showOnboarding = true
-    @State var greeting = true
-
-    @State var stringBox: StringBox = .init()
-    @State var showSheet = false
   
     var body: some View {
         @Bindable var data = data
@@ -154,37 +96,20 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
-            var fullName: String = ""
-            var firstName: String = ""
-            var dob: String = ""
-            var gender: String = ""
-            if let patient = fhirStore.patient {
-                fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
-                dob = getInfo(patient: patient, field: "birthDate")
-                gender = getInfo(patient: patient, field: "gender")
-
-                let age = calculateAge(from: dob)
-                let nameString = fullName.components(separatedBy: " ")
-                
-                data.generalData.name = fullName
-                data.generalData.birthdate = dob
-                data.generalData.sex = gender
-                data.generalData.age = age
-                
-                firstName = nameString.first ?? "First Name is empty"
-                print(firstName == "First Name is empty" ? "First Name is empty" : "")
-
-                
+                let nameString = data.generalData.name.components(separatedBy: " ")
+                if let firstNameValue = nameString.first {
+                    firstName = firstNameValue
+                }
                 let systemMessage = """
-                    The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: age))\
-                    years old. The patient's gender is \(String(describing: gender)) Please speak with\
+                    The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
+                    years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\
                     the patient as you would a person of this age group, using as simple words as possible\
                     if the patient is young. Address them by their first name when you ask questions.
                 """
                 session.context.append(
                     systemMessage: systemMessage
                 )
-            }
+          
             
             if greeting {
                 if firstName.isEmpty {

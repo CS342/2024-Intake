@@ -69,7 +69,31 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
             IntakeMedication(
                 localizedDescription: "NDA020800 0.3 ML Epinephrine 1 MG/ML Auto-Injector",
                 dosages: [
-                    IntakeDosage(localizedDescription: "0.3ML / 1 MG/ML")
+                    IntakeDosage(localizedDescription: "0.3 ML/1 MG/ML")
+                ]
+            ),
+            IntakeMedication(
+                localizedDescription: "Clopidogrel 75 MG Oral Tablet",
+                dosages: [
+                    IntakeDosage(localizedDescription: "75 MG")
+                ]
+            ),
+            IntakeMedication(
+                localizedDescription: "Verapamil Hydrochloride 40 MG",
+                dosages: [
+                    IntakeDosage(localizedDescription: "40 MG")
+                ]
+            ),
+            IntakeMedication(
+                localizedDescription: "Simvastatin 20 MG Oral Tablet",
+                dosages: [
+                    IntakeDosage(localizedDescription: "20 MG")
+                ]
+            ),
+            IntakeMedication(
+                localizedDescription: "amLODIPine 2.5 MG Oral Tablet",
+                dosages: [
+                    IntakeDosage(localizedDescription: "2.5 MG")
                 ]
             )
         ]

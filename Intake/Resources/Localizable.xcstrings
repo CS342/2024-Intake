@@ -13,7 +13,23 @@
     "%.2f" : {
 
     },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@ Reactions" : {
+
+    },
+    "0 pack years" : {
+
+    },
+    "35" : {
 
     },
     "ACCOUNT_NEXT" : {
@@ -91,10 +107,16 @@
     "Age" : {
 
     },
+    "Age:" : {
+
+    },
     "AI-assisted medical intake" : {
 
     },
     "Allergies" : {
+
+    },
+    "Allergies:" : {
 
     },
     "Allergy" : {
@@ -113,6 +135,9 @@
 
     },
     "Chat" : {
+
+    },
+    "Chief Complaint:" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -212,6 +237,9 @@
         }
       }
     },
+    "Date" : {
+
+    },
     "Date of Birth" : {
 
     },
@@ -219,6 +247,9 @@
 
     },
     "Delete" : {
+    
+    },
+    "Date:" : {
 
     },
     "DELETE_REACTION" : {
@@ -251,10 +282,16 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
+    "Female" : {
+
+    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
     "fix medication" : {
+
+    },
+    "Full name" : {
 
     },
     "Get Started" : {
@@ -316,6 +353,9 @@
     "Inactive" : {
 
     },
+    "Intake Form" : {
+
+    },
     "Integrate your Records" : {
 
     },
@@ -330,6 +370,15 @@
       }
     },
     "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
+    "January 1, 1980" : {
+
+    },
+    "John Doe" : {
+
+    },
+    "Last Menstrural Period" : {
 
     },
     "Last period's end date" : {
@@ -363,19 +412,22 @@
     "Medical History" : {
 
     },
+    "MEDICAL HISTORY" : {
+
+    },
     "Medical History Assistant" : {
 
     },
     "Medical Intake Form" : {
 
     },
-    "Medication Settings" : {
-
-    },
     "Medications" : {
 
     },
     "Medications Assistant" : {
+
+    },
+    "Medications:" : {
 
     },
     "Menstrual Information" : {
@@ -455,6 +507,18 @@
     "No" : {
 
     },
+    "No known allergies" : {
+
+    },
+    "No medical conditions" : {
+
+    },
+    "No medications" : {
+
+    },
+    "No past surgeries" : {
+
+    },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -519,7 +583,19 @@
     "Pack years: %.2f" : {
 
     },
+    "Past Medical History:" : {
+
+    },
+    "Past Surgical History:" : {
+
+    },
+    "Patient did not enter chief complaint." : {
+
+    },
     "Patient Form" : {
+
+    },
+    "Patient Information" : {
 
     },
     "Performed" : {
@@ -592,6 +668,9 @@
     "Review of Systems" : {
 
     },
+    "Review of Systems:" : {
+
+    },
     "Review summary of your medical history." : {
 
     },
@@ -632,13 +711,22 @@
     "Sex" : {
 
     },
+    "Sex:" : {
+
+    },
     "Share" : {
+
+    },
+    "Share Intake form" : {
 
     },
     "Share with provider of your choice." : {
 
     },
     "Skip" : {
+
+    },
+    "Smoking history" : {
 
     },
     "Smoking History" : {

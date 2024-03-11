@@ -19,9 +19,11 @@ enum NavigationViews: String {
     case medication
     case chat
     case concern
+    case export
     case patient
     case pdfs
     case inspect
+    case general
 }
 
 struct StartButton: View {
@@ -29,7 +31,7 @@ struct StartButton: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(NavigationViews.chat)
+            navigationPath.append(NavigationViews.general)
         }) {
             Text("Start")
                 .font(.headline)
@@ -97,7 +99,7 @@ struct HomeView: View {
     var body: some View {
         @Bindable var navigationPath = navigationPath
         @Bindable var data = data
-        
+
         NavigationStack(path: $navigationPath.path) {
             VStack {
                 Spacer()
@@ -105,10 +107,10 @@ struct HomeView: View {
                 homeTitle
                 Spacer()
                 StartButton(navigationPath: $navigationPath.path)
-                
-                .toolbar {
+            }
+          
+            .toolbar {
                     SettingsButton(showSettings: $showSettings)
-                }
             }
 
             .navigationDestination(for: NavigationViews.self) { view in
@@ -121,11 +123,14 @@ struct HomeView: View {
                 case .medication: MedicationContentView()
                 case .menstrual: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
+                case .export: ExportView()
                 case .patient: EditPatientView()
                 case .pdfs: ScrollablePDF()
                 case .inspect: InspectSurgeryView(surgery: $data.surgeries[data.surgeries.count - 1], isNew: true)
+                case .general: PatientInfo()
                 }
             }
+            
         }
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
@@ -133,10 +138,13 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
+// comment out below for pdf testing
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
+        
+// comment out above for pdf testing
     }
 }
 
