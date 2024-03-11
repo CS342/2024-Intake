@@ -160,6 +160,10 @@ struct LLMInteraction: View {
         
         .onAppear {
                 loadData()
+                let nameString = data.generalData.name.components(separatedBy: " ")
+                if let firstNameValue = nameString.first {
+                    firstName = firstNameValue
+                }
                 let systemMessage = """
                     The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
                     years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\

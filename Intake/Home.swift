@@ -22,6 +22,7 @@ enum NavigationViews: String {
     case patient
     case pdfs
     case inspect
+    case general
 }
 
 struct HomeView: View {
@@ -78,7 +79,7 @@ struct HomeView: View {
                 Spacer()
 
                 Button(action: {
-                    navigationPath.path.append(NavigationViews.chat)
+                    navigationPath.path.append(NavigationViews.general)
                 }) {
                     Text("Start")
                         .font(.headline)
@@ -103,6 +104,7 @@ struct HomeView: View {
                 case .patient: EditPatientView()
                 case .pdfs: ScrollablePDF()
                 case .inspect: InspectSurgeryView(surgery: $data.surgeries[data.surgeries.count - 1], isNew: true)
+                case .general: PatientInfo()
                 }
             }
         }
