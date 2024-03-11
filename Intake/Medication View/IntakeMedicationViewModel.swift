@@ -89,6 +89,12 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
                 dosages: [
                     IntakeDosage(localizedDescription: "20 MG")
                 ]
+            ),
+            IntakeMedication(
+                localizedDescription: "amLODIPine 2.5 MG Oral Tablet",
+                dosages: [
+                    IntakeDosage(localizedDescription: "2.5 MG")
+                ]
             )
         ]
 

@@ -93,15 +93,16 @@ struct ScrollablePDF: View {
     private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
         var body: some View {
+            let medicationData = data.medicationData
             Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
-                VStack(alignment: .leading) {
-                    ForEach(Array(data.medicationData)) { item in
-                        HStack {
-                            Text(item.type.localizedDescription)
-                                .padding(.leading)
-                            Spacer()
+                ForEach(Array(medicationData), id: \.self) { medicationInstance in
+                    List {
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(medicationInstance.type.localizedDescription)
+                                .font(.headline)
+                            Text("\(medicationInstance.dosage.localizedDescription) - \(medicationInstance.schedule.frequency.description)")
+                                .font(.subheadline)
                         }
                     }
                 }
