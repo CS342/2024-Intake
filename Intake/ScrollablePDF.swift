@@ -56,6 +56,23 @@ struct ScrollablePDF: View {
         }
     }
     
+    private struct ExportButton: View {
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+        
+        var body: some View {
+            Button(action: {
+                navigationPath.path.append(NavigationViews.export)
+            }) {
+                Text("Share")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            }
+        }
+    }
+    
     private struct SurgerySection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -248,7 +265,7 @@ struct ScrollablePDF: View {
             .onAppear(perform: {
                 end.reachedEnd = true
             })
-            SubmitButton(nextView: NavigationViews.export)
+            ExportButton()
                 .padding()
         }
     }

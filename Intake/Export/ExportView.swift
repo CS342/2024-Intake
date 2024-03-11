@@ -63,19 +63,19 @@ struct ExportView: View {
                     }
                     HStack {
                         Text("Name:").fontWeight(.bold)
-                        Text("John Doe")
+                        Text(data.generalData.name)
                     }
                     HStack {
                         Text("Date of Birth:").fontWeight(.bold)
-                        Text("January 1, 1980")
+                        Text(data.generalData.birthdate)
                     }
                     HStack {
                         Text("Age:").fontWeight(.bold)
-                        Text("35")
+                        Text(data.generalData.age)
                     }
                     HStack {
                         Text("Sex:").fontWeight(.bold)
-                        Text("Female")
+                        Text(data.generalData.name)
                     }
                     
                     Spacer()
@@ -100,8 +100,13 @@ struct ExportView: View {
                         if data.conditionData.isEmpty {
                             Text("No medical conditions")
                         } else {
-                            List(data.conditionData, id: \.id) { item in
-                                Text(item.condition)
+                            ForEach(data.conditionData, id: \.id) { item in
+                                HStack {
+                                    Text(item.condition)
+                                    Spacer()
+                                    Text(item.active ? "Active" : "Inactive")
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
@@ -115,7 +120,10 @@ struct ExportView: View {
                             Text("No past surgeries")
                         } else {
                             List(data.surgeries, id: \.id) { item in
+                                HStack {
                                 Text(item.surgeryName)
+                                    .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
@@ -146,9 +154,9 @@ struct ExportView: View {
                             Text("No known allergies")
                         } else {
                             List(data.allergyData, id: \.id) { item in
-                                HStack {
-                                    Text(item.allergy)
-                                    List(item.reaction, id: \.id) { reactionItem in
+                                VStack(alignment: .leading) {
+                                    Text(item.allergy).fontWeight(.bold)
+                                    ForEach(item.reaction, id: \.id) { reactionItem in
                                         Text(reactionItem.reaction)
                                     }
                                 }
