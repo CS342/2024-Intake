@@ -22,16 +22,17 @@ struct ReactionPDF: View {
     @Binding private var showingReaction: Bool
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    ForEach(data.allergyData[index].reaction) { item in
-                        Text(item.reaction)
-                    }
-                }
+            ReactionSectionView(index: index)
+//            VStack {
+//                Form {
+//                    ForEach(data.allergyData[index].reaction) { item in
+//                        Text(item.reaction)
+//                    }
+//                }
 //                .navigationTitle("Medical History")
 ////                .navigationTitle("\(data.allergyData[index].allergy) Reactions")
 //                .navigationBarItems(trailing: EditButton())
-            }
+//            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack {

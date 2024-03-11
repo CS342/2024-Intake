@@ -22,6 +22,7 @@ struct SocialHistoryQuestionView: View {
     @State private var isFemale = false
     @State private var showMaleSlide = false
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(DataStore.self) private var data
 
     var body: some View {
         NavigationView {
@@ -43,20 +44,12 @@ struct SocialHistoryQuestionView: View {
                 .onAppear {
                     fetchHealthKitData()
                 }
-
-                // Adding the Submit button outside the Form
-                Button(action: {
-                    navigationPath.path.append(NavigationViews.smoking)
-                }) {
-                    Text("Submit")
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                .onDisappear {
+                                    // Update the MenstrualHistoryItem in the data store right before the view disappears
+                data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
+                SubmitButton(nextView: NavigationViews.smoking)
+                    .padding()
             }
         }
     }

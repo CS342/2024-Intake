@@ -37,6 +37,7 @@ struct SmokingHistoryView: View {
     @State private var packsPerDay: String = ""
     @State private var packYears: Double = 0
     @State private var additionalDetails: String = ""
+    @Environment(DataStore.self) private var data
     
     var body: some View {
         NavigationView {
@@ -48,7 +49,13 @@ struct SmokingHistoryView: View {
                     }
                 }
                 Spacer()
-                submitButton
+                .onDisappear {
+                    calculatePackYears()
+                    data.smokingHistory = SmokingHistoryItem(packYears: packYears, additionalDetails: additionalDetails)
+                }
+
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
             }
             .navigationTitle("Social History")
             .background(Color(UIColor.systemGroupedBackground))
@@ -100,23 +107,22 @@ struct SmokingHistoryView: View {
                         Text("Pack years: \(packYears, specifier: "%.2f")")
                     }
                 }
+                
+                // The Submit button can remain for explicit submission, if required
+                Button("Submit") {
+                    calculatePackYears()
+                }
+                SubmitButton(nextView: NavigationViews.pdfs)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+                .padding(.horizontal)
+                .padding(.bottom)
             }
+            .navigationTitle("Social History")
         }
-    }
-    
-    private var submitButton: some View {
-        Button("Submit") {
-            // Implement submission logic
-            // If hasSmoked is nil or false, submit "No" as the answer
-            // If hasSmoked is true, submit the form details
-        }
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color.blue)
-        .cornerRadius(8)
-        .padding(.horizontal)
-        .padding(.bottom)
     }
     
     func calculatePackYears() {

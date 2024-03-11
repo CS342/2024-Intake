@@ -158,20 +158,22 @@ struct LLMInteraction: View {
             var firstName: String = ""
             var dob: String = ""
             var gender: String = ""
-            
             if let patient = fhirStore.patient {
                 fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
                 dob = getInfo(patient: patient, field: "birthDate")
                 gender = getInfo(patient: patient, field: "gender")
-                
+
                 let age = calculateAge(from: dob)
                 let nameString = fullName.components(separatedBy: " ")
                 
-                if let firstNameValue = nameString.first {
-                    firstName = firstNameValue
-                } else {
-                    print("First Name is empty")
-                }
+                data.generalData.name = fullName
+                data.generalData.birthdate = dob
+                data.generalData.sex = gender
+                data.generalData.age = age
+                
+                firstName = nameString.first ?? "First Name is empty"
+                print(firstName == "First Name is empty" ? "First Name is empty" : "")
+
                 
                 let systemMessage = """
                     The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: age))\
