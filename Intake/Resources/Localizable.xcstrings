@@ -10,6 +10,9 @@
     "*Click the details to view/edit the reactions" : {
 
     },
+    "%.2f" : {
+
+    },
     "%@ Reactions" : {
 
     },
@@ -83,6 +86,9 @@
 
     },
     "Additional Details" : {
+
+    },
+    "Additional Details:" : {
 
     },
     "Additional Symptoms" : {
@@ -247,16 +253,19 @@
     "Edit Surgery" : {
 
     },
+    "End Date:" : {
+
+    },
     "Ex: Heavy bleeding on second day, fatigue..." : {
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Export to PDF" : {
+    "FHIR_RESOURCES_CHAT_CANCEL" : {
 
     },
-    "FHIR_RESOURCES_CHAT_CANCEL" : {
+    "fix medication" : {
 
     },
     "Get Started" : {
@@ -538,6 +547,9 @@
     "Other important questions." : {
 
     },
+    "Pack Years:" : {
+
+    },
     "Pack years: %.2f" : {
 
     },
@@ -666,6 +678,9 @@
     "Sex" : {
 
     },
+    "Share" : {
+
+    },
     "Share with provider of your choice." : {
 
     },
@@ -681,7 +696,13 @@
     "Start" : {
 
     },
+    "Start Date:" : {
+
+    },
     "Status" : {
+
+    },
+    "Submit" : {
 
     },
     "Submit your Form" : {
@@ -770,7 +791,10 @@
 
     },
     "Yes" : {
-    
+
+    },
+    "YYYY-MM-DD" : {
+
     }
   },
   "version" : "1.0"
