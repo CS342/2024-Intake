@@ -96,6 +96,7 @@
 		5A2B9FB62B6AFE5D005CA63F /* AllergyRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */; };
 		5A2B9FBC2B6C7B29005CA63F /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */; };
 		5AAB83A72B9C04E70008407A /* LLMFiltering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB83A62B9C04E70008407A /* LLMFiltering.swift */; };
+		5AAB83B32B9EBB070008407A /* ReactionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB83B22B9EBB070008407A /* ReactionSectionView.swift */; };
 		5AEA5F212B82DDD000F1577A /* LLMAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */; };
 		5AEA5F2C2B8680F300F1577A /* AddAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */; };
 		5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */; };
@@ -113,8 +114,8 @@
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
-		ACF862BE2B96E29600ACBA1E /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF862BD2B96E29600ACBA1E /* ExportView.swift */; };
 		ACDF32ED2B9D0F4300B127E2 /* MenstrualHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */; };
+		ACF862BE2B96E29600ACBA1E /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF862BD2B96E29600ACBA1E /* ExportView.swift */; };
 		ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */; };
 		F42AB1D22B6379B5002E13A6 /* SpeziLLM in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D12B6379B5002E13A6 /* SpeziLLM */; };
 		F42AB1D42B6379B5002E13A6 /* SpeziLLMLocal in Frameworks */ = {isa = PBXBuildFile; productRef = F42AB1D32B6379B5002E13A6 /* SpeziLLMLocal */; };
@@ -213,6 +214,7 @@
 		5A2B9FB52B6AFE5D005CA63F /* AllergyRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyRecords.swift; sourceTree = "<group>"; };
 		5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
 		5AAB83A62B9C04E70008407A /* LLMFiltering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMFiltering.swift; sourceTree = "<group>"; };
+		5AAB83B22B9EBB070008407A /* ReactionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSectionView.swift; sourceTree = "<group>"; };
 		5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMAssistantView.swift; sourceTree = "<group>"; };
 		5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAllergy.swift; sourceTree = "<group>"; };
 		5AEA5F3A2B90081B00F1577A /* ScrollablePDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollablePDF.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				5AEA5F2B2B8680F300F1577A /* AddAllergy.swift */,
 				5AEA5F492B96F63A00F1577A /* AllergyLLMAssistant.swift */,
 				5A2B9FBB2B6C7B29005CA63F /* ReactionView.swift */,
+				5AAB83B22B9EBB070008407A /* ReactionSectionView.swift */,
 				5AEA5F462B93034A00F1577A /* ReactionPDF.swift */,
 				51A360152B965819004E7E12 /* AllergyLLMAssistant.swift */,
 			);
@@ -895,6 +898,7 @@
 				5AAB83A72B9C04E70008407A /* LLMFiltering.swift in Sources */,
 				F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */,
 				2F5E32BD297E05EA003432F8 /* IntakeDelegate.swift in Sources */,
+				5AAB83B32B9EBB070008407A /* ReactionSectionView.swift in Sources */,
 				511827962B740192002033A0 /* SurgeryView.swift in Sources */,
 				2FE5DC5229EDD7FA004B9AB4 /* IntakeScheduler.swift in Sources */,
 				5AEA5F3B2B90081B00F1577A /* ScrollablePDF.swift in Sources */,
