@@ -127,23 +127,27 @@ struct PatientInfo: View {
             birthdate = getInfo(patient: patient, field: "birthDate")
             gender = getInfo(patient: patient, field: "gender")
             let age = calculateAge(from: birthdate)
+            
+            // string to date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             if let dob = dateFormatter.date(from: birthdate) {
                 birthdateDateFormat = dob
-            } else {
-                print("The date string is not in the correct format")
             }
-            
+            sexOption = gender
             data.generalData = PatientData(name: fullName, birthdate: birthdate, age: age, sex: gender)
         }
     }
     
     private func updateData() {
-        let age = calculateAge(from: birthdate)
+        // date to string
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        birthdate = dateFormatter.string(from: birthdateDateFormat)
         data.generalData.birthdate = birthdate
+        let age = calculateAge(from: birthdate)
         data.generalData.sex = sexOption
-        data.generalData.age = calculateAge(from: birthdate)
+        data.generalData.age = age
     }
 }
 
