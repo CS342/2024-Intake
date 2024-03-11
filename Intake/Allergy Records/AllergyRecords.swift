@@ -96,23 +96,25 @@ struct AllergyList: View {
     }
 
     var body: some View {
-        VStack {
-            allergyForm
-            SubmitButton(nextView: NavigationViews.menstrual)
-                .padding()
-        }
-        .task {
-            if !loaded.allergyData {
-                do {
-                    try await loadAllergies()
-                } catch {
-                    print("Failed to load")
-                }
-                loaded.allergyData = true
+        if loaded.allergyData {
+            VStack {
+                allergyForm
+                SubmitButton(nextView: NavigationViews.menstrual)
+                    .padding()
             }
+            .sheet(isPresented: $showingChat, content: chatSheetView)
+            .sheet(isPresented: $showingReaction, content: editAllergySheetView)
+        } else {
+            ProgressView()
+                .task {
+                    do {
+                        try await loadAllergies()
+                    } catch {
+                        print("Failed to load")
+                    }
+                    loaded.allergyData = true
+                }
         }
-        .sheet(isPresented: $showingChat, content: chatSheetView)
-        .sheet(isPresented: $showingReaction, content: editAllergySheetView)
     }
     private var allergyForm: some View {
         Form {

@@ -65,22 +65,24 @@ struct MedicalHistoryView: View {
     }
 
     var body: some View {
-        VStack {
-            medicalHistoryForm
-            SubmitButton(nextView: NavigationViews.surgical)
-                .padding()
-        }
-        .task {
-            if !loaded.conditionData {
-                do {
-                    try await loadConditions()
-                } catch {
-                    print("Failed to load")
-                }
-                loaded.conditionData = true
+        if loaded.conditionData {
+            VStack {
+                medicalHistoryForm
+                SubmitButton(nextView: NavigationViews.surgical)
+                    .padding()
             }
+            .sheet(isPresented: $showingChat, content: chatSheetView)
+        } else {
+            ProgressView()
+                .task {
+                    do {
+                        try await loadConditions()
+                    } catch {
+                        print("Failed to load")
+                    }
+                    loaded.conditionData = true
+                }
         }
-        .sheet(isPresented: $showingChat, content: chatSheetView)
     }
     
     private var medicalHistoryForm: some View {
