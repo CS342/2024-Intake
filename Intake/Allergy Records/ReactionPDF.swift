@@ -22,26 +22,16 @@ struct ReactionPDF: View {
     @Binding private var showingReaction: Bool
     var body: some View {
         NavigationView {
-            ReactionSectionView(index: index)
-//            VStack {
-//                Form {
-//                    ForEach(data.allergyData[index].reaction) { item in
-//                        Text(item.reaction)
-//                    }
-//                }
-//                .navigationTitle("Medical History")
-////                .navigationTitle("\(data.allergyData[index].allergy) Reactions")
-//                .navigationBarItems(trailing: EditButton())
-//            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    HStack {
-                        Text("\(data.allergyData[index].allergy) Reactions")
-                            .lineLimit(1) // Ensure the title is single-lined
-                            .truncationMode(.tail)
-                            .font(.headline) // Adjust the font size if needed
+            VStack {
+                Form {
+                    if data.allergyData[index].reaction.isEmpty {
+                        Text("No Reactions")
+                    }
+                    ForEach(data.allergyData[index].reaction) { item in
+                        Text(item.reaction)
                     }
                 }
+                .navigationTitle("\(data.allergyData[index].allergy) Reactions")
             }
         }
     }
