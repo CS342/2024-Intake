@@ -32,6 +32,15 @@ struct ReactionPDF: View {
                     }
                 }
                 .navigationTitle("\(data.allergyData[index].allergy) Reactions")
+                .navigationBarItems(leading: Button(action: {
+                    self.showingReaction = false
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .accessibilityHidden(true)
+                        Text("Back")
+                    }
+                })
             }
         }
     }

@@ -80,8 +80,10 @@ struct ScrollablePDF: View {
             Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.surgical)) {
                 List(data.surgeries, id: \.id) { item in
                     HStack {
-                    Text(item.surgeryName)
-                        .foregroundColor(.secondary)
+                        Text(item.surgeryName)
+                        Spacer()
+                        Text(item.date)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -97,11 +99,11 @@ struct ScrollablePDF: View {
             Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
                 ForEach(Array(medicationData), id: \.self) { medicationInstance in
                     List {
-                        VStack(alignment: .leading, spacing: 0) {
+                        HStack {
                             Text(medicationInstance.type.localizedDescription)
-                                .font(.headline)
+                            Spacer()
                             Text("\(medicationInstance.dosage.localizedDescription) - \(medicationInstance.schedule.frequency.description)")
-                                .font(.subheadline)
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
