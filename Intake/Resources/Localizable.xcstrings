@@ -13,6 +13,16 @@
     "%.2f" : {
 
     },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
     "%@ Reactions" : {
 
     },
@@ -239,7 +249,13 @@
     "Date:" : {
 
     },
+    "Delete" : {
+
+    },
     "DELETE_REACTION" : {
+
+    },
+    "DELETE_SURGERY" : {
 
     },
     "DETAILS" : {
@@ -270,9 +286,6 @@
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
-    },
-    "fix medication" : {
 
     },
     "Full name" : {
@@ -403,9 +416,6 @@
 
     },
     "Medical Intake Form" : {
-
-    },
-    "Medication Settings" : {
 
     },
     "Medications" : {
@@ -685,6 +695,9 @@
           }
         }
       }
+    },
+    "Select + to add a surgery" : {
+
     },
     "SETTINGS" : {
 
