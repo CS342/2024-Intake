@@ -119,10 +119,10 @@ struct ExportView: View {
                         if data.surgeries.isEmpty {
                             Text("No past surgeries")
                         } else {
-                            List(data.surgeries, id: \.id) { item in
+                            ForEach(data.surgeries, id: \.id) { item in
                                 HStack {
                                 Text(item.surgeryName)
-                                    .foregroundColor(.secondary)
+                                Text(item.date).foregroundColor(.secondary)
                                 }
                             }
                         }
@@ -136,7 +136,7 @@ struct ExportView: View {
                         if data.medicationData.isEmpty {
                             Text("No medications")
                         } else {
-                            List(Array(data.medicationData), id: \.id) { item in
+                            ForEach(Array(data.medicationData), id: \.id) { item in
                                 HStack {
                                     Text(item.type.localizedDescription)
                                     Text(item.dosage.localizedDescription)
@@ -153,7 +153,7 @@ struct ExportView: View {
                         if data.allergyData.isEmpty {
                             Text("No known allergies")
                         } else {
-                            List(data.allergyData, id: \.id) { item in
+                            ForEach(data.allergyData, id: \.id) { item in
                                 VStack(alignment: .leading) {
                                     Text(item.allergy).fontWeight(.bold)
                                     ForEach(item.reaction, id: \.id) { reactionItem in
@@ -199,15 +199,13 @@ struct ExportView: View {
         
         // issue: proposed height is not expanding as necessary. uncomment to attempt to fix this.
         
-        // var proposedHeightOptional = renderer.uiImage?.size.height
+        var proposedHeightOptional = renderer.uiImage?.size.height
         
-        // guard let proposedHeight = proposedHeightOptional else {
-        //    return nil
-        // }
+         guard let proposedHeight = proposedHeightOptional else {
+            return nil
+         }
         
-        // let pageSize = CGSize(width: 612, height: proposedHeight)
-        
-        let pageSize = CGSize(width: 680, height: 880)
+        let pageSize = CGSize(width: 612, height: proposedHeight)
         
         renderer.proposedSize = .init(pageSize)
         

@@ -274,7 +274,14 @@
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
 
@@ -682,7 +689,14 @@
 
     },
     "SETTINGS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a Mock Patient"
+          }
+        }
+      }
     },
     "Sex" : {
 
