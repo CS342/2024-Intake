@@ -80,9 +80,9 @@ struct ScrollablePDF: View {
             Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.surgical)) {
                 List(data.surgeries, id: \.id) { item in
                     HStack {
-                        Text(item.surgeryName)
-                        Spacer()
-                            .foregroundColor(.secondary)
+                    Text(item.surgeryName)
+                    Spacer()
+                        .foregroundColor(.secondary)
                     }
                 }
             }

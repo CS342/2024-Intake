@@ -16,6 +16,12 @@
     "%@ Reactions" : {
 
     },
+    "0 pack years" : {
+
+    },
+    "35" : {
+
+    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -91,10 +97,16 @@
     "Age" : {
 
     },
+    "Age:" : {
+
+    },
     "AI-assisted medical intake" : {
 
     },
     "Allergies" : {
+
+    },
+    "Allergies:" : {
 
     },
     "Allergy" : {
@@ -109,6 +121,8 @@
     "Auto-fill Intake Form" : {
 
     },
+    
+    
     "Calculation" : {
 
     },
@@ -216,6 +230,9 @@
 
     },
     "Date of Birth:" : {
+
+    },
+    "Date:" : {
 
     },
     "DELETE_REACTION" : {
@@ -329,6 +346,13 @@
     "It looks like an unexpected view was appended to the NavigationPath!" : {
 
     },
+    "January 1, 1980" : {
+
+    },
+    "John Doe" : {
+
+    },
+    
     "Last period's end date" : {
 
     },
@@ -360,7 +384,9 @@
     "Medical History" : {
 
     },
+
     "Medical History Assistant" : {
+
 
     },
     "Medical Intake Form" : {
@@ -372,10 +398,12 @@
     "Medications" : {
 
     },
+
     "Medications Assistant" : {
 
     },
     "Menstrual Information" : {
+
 
     },
     "Message" : {
@@ -450,6 +478,18 @@
 
     },
     "No" : {
+
+    },
+    "No known allergies" : {
+
+    },
+    "No medical conditions" : {
+
+    },
+    "No medications" : {
+
+    },
+    "No past surgeries" : {
 
     },
     "NOTIFICATION_PERMISSIONS_BUTTON" : {
@@ -528,6 +568,15 @@
     "Please add your past surgeries" : {
 
     },
+    "Past Medical History:" : {
+
+    },
+    "Past Surgical History:" : {
+
+    },
+    "Patient did not enter chief complaint." : {
+
+    },
     "Please list conditions you have had" : {
 
     },
@@ -592,6 +641,9 @@
     "Review of Systems" : {
 
     },
+    "Review of Systems:" : {
+
+    },
     "Review summary of your medical history." : {
 
     },
@@ -624,6 +676,9 @@
 
     },
     "SETTINGS_TITLE" : {
+
+    },
+    "Sex:" : {
 
     },
     "Sex" : {

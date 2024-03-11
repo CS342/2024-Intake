@@ -19,6 +19,7 @@ enum NavigationViews: String {
     case medication
     case chat
     case concern
+    case export
     case patient
     case pdfs
     case inspect
@@ -41,6 +42,11 @@ struct HomeView: View {
         @Bindable var data = data
         
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
+            
+            // uncommment for pdf testing
+//            ExportView()
+            
+            // comment out below for pdf testing
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
                     Spacer()
@@ -101,12 +107,18 @@ struct HomeView: View {
                 case .medication: MedicationContentView()
                 case .menstrual: SocialHistoryQuestionView()
                 case .concern: SummaryView(chiefComplaint: $data.chiefComplaint)
+                case .export: ExportView()
                 case .patient: EditPatientView()
                 case .pdfs: ScrollablePDF()
                 case .inspect: InspectSurgeryView(surgery: $data.surgeries[data.surgeries.count - 1], isNew: true)
                 case .general: PatientInfo()
                 }
             }
+            
+            
+            // comment out above for pdf testing
+            
+            
         }
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
@@ -114,10 +126,13 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
+// comment out below for pdf testing
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
+        
+// comment out above for pdf testing
     }
 }
 
