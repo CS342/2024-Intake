@@ -121,12 +121,13 @@
     "Auto-fill Intake Form" : {
 
     },
-    
-    
     "Calculation" : {
 
     },
     "Chat" : {
+
+    },
+    "Chief Complaint:" : {
 
     },
     "CHIEF_COMPLAINT_SYSTEM_PROMPT" : {
@@ -226,6 +227,9 @@
         }
       }
     },
+    "Date" : {
+
+    },
     "Date of Birth" : {
 
     },
@@ -260,6 +264,9 @@
 
     },
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
+
+    },
+    "Female" : {
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
@@ -330,6 +337,9 @@
     "Inactive" : {
 
     },
+    "Intake Form" : {
+
+    },
     "Integrate your Records" : {
 
     },
@@ -352,7 +362,9 @@
     "John Doe" : {
 
     },
-    
+    "Last Menstrural Period" : {
+
+    },
     "Last period's end date" : {
 
     },
@@ -384,9 +396,10 @@
     "Medical History" : {
 
     },
+    "MEDICAL HISTORY" : {
 
+    },
     "Medical History Assistant" : {
-
 
     },
     "Medical Intake Form" : {
@@ -398,12 +411,13 @@
     "Medications" : {
 
     },
-
     "Medications Assistant" : {
 
     },
-    "Menstrual Information" : {
+    "Medications:" : {
 
+    },
+    "Menstrual Information" : {
 
     },
     "Message" : {
@@ -556,6 +570,15 @@
     "Pack years: %.2f" : {
 
     },
+    "Past Medical History:" : {
+
+    },
+    "Past Surgical History:" : {
+
+    },
+    "Patient did not enter chief complaint." : {
+
+    },
     "Patient Form" : {
 
     },
@@ -566,15 +589,6 @@
 
     },
     "Please add your past surgeries" : {
-
-    },
-    "Past Medical History:" : {
-
-    },
-    "Past Surgical History:" : {
-
-    },
-    "Patient did not enter chief complaint." : {
 
     },
     "Please list conditions you have had" : {
@@ -678,19 +692,25 @@
     "SETTINGS_TITLE" : {
 
     },
-    "Sex:" : {
-
-    },
     "Sex" : {
 
     },
+    "Sex:" : {
+
+    },
     "Share" : {
+
+    },
+    "Share Intake form" : {
 
     },
     "Share with provider of your choice." : {
 
     },
     "Skip" : {
+
+    },
+    "Smoking history" : {
 
     },
     "Smoking History" : {

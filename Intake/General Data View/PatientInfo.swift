@@ -24,7 +24,7 @@ struct PatientInfo: View {
     @State private var birthdate: String = ""
     @State private var gender: String = ""
     @State private var sexOption: String = ""
-    @State private var birthdateDateformat = Date()
+    @State private var birthdateDateFormat = Date()
     
     func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
         if dobString.isEmpty {
@@ -89,7 +89,6 @@ struct PatientInfo: View {
         return ""
     }
     
-    
     var body: some View {
         @Bindable var data = data
         Form {
@@ -99,7 +98,7 @@ struct PatientInfo: View {
                     Spacer()
                 }
                 HStack {
-                    DatePicker("Date of Birth:", selection: $birthdateDateformat, in: ...Date(), displayedComponents: .date)
+                    DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
                         .datePickerStyle(DefaultDatePickerStyle())
                 }
                 HStack {
@@ -128,15 +127,19 @@ struct PatientInfo: View {
             birthdate = getInfo(patient: patient, field: "birthDate")
             gender = getInfo(patient: patient, field: "gender")
             let age = calculateAge(from: birthdate)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            if let dob = dateFormatter.date(from: birthdate) {
+                birthdateDateFormat = dob
+            } else {
+                print("The date string is not in the correct format")
+            }
+            
             data.generalData = PatientData(name: fullName, birthdate: birthdate, age: age, sex: gender)
         }
     }
     
     private func updateData() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: birthdateDateformat)
-        birthdate = dateString
         let age = calculateAge(from: birthdate)
         data.generalData.birthdate = birthdate
         data.generalData.sex = sexOption

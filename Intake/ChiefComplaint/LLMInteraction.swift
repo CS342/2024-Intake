@@ -43,77 +43,14 @@ struct LLMInteraction: View {
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
-
+        
         init() {
             self.llmResponseSummary = ""
         }
-
+        
         static func == (lhs: LLMInteraction.StringBox, rhs: LLMInteraction.StringBox) -> Bool {
             lhs.llmResponseSummary == rhs.llmResponseSummary
         }
-    }
-    
-    func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
-        if dobString.isEmpty {
-            return ""
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        
-        guard let birthDate = dateFormatter.date(from: dobString) else {
-            return "Invalid date format or date string."
-        }
-        
-        let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
-        if let age = ageComponents.year {
-            return "\(age)"
-        } else {
-            return "Could not calculate age"
-        }
-    }
-    
-    func getValue(forKey key: String, from jsonString: String) -> String? {
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Error: Cannot create Data from JSON string")
-            return nil
-        }
-        
-        do {
-            if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-                if key == "name" {
-                    if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
-                        let nameDict = nameArray[0] // Accessing the first name object
-                        if let family = nameDict["family"] as? String,
-                           let givenArray = nameDict["given"] as? [String],
-                           !givenArray.isEmpty {
-                            let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
-                            
-                            return "\(given) \(family)"
-                        }
-                    }
-                } else {
-                    return dictionary[key] as? String
-                }
-            } else {
-                print("Error: JSON is not a dictionary")
-            }
-        } catch {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        return nil
-    }
-    
-    func getInfo(patient: FHIRResource, field: String) -> String {
-        let jsonDescription = patient.jsonDescription
-        
-        if let infoValue = getValue(forKey: field, from: jsonDescription) {
-            print("Info found: \(infoValue)")
-            return infoValue
-        }
-        
-        print("Key \(field) not found")
-        return ""
     }
 
     struct SummarizeFunction: LLMFunction {
@@ -159,7 +96,6 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
-                loadData()
                 let nameString = data.generalData.name.components(separatedBy: " ")
                 if let firstNameValue = nameString.first {
                     firstName = firstNameValue
@@ -209,25 +145,6 @@ struct LLMInteraction: View {
     
     private func showSummary() {
         navigationPath.path.append(NavigationViews.concern)
-    }
-    
-    private func loadData() {
-        if let patient = fhirStore.patient {
-            fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
-            dob = getInfo(patient: patient, field: "birthDate")
-            gender = getInfo(patient: patient, field: "gender")
-            
-            let age = calculateAge(from: dob)
-            let nameString = fullName.components(separatedBy: " ")
-            
-            if let firstNameValue = nameString.first {
-                firstName = firstNameValue
-            } else {
-                print("First Name is empty")
-            }
-            
-            data.generalData = PatientData(name: fullName, birthdate: dob, age: age, sex: gender)
-        }
     }
 }
 
