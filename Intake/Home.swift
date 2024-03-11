@@ -130,7 +130,6 @@ struct HomeView: View {
                 case .general: PatientInfo()
                 }
             }
-            
         }
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()

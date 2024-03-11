@@ -313,7 +313,7 @@ struct SurgeryView: View {
         let LLMResponse = try await self.queryLLM(surgeryNames: surgeryNames)
         
         let filteredNames = LLMResponse.components(separatedBy: ", ")
-        var filteredSurgeries = surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
+        let filteredSurgeries = surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
         
         return self.cleanSurgeryNames(surgeries: filteredSurgeries, filteredNames: filteredNames)
     }
