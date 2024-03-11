@@ -64,36 +64,6 @@ struct AllergyList: View {
     @State private var presentingAccount = false
     
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-    
-    init() {
-        let systemPrompt = """
-            You are a helpful assistant that filters lists of allergies. You will be given\
-            an array of strings. Each string will be the name of a allergy.
-        
-            For example, if you are given the following list:
-            Mammography (procedure), Certification procedure (procedure), Cytopathology\
-            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
-            (procedure),
-        
-            you should return something like this:
-            Transplant of kidney, Mammography.
-        
-            In your response, return only the name of the allergy. Remove words in parenthesis
-            like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
-        
-            Do not make anything up, and do not change the name of the condition under any
-            circumstances. Thank you!
-        """
-        
-        self._session = LLMSessionProvider(
-            schema: LLMOpenAISchema(
-                parameters: .init(
-                    modelType: .gpt3_5Turbo,
-                    systemPrompt: systemPrompt
-                )
-            )
-        )
-    }
 
     var body: some View {
         if loaded.allergyData {
@@ -170,6 +140,36 @@ struct AllergyList: View {
         }
     }
     
+    init() {
+        let systemPrompt = """
+            You are a helpful assistant that filters lists of allergies. You will be given\
+            an array of strings. Each string will be the name of a allergy.
+        
+            For example, if you are given the following list:
+            Mammography (procedure), Certification procedure (procedure), Cytopathology\
+            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
+            (procedure),
+        
+            you should return something like this:
+            Transplant of kidney, Mammography.
+        
+            In your response, return only the name of the allergy. Remove words in parenthesis
+            like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
+        
+            Do not make anything up, and do not change the name of the condition under any
+            circumstances. Thank you!
+        """
+        
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: systemPrompt
+                )
+            )
+        )
+    }
+    
     private func submitAction() {
         navigationPath.path.append(NavigationViews.menstrual)
     }
@@ -192,6 +192,18 @@ struct AllergyList: View {
     private func editAllergySheetView() -> some View {
         EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
     }
+    
+    private func removeTextWithinParentheses(from string: String) -> String {
+        let pattern = "\\s*\\([^)]+\\)"
+        do {
+            let regex = try NSRegularExpression(pattern: pattern)
+            let range = NSRange(string.startIndex..., in: string)
+            return regex.stringByReplacingMatches(in: string, options: [], range: range, withTemplate: "")
+        } catch {
+            print("Invalid regex: \(error.localizedDescription)")
+            return string
+        }
+    }
 
     private func loadAllergies() async throws {
         var allergies: [FHIRString] = []
@@ -209,7 +221,9 @@ struct AllergyList: View {
                         for reaction in reactions {
                             let manifestations = reaction.manifestation
                             for manifestation in manifestations {
-                                reactionsForAllergy.append(ReactionItem(reaction: manifestation.text?.value?.string ?? "Default"))
+                                var reactionName = manifestation.text?.value?.string
+                                reactionName = removeTextWithinParentheses(from: reactionName ?? "")
+                                reactionsForAllergy.append(ReactionItem(reaction: reactionName ?? ""))
                             }
                         }
                     }
