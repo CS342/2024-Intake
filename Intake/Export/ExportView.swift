@@ -48,23 +48,6 @@ struct ExportView: View {
         }
     }
     
-    // FOR UPDATED SURGERY STRUCT
-//    ForEach(data.surgeries, id: \.self) { item in
-//        if !item.startDate.isEmpty && !item.endDate.isEmpty && !item.complications.isEmpty{
-//            HStack {
-//                Text(item.surgeryName)
-//                Text(item.startDate)
-//                Text(item.endDate)
-//                Text(item.complications)
-//            }
-//        }
-//    }
-    
-//                    ForEach([1,2,3], id: \.self) { item in
-//                        Text(String(item))
-//                    }
-    
-    
     private var wrappedBody: some View {
         VStack {
             Text("MEDICAL HISTORY").fontWeight(.bold)
@@ -216,7 +199,7 @@ struct ExportView: View {
         
         // let pageSize = CGSize(width: 612, height: proposedHeight)
         
-        let pageSize = CGSize(width: 612, height: 920)
+        let pageSize = CGSize(width: 680, height: 880)
         
         renderer.proposedSize = .init(pageSize)
         

@@ -42,11 +42,6 @@ struct HomeView: View {
         @Bindable var data = data
         
         NavigationStack(path: $navigationPath.path) { // swiftlint:disable:this closure_body_length
-            
-            // uncommment for pdf testing
-//            ExportView()
-            
-            // comment out below for pdf testing
             VStack { // swiftlint:disable:this closure_body_length
                 HStack {
                     Spacer()
@@ -115,10 +110,6 @@ struct HomeView: View {
                 }
             }
             
-            
-            // comment out above for pdf testing
-            
-            
         }
         .sheet(isPresented: $presentingAccount) {
             AccountSheet()
@@ -126,13 +117,10 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
-// comment out below for pdf testing
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        
-// comment out above for pdf testing
     }
 }
 
