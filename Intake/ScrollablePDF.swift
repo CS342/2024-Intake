@@ -239,62 +239,62 @@ struct ScrollablePDF: View {
     }
     
     private struct MenstrualSection: View {
-        @Environment(DataStore.self) private var data
+           @Environment(DataStore.self) private var data
 
-        var body: some View {
-            Section(header: Text("Menstrual History")) {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Start Date:")
-                        Spacer()
-                        Text(data.menstrualHistory.startDate, style: .date)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("End Date:")
-                        Spacer()
-                        Text(data.menstrualHistory.endDate, style: .date)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Additional Details:")
-                        Spacer()
-                        Text(data.menstrualHistory.additionalDetails)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
+           var body: some View {
+               Section(header: Text("Menstrual History")) {
+                   VStack(alignment: .leading) {
+                       HStack {
+                           Text("Start Date:")
+                           Spacer()
+                           Text(data.menstrualHistory.startDate, style: .date)
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("End Date:")
+                           Spacer()
+                           Text(data.menstrualHistory.endDate, style: .date)
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Additional Details:")
+                           Spacer()
+                           Text(data.menstrualHistory.additionalDetails)
+                               .foregroundColor(.secondary)
+                       }
+                   }
+               }
+           }
+       }
 
-    private struct SmokingSection: View {
-        @Environment(DataStore.self) private var data
+       private struct SmokingSection: View {
+           @Environment(DataStore.self) private var data
 
-        var body: some View {
-            Section(header: Text("Smoking History")) {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Currently Smoking:")
-                        Spacer()
-                        Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Smoked in the Past:")
-                        Spacer()
-                        Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Additional Details:")
-                        Spacer()
-                        Text(data.smokingHistory.additionalDetails)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
+           var body: some View {
+               Section(header: Text("Smoking History")) {
+                   VStack(alignment: .leading) {
+                       HStack {
+                           Text("Currently Smoking:")
+                           Spacer()
+                           Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Smoked in the Past:")
+                           Spacer()
+                           Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Additional Details:")
+                           Spacer()
+                           Text(data.smokingHistory.additionalDetails)
+                               .foregroundColor(.secondary)
+                       }
+                   }
+               }
+           }
+       }
     
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath

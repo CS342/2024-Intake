@@ -13,9 +13,9 @@
 import SwiftUI
 
 struct SmokingHistoryView: View {
-    @State private var hasSmokedOrSmoking: Bool = false
-    @State private var currentlySmoking: Bool = false
-    @State private var smokedInThePast: Bool = false
+    @State private var hasSmokedOrSmoking = false
+    @State private var currentlySmoking = false
+    @State private var smokedInThePast = false
     @State private var additionalDetails: String = ""
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath // Ensure you have this environment object
@@ -36,8 +36,7 @@ struct SmokingHistoryView: View {
                 .onDisappear {
                     storeSmokingHistory()
                 }
-                // Placing SubmitButton here ensures it appears at the bottom
-                SubmitButton(nextView: NavigationViews.pdfs)
+                SubmitButton(nextView: NavigationViews.chat)
                     .padding()
             }
         }
@@ -45,7 +44,7 @@ struct SmokingHistoryView: View {
 
     private var initialSmokingQuestionSection: some View {
         Section(header: Text("Smoking Status").foregroundColor(.gray)) {
-            Toggle("Have you smoked or are you currently smoking?", isOn: $hasSmokedOrSmoking)
+            Toggle("Are you currently smoking or have you smoked in the past?", isOn: $hasSmokedOrSmoking)
         }
     }
 
