@@ -13,6 +13,8 @@
 import Foundation
 import ModelsR4
 import SpeziFHIR
+import SpeziLLM
+import SpeziLLMOpenAI
 import SwiftUI
 
 struct MedicalHistoryItem: Identifiable, Equatable {
@@ -25,19 +27,34 @@ struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
+    @Environment(LoadedWrapper.self) private var loaded
+    
     @State private var showAddSheet = false
     @State private var showingChat = false
+    
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
     var body: some View {
-        VStack {
-            medicalHistoryForm
-            SubmitButton(nextView: NavigationViews.surgical)
-                .padding()
+        if loaded.conditionData {
+            VStack {
+                medicalHistoryForm
+                SubmitButton(nextView: NavigationViews.surgical)
+                    .padding()
+            }
+            .sheet(isPresented: $showingChat, content: chatSheetView)
+        } else {
+            ProgressView()
+                .task {
+                    do {
+                        try await loadConditions()
+                    } catch {
+                        print("Failed to load")
+                    }
+                    loaded.conditionData = true
+                }
         }
-        .onAppear(perform: loadConditions)
-        .sheet(isPresented: $showingChat, content: chatSheetView)
     }
-
+    
     private var medicalHistoryForm: some View {
         Form {
             Section(header: Text("Please list conditions you have had")) {
@@ -91,6 +108,36 @@ struct MedicalHistoryView: View {
         .foregroundColor(.gray)
     }
     
+    init() {
+        let systemPrompt = """
+            You are a helpful assistant that filters lists of conditions. You will be given\
+            an array of strings. Each string will be the name of a condition.
+        
+            For example, if you are given the following list:
+            Mammography (procedure), Certification procedure (procedure), Cytopathology\
+            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
+            (procedure),
+        
+            you should return something like this:
+            Transplant of kidney, Mammography.
+        
+            In your response, return only the name of the condition. Remove words in parenthesis
+            like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
+        
+            Do not make anything up, and do not change the name of the condition under any
+            circumstances. Thank you!
+        """
+        
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: systemPrompt
+                )
+            )
+        )
+    }
+    
     private func addConditionAction() {
         data.conditionData.append(MedicalHistoryItem(condition: "", active: false))
     }
@@ -123,7 +170,7 @@ struct MedicalHistoryView: View {
         )
     }
 
-    private func loadConditions() {
+    private func loadConditions() async throws {
         let conditions = fhirStore.conditions
         var active = ""
         let invalid = [
@@ -150,7 +197,8 @@ struct MedicalHistoryView: View {
                 }
             }
         }
-        print(data.conditionData)
+        let filter = LLMFiltering(session: session, data: data)
+        try await filter.filterConditions()
     }
     
     func delete(at offsets: IndexSet) {

@@ -54,44 +54,6 @@ struct EditAllergyView: View {
     }
 }
 
-struct ReactionSectionView: View {
-    @Environment(DataStore.self) private var data
-    var index: Int
-    
-    var body: some View {
-            Form { // Use Form instead of List
-                Section(header: headerTitle) {
-                    @Bindable var data = data
-                    ForEach($data.allergyData[index].reaction) { $item in
-                        HStack {
-                            TextField("Reactions", text: $item.reaction)
-                        }
-                    }
-                    .onDelete(perform: delete)
-                    Button(action: {
-                        data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .accessibilityLabel(Text("ADD_REACTION"))
-                            Text("Add Field")
-                        }
-                    }
-                }
-            }
-        }
-    
-    private var headerTitle: some View {
-        HStack {
-            Text("Reactions")
-            Spacer()
-            EditButton()
-        }
-    }
-    func delete(at offsets: IndexSet) {
-        data.allergyData[index].reaction.remove(atOffsets: offsets)
-    }
-}
 
 // #Preview {
 //    EditAllergyView(allergyItem: AllergyItem(allergy: "", reaction: []), showingReaction: <#T##Binding<Bool>#>, allergyRecords: <#T##Binding<[AllergyItem]>#>, showingReaction: .constant(true), allergyRecords: .constant([]))
