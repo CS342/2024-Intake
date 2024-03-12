@@ -36,8 +36,7 @@ struct SmokingHistoryView: View {
                 .onDisappear {
                     storeSmokingHistory()
                 }
-                // Placing SubmitButton here ensures it appears at the bottom
-                SubmitButton(nextView: NavigationViews.pdfs)
+                SubmitButton(nextView: NavigationViews.chat)
                     .padding()
             }
         }

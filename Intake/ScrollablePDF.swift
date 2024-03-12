@@ -20,7 +20,7 @@ struct HeaderTitle: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     let title: String
     var nextView: NavigationViews
-
+    
     var body: some View {
         HStack {
             Text(title)
@@ -41,15 +41,15 @@ struct ScrollablePDF: View {
     private struct ConditionSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Conditions", nextView: NavigationViews.medical)) {
                 List(data.conditionData, id: \.id) { item in
                     HStack {
-                    Text(item.condition)
-                    Spacer()
-                    Text(item.active ? "Active" : "Inactive")
-                        .foregroundColor(.secondary)
+                        Text(item.condition)
+                        Spacer()
+                        Text(item.active ? "Active" : "Inactive")
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -58,7 +58,7 @@ struct ScrollablePDF: View {
     
     private struct ExportButton: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Button(action: {
             }) {
@@ -75,15 +75,15 @@ struct ScrollablePDF: View {
     private struct SurgerySection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.surgical)) {
                 List(data.surgeries, id: \.id) { item in
                     HStack {
-                    Text(item.surgeryName)
-                    Spacer()
+                        Text(item.surgeryName)
+                        Spacer()
                         Text(item.date)
-                        .foregroundColor(.secondary)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -93,11 +93,19 @@ struct ScrollablePDF: View {
     private struct MedicationSection: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
+            let medicationData = data.medicationData
             Section(header: HeaderTitle(title: "Medications", nextView: NavigationViews.medication)) {
-                VStack(alignment: .leading) {
-                    Text("fix medication")
+                ForEach(Array(medicationData), id: \.self) { medicationInstance in
+                    List {
+                        HStack {
+                            Text(medicationInstance.type.localizedDescription)
+                            Spacer()
+                            Text("\(medicationInstance.dosage.localizedDescription) - \(medicationInstance.schedule.frequency.description)")
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
             }
         }
@@ -106,7 +114,7 @@ struct ScrollablePDF: View {
     private struct ChiefComplaint: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
-
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Chief Complaint", nextView: NavigationViews.concern)) {
                 Text(data.chiefComplaint)
@@ -117,6 +125,8 @@ struct ScrollablePDF: View {
     private struct PatientInfo: View {
         @Environment(DataStore.self) private var data
         @Environment(NavigationPathWrapper.self) private var navigationPath
+        @Environment(FHIRStore.self) private var fhirStore
+        
         var body: some View {
             Section(header: HeaderTitle(title: "Patient Information", nextView: NavigationViews.patient)) {
                 List {
@@ -149,39 +159,82 @@ struct ScrollablePDF: View {
         }
     }
     
-    private struct Allergy: View {
+//    private struct Allergy: View {
+//        @Environment(DataStore.self) private var data
+//        @State private var showingReaction = false
+//        @State private var selectedIndex = 0
+//        var body: some View {
+//            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
+//                List {
+//                    ForEach(0..<data.allergyData.count, id: \.self) { index in
+//                        allergyButton(index: index)
+//                    }
+//                }
+//                .sheet(isPresented: $showingReaction, content: reactionPDFView)
+//                List(data.allergyData, id: \.id) { item in
+//                    HStack {
+//                        Text(item.allergy)
+//                        Spacer()
+//                        Text(item.date)
+//                            .foregroundColor(.secondary)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        private func reactionPDFView() -> some View {
+//            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
+//        }
+//        
+//        private func allergyButton(index: Int) -> some View {
+//            Button(action: {
+//                self.selectedIndex = index
+//                self.showingReaction = true
+//            }) {
+//                HStack {
+//                    Text(data.allergyData[index].allergy)
+//                        .foregroundColor(.black)
+//                    Spacer()
+//                    Image(systemName: "chevron.right")
+//                        .foregroundColor(.gray)
+//                        .accessibilityLabel(Text("DETAILS"))
+//                }
+//            }
+//        }
+//        
+//        func concatenate(strings: [ReactionItem]) -> String {
+//            let names = strings.map { $0.reaction }
+//            return names.joined(separator: ", ")
+//        }
+//    }
+    
+    private struct AllergySection: View {
         @Environment(DataStore.self) private var data
-        @State private var showingReaction = false
-        @State private var selectedIndex = 0
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+        
         var body: some View {
-            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
-                List {
-                    ForEach(0..<data.allergyData.count, id: \.self) { index in
-                        allergyButton(index: index)
+            Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.allergies)) {
+                @Bindable var data = data
+                List($data.allergyData, id: \.id) { $item in
+                    HStack {
+                        Text(item.allergy)
+                        Spacer()
+                        let reactionsString = concatenate(strings: item.reaction)
+                        if !reactionsString.isEmpty {
+                            Text(reactionsString)
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("No reactions")
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
-                .sheet(isPresented: $showingReaction, content: reactionPDFView)
             }
         }
         
-        private func reactionPDFView() -> some View {
-            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
-        }
-            
-        private func allergyButton(index: Int) -> some View {
-            Button(action: {
-                self.selectedIndex = index
-                self.showingReaction = true
-            }) {
-                HStack {
-                    Text(data.allergyData[index].allergy)
-                        .foregroundColor(.black)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                        .accessibilityLabel(Text("DETAILS"))
-                }
-            }
+        func concatenate(strings: [ReactionItem]) -> String {
+            let names = strings.map { $0.reaction }
+            return names.joined(separator: ", ")
         }
     }
     
@@ -255,7 +308,7 @@ struct ScrollablePDF: View {
                 ConditionSection()
                 SurgerySection()
                 MedicationSection()
-                Allergy()
+                AllergySection()
                 MenstrualSection()
                 SmokingSection()
             }

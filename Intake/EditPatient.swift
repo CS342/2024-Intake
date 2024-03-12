@@ -12,33 +12,35 @@
 //
 
 import Foundation
+import SpeziFHIR
 import SwiftUI
-
 
 struct EditPatientView: View {
     @Environment(DataStore.self) private var data
+    @Environment(FHIRStore.self) private var fhirStore
     
     var body: some View {
         @Bindable var data = data
-        VStack {
-            Form {
-                Section(header: Text("Name")) {
-                    TextField("Name", text: $data.generalData.name)
+        
+            VStack {
+                Form {
+                    Section(header: Text("Name")) {
+                        TextField("Name", text: $data.generalData.name)
+                    }
+                    Section(header: Text("Date of Birth")) {
+                        TextField("Date of Birth", text: $data.generalData.birthdate)
+                    }
+                    Section(header: Text("Age")) {
+                        TextField("Age", text: $data.generalData.age)
+                    }
+                    Section(header: Text("Sex")) {
+                        TextField("Sex", text: $data.generalData.sex)
+                    }
                 }
-                Section(header: Text("Date of Birth")) {
-                    TextField("Date of Birth", text: $data.generalData.birthdate)
-                }
-                Section(header: Text("Age")) {
-                    TextField("Age", text: $data.generalData.age)
-                }
-                Section(header: Text("Sex")) {
-                    TextField("Sex", text: $data.generalData.sex)
-                }
+                SubmitButton(nextView: NavigationViews.pdfs)
             }
-            SubmitButton(nextView: NavigationViews.pdfs)
         }
     }
-}
 
 //
 // #Preview {

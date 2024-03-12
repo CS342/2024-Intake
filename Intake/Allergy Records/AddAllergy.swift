@@ -16,27 +16,28 @@ import SpeziFHIR
 import SwiftUI
 
 struct EditAllergyView: View {
-    @State private var index: Int
+    @Binding var item: AllergyItem
     @Environment(DataStore.self) private var data
-    @Binding private var showingReaction: Bool
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-           NavigationView {
-               VStack(alignment: .leading, spacing: 10) {
-                   @Bindable var data = data
-                   TextField("Allergy Name", text: $data.allergyData[index].allergy)
-                           .textFieldStyle(RoundedBorderTextFieldStyle())
-                           .padding([.horizontal, .top])
-                   ReactionSectionView(index: index)
-                   Spacer()
-                   saveButton
-               }
-               .navigationBarTitle("Allergy")
-           }
+        VStack(alignment: .leading, spacing: 10) {
+            let index = data.allergyData.firstIndex(of: item) ?? 0
+            @Bindable var data = data
+            TextField("Allergy Name", text: $data.allergyData[index].allergy)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding([.horizontal, .top])
+            ReactionSectionView(index: index)
+            Spacer()
+            saveButton
+        }
+        .navigationBarTitle("Allergy Name")
     }
     
     private var saveButton: some View {
         Button(action: {
-            showingReaction = false
+            presentationMode.wrappedValue.dismiss()
         }) {
             Text("Save")
                 .foregroundColor(.white)
@@ -47,51 +48,8 @@ struct EditAllergyView: View {
         }
         .padding()
     }
-    
-    init(index: Int, showingReaction: Binding<Bool>) {
-        self._index = State(initialValue: index)
-        self._showingReaction = showingReaction
-    }
 }
 
-struct ReactionSectionView: View {
-    @Environment(DataStore.self) private var data
-    var index: Int
-    
-    var body: some View {
-            Form { // Use Form instead of List
-                Section(header: headerTitle) {
-                    @Bindable var data = data
-                    ForEach($data.allergyData[index].reaction) { $item in
-                        HStack {
-                            TextField("Reactions", text: $item.reaction)
-                        }
-                    }
-                    .onDelete(perform: delete)
-                    Button(action: {
-                        data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .accessibilityLabel(Text("ADD_REACTION"))
-                            Text("Add Field")
-                        }
-                    }
-                }
-            }
-        }
-    
-    private var headerTitle: some View {
-        HStack {
-            Text("Reactions")
-            Spacer()
-            EditButton()
-        }
-    }
-    func delete(at offsets: IndexSet) {
-        data.allergyData[index].reaction.remove(atOffsets: offsets)
-    }
-}
 
 // #Preview {
 //    EditAllergyView(allergyItem: AllergyItem(allergy: "", reaction: []), showingReaction: <#T##Binding<Bool>#>, allergyRecords: <#T##Binding<[AllergyItem]>#>, showingReaction: .constant(true), allergyRecords: .constant([]))

@@ -51,3 +51,28 @@ struct SubmitButton: View {
         }
     }
 }
+
+struct SubmitButtonWithAction: View {
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(ReachedEndWrapper.self) private var end
+    var nextView: NavigationViews
+    var onButtonTap: () -> Void
+
+    var body: some View {
+        Button(action: {
+            onButtonTap()
+            if end.reachedEnd {
+                navigationPath.path.append(NavigationViews.pdfs)
+            } else {
+                navigationPath.path.append(nextView)
+            }
+        }) {
+            Text("Next")
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(8)
+        }
+    }
+}
