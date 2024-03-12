@@ -49,6 +49,9 @@ struct AddSurgery: View {
 
 struct InspectSurgeryView: View {
     @Binding var surgery: SurgeryItem
+    @Environment(DataStore.self) var data
+    @Environment(NavigationPathWrapper.self) var navigationPath
+    @Environment(\.dismiss) private var dismiss
     
     var isNew: Bool
     
@@ -57,20 +60,34 @@ struct InspectSurgeryView: View {
             Section(header: Text("Procedure")) {
                 TextField("", text: $surgery.surgeryName)
             }
-            // Date
             Section(header: Text("Performed")) {
                 TextField("YYYY-MM-DD", text: $surgery.date)
             }
-            // Status
             Section(header: Text("Status")) {
                 TextField("", text: $surgery.status)
             }
-            // Location
             Section(header: Text("Location")) {
                 TextField("", text: $surgery.location)
             }
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
+        .navigationBarItems(trailing: !isNew ? deleteButton : nil)
+    }
+    
+    private var deleteButton: some View {
+        Button(action: {
+            if let index = data.surgeries.firstIndex(of: surgery) {
+                data.surgeries.remove(at: index)
+            }
+            dismiss()
+        }) {
+            Text("Delete")
+                .font(.headline)
+                .foregroundColor(.blue)
+                .padding(8) // Add padding
+                .cornerRadius(8) // Round the corners
+                .accessibilityLabel(Text("DELETE_SURGERY"))
+        }
     }
 }
 
@@ -94,12 +111,9 @@ struct SurgeryView: View {
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
-//             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
-//                 Text("Chat")
-//             })
-            .toolbar {
-                EditButton()
-            }
+            .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
+                 Text("Chat")
+            })
         } else {
             ProgressView()
                 .task {
@@ -125,7 +139,11 @@ struct SurgeryView: View {
         Form {
             @Bindable var data = data
             Section(header: Text("Please add your past surgeries")) {
-                surgeryElements
+                if data.surgeries.isEmpty {
+                    Text("Select + to add a surgery")
+                } else {
+                    surgeryElements
+                }
             }
         }
     }

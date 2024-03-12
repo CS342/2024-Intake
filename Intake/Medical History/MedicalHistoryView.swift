@@ -13,6 +13,8 @@
 import Foundation
 import ModelsR4
 import SpeziFHIR
+import SpeziLLM
+import SpeziLLMOpenAI
 import SwiftUI
 
 struct MedicalHistoryItem: Identifiable, Equatable {
@@ -25,32 +27,46 @@ struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
+    @Environment(LoadedWrapper.self) private var loaded
+    
     @State private var showAddSheet = false
     @State private var showingChat = false
+    
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
     var body: some View {
-        VStack {
-            medicalHistoryForm
-            SubmitButton(nextView: NavigationViews.surgical)
-                .padding()
+        if loaded.conditionData {
+            VStack {
+                medicalHistoryForm
+                SubmitButton(nextView: NavigationViews.surgical)
+                    .padding()
+            }
+            .sheet(isPresented: $showingChat, content: chatSheetView)
+        } else {
+            ProgressView()
+                .task {
+                    do {
+                        try await loadConditions()
+                    } catch {
+                        print("Failed to load")
+                    }
+                    loaded.conditionData = true
+                }
         }
-        .onAppear(perform: loadConditions)
-        .sheet(isPresented: $showingChat, content: chatSheetView)
     }
-
+    
     private var medicalHistoryForm: some View {
         Form {
             Section(header: Text("Please list conditions you have had")) {
                 conditionEntries
-                addConditionButton
                 instructionText
             }
         }
         .navigationTitle("Medical History")
+        .navigationBarItems(trailing: addConditionButton)
         .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant(presentingAccount: .constant(false))) {
             Text("Chat")
         })
-        .navigationBarItems(trailing: EditButton())
     }
 
     private var conditionEntries: some View {
@@ -75,9 +91,8 @@ struct MedicalHistoryView: View {
     private var addConditionButton: some View {
         Button(action: addConditionAction) {
             HStack {
-                Image(systemName: "plus.circle.fill")
+                Image(systemName: "plus")
                     .accessibilityHidden(true)
-                Text("Add Field")
             }
         }
     }
@@ -89,6 +104,61 @@ struct MedicalHistoryView: View {
             """)
         .font(.caption)
         .foregroundColor(.gray)
+    }
+    
+    init() {    // swiftlint:disable:this function_body_length
+        let systemPrompt = """
+            You are a helpful assistant that filters lists of conditions. You will be given\
+            an array of strings. Each string will be the name of a condition, but we only want\
+            to keep the names of relevant conditions. By relevant, we do not want to add conditions\
+            that are not severe and super common such as colds and ear infections
+        
+            For example, if you are given the following list:
+            Atopic dermatitis, Acute viral pharyngitis (disorder), Otitis media, Perennial allergic rhinitis,\
+            Aortic valve stenosis (disorder), Streptococcal sore throat (disorder)
+        
+            you should return something like this:
+            Atopic dermatitis,  Perennial allergic rhinitis, Aortic valve stenosis
+        
+            Another example would be if you are given the following list:
+            Received higher education (finding), Body mass index 30+ - obesity (finding), Gout, Essential\
+            hypertension (disorder), Chronic kidney disease stage 1 (disorder), Disorder of kidney due to\
+            diabetes mellitus (disorder), Chronic kidney disease stage 2 (disorder), Microalbuminuria due\
+            to type 2 diabetes mellitus (disorder), Has a criminal record (finding), Refugee (person),\
+            Chronic kidney disease stage 3 (disorder), Proteinuria due to type 2 diabetes mellitus\
+            (disorder), Metabolic syndrome X (disorder), Prediabetes, Limited social contact (finding),\
+            Reports of violence in the environment (finding), Victim of intimate partner abuse (finding),\
+            Not in labor force (finding), Social isolation (finding), Acute viral pharyngitis (disorder),\
+            Unhealthy alcohol drinking behavior (finding), Anemia (disorder), Awaiting transplantation of\
+            kidney (situation), Chronic kidney disease stage 4 (disorder), Unemployed (finding), Ischemic\
+            heart disease (disorder), Abnormal findings diagnostic imaging heart+coronary circulat (finding),\
+            History of renal transplant (situation), Viral sinusitis (disorder), Malignant neoplasm of breast\
+            (disorder), Acute bronchitis (disorder)
+        
+            you should return something like this:
+            Obesity, Gout, hypertension, Chronic kidney disease stage 1, Disorder of kidney due to\
+            diabetes mellitus, Chronic kidney disease stage 2, Microalbuminuria due to type 2 diabetes mellitus,\
+            Chronic kidney disease stage 3, Proteinuria due to type 2 diabetes mellitus, Metabolic syndrome X,\
+            Prediabetes,  Victim of intimate partner abuse, Unhealthy alcohol drinking behavior, Anemi, Awaiting\
+            transplantation of kidney, Chronic kidney disease stage 4,Ischemic heart disease, \
+            Malignant neoplasm of breast
+            
+        
+            In your response, return only the name of the condition. Remove words in parenthesis
+            like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
+        
+            Do not make anything up, and do not change the name of the condition under any
+            circumstances. Thank you!
+        """
+        
+        self._session = LLMSessionProvider(
+            schema: LLMOpenAISchema(
+                parameters: .init(
+                    modelType: .gpt3_5Turbo,
+                    systemPrompt: systemPrompt
+                )
+            )
+        )
     }
     
     private func addConditionAction() {
@@ -123,7 +193,7 @@ struct MedicalHistoryView: View {
         )
     }
 
-    private func loadConditions() {
+    private func loadConditions() async throws {
         let conditions = fhirStore.conditions
         var active = ""
         let invalid = [
@@ -150,7 +220,8 @@ struct MedicalHistoryView: View {
                 }
             }
         }
-        print(data.conditionData)
+        let filter = LLMFiltering(session: session, data: data)
+        try await filter.filterConditions()
     }
     
     func delete(at offsets: IndexSet) {

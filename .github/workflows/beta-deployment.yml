@@ -27,6 +27,7 @@ jobs:
     uses: CS342/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     secrets: inherit
     with:
+      runsonlabels: '["macOS", "self-hosted"]'
       googleserviceinfoplistpath: 'Intake/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
       fastlanelane: beta

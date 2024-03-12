@@ -32,7 +32,7 @@ struct MedicationContentView: View {
                     data.medicationData = medicationSettingsViewModel.medicationInstances
                     navigationPath.path.append(NavigationViews.allergies)
                 }
-                        .navigationTitle("Medication Settings")
+                        .navigationTitle("Medications")
                         .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant(presentingAccount: .constant(false))) {
                             Text("Chat")
                         })

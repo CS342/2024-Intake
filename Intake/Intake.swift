@@ -54,6 +54,12 @@ class ReachedEndWrapper {
     var surgeriesLoaded = false
 }
 
+@Observable
+class LoadedWrapper {
+    var conditionData = false
+    var allergyData = false
+}
+
 @main
 struct Intake: App {
     @UIApplicationDelegateAdaptor(IntakeDelegate.self) var appDelegate
@@ -62,6 +68,7 @@ struct Intake: App {
     let navigationPath = NavigationPathWrapper()
     let data = DataStore()
     let reachedEnd = ReachedEndWrapper()
+    let loaded = LoadedWrapper()
 
     var body: some Scene {
         WindowGroup {
@@ -80,6 +87,7 @@ struct Intake: App {
                 .environment(navigationPath)
                 .environment(data)
                 .environment(reachedEnd)
+                .environment(loaded)
         }
     }
 }
