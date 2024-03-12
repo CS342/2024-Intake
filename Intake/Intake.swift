@@ -22,7 +22,7 @@ struct PatientData {
     var sex: String
 }
 
-struct MenstrualHistoryItem {
+struct MenstrualHistoryItem: Equatable {
     var startDate: Date
     var endDate: Date
     var additionalDetails: String

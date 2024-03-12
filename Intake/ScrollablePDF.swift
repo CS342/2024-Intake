@@ -187,29 +187,25 @@ struct ScrollablePDF: View {
     
     private struct MenstrualSection: View {
         @Environment(DataStore.self) private var data
-        @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: HeaderTitle(title: "Menstrual History", nextView: NavigationViews.menstrual)) {
-                List {
+            Section(header: Text("Menstrual History")) {
+                VStack(alignment: .leading) {
                     HStack {
                         Text("Start Date:")
                         Spacer()
-                        // Display the start date from the menstrualHistory in your data store
                         Text(data.menstrualHistory.startDate, style: .date)
                             .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("End Date:")
                         Spacer()
-                        // Display the end date from the menstrualHistory in your data store
                         Text(data.menstrualHistory.endDate, style: .date)
                             .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("Additional Details:")
                         Spacer()
-                        // Display the additional details from the menstrualHistory in your data store
                         Text(data.menstrualHistory.additionalDetails)
                             .foregroundColor(.secondary)
                     }
@@ -217,14 +213,13 @@ struct ScrollablePDF: View {
             }
         }
     }
-    
+
     private struct SmokingSection: View {
         @Environment(DataStore.self) private var data
-        @Environment(NavigationPathWrapper.self) private var navigationPath
 
         var body: some View {
-            Section(header: HeaderTitle(title: "Smoking History", nextView: NavigationViews.smoking)) {
-                List {
+            Section(header: Text("Smoking History")) {
+                VStack(alignment: .leading) {
                     HStack {
                         Text("Currently Smoking:")
                         Spacer()
@@ -247,7 +242,7 @@ struct ScrollablePDF: View {
             }
         }
     }
-
+    
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end

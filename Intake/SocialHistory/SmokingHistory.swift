@@ -18,22 +18,27 @@ struct SmokingHistoryView: View {
     @State private var smokedInThePast: Bool = false
     @State private var additionalDetails: String = ""
     @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath // Ensure you have this environment object
+    @Environment(ReachedEndWrapper.self) private var end // And this one, if they're part of your app architecture
 
     var body: some View {
         NavigationView {
-            Form {
-                initialSmokingQuestionSection
-                
-                if hasSmokedOrSmoking {
-                    followUpQuestionsSection
-                    additionalDetailsSection
+            VStack {
+                Form {
+                    initialSmokingQuestionSection
+                    
+                    if hasSmokedOrSmoking {
+                        followUpQuestionsSection
+                        additionalDetailsSection
+                    }
                 }
-            }
-            .navigationTitle("Social History")
-            SubmitButton(nextView: NavigationViews.pdfs)
-                .padding()
-            .onDisappear {
-                storeSmokingHistory()
+                .navigationTitle("Social History")
+                .onDisappear {
+                    storeSmokingHistory()
+                }
+                // Placing SubmitButton here ensures it appears at the bottom
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
             }
         }
     }
