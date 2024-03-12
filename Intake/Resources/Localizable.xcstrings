@@ -10,9 +10,6 @@
     "*Click the details to view/edit the reactions" : {
 
     },
-    "%.2f" : {
-
-    },
     "%@ - %@" : {
       "localizations" : {
         "en" : {
@@ -240,10 +237,10 @@
         }
       }
     },
-    "Date" : {
+    "Currently Smoking:" : {
 
     },
-    "Currently Smoking:" : {
+    "Date" : {
 
     },
     "Date of Birth" : {
@@ -726,10 +723,10 @@
     "Skip" : {
 
     },
-    "Smoking history" : {
+    "Smoked in the Past:" : {
 
     },
-    "Smoked in the Past:" : {
+    "Smoking history" : {
 
     },
     "Smoking History" : {
