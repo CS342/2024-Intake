@@ -89,6 +89,9 @@
     "Add Field" : {
 
     },
+    "Add_allergy" : {
+
+    },
     "ADD_REACTION" : {
 
     },
@@ -117,9 +120,6 @@
 
     },
     "Allergies:" : {
-
-    },
-    "Allergy" : {
 
     },
     "Allergy Assistant" : {
@@ -259,9 +259,6 @@
 
     },
     "DELETE_SURGERY" : {
-
-    },
-    "DETAILS" : {
 
     },
     "Do you currently smoke or have you smoked in the past?" : {
@@ -517,6 +514,9 @@
 
     },
     "No past surgeries" : {
+
+    },
+    "No reactions" : {
 
     },
     "No Reactions" : {

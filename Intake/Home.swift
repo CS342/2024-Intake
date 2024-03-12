@@ -24,6 +24,7 @@ enum NavigationViews: String {
     case pdfs
     case inspect
     case general
+    case newAllergy
 }
 
 struct StartButton: View {
@@ -127,6 +128,7 @@ struct HomeView: View {
                 case .patient: EditPatientView()
                 case .pdfs: ScrollablePDF()
                 case .inspect: InspectSurgeryView(surgery: $data.surgeries[data.surgeries.count - 1], isNew: true)
+                case .newAllergy: EditAllergyView(item: $data.allergyData[data.allergyData.count - 1])
                 case .general: PatientInfo()
                 }
             }

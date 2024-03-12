@@ -58,6 +58,7 @@ struct AllergyList: View {
     @State private var selectedIndex = 0
     @State private var showingChat = false
     @State private var presentingAccount = false
+    @State private var newAllergy = AllergyItem(allergy: "", reaction: [])
     
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
@@ -69,7 +70,6 @@ struct AllergyList: View {
                     .padding()
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)
-            .sheet(isPresented: $showingReaction, content: editAllergySheetView)
         } else {
             ProgressView()
                 .task {
@@ -86,48 +86,61 @@ struct AllergyList: View {
         Form {
             Section(header: Text("What are your current allergies?")) {
                 allergyEntries
-                addAllergyButton
                 Text("*Click the details to view/edit the reactions")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
         }
-        .navigationBarItems(trailing: EditButton())
         .navigationTitle("Allergies")
+        .navigationBarItems(trailing: addAllergyButton)
         .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
             Text("Chat")
         })
     }
         
     private var allergyEntries: some View {
-        ForEach(0..<data.allergyData.count, id: \.self) { index in
-            allergyButton(index: index)
+        Group {
+            @Bindable var data = data
+            ForEach($data.allergyData) { $item in
+                NavigationLink(destination: EditAllergyView(item: $item)) {
+                    Label(item.allergy, systemImage: "arrowtriangle.right")
+                        .labelStyle(.titleOnly)
+                }
+            }
+            .onDelete(perform: delete)
         }
-        .onDelete(perform: delete)
     }
 
     private var addAllergyButton: some View {
-        Button(action: addAllergyAction) {
-            HStack {
-                Image(systemName: "plus.circle.fill")
-                    .accessibilityHidden(true)
-                Text("Add Field")
-            }
+        Button(action: {
+            let newAllergy = AllergyItem(allergy: "", reaction: [])
+            navigationPath.path.append(NavigationViews.newAllergy)
+            data.allergyData.append(newAllergy)
+        }) {
+            Image(systemName: "plus")
+                .accessibilityLabel(Text("Add_allergy"))
         }
     }
     
     init() {
         let systemPrompt = """
             You are a helpful assistant that filters lists of allergies. You will be given\
-            an array of strings. Each string will be the name of a allergy.
+            an array of strings. Each string will be the name of a allergy, but we only want\
+            to keep the names of relevant allergies.
         
             For example, if you are given the following list:
-            Mammography (procedure), Certification procedure (procedure), Cytopathology\
-            procedure, preparation of smear, genital source (procedure), Transplant of kidney\
-            (procedure),
+            Allergy to substance (finding), Latex (substance), Bee venom (substance), Mold (organism),\
+            House dust mite (organism)Animal dander (substance), Grass pollen (substance),\
+            Tree pollen (substance), Aspirin
         
             you should return something like this:
-            Transplant of kidney, Mammography.
+            Latex, Bee venom, Mold, House dust mite, Animal dander, Grass pollen, Tree pollen, Aspirin
+        
+            Another example would be if you are given the following list:
+            Animal dander (substance), Penicillin V, Peanut (substance)
+        
+            you should return something like this:
+            Animal dander, Penicillin V, Peanut
         
             In your response, return only the name of the allergy. Remove words in parenthesis
             like (disorder), so "Aortic valve stenosis (disorder)" would turn to "Aortic valve stenosis".
@@ -146,34 +159,8 @@ struct AllergyList: View {
         )
     }
     
-    private func allergyEntryRow(index: Int) -> some View {
-        HStack {
-            Text(data.allergyData[index].allergy)
-                .foregroundColor(.black)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-                .accessibilityLabel(Text("DETAILS"))
-        }
-    }
-    
-    private func allergyButton(index: Int) -> some View {
-        Button(action: {
-            self.selectedIndex = index
-            self.showingReaction = true
-        }) {
-            allergyEntryRow(index: index)
-        }
-    }
-    
     private func submitAction() {
         navigationPath.path.append(NavigationViews.menstrual)
-    }
-    
-    private func addAllergyAction() {
-        data.allergyData.append(AllergyItem(allergy: "", reaction: []))
-        self.selectedIndex = data.allergyData.count - 1
-        showingReaction = true
     }
 
     private func chatSheetView() -> some View {
@@ -183,10 +170,6 @@ struct AllergyList: View {
             initialQuestion: .constant("Do you have any questions about your allergies?"),
             prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have.")
         )
-    }
-
-    private func editAllergySheetView() -> some View {
-        EditAllergyView(index: selectedIndex, showingReaction: $showingReaction)
     }
     
     private func removeTextWithinParentheses(from string: String) -> String {

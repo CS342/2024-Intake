@@ -60,15 +60,12 @@ struct InspectSurgeryView: View {
             Section(header: Text("Procedure")) {
                 TextField("", text: $surgery.surgeryName)
             }
-            // Date
             Section(header: Text("Performed")) {
                 TextField("YYYY-MM-DD", text: $surgery.date)
             }
-            // Status
             Section(header: Text("Status")) {
                 TextField("", text: $surgery.status)
             }
-            // Location
             Section(header: Text("Location")) {
                 TextField("", text: $surgery.location)
             }
