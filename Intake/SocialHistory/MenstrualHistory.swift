@@ -29,6 +29,7 @@ struct SocialHistoryQuestionView: View {
             VStack {
                 Form {
                     Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
+                        @Bindable var data = data
                         DatePicker("Last period's start date", selection: $startDate, in: ...Date(), displayedComponents: .date)
                             .datePickerStyle(DefaultDatePickerStyle())
                         
@@ -37,6 +38,7 @@ struct SocialHistoryQuestionView: View {
                     }
 
                     Section(header: Text("Additional Symptoms").foregroundColor(.gray)) {
+                        @Bindable var data = data
                         TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
                     }
                 }
@@ -45,7 +47,6 @@ struct SocialHistoryQuestionView: View {
                     fetchHealthKitData()
                 }
                 .onDisappear {
-                                    // Update the MenstrualHistoryItem in the data store right before the view disappears
                 data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                 }
                 SubmitButton(nextView: NavigationViews.smoking)

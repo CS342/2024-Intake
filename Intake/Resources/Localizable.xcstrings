@@ -10,6 +10,8 @@
     "*Click the details to view/edit the reactions" : {
 
     },
+
+
     "%.2f" : {
 
     },
@@ -23,6 +25,7 @@
         }
       }
     },
+    
     "%@ Reactions" : {
 
     },
@@ -128,9 +131,12 @@
     "Allergy Name" : {
 
     },
-    "Auto-fill Intake Form" : {
+    "Are you currently smoking?" : {
 
     },
+
+    "Auto-fill Intake Form" : {
+
     "Back" : {
 
     },
@@ -240,7 +246,11 @@
         }
       }
     },
+
+    "Currently Smoking:" : {
+
     "Date" : {
+
 
     },
     "Date of Birth" : {
@@ -259,9 +269,6 @@
 
     },
     "DELETE_SURGERY" : {
-
-    },
-    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
@@ -292,6 +299,12 @@
 
     },
     "Get Started" : {
+
+    },
+    "Have you smoked in the past?" : {
+
+    },
+    "Have you smoked or are you currently smoking?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -339,12 +352,6 @@
 
     },
     "HOME_LOGO" : {
-
-    },
-    "How many days a year do you smoke?" : {
-
-    },
-    "How many packs do you smoke a day?" : {
 
     },
     "Inactive" : {
@@ -424,7 +431,11 @@
     "Medications Assistant" : {
 
     },
+
+    "Menstrual History" : {
+
     "Medications:" : {
+
 
     },
     "Menstrual Information" : {
@@ -580,6 +591,7 @@
     "Other important questions." : {
 
     },
+
     "Pack Years:" : {
 
     },
@@ -595,6 +607,7 @@
     "Patient did not enter chief complaint." : {
 
     },
+
     "Patient Form" : {
 
     },
@@ -729,10 +742,16 @@
     "Skip" : {
 
     },
+
+    "Smoked in the Past:" : {
+
     "Smoking history" : {
 
     },
     "Smoking History" : {
+
+    },
+    "Smoking Status" : {
 
     },
     "Social History" : {
@@ -745,9 +764,6 @@
 
     },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {
