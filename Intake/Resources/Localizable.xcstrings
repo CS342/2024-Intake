@@ -10,9 +10,6 @@
     "*Click the details to view/edit the reactions" : {
 
     },
-    "%.2f" : {
-
-    },
     "%@ Reactions" : {
 
     },
@@ -106,10 +103,10 @@
     "Allergy Name" : {
 
     },
-    "Auto-fill Intake Form" : {
+    "Are you currently smoking?" : {
 
     },
-    "Calculation" : {
+    "Auto-fill Intake Form" : {
 
     },
     "Chat" : {
@@ -212,6 +209,9 @@
         }
       }
     },
+    "Currently Smoking:" : {
+
+    },
     "Date of Birth" : {
 
     },
@@ -222,9 +222,6 @@
 
     },
     "DETAILS" : {
-
-    },
-    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
@@ -252,6 +249,12 @@
 
     },
     "Get Started" : {
+
+    },
+    "Have you smoked in the past?" : {
+
+    },
+    "Have you smoked or are you currently smoking?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -299,12 +302,6 @@
 
     },
     "HOME_LOGO" : {
-
-    },
-    "How many days a year do you smoke?" : {
-
-    },
-    "How many packs do you smoke a day?" : {
 
     },
     "Inactive" : {
@@ -507,12 +504,6 @@
     "Other important questions." : {
 
     },
-    "Pack Years:" : {
-
-    },
-    "Pack years: %.2f" : {
-
-    },
     "Patient Form" : {
 
     },
@@ -632,7 +623,10 @@
     "Skip" : {
 
     },
-    "Smoking History" : {
+    "Smoked in the Past:" : {
+
+    },
+    "Smoking Status" : {
 
     },
     "Social History" : {
@@ -645,9 +639,6 @@
 
     },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {

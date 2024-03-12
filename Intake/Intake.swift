@@ -29,7 +29,9 @@ struct MenstrualHistoryItem {
 }
 
 struct SmokingHistoryItem {
-    var packYears: Double
+    var hasSmokedOrSmoking: Bool
+    var currentlySmoking: Bool
+    var smokedInThePast: Bool
     var additionalDetails: String
 }
 
@@ -43,7 +45,7 @@ class DataStore {
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
     var menstrualHistory = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
-    var smokingHistory = SmokingHistoryItem(packYears: 0.0, additionalDetails: "")
+    var smokingHistory = SmokingHistoryItem(hasSmokedOrSmoking: Bool(), currentlySmoking: Bool(), smokedInThePast: Bool(), additionalDetails: "")
 }
 
 @Observable

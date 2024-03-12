@@ -226,16 +226,20 @@ struct ScrollablePDF: View {
             Section(header: HeaderTitle(title: "Smoking History", nextView: NavigationViews.smoking)) {
                 List {
                     HStack {
-                        Text("Pack Years:")
+                        Text("Currently Smoking:")
                         Spacer()
-                        // Display the pack years from the smokingHistory in your data store
-                        Text("\(data.smokingHistory.packYears, specifier: "%.2f")")
+                        Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Smoked in the Past:")
+                        Spacer()
+                        Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
                             .foregroundColor(.secondary)
                     }
                     HStack {
                         Text("Additional Details:")
                         Spacer()
-                        // Display the additional details from the smokingHistory in your data store
                         Text(data.smokingHistory.additionalDetails)
                             .foregroundColor(.secondary)
                     }
@@ -243,7 +247,7 @@ struct ScrollablePDF: View {
             }
         }
     }
-    
+
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
