@@ -10,124 +10,60 @@
 //
 // SPDX-License-Identifier: MIT
 
-
 import SwiftUI
 
 struct SmokingHistoryView: View {
-    struct YesNoButtonStyle: ButtonStyle {
-        var isSelected: Bool
-        
-        func makeBody(configuration: Self.Configuration) -> some View {
-            configuration.label
-                .padding()
-                .background(isSelected ? Color.blue : Color.white)
-                .foregroundColor(isSelected ? .white : .blue)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.blue, lineWidth: 2)
-                )
-                .scaleEffect(configuration.isPressed ? 0.95 : 1)
-        }
-    }
-    
-    
-    @State private var hasSmoked: Bool? // swiftlint:disable:this discouraged_optional_boolean
-    @State private var daysPerYear: String = ""
-    @State private var packsPerDay: String = ""
-    @State private var packYears: Double = 0
+    @State private var hasSmokedOrSmoking: Bool = false
+    @State private var currentlySmoking: Bool = false
+    @State private var smokedInThePast: Bool = false
     @State private var additionalDetails: String = ""
     @Environment(DataStore.self) private var data
-    
+    @Environment(NavigationPathWrapper.self) private var navigationPath // Ensure you have this environment object
+    @Environment(ReachedEndWrapper.self) private var end // And this one, if they're part of your app architecture
+
     var body: some View {
         NavigationView {
             VStack {
-                VStack {
-                    yesNoQuestionView
-                    if hasSmoked == true {
-                        smokingDetailsForm
+                Form {
+                    initialSmokingQuestionSection
+                    
+                    if hasSmokedOrSmoking {
+                        followUpQuestionsSection
+                        additionalDetailsSection
                     }
                 }
-                Spacer()
+                .navigationTitle("Social History")
                 .onDisappear {
-                    calculatePackYears()
-                    data.smokingHistory = SmokingHistoryItem(packYears: packYears, additionalDetails: additionalDetails)
+                    storeSmokingHistory()
                 }
-
-                SubmitButton(nextView: NavigationViews.chat)
+                // Placing SubmitButton here ensures it appears at the bottom
+                SubmitButton(nextView: NavigationViews.pdfs)
                     .padding()
             }
-            .navigationTitle("Social History")
-            .background(Color(UIColor.systemGroupedBackground))
         }
     }
-    
-    private var yesNoQuestionView: some View {
-        VStack {
-            Text("Do you currently smoke or have you smoked in the past?")
-                .foregroundColor(.gray)
-                .padding()
-            
-            HStack {
-                Button("Yes") {
-                    hasSmoked = true
-                }
-                .buttonStyle(YesNoButtonStyle(isSelected: hasSmoked == true))
 
-                Button("No") {
-                    hasSmoked = false
-                }
-                .buttonStyle(YesNoButtonStyle(isSelected: hasSmoked == false))
-            }
-            .padding(.horizontal)
-        }
-        .padding()
-        .background(Color(UIColor.systemGroupedBackground))
-    }
-    
-    private var smokingDetailsForm: some View {
-        VStack {
-            Form {
-                Section(header: Text("Smoking History").foregroundColor(.gray)) {
-                    TextField("How many days a year do you smoke?", text: $daysPerYear)
-                        .keyboardType(.decimalPad)
-                        .onChange(of: daysPerYear) { calculatePackYears() }
-                        .padding(.bottom, 8)
-                    
-                    TextField("How many packs do you smoke a day?", text: $packsPerDay)
-                        .keyboardType(.decimalPad)
-                        .onChange(of: packsPerDay) { calculatePackYears() }
-                        .padding(.bottom, 8)
-                }
-                Section(header: Text("Additional Details").foregroundColor(.gray)) {
-                    TextField("Ex: Smoked for 10 years, quit 5 years ago...", text: $additionalDetails)
-                }
-                if hasSmoked == true {
-                    Section(header: Text("Calculation").foregroundColor(.gray)) {
-                        Text("Pack years: \(packYears, specifier: "%.2f")")
-                    }
-                }
-                
-                // The Submit button can remain for explicit submission, if required
-                Button("Submit") {
-                    calculatePackYears()
-                }
-                SubmitButton(nextView: NavigationViews.pdfs)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(8)
-                .padding(.horizontal)
-                .padding(.bottom)
-            }
-            .navigationTitle("Social History")
+    private var initialSmokingQuestionSection: some View {
+        Section(header: Text("Smoking Status").foregroundColor(.gray)) {
+            Toggle("Have you smoked or are you currently smoking?", isOn: $hasSmokedOrSmoking)
         }
     }
-    
-    func calculatePackYears() {
-        let days = Double(daysPerYear) ?? 0
-        let packs = Double(packsPerDay) ?? 0
-        packYears = (days * packs) / 365
+
+    private var followUpQuestionsSection: some View {
+        Section {
+            Toggle("Are you currently smoking?", isOn: $currentlySmoking)
+            Toggle("Have you smoked in the past?", isOn: $smokedInThePast)
+        }
+    }
+
+    private var additionalDetailsSection: some View {
+        Section(header: Text("Additional Details").foregroundColor(.gray)) {
+            TextField("Ex: Smoked for 10 years, quit 5 years ago...", text: $additionalDetails)
+        }
+    }
+
+    private func storeSmokingHistory() {
+        // swiftlint:disable:next line_length
+        data.smokingHistory = SmokingHistoryItem(hasSmokedOrSmoking: hasSmokedOrSmoking, currentlySmoking: currentlySmoking, smokedInThePast: smokedInThePast, additionalDetails: additionalDetails)
     }
 }
