@@ -12,12 +12,14 @@ import SpeziFHIR
 import SwiftUI
 import UIKit
 
+// Again, I had to disable this error as it was causing issues and could not be resolved.
 // swiftlint:disable file_types_order
 struct ExportView: View {
     @Environment(DataStore.self) var data
     @State private var isSharing = false
     @State private var pdfData: PDFDocument?
     
+    // A long closure body length here is imperative for this view to be formatted correctly. Thus, I had to disable this warning.
     // swiftlint:disable closure_body_length
     var body: some View {
         ScrollView {
@@ -47,24 +49,7 @@ struct ExportView: View {
             print("PDF data changed")
         }
     }
-    
-    // FOR UPDATED SURGERY STRUCT
-//    ForEach(data.surgeries, id: \.self) { item in
-//        if !item.startDate.isEmpty && !item.endDate.isEmpty && !item.complications.isEmpty{
-//            HStack {
-//                Text(item.surgeryName)
-//                Text(item.startDate)
-//                Text(item.endDate)
-//                Text(item.complications)
-//            }
-//        }
-//    }
-    
-//                    ForEach([1,2,3], id: \.self) { item in
-//                        Text(String(item))
-//                    }
-    
-    
+        
     private var wrappedBody: some View {
         VStack {
             Text("MEDICAL HISTORY").fontWeight(.bold)

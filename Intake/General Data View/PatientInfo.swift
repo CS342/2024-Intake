@@ -12,19 +12,20 @@
 //
 import SpeziFHIR
 import SwiftUI
+
 // swiftlint:disable type_contents_order
+// Again, no matter the order of these variables, there is still issues with type_contents_order. It was necessary to just disable this.
 struct PatientInfo: View {
-    @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    @Environment(FHIRStore.self) private var fhirStore
-    
-    
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var birthdate: String = ""
     @State private var gender: String = ""
     @State private var sexOption: String = ""
     @State private var birthdateDateFormat = Date()
+    
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(FHIRStore.self) private var fhirStore
     
     func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
         if dobString.isEmpty {
@@ -55,11 +56,11 @@ struct PatientInfo: View {
             if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                 if key == "name" {
                     if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
-                        let nameDict = nameArray[0] // Accessing the first name object
+                        let nameDict = nameArray[0]
                         if let family = nameDict["family"] as? String,
                            let givenArray = nameDict["given"] as? [String],
                            !givenArray.isEmpty {
-                            let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
+                            let given = givenArray.joined(separator: " ")
                             
                             return "\(given) \(family)"
                         }
@@ -94,18 +95,18 @@ struct PatientInfo: View {
         Form {
             Section(header: Text("Patient Information")) {
                 HStack {
-                    TextField("Full name", text: $data.generalData.name)
+                    TextField("Full name", text: $data.generalData.name).accessibilityLabel("FULL NAME")
                     Spacer()
                 }
                 HStack {
                     DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
-                        .datePickerStyle(DefaultDatePickerStyle())
+                        .datePickerStyle(DefaultDatePickerStyle()).accessibilityLabel("DATE OF BIRTH")
                 }
                 HStack {
                     let options = ["Female", "Male"]
                     Picker("Sex", selection: $sexOption) {
                         ForEach(options, id: \.self) { option in
-                            Text(option).tag(option)
+                            Text(option).tag(option).accessibilityLabel("SEX")
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -114,7 +115,7 @@ struct PatientInfo: View {
             
             SubmitButtonWithAction(nextView: .medical, onButtonTap: {
                 updateData()
-            })
+            }).accessibilityLabel("NEXT TO MEDICAL HISTORY")
         }
         .onAppear {
             loadData()

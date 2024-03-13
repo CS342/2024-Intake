@@ -8,7 +8,6 @@
 import XCTest
 
 final class NinasTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -19,23 +18,44 @@ final class NinasTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        let app = XCUIApplication()
+        if app.buttons["Back"].exists {
+            app.buttons["Back"].tap()
+        }
+        
+        // delete any data created as part of the test
+        try super.tearDownWithError()
     }
-
-    func testNaviagationThroughApp() throws {
+    func testPatientInformation() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        let startButton = app.buttons["START"]
+        let nameTextField = app.textFields["FULL NAME"]
+        let dobDatePicker = app.datePickers["DATE OF BIRTH"]
+        let sexPicker = app.datePickers["SEX"]
+        let nextOnPatientInfoView = app.buttons["NEXT TO MEDICAL HISTORY"]
+        
+        startButton.tap()
+        nameTextField.tap()
+        nameTextField.typeText("John Doe")
+        dobDatePicker.tap()
+        dobDatePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "January")
+        dobDatePicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "1")
+        dobDatePicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "1980")
+
+        sexPicker.tap()
+        sexPicker.adjust(toPickerWheelValue: "Male")
+        
+        
+        nextOnPatientInfoView.tap()
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testNavigationThroughApp() throws {
+        let app = XCUIApplication()
+        app.launch()
     }
 }

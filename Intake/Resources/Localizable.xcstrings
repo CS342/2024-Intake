@@ -249,6 +249,9 @@
     "Date of Birth" : {
 
     },
+    "DATE OF BIRTH" : {
+
+    },
     "Date of Birth:" : {
 
     },
@@ -286,9 +289,19 @@
 
     },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
+
+    },
+    "FULL NAME" : {
 
     },
     "Get Started" : {
@@ -501,6 +514,9 @@
     "Next" : {
 
     },
+    "NEXT TO MEDICAL HISTORY" : {
+
+    },
     "No" : {
 
     },
@@ -708,6 +724,9 @@
     "Sex" : {
 
     },
+    "SEX" : {
+
+    },
     "Sex:" : {
 
     },
@@ -739,6 +758,9 @@
 
     },
     "Start" : {
+
+    },
+    "START" : {
 
     },
     "Start Date:" : {

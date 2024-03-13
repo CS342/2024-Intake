@@ -21,8 +21,8 @@ import SwiftUI
 
 
 struct LLMInteraction: View {
-    // Swiftlint is behaving oddly as the order is correct, so I needed to disable this error
-    // swiftlint:disable:type_contents_order
+    // I needed to disable this error because any order I tried would not work. Seems to be an issue with swiftlint
+    // swiftlint:disable type_contents_order
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var dob: String = ""
