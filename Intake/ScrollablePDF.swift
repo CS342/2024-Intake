@@ -79,7 +79,7 @@ struct ScrollablePDF: View {
                 let data = try encoder.encode(dataStore)
                 // You can also use UserDefaults if the data is small enough, but file storage is recommended for larger data
                 if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                    let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
+                    let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
                     try data.write(to: pathWithFilename)
                     print("successfully stored")
                 }

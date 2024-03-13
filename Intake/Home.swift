@@ -34,7 +34,7 @@ struct StartButton: View {
         Button(action: {
             navigationPath.append(NavigationViews.general)
         }) {
-            Text("Start")
+            Text("Create New Form")
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
@@ -47,36 +47,40 @@ struct StartButton: View {
 
 struct LoadLastButton: View {
     @Binding var navigationPath: NavigationPath
+    @Binding var disabled: Bool
     @Environment(DataStore.self) private var data
     
     var body: some View {
         Button(action: {
-            let loadedData = loadDataStore()
-            data.allergyData = loadedData.allergyData
-            data.generalData = loadedData.generalData
-            data.surgeries = loadedData.surgeries
-            data.conditionData = loadedData.conditionData
-            data.menstrualHistory = loadedData.menstrualHistory
-            data.smokingHistory = loadedData.smokingHistory
-            data.chiefComplaint = loadedData.chiefComplaint
-            data.surgeriesLoaded = loadedData.surgeriesLoaded
-            data.medicationData = loadedData.medicationData
-            navigationPath.append(NavigationViews.pdfs)
+            let fetchData = loadDataStore()
+            if let loadedData = fetchData {
+                data.allergyData = loadedData.allergyData
+                data.generalData = loadedData.generalData
+                data.surgeries = loadedData.surgeries
+                data.conditionData = loadedData.conditionData
+                data.menstrualHistory = loadedData.menstrualHistory
+                data.smokingHistory = loadedData.smokingHistory
+                data.chiefComplaint = loadedData.chiefComplaint
+                data.surgeriesLoaded = loadedData.surgeriesLoaded
+                data.medicationData = loadedData.medicationData
+                navigationPath.append(NavigationViews.pdfs)
+            }
         }) {
-            Text("Load Previous")
+            Text("Load Latest Form")
                 .font(.headline)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(Color.white)
                 .padding()
-                .background(Color.blue)
+                .background(disabled ? Color.blue.opacity(0.5) : Color.blue)
                 .cornerRadius(10)
         }
+        .disabled(disabled)
     }
     
-    func loadDataStore() -> DataStore {
+    func loadDataStore() -> DataStore? {
         let decoder = JSONDecoder()
         if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
+            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
             if let data = try? Data(contentsOf: pathWithFilename) {
                 do {
                     let dataStore = try decoder.decode(DataStore.self, from: data)
@@ -87,8 +91,7 @@ struct LoadLastButton: View {
                 }
             }
         }
-        print("loaded empty")
-        return DataStore()
+        return nil
     }
 }
 
@@ -120,6 +123,7 @@ struct HomeView: View {
 
     @State private var presentingAccount = false
     @State private var showSettings = false
+    @State var isButtonDisabled = true
 
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
@@ -155,12 +159,11 @@ struct HomeView: View {
                 homeLogo
                 homeTitle
                 Spacer()
-                HStack {
-                    StartButton(navigationPath: $navigationPath.path)
-                        .padding()
-                    LoadLastButton(navigationPath: $navigationPath.path)
-                        .padding()
-                }
+                LoadLastButton(navigationPath: $navigationPath.path, disabled: $isButtonDisabled)
+                    .padding(.bottom, 10)
+                StartButton(navigationPath: $navigationPath.path)
+                    .padding(.top, 10)
+                Spacer()
             }
           
             .toolbar {
@@ -197,6 +200,31 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
+        .onAppear {
+            let fetchData = loadDataStore()
+            if let loadedData = fetchData {
+                isButtonDisabled = false
+            } else {
+                isButtonDisabled = true
+            }
+        }
+    }
+    
+    func loadDataStore() -> DataStore? {
+        let decoder = JSONDecoder()
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
+            if let data = try? Data(contentsOf: pathWithFilename) {
+                do {
+                    let dataStore = try decoder.decode(DataStore.self, from: data)
+                    print("successfully loaded")
+                    return dataStore
+                } catch {
+                    print("Failed to load DataStore: \(error)")
+                }
+            }
+        }
+        return nil
     }
 }
 
