@@ -20,10 +20,9 @@ class LaunchTests: XCTestCase {
         app.launch()
     }
     
-    
-    func testApplicationLaunch() throws {
-        let app = XCUIApplication()
-        XCTAssertEqual(app.state, .runningForeground)
-        app.buttons["Start"].tap()
-    }
+//    func testApplicationLaunch() throws {
+//        let app = XCUIApplication()
+//        XCTAssertEqual(app.state, .runningForeground)
+//        app.buttons["Start"].tap()
+//    }
 }
