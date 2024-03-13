@@ -26,9 +26,6 @@
     "0 pack years" : {
 
     },
-    "35" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -282,11 +279,15 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Female" : {
-
-    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
 
@@ -364,12 +365,6 @@
       }
     },
     "It looks like an unexpected view was appended to the NavigationPath!" : {
-
-    },
-    "January 1, 1980" : {
-
-    },
-    "John Doe" : {
 
     },
     "Last Menstrural Period" : {
@@ -703,7 +698,14 @@
 
     },
     "SETTINGS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a Mock Patient"
+          }
+        }
+      }
     },
     "Sex" : {
 

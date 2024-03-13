@@ -48,23 +48,6 @@ struct ExportView: View {
         }
     }
     
-    // FOR UPDATED SURGERY STRUCT
-//    ForEach(data.surgeries, id: \.self) { item in
-//        if !item.startDate.isEmpty && !item.endDate.isEmpty && !item.complications.isEmpty{
-//            HStack {
-//                Text(item.surgeryName)
-//                Text(item.startDate)
-//                Text(item.endDate)
-//                Text(item.complications)
-//            }
-//        }
-//    }
-    
-//                    ForEach([1,2,3], id: \.self) { item in
-//                        Text(String(item))
-//                    }
-    
-    
     private var wrappedBody: some View {
         VStack {
             Text("MEDICAL HISTORY").fontWeight(.bold)
@@ -80,19 +63,19 @@ struct ExportView: View {
                     }
                     HStack {
                         Text("Name:").fontWeight(.bold)
-                        Text("John Doe")
+                        Text(data.generalData.name)
                     }
                     HStack {
                         Text("Date of Birth:").fontWeight(.bold)
-                        Text("January 1, 1980")
+                        Text(data.generalData.birthdate)
                     }
                     HStack {
                         Text("Age:").fontWeight(.bold)
-                        Text("35")
+                        Text(data.generalData.age)
                     }
                     HStack {
                         Text("Sex:").fontWeight(.bold)
-                        Text("Female")
+                        Text(data.generalData.name)
                     }
                     
                     Spacer()
@@ -117,8 +100,13 @@ struct ExportView: View {
                         if data.conditionData.isEmpty {
                             Text("No medical conditions")
                         } else {
-                            List(data.conditionData, id: \.id) { item in
-                                Text(item.condition)
+                            ForEach(data.conditionData, id: \.id) { item in
+                                HStack {
+                                    Text(item.condition)
+                                    Spacer()
+                                    Text(item.active ? "Active" : "Inactive")
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
@@ -131,8 +119,11 @@ struct ExportView: View {
                         if data.surgeries.isEmpty {
                             Text("No past surgeries")
                         } else {
-                            List(data.surgeries, id: \.id) { item in
-                                Text(item.surgeryName)
+                            ForEach(data.surgeries, id: \.id) { item in
+                                HStack {
+                                    Text(item.surgeryName)
+                                    Text(item.date).foregroundColor(.secondary)
+                                }
                             }
                         }
                     }
@@ -145,7 +136,7 @@ struct ExportView: View {
                         if data.medicationData.isEmpty {
                             Text("No medications")
                         } else {
-                            List(Array(data.medicationData), id: \.id) { item in
+                            ForEach(Array(data.medicationData), id: \.id) { item in
                                 HStack {
                                     Text(item.type.localizedDescription)
                                     Text(item.dosage.localizedDescription)
@@ -162,10 +153,10 @@ struct ExportView: View {
                         if data.allergyData.isEmpty {
                             Text("No known allergies")
                         } else {
-                            List(data.allergyData, id: \.id) { item in
-                                HStack {
-                                    Text(item.allergy)
-                                    List(item.reaction, id: \.id) { reactionItem in
+                            ForEach(data.allergyData, id: \.id) { item in
+                                VStack(alignment: .leading) {
+                                    Text(item.allergy).fontWeight(.bold)
+                                    ForEach(item.reaction, id: \.id) { reactionItem in
                                         Text(reactionItem.reaction)
                                     }
                                 }
@@ -208,15 +199,13 @@ struct ExportView: View {
         
         // issue: proposed height is not expanding as necessary. uncomment to attempt to fix this.
         
-        // var proposedHeightOptional = renderer.uiImage?.size.height
+        let proposedHeightOptional = renderer.uiImage?.size.height
         
-        // guard let proposedHeight = proposedHeightOptional else {
-        //    return nil
-        // }
+        guard let proposedHeight = proposedHeightOptional else {
+            return nil
+        }
         
-        // let pageSize = CGSize(width: 612, height: proposedHeight)
-        
-        let pageSize = CGSize(width: 612, height: 920)
+        let pageSize = CGSize(width: 612, height: proposedHeight)
         
         renderer.proposedSize = .init(pageSize)
         
