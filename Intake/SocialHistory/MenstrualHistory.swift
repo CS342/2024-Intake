@@ -36,7 +36,6 @@ struct SocialHistoryQuestionView: View {
                         DatePicker("Last period's end date", selection: $endDate, in: ...Date(), displayedComponents: .date)
                             .datePickerStyle(DefaultDatePickerStyle())
                     }
-
                     Section(header: Text("Additional Symptoms").foregroundColor(.gray)) {
                         @Bindable var data = data
                         TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
