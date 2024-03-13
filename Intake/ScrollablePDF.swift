@@ -61,6 +61,7 @@ struct ScrollablePDF: View {
         
         var body: some View {
             Button(action: {
+                navigationPath.path.append(NavigationViews.export)
             }) {
                 Text("Share")
                     .foregroundColor(.white)

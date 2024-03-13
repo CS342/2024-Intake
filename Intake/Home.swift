@@ -70,10 +70,10 @@ struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-
+    
     @State private var presentingAccount = false
     @State private var showSettings = false
-
+    
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
     
@@ -97,11 +97,11 @@ struct HomeView: View {
                 .foregroundColor(.gray)
         }
     }
-
+    
     var body: some View {
         @Bindable var navigationPath = navigationPath
         @Bindable var data = data
-
+        
         NavigationStack(path: $navigationPath.path) {
             VStack {
                 Spacer()
@@ -110,11 +110,11 @@ struct HomeView: View {
                 Spacer()
                 StartButton(navigationPath: $navigationPath.path)
             }
-          
+            
             .toolbar {
-                    SettingsButton(showSettings: $showSettings)
+                SettingsButton(showSettings: $showSettings)
             }
-
+            
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
                 case .smoking: SmokingHistoryView()
@@ -140,13 +140,10 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
-// comment out below for pdf testing
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        
-// comment out above for pdf testing
     }
 }
 
@@ -155,7 +152,7 @@ struct HomeView: View {
     let details = AccountDetails.Builder()
         .set(\.userId, value: "lelandstanford@stanford.edu")
         .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-
+    
     return HomeView()
         .previewWith(standard: IntakeStandard()) {
             IntakeScheduler()
