@@ -45,6 +45,54 @@ struct StartButton: View {
     }
 }
 
+struct LoadLastButton: View {
+    @Binding var navigationPath: NavigationPath
+    @Environment(DataStore.self) private var data
+    
+    var body: some View {
+        Button(action: {
+            let loadedData = loadDataStore()
+            data.allergyData = loadedData.allergyData
+            data.generalData = loadedData.generalData
+            data.surgeries = loadedData.surgeries
+            data.conditionData = loadedData.conditionData
+            data.menstrualHistory = loadedData.menstrualHistory
+            data.smokingHistory = loadedData.smokingHistory
+            data.chiefComplaint = loadedData.chiefComplaint
+            data.surgeriesLoaded = loadedData.surgeriesLoaded
+            data.medicationData = loadedData.medicationData
+            navigationPath.append(NavigationViews.pdfs)
+        }) {
+            Text("Load Previous")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
+        }
+    }
+    
+    func loadDataStore() -> DataStore {
+        let decoder = JSONDecoder()
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
+            if let data = try? Data(contentsOf: pathWithFilename) {
+                do {
+                    let dataStore = try decoder.decode(DataStore.self, from: data)
+                    print("successfully loaded")
+                    return dataStore
+                } catch {
+                    print("Failed to load DataStore: \(error)")
+                }
+            }
+        }
+        print("loaded empty")
+        return DataStore()
+    }
+}
+
+
 struct SettingsButton: View {
     @Binding var showSettings: Bool
     
@@ -107,7 +155,12 @@ struct HomeView: View {
                 homeLogo
                 homeTitle
                 Spacer()
-                StartButton(navigationPath: $navigationPath.path)
+                HStack {
+                    StartButton(navigationPath: $navigationPath.path)
+                        .padding()
+                    LoadLastButton(navigationPath: $navigationPath.path)
+                        .padding()
+                }
             }
           
             .toolbar {
@@ -144,8 +197,6 @@ struct HomeView: View {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        
-// comment out above for pdf testing
     }
 }
 

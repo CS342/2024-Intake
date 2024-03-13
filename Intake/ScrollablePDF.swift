@@ -58,9 +58,11 @@ struct ScrollablePDF: View {
     
     private struct ExportButton: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
+        @Environment(DataStore.self) private var data
         
         var body: some View {
             Button(action: {
+                saveDataStore(dataStore: data)
             }) {
                 Text("Share")
                     .foregroundColor(.white)
@@ -68,6 +70,21 @@ struct ScrollablePDF: View {
                     .frame(maxWidth: .infinity)
                     .background(Color.blue)
                     .cornerRadius(8)
+            }
+        }
+        
+        func saveDataStore(dataStore: DataStore) {
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(dataStore)
+                // You can also use UserDefaults if the data is small enough, but file storage is recommended for larger data
+                if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
+                    try data.write(to: pathWithFilename)
+                    print("successfully stored")
+                }
+            } catch {
+                print("Failed to save DataStore: \(error)")
             }
         }
     }
@@ -158,55 +175,6 @@ struct ScrollablePDF: View {
             }
         }
     }
-    
-//    private struct Allergy: View {
-//        @Environment(DataStore.self) private var data
-//        @State private var showingReaction = false
-//        @State private var selectedIndex = 0
-//        var body: some View {
-//            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
-//                List {
-//                    ForEach(0..<data.allergyData.count, id: \.self) { index in
-//                        allergyButton(index: index)
-//                    }
-//                }
-//                .sheet(isPresented: $showingReaction, content: reactionPDFView)
-//                List(data.allergyData, id: \.id) { item in
-//                    HStack {
-//                        Text(item.allergy)
-//                        Spacer()
-//                        Text(item.date)
-//                            .foregroundColor(.secondary)
-//                    }
-//                }
-//            }
-//        }
-//        
-//        private func reactionPDFView() -> some View {
-//            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
-//        }
-//        
-//        private func allergyButton(index: Int) -> some View {
-//            Button(action: {
-//                self.selectedIndex = index
-//                self.showingReaction = true
-//            }) {
-//                HStack {
-//                    Text(data.allergyData[index].allergy)
-//                        .foregroundColor(.black)
-//                    Spacer()
-//                    Image(systemName: "chevron.right")
-//                        .foregroundColor(.gray)
-//                        .accessibilityLabel(Text("DETAILS"))
-//                }
-//            }
-//        }
-//        
-//        func concatenate(strings: [ReactionItem]) -> String {
-//            let names = strings.map { $0.reaction }
-//            return names.joined(separator: ", ")
-//        }
-//    }
     
     private struct AllergySection: View {
         @Environment(DataStore.self) private var data
