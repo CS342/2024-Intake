@@ -121,8 +121,8 @@ struct ExportView: View {
                         } else {
                             ForEach(data.surgeries, id: \.id) { item in
                                 HStack {
-                                Text(item.surgeryName)
-                                Text(item.date).foregroundColor(.secondary)
+                                    Text(item.surgeryName)
+                                    Text(item.date).foregroundColor(.secondary)
                                 }
                             }
                         }
@@ -201,9 +201,9 @@ struct ExportView: View {
         
         var proposedHeightOptional = renderer.uiImage?.size.height
         
-         guard let proposedHeight = proposedHeightOptional else {
+        guard let proposedHeight = proposedHeightOptional else {
             return nil
-         }
+        }
         
         let pageSize = CGSize(width: 612, height: proposedHeight)
         
