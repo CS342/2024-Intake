@@ -60,7 +60,6 @@ struct AddSurgery: View {
             let newSurgery = SurgeryItem(surgeryName: "Surgery")
             navigationPath.path.append(NavigationViews.inspect)
             data.surgeries.append(newSurgery)
-            sortSurgeriesByDate(surgeries: &data.surgeries)
         }) {
             Image(systemName: "plus")
                 .accessibilityLabel(Text("ADD_SURGERY"))
@@ -135,6 +134,9 @@ struct SurgeryView: View {
             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
                  Text("Chat")
             })
+            .onAppear {
+                sortSurgeriesByDate(surgeries: &data.surgeries)
+            }
         } else {
             ProgressView()
                 .task {
