@@ -160,100 +160,142 @@ struct ScrollablePDF: View {
         }
     }
     
-    private struct Allergy: View {
+//    private struct Allergy: View {
+//        @Environment(DataStore.self) private var data
+//        @State private var showingReaction = false
+//        @State private var selectedIndex = 0
+//        var body: some View {
+//            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
+//                List {
+//                    ForEach(0..<data.allergyData.count, id: \.self) { index in
+//                        allergyButton(index: index)
+//                    }
+//                }
+//                .sheet(isPresented: $showingReaction, content: reactionPDFView)
+//                List(data.allergyData, id: \.id) { item in
+//                    HStack {
+//                        Text(item.allergy)
+//                        Spacer()
+//                        Text(item.date)
+//                            .foregroundColor(.secondary)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        private func reactionPDFView() -> some View {
+//            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
+//        }
+//        
+//        private func allergyButton(index: Int) -> some View {
+//            Button(action: {
+//                self.selectedIndex = index
+//                self.showingReaction = true
+//            }) {
+//                HStack {
+//                    Text(data.allergyData[index].allergy)
+//                        .foregroundColor(.black)
+//                    Spacer()
+//                    Image(systemName: "chevron.right")
+//                        .foregroundColor(.gray)
+//                        .accessibilityLabel(Text("DETAILS"))
+//                }
+//            }
+//        }
+//        
+//        func concatenate(strings: [ReactionItem]) -> String {
+//            let names = strings.map { $0.reaction }
+//            return names.joined(separator: ", ")
+//        }
+//    }
+    
+    private struct AllergySection: View {
         @Environment(DataStore.self) private var data
-        @State private var showingReaction = false
-        @State private var selectedIndex = 0
+        @Environment(NavigationPathWrapper.self) private var navigationPath
+        
         var body: some View {
-            Section(header: HeaderTitle(title: "Allergy", nextView: NavigationViews.allergies)) {
-                List {
-                    ForEach(0..<data.allergyData.count, id: \.self) { index in
-                        allergyButton(index: index)
+            Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.allergies)) {
+                @Bindable var data = data
+                List($data.allergyData, id: \.id) { $item in
+                    HStack {
+                        Text(item.allergy)
+                        Spacer()
+                        let reactionsString = concatenate(strings: item.reaction)
+                        if !reactionsString.isEmpty {
+                            Text(reactionsString)
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("No reactions")
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
-                .sheet(isPresented: $showingReaction, content: reactionPDFView)
             }
         }
         
-        private func reactionPDFView() -> some View {
-            ReactionPDF(index: selectedIndex, showingReaction: $showingReaction)
-        }
-        
-        private func allergyButton(index: Int) -> some View {
-            Button(action: {
-                self.selectedIndex = index
-                self.showingReaction = true
-            }) {
-                HStack {
-                    Text(data.allergyData[index].allergy)
-                        .foregroundColor(.black)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                        .accessibilityLabel(Text("DETAILS"))
-                }
-            }
+        func concatenate(strings: [ReactionItem]) -> String {
+            let names = strings.map { $0.reaction }
+            return names.joined(separator: ", ")
         }
     }
     
     private struct MenstrualSection: View {
-        @Environment(DataStore.self) private var data
-        @Environment(NavigationPathWrapper.self) private var navigationPath
+           @Environment(DataStore.self) private var data
 
-        var body: some View {
-            Section(header: HeaderTitle(title: "Menstrual History", nextView: NavigationViews.menstrual)) {
-                List {
-                    HStack {
-                        Text("Start Date:")
-                        Spacer()
-                        // Display the start date from the menstrualHistory in your data store
-                        Text(data.menstrualHistory.startDate, style: .date)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("End Date:")
-                        Spacer()
-                        // Display the end date from the menstrualHistory in your data store
-                        Text(data.menstrualHistory.endDate, style: .date)
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Additional Details:")
-                        Spacer()
-                        // Display the additional details from the menstrualHistory in your data store
-                        Text(data.menstrualHistory.additionalDetails)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
-    
-    private struct SmokingSection: View {
-        @Environment(DataStore.self) private var data
-        @Environment(NavigationPathWrapper.self) private var navigationPath
+           var body: some View {
+               Section(header: Text("Menstrual History")) {
+                   VStack(alignment: .leading) {
+                       HStack {
+                           Text("Start Date:")
+                           Spacer()
+                           Text(data.menstrualHistory.startDate, style: .date)
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("End Date:")
+                           Spacer()
+                           Text(data.menstrualHistory.endDate, style: .date)
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Additional Details:")
+                           Spacer()
+                           Text(data.menstrualHistory.additionalDetails)
+                               .foregroundColor(.secondary)
+                       }
+                   }
+               }
+           }
+       }
 
-        var body: some View {
-            Section(header: HeaderTitle(title: "Smoking History", nextView: NavigationViews.smoking)) {
-                List {
-                    HStack {
-                        Text("Pack Years:")
-                        Spacer()
-                        // Display the pack years from the smokingHistory in your data store
-                        Text("\(data.smokingHistory.packYears, specifier: "%.2f")")
-                            .foregroundColor(.secondary)
-                    }
-                    HStack {
-                        Text("Additional Details:")
-                        Spacer()
-                        // Display the additional details from the smokingHistory in your data store
-                        Text(data.smokingHistory.additionalDetails)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
+       private struct SmokingSection: View {
+           @Environment(DataStore.self) private var data
+
+           var body: some View {
+               Section(header: Text("Smoking History")) {
+                   VStack(alignment: .leading) {
+                       HStack {
+                           Text("Currently Smoking:")
+                           Spacer()
+                           Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Smoked in the Past:")
+                           Spacer()
+                           Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
+                               .foregroundColor(.secondary)
+                       }
+                       HStack {
+                           Text("Additional Details:")
+                           Spacer()
+                           Text(data.smokingHistory.additionalDetails)
+                               .foregroundColor(.secondary)
+                       }
+                   }
+               }
+           }
+       }
     
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -267,7 +309,7 @@ struct ScrollablePDF: View {
                 ConditionSection()
                 SurgerySection()
                 MedicationSection()
-                Allergy()
+                AllergySection()
                 MenstrualSection()
                 SmokingSection()
             }

@@ -23,12 +23,13 @@ struct SocialHistoryQuestionView: View {
     @State private var showMaleSlide = false
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
-
+    // do this ONLY in nav before this
     var body: some View {
         NavigationView {
             VStack {
                 Form {
                     Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
+                        @Bindable var data = data
                         DatePicker("Last period's start date", selection: $startDate, in: ...Date(), displayedComponents: .date)
                             .datePickerStyle(DefaultDatePickerStyle())
                         
@@ -37,23 +38,29 @@ struct SocialHistoryQuestionView: View {
                     }
 
                     Section(header: Text("Additional Symptoms").foregroundColor(.gray)) {
+                        @Bindable var data = data
                         TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
                     }
                 }
                 .navigationTitle("Social History")
-                .onAppear {
-                    fetchHealthKitData()
+                .task {
+                    startDate = data.menstrualHistory.startDate
+                    endDate = data.menstrualHistory.endDate
+                    additionalDetails = data.menstrualHistory.additionalDetails
                 }
+                /*.task {
+                    fetchHealthKitData()
+                }*/
                 .onDisappear {
-                                    // Update the MenstrualHistoryItem in the data store right before the view disappears
-                data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
+                    data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                 }
                 SubmitButton(nextView: NavigationViews.smoking)
                     .padding()
             }
         }
     }
-
+    /* Show View based on DataStore ! */
+    /*
     private func fetchHealthKitData() {
         let infoToRead = Set([HKObjectType.characteristicType(forIdentifier: .biologicalSex)].compactMap { $0 })
         
@@ -81,5 +88,5 @@ struct SocialHistoryQuestionView: View {
         case .notSet: return false
         @unknown default: return false
         }
-    }
+    }*/
 }

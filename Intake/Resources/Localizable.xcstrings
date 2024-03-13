@@ -10,9 +10,6 @@
     "*Click the details to view/edit the reactions" : {
 
     },
-    "%.2f" : {
-
-    },
     "%@ - %@" : {
       "localizations" : {
         "en" : {
@@ -86,6 +83,9 @@
     "Add Field" : {
 
     },
+    "Add_allergy" : {
+
+    },
     "ADD_REACTION" : {
 
     },
@@ -116,22 +116,22 @@
     "Allergies:" : {
 
     },
-    "Allergy" : {
-
-    },
     "Allergy Assistant" : {
 
     },
     "Allergy Name" : {
 
     },
+    "Are you currently smoking or have you smoked in the past?" : {
+
+    },
+    "Are you currently smoking?" : {
+
+    },
     "Auto-fill Intake Form" : {
 
     },
     "Back" : {
-
-    },
-    "Calculation" : {
 
     },
     "Chat" : {
@@ -237,6 +237,9 @@
         }
       }
     },
+    "Currently Smoking:" : {
+
+    },
     "Date" : {
 
     },
@@ -256,12 +259,6 @@
 
     },
     "DELETE_SURGERY" : {
-
-    },
-    "DETAILS" : {
-
-    },
-    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
@@ -296,6 +293,9 @@
 
     },
     "Get Started" : {
+
+    },
+    "Have you smoked in the past?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -343,12 +343,6 @@
 
     },
     "HOME_LOGO" : {
-
-    },
-    "How many days a year do you smoke?" : {
-
-    },
-    "How many packs do you smoke a day?" : {
 
     },
     "Inactive" : {
@@ -423,6 +417,9 @@
 
     },
     "Medications:" : {
+
+    },
+    "Menstrual History" : {
 
     },
     "Menstrual Information" : {
@@ -514,6 +511,9 @@
     "No past surgeries" : {
 
     },
+    "No reactions" : {
+
+    },
     "No Reactions" : {
 
     },
@@ -573,12 +573,6 @@
       }
     },
     "Other important questions." : {
-
-    },
-    "Pack Years:" : {
-
-    },
-    "Pack years: %.2f" : {
 
     },
     "Past Medical History:" : {
@@ -731,10 +725,16 @@
     "Skip" : {
 
     },
+    "Smoked in the Past:" : {
+
+    },
     "Smoking history" : {
 
     },
     "Smoking History" : {
+
+    },
+    "Smoking Status" : {
 
     },
     "Social History" : {
@@ -747,9 +747,6 @@
 
     },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {
