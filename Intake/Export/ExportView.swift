@@ -199,7 +199,7 @@ struct ExportView: View {
         
         // issue: proposed height is not expanding as necessary. uncomment to attempt to fix this.
         
-        var proposedHeightOptional = renderer.uiImage?.size.height
+        let proposedHeightOptional = renderer.uiImage?.size.height
         
         guard let proposedHeight = proposedHeightOptional else {
             return nil
