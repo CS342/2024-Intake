@@ -17,17 +17,6 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
-struct AllergyItem: Identifiable, Equatable {
-    let id = UUID()
-    var allergy: String
-    var reaction: [ReactionItem]
-    
-    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
-        lhs.allergy == rhs.allergy
-    }
-}
-
-
 struct ChatButton: View {
     // Use @Binding to create a two-way binding to the parent view's showingChat state
     @Binding var showingChat: Bool
