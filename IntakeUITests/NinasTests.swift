@@ -27,7 +27,7 @@ final class NinasTests: XCTestCase {
         try super.tearDownWithError()
     }
     func testPatientInformation() throws {
-        // UI tests must launch the application that they test.
+        // Goes through UI of PatientInfo
         let app = XCUIApplication()
         app.launch()
         
@@ -44,18 +44,27 @@ final class NinasTests: XCTestCase {
         dobDatePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "January")
         dobDatePicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "1")
         dobDatePicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "1980")
-
         sexPicker.tap()
         sexPicker.adjust(toPickerWheelValue: "Male")
-        
-        
         nextOnPatientInfoView.tap()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testNavigationThroughApp() throws {
         let app = XCUIApplication()
         app.launch()
+        
+        let startButton = app.buttons["START"]
+        let nextOnPatientInfoView = app.buttons["NEXT TO MEDICAL HISTORY"]
+        let nextOnMedicalHistoryView = app.buttons["NEXT TO SURGICAL HISTORY"]
+        let nextOnSurgicalHistoryView = app.buttons["NEXT TO MEDICATIONS"]
+        
+        startButton.tap()
+        XCTAssertTrue(nextOnPatientInfoView.exists, "Not on the expected view.")
+        nextOnPatientInfoView.tap()
+        XCTAssertTrue(nextOnMedicalHistoryView.exists, "Not on the expected view.")
+        nextOnMedicalHistoryView.tap()
+        XCTAssertTrue(nextOnSurgicalHistoryView.exists, "Not on the expected view.")
+        nextOnSurgicalHistoryView.tap()
+        // Other views are tested seperately
     }
 }

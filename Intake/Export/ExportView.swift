@@ -199,8 +199,6 @@ struct ExportView: View {
     func exportToPDF() async -> PDFDocument? {
         let renderer = ImageRenderer(content: self.wrappedBody)
         
-        // issue: proposed height is not expanding as necessary. uncomment to attempt to fix this.
-        
         let proposedHeightOptional = renderer.uiImage?.size.height
         
         guard let proposedHeight = proposedHeightOptional else {
@@ -215,7 +213,6 @@ struct ExportView: View {
             renderer.render { _, context in
                 var box = CGRect(origin: .zero, size: pageSize)
                 
-                /// Create in-memory `CGContext` that stores the PDF
                 guard let mutableData = CFDataCreateMutable(kCFAllocatorDefault, 0),
                       let consumer = CGDataConsumer(data: mutableData),
                       let pdf = CGContext(consumer: consumer, mediaBox: &box, nil) else {
@@ -243,7 +240,6 @@ struct ShareSheet: UIViewControllerRepresentable {
     
     
     func makeUIViewController(context: Context) -> UIActivityViewController {
-        // Note: Need to write down the PDF to storage as in-memory PDFs are not recognized properly
         let temporaryPath = FileManager.default.temporaryDirectory.appendingPathComponent(
             LocalizedStringResource("Intake Form").localizedString() + ".pdf"
         )
