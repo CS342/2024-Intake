@@ -79,7 +79,7 @@ class DataStore: Codable {
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
     var menstrualHistory = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
-    var smokingHistory = SmokingHistoryItem(packYears: 0.0, additionalDetails: "")
+    var smokingHistory = SmokingHistoryItem(hasSmokedOrSmoking: Bool(), currentlySmoking: Bool(), smokedInThePast: Bool(), additionalDetails: "")
 }
 
 @Observable

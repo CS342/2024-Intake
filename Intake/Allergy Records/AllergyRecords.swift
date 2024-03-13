@@ -55,8 +55,14 @@ struct AllergyList: View {
         if loaded.allergyData {
             VStack {
                 allergyForm
-                SubmitButton(nextView: NavigationViews.menstrual)
-                    .padding()
+                /**/
+                if data.generalData.sex == "Female" {
+                    SubmitButton(nextView: NavigationViews.menstrual)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.smoking)
+                        .padding()
+                }
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)
         } else {

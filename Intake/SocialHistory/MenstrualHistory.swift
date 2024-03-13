@@ -23,7 +23,7 @@ struct SocialHistoryQuestionView: View {
     @State private var showMaleSlide = false
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
-
+    // do this ONLY in nav before this
     var body: some View {
         NavigationView {
             VStack {
@@ -42,9 +42,14 @@ struct SocialHistoryQuestionView: View {
                     }
                 }
                 .navigationTitle("Social History")
-                .onAppear {
-                    fetchHealthKitData()
+                .task {
+                    startDate = data.menstrualHistory.startDate
+                    endDate = data.menstrualHistory.endDate
+                    additionalDetails = data.menstrualHistory.additionalDetails
                 }
+                /*.task {
+                    fetchHealthKitData()
+                }*/
                 .onDisappear {
                     data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                 }
@@ -53,7 +58,8 @@ struct SocialHistoryQuestionView: View {
             }
         }
     }
-
+    /* Show View based on DataStore ! */
+    /*
     private func fetchHealthKitData() {
         let infoToRead = Set([HKObjectType.characteristicType(forIdentifier: .biologicalSex)].compactMap { $0 })
         
@@ -81,5 +87,5 @@ struct SocialHistoryQuestionView: View {
         case .notSet: return false
         @unknown default: return false
         }
-    }
+    }*/
 }

@@ -10,9 +10,6 @@
     "*Click the details to view/edit the reactions" : {
 
     },
-    "%.2f" : {
-
-    },
     "%@ - %@" : {
       "localizations" : {
         "en" : {
@@ -27,9 +24,6 @@
 
     },
     "0 pack years" : {
-
-    },
-    "35" : {
 
     },
     "ACCOUNT_NEXT" : {
@@ -92,6 +86,9 @@
     "Add_allergy" : {
 
     },
+    "Add_allergy" : {
+
+    },
     "ADD_REACTION" : {
 
     },
@@ -128,13 +125,16 @@
     "Allergy Name" : {
 
     },
+    "Are you currently smoking or have you smoked in the past?" : {
+
+    },
+    "Are you currently smoking?" : {
+
+    },
     "Auto-fill Intake Form" : {
 
     },
     "Back" : {
-
-    },
-    "Calculation" : {
 
     },
     "Chat" : {
@@ -243,6 +243,9 @@
     "Create New Form" : {
 
     },
+    "Currently Smoking:" : {
+
+    },
     "Date" : {
 
     },
@@ -285,16 +288,23 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Female" : {
-
-    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
 
     },
     "Get Started" : {
+
+    },
+    "Have you smoked in the past?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -344,12 +354,6 @@
     "HOME_LOGO" : {
 
     },
-    "How many days a year do you smoke?" : {
-
-    },
-    "How many packs do you smoke a day?" : {
-
-    },
     "Inactive" : {
 
     },
@@ -370,12 +374,6 @@
       }
     },
     "It looks like an unexpected view was appended to the NavigationPath!" : {
-
-    },
-    "January 1, 1980" : {
-
-    },
-    "John Doe" : {
 
     },
     "Last Menstrural Period" : {
@@ -431,6 +429,9 @@
 
     },
     "Medications:" : {
+
+    },
+    "Menstrual History" : {
 
     },
     "Menstrual Information" : {
@@ -586,12 +587,6 @@
     "Other important questions." : {
 
     },
-    "Pack Years:" : {
-
-    },
-    "Pack years: %.2f" : {
-
-    },
     "Past Medical History:" : {
 
     },
@@ -715,7 +710,14 @@
 
     },
     "SETTINGS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a Mock Patient"
+          }
+        }
+      }
     },
     "Sex" : {
 
@@ -735,22 +737,28 @@
     "Skip" : {
 
     },
+    "Smoked in the Past:" : {
+
+    },
     "Smoking history" : {
 
     },
     "Smoking History" : {
 
     },
+    "Smoking Status" : {
+
+    },
     "Social History" : {
+
+    },
+    "Start" : {
 
     },
     "Start Date:" : {
 
     },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {
