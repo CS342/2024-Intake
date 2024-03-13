@@ -113,9 +113,15 @@ struct PatientInfo: View {
                 }
             }
             Spacer()
-            SubmitButtonWithAction(nextView: .medical, onButtonTap: {
-                updateData()
-            }).accessibilityLabel("NEXT TO MEDICAL HISTORY")
+            if FeatureFlags.skipToScrollable {
+                SubmitButtonWithAction(nextView: .pdfs, onButtonTap: {
+                    updateData()
+                }).accessibilityLabel("NEXT TO SCROLLABLE")
+            } else {
+                SubmitButtonWithAction(nextView: .medical, onButtonTap: {
+                    updateData()
+                }).accessibilityLabel("NEXT TO MEDICAL HISTORY")
+            }
         }
         .task {
             loadData()
