@@ -29,7 +29,7 @@ struct ReactionItem: Identifiable, Codable {
 
 
 struct AllergyItem: Identifiable, Equatable, Codable {
-    let id = UUID()
+    var id = UUID()
     var allergy: String
     var reaction: [ReactionItem]
     
