@@ -248,8 +248,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/StanfordSpezi/SpeziMedication.git",
       "state" : {
-        "revision" : "95ca9aebbd23f3842639d6e322785a0ff3620aac",
-        "version" : "0.4.0"
+        "revision" : "03d82c275be588970eda4d5ab335609a8260014b",
+        "version" : "0.4.1"
       }
     },
     {

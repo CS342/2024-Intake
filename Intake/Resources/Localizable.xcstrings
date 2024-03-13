@@ -86,9 +86,6 @@
     "Add_allergy" : {
 
     },
-    "Add_allergy" : {
-
-    },
     "ADD_REACTION" : {
 
     },
@@ -265,9 +262,6 @@
 
     },
     "DELETE_SURGERY" : {
-
-    },
-    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
@@ -750,9 +744,6 @@
 
     },
     "Social History" : {
-
-    },
-    "Start" : {
 
     },
     "Start Date:" : {

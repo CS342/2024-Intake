@@ -201,7 +201,7 @@ struct HomeView: View {
         .verifyRequiredAccountDetails(Self.accountEnabled)
         .onAppear {
             let fetchData = loadDataStore()
-            if let loadedData = fetchData {
+            if fetchData != nil {
                 isButtonDisabled = false
             } else {
                 isButtonDisabled = true

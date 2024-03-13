@@ -52,7 +52,9 @@ struct MenstrualHistoryItem: Codable {
 }
 
 struct SmokingHistoryItem: Codable {
-    var packYears: Double
+    var hasSmokedOrSmoking: Bool
+    var currentlySmoking: Bool
+    var smokedInThePast: Bool
     var additionalDetails: String
 }
 
