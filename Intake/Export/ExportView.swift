@@ -168,20 +168,38 @@ struct ExportView: View {
                         .frame(height: 20)
                     
                     VStack(alignment: .leading) {
-                        Text("Review of Systems:").fontWeight(.bold)
-                        HStack {
-                            Text("Last Menstrural Period")
-                            Text("Date")
+                        Text("Menstrual History:").fontWeight(.bold)
+                        if data.generalData.sex == "Female" {
+                            HStack {
+                                Text("Last Menstrual Period:").fontWeight(.bold)
+                                Text("\(formatDate(data.menstrualHistory.startDate)) - \(formatDate(data.menstrualHistory.endDate))")
+                            }
+                            HStack {
+                                Text("Additional Symptoms:").fontWeight(.bold)
+                                Text(data.menstrualHistory.additionalDetails)
+                            }
                         }
-                        
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text("Smoking History").fontWeight(.bold)
                         HStack {
-                            Text("Smoking history")
-                            Text("0 pack years")
+                            Text("Smoking Status:").fontWeight(.bold)
+                            Text(data.smokingHistory.hasSmokedOrSmoking)
+                        }
+                        HStack {
+                            Text("Currently Smoking:").fontWeight(.bold)
+                            Text(data.smokingHistory.currentlySmoking)
+                        }
+                        HStack {
+                            Text("Smoked in the Past:").fontWeight(.bold)
+                            Text(data.smokingHistory.smokedInThePast)
                         }
                     }
                 }
             }
             // swiftlint:enable:closure_body_length
+            .padding(.horizontal)
             Spacer()
         }
     }
@@ -259,6 +277,13 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+func formatDate(_ date: Date) -> String {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium // Choose your style
+    formatter.timeStyle = .none
+    return formatter.string(from: date)
 }
 
 func todayDateString() -> String {
