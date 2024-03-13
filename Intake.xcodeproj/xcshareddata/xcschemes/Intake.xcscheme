@@ -82,6 +82,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--testPatient"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--showOnboarding"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -91,6 +95,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--testMedication"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
