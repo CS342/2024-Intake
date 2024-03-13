@@ -22,7 +22,7 @@ struct PatientInfo: View {
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var birthdate: String = ""
-    @State private var gender: String = ""
+    @State private var gender: String = "female"
     @State private var sexOption: String = ""
     @State private var birthdateDateFormat = Date()
     
@@ -111,16 +111,17 @@ struct PatientInfo: View {
                     .pickerStyle(MenuPickerStyle())
                 }
             }
-            
+            Spacer()
             SubmitButtonWithAction(nextView: .medical, onButtonTap: {
                 updateData()
             })
         }
-        .onAppear {
+        .task {
             loadData()
         }
     }
     
+    @MainActor
     private func loadData() {
         if let patient = fhirStore.patient {
             fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
@@ -134,6 +135,7 @@ struct PatientInfo: View {
             if let dob = dateFormatter.date(from: birthdate) {
                 birthdateDateFormat = dob
             }
+            gender.capitalizeFirstLetter()
             sexOption = gender
             data.generalData = PatientData(name: fullName, birthdate: birthdate, age: age, sex: gender)
         }
@@ -148,6 +150,12 @@ struct PatientInfo: View {
         let age = calculateAge(from: birthdate)
         data.generalData.sex = sexOption
         data.generalData.age = age
+    }
+}
+
+extension String {
+    mutating func capitalizeFirstLetter() {
+        self = prefix(1).capitalized + dropFirst()
     }
 }
 
