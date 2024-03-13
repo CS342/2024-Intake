@@ -48,9 +48,11 @@ struct ExportView: View {
         }
     }
     
+    @ViewBuilder
     private var wrappedBody: some View {
-        VStack {
-            Text("MEDICAL HISTORY").fontWeight(.bold)
+        VStack(alignment: .leading) {
+            Text("MEDICAL HISTORY")
+                .fontWeight(.bold)
             
             Spacer()
                 .frame(height: 20)
@@ -75,7 +77,7 @@ struct ExportView: View {
                     }
                     HStack {
                         Text("Sex:").fontWeight(.bold)
-                        Text(data.generalData.name)
+                        Text(data.generalData.sex)
                     }
                     
                     Spacer()
@@ -103,7 +105,6 @@ struct ExportView: View {
                             ForEach(data.conditionData, id: \.id) { item in
                                 HStack {
                                     Text(item.condition)
-                                    Spacer()
                                     Text(item.active ? "Active" : "Inactive")
                                         .foregroundColor(.secondary)
                                 }
@@ -139,7 +140,7 @@ struct ExportView: View {
                             ForEach(Array(data.medicationData), id: \.id) { item in
                                 HStack {
                                     Text(item.type.localizedDescription)
-                                    Text(item.dosage.localizedDescription)
+                                    Text(item.dosage.localizedDescription).foregroundColor(.secondary)
                                 }
                             }
                         }
@@ -155,9 +156,9 @@ struct ExportView: View {
                         } else {
                             ForEach(data.allergyData, id: \.id) { item in
                                 VStack(alignment: .leading) {
-                                    Text(item.allergy).fontWeight(.bold)
+                                    Text(item.allergy)
                                     ForEach(item.reaction, id: \.id) { reactionItem in
-                                        Text(reactionItem.reaction)
+                                        Text(reactionItem.reaction).foregroundColor(.secondary)
                                     }
                                 }
                             }
@@ -166,10 +167,10 @@ struct ExportView: View {
                     
                     Spacer()
                         .frame(height: 20)
-                    
+
                     VStack(alignment: .leading) {
-                        Text("Menstrual History:").fontWeight(.bold)
                         if data.generalData.sex == "Female" {
+                            Text("Menstrual History").fontWeight(.bold)
                             HStack {
                                 Text("Last Menstrual Period:").fontWeight(.bold)
                                 Text("\(formatDate(data.menstrualHistory.startDate)) - \(formatDate(data.menstrualHistory.endDate))")
@@ -184,30 +185,36 @@ struct ExportView: View {
                     VStack(alignment: .leading) {
                         Text("Smoking History").fontWeight(.bold)
                         HStack {
-                            Text("Smoking Status:").fontWeight(.bold)
-                            Text(data.smokingHistory.hasSmokedOrSmoking)
+                            Text("Smoking Status:")
+                            Text(data.smokingHistory.hasSmokedOrSmoking ? "Yes" : "No")
                         }
                         HStack {
-                            Text("Currently Smoking:").fontWeight(.bold)
-                            Text(data.smokingHistory.currentlySmoking)
+                            Text("Currently Smoking:")
+                            Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
                         }
                         HStack {
-                            Text("Smoked in the Past:").fontWeight(.bold)
-                            Text(data.smokingHistory.smokedInThePast)
+                            Text("Smoked in the Past:")
+                            Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
+                        }
+                        HStack {
+                            Text("Additional Symptoms:")
+                            Text(data.smokingHistory.additionalDetails)
                         }
                     }
                 }
             }
             // swiftlint:enable:closure_body_length
-            .padding(.horizontal)
-            Spacer()
         }
+            .if(isSharing, transform: { view in
+                view
+                    .padding()
+            })
     }
     
     @MainActor
     private func shareButtonTapped() async {
-        self.pdfData = await self.exportToPDF()
         self.isSharing = true
+        self.pdfData = await self.exportToPDF()
     }
     
     
@@ -240,7 +247,7 @@ struct ExportView: View {
                 }
                 
                 pdf.beginPDFPage(nil)
-                pdf.translateBy(x: 50, y: -50)
+                //pdf.translateBy(x: 50, y: -50)
                 
                 context(pdf)
                 
@@ -250,6 +257,20 @@ struct ExportView: View {
                 continuation.resume(returning: PDFDocument(data: mutableData as Data))
             }
         }
+    }
+    
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium // Choose your style
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+
+    func todayDateString() -> String {
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter.string(from: today)
     }
 }
 
@@ -277,20 +298,6 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
-
-func formatDate(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium // Choose your style
-    formatter.timeStyle = .none
-    return formatter.string(from: date)
-}
-
-func todayDateString() -> String {
-    let today = Date()
-    let formatter = DateFormatter()
-    formatter.dateStyle = .long
-    return formatter.string(from: today)
 }
 
 struct ExportView_Previews: PreviewProvider {

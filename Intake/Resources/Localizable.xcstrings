@@ -23,9 +23,6 @@
     "%@ Reactions" : {
 
     },
-    "0 pack years" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -99,6 +96,9 @@
 
     },
     "Additional Symptoms" : {
+
+    },
+    "Additional Symptoms:" : {
 
     },
     "Age" : {
@@ -240,9 +240,6 @@
     "Currently Smoking:" : {
 
     },
-    "Date" : {
-
-    },
     "Date of Birth" : {
 
     },
@@ -367,7 +364,7 @@
     "It looks like an unexpected view was appended to the NavigationPath!" : {
 
     },
-    "Last Menstrural Period" : {
+    "Last Menstrual Period:" : {
 
     },
     "Last period's end date" : {
@@ -660,9 +657,6 @@
     "Review of Systems" : {
 
     },
-    "Review of Systems:" : {
-
-    },
     "Review summary of your medical history." : {
 
     },
@@ -728,13 +722,13 @@
     "Smoked in the Past:" : {
 
     },
-    "Smoking history" : {
-
-    },
     "Smoking History" : {
 
     },
     "Smoking Status" : {
+
+    },
+    "Smoking Status:" : {
 
     },
     "Social History" : {
