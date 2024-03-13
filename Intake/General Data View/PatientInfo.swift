@@ -112,7 +112,7 @@ struct PatientInfo: View {
                 }
             }
             
-            SubmitButtonWithAction(nextView: .medical, onButtonTap: {
+            SubmitButtonWithAction(nextView: .chat, onButtonTap: {
                 updateData()
             })
         }

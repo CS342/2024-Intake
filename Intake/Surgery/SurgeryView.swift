@@ -30,6 +30,26 @@ struct SurgeryItem: Identifiable, Equatable {
     var complications: [String] = []
 }
 
+func compare(surgery1: SurgeryItem, surgery2: SurgeryItem) -> Bool {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    if let date1 = dateFormatter.date(from: surgery1.date) {
+        if let date2 = dateFormatter.date(from: surgery2.date) {
+            return date1 > date2
+        }
+        return true
+    }
+    
+    return false
+}
+
+func sortSurgeriesByDate(surgeries: inout [SurgeryItem]) {
+    if surgeries.count > 1 {
+        surgeries.sort { compare(surgery1: $0, surgery2: $1) }
+    }
+}
+
 struct AddSurgery: View {
     @Binding var surgeries: [SurgeryItem]
     @Environment(DataStore.self) var data
@@ -40,6 +60,7 @@ struct AddSurgery: View {
             let newSurgery = SurgeryItem(surgeryName: "Surgery")
             navigationPath.path.append(NavigationViews.inspect)
             data.surgeries.append(newSurgery)
+            sortSurgeriesByDate(surgeries: &data.surgeries)
         }) {
             Image(systemName: "plus")
                 .accessibilityLabel(Text("ADD_SURGERY"))
@@ -197,6 +218,8 @@ struct SurgeryView: View {
         }
         
         data.surgeries = await self.filter(surgeries: data.surgeries)
+        sortSurgeriesByDate(surgeries: &data.surgeries)
+        
         data.surgeriesLoaded = true
     }
     

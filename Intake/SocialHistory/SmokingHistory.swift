@@ -36,7 +36,7 @@ struct SmokingHistoryView: View {
                 .onDisappear {
                     storeSmokingHistory()
                 }
-                SubmitButton(nextView: NavigationViews.chat)
+                SubmitButton(nextView: NavigationViews.pdfs)
                     .padding()
             }
         }

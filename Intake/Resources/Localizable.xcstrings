@@ -125,6 +125,9 @@
     "Allergy Name" : {
 
     },
+    "Are you currently smoking or have you smoked in the past?" : {
+
+    },
     "Are you currently smoking?" : {
 
     },
@@ -292,9 +295,6 @@
 
     },
     "Have you smoked in the past?" : {
-
-    },
-    "Have you smoked or are you currently smoking?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {

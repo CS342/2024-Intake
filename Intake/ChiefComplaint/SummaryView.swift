@@ -34,7 +34,7 @@ struct SummaryView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             ComplaintForm(chiefComplaint: $chiefComplaint)
-            SubmitButton(nextView: NavigationViews.pdfs)
+            SubmitButton(nextView: .medical)
                 .padding()
         }
     }
