@@ -36,7 +36,7 @@ struct LLMAssistantView: View {
                 LLMOnboardingView(showOnboarding: $showOnboarding)
             }
             .navigationTitle(pageTitle)
-            .toolbar {  // Is this doing anything except causing problems?
+            .toolbar {
                 if AccountButton.shouldDisplay {
                     AccountButton(isPresented: $presentingAccount)
                 }

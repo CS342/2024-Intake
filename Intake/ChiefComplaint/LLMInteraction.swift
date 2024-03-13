@@ -21,24 +21,22 @@ import SwiftUI
 
 
 struct LLMInteraction: View {
-    // swiftlint:disable type_contents_order
+    // Swiftlint is behaving oddly as the order is correct, so I needed to disable this error
+    // swiftlint:disable:type_contents_order
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var dob: String = ""
     @State private var gender: String = ""
+    @State var showOnboarding = true
+    @State var greeting = true
+    @State var stringBox: StringBox = .init()
+    @State var showSheet = false
     @Environment(LLMRunner.self) var runner: LLMRunner
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-
-    @State var showOnboarding = true
-    @State var greeting = true
-
-    @State var stringBox: StringBox = .init()
-    @State var showSheet = false
     
     @Observable
     class StringBox: Equatable {
