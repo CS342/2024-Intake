@@ -47,8 +47,8 @@ struct ExportView: View {
             print("PDF data changed")
         }
     }
-    
     @ViewBuilder
+    // swiftlint:disable attributes
     private var wrappedBody: some View {
         VStack(alignment: .leading) {
             Text("MEDICAL HISTORY")
@@ -247,7 +247,6 @@ struct ExportView: View {
                 }
                 
                 pdf.beginPDFPage(nil)
-                //pdf.translateBy(x: 50, y: -50)
                 
                 context(pdf)
                 
