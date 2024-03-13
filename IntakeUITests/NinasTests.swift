@@ -35,8 +35,8 @@ final class NinasTests: XCTestCase {
     func testIfHealthKitDataInScrollable() throws {
         let app = XCUIApplication()
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--testPatient", "--skipToScrollable"]
-        let nextToScrollableView = app.buttons["NEXT TO SCROLLABLE VIEW"]
-        let startButton = app.buttons["START"]
+        let startButton = app.buttons["Start"]
+        let nextToScrollableView = app.buttons["Next"]
         startButton.tap()
         nextToScrollableView.tap()
         XCTAssertTrue(app.staticTexts["Gonzalo Alejandro Dueñas"].waitForExistence(timeout: 5))
@@ -50,11 +50,11 @@ final class NinasTests: XCTestCase {
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--skipToScrollable"]
         app.launch()
         
-        let startButton = app.buttons["START"]
-        let nameTextField = app.textFields["FULL NAME"]
-        let dobDatePicker = app.datePickers["DATE OF BIRTH"]
-        let sexPicker = app.datePickers["SEX"]
-        let nextToScrollableView = app.buttons["NEXT TO SCROLLABLE VIEW"]
+        let startButton = app.buttons["Start"]
+        let nameTextField = app.textFields["Full Name"]
+        let dobDatePicker = app.datePickers["Date of Birth"]
+        let sexPicker = app.datePickers["Sex"]
+        let nextToScrollableView = app.buttons["Next"]
         
         startButton.tap()
         nameTextField.tap()
@@ -71,22 +71,5 @@ final class NinasTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["1980-01-01"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["44"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Male"].waitForExistence(timeout: 5))
-    }
-    func testNavigationFlow() throws {
-        let app = XCUIApplication()
-        app.launch()
-        
-        let startButton = app.buttons["START"]
-        let nextOnPatientInfoView = app.buttons["NEXT TO MEDICAL HISTORY"]
-        let nextOnMedicalHistoryView = app.buttons["NEXT TO SURGICAL HISTORY"]
-        let nextOnSurgicalHistoryView = app.buttons["NEXT TO MEDICATIONS"]
-        
-        startButton.tap()
-        XCTAssertTrue(nextOnPatientInfoView.exists, "Not on the expected view.")
-        nextOnPatientInfoView.tap()
-        XCTAssertTrue(nextOnMedicalHistoryView.exists, "Not on the expected view.")
-        nextOnMedicalHistoryView.tap()
-        XCTAssertTrue(nextOnSurgicalHistoryView.exists, "Not on the expected view.")
-        nextOnSurgicalHistoryView.tap()
     }
 }

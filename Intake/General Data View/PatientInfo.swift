@@ -10,6 +10,9 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// The Patient Info View allows the patient to enter their name, date of birth, and sex. If the patient is connected with Healthkit, it allows
+// them to verify their information is correct and edit it if not. The information is automatically pulled from Healthkit if the patient is connected.
+
 import SpeziFHIR
 import SwiftUI
 
@@ -95,18 +98,18 @@ struct PatientInfo: View {
         Form {
             Section(header: Text("Patient Information")) {
                 HStack {
-                    TextField("Full name", text: $data.generalData.name).accessibilityLabel("FULL NAME")
+                    TextField("Full name", text: $data.generalData.name)
                     Spacer()
                 }
                 HStack {
                     DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
-                        .datePickerStyle(DefaultDatePickerStyle()).accessibilityLabel("DATE OF BIRTH")
+                        .datePickerStyle(DefaultDatePickerStyle())
                 }
                 HStack {
                     let options = ["Female", "Male"]
                     Picker("Sex", selection: $sexOption) {
                         ForEach(options, id: \.self) { option in
-                            Text(option).tag(option).accessibilityLabel("SEX")
+                            Text(option).tag(option)
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -116,11 +119,11 @@ struct PatientInfo: View {
             if FeatureFlags.skipToScrollable {
                 SubmitButtonWithAction(nextView: .pdfs, onButtonTap: {
                     updateData()
-                }).accessibilityLabel("NEXT TO SCROLLABLE")
+                })
             } else {
                 SubmitButtonWithAction(nextView: .medical, onButtonTap: {
                     updateData()
-                }).accessibilityLabel("NEXT TO MEDICAL HISTORY")
+                })
             }
         }
         .task {

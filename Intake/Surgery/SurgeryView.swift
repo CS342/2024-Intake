@@ -107,7 +107,7 @@ struct SurgeryView: View {
             VStack {
                 surgeryForm
                 SubmitButton(nextView: NavigationViews.medication)
-                    .padding().accessibilityLabel("NEXT TO MEDICATIONS")
+                    .padding()
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))

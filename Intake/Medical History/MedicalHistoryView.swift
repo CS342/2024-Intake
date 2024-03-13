@@ -39,7 +39,7 @@ struct MedicalHistoryView: View {
             VStack {
                 medicalHistoryForm
                 SubmitButton(nextView: NavigationViews.surgical)
-                    .padding().accessibilityLabel("NEXT TO SURGICAL HISTORY")
+                    .padding()
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)
         } else {

@@ -10,6 +10,10 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// LLMInteraction is the core functionality of Chief Complaint. It initializes the LLM, uses a robust system prompt to ensure that the questions
+// asked are specific and medically sound. It utilizes function calling to identify when enough information has been gathered about the patient
+// to be helpful to a doctor. The function call 
+
 
 import Foundation
 import SpeziChat
@@ -60,8 +64,8 @@ struct LLMInteraction: View {
                     """
       
         static let summaryDescription = """
-                A summary of the patient's primary concern. Include a sentence introducing the patient's name,\
-                age, and gender, if you have access to this information.
+                A brief summary of the patient's primary concern. Include all information that would be relevant\
+                for a doctor who will treat the patient.
         """
         @Parameter(description: summaryDescription) var patientSummary: String
         

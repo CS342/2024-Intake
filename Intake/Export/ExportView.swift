@@ -4,7 +4,8 @@
 //
 // SPDX-License-Identifier: MIT
 //
-//
+// ExportView displays all of the information gathered from Intake thus far in one view. It then uses ImageRenderer to export the information to a PDF
+// with a simple share button.
 
 // swiftlint disable: closure_body_length
 import PDFKit
