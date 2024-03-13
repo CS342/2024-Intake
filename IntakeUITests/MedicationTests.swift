@@ -24,10 +24,16 @@ class MedicationTests: XCTestCase {
         let app = XCUIApplication()
         XCTAssertEqual(app.state, .runningForeground)
         app.buttons["Start"].tap()
-        //app.buttons["Start"].tap()
-        app.buttons["Next"].tap()
-        //XCTEstAssert( app.navigationBars["Medical History"].staticTexts["Medical History"]
-                
+        
+        XCTAssertTrue(app.staticTexts["amLODIPine 2.5 MG Oral Tablet"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Hydrochlorothiazide 25 MG Oral Tablet"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.navigationBars["Medication Settings"].buttons["Add New Medication"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Medication Settings"].buttons["Chat"].waitForExistence(timeout: 2))
+        app.navigationBars["Medication Settings"].buttons["Add New Medication"].tap()
+        app.buttons["Verapamil Hydrochloride 40 MG"].tap()
+        app.buttons["Save Dosage"].tap()
+        app.buttons["Add Medication"].tap()
+        XCTAssertTrue(app.staticTexts["Verapamil Hydrochloride 40 MG"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.navigationBars["Allergies"].waitForExistence(timeout: 2))
     }
-    
 }
