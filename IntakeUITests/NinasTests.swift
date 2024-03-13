@@ -4,6 +4,11 @@
 //
 //  Created by Nina Boord on 3/12/24.
 //
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+//
+//
 
 import XCTest
 
