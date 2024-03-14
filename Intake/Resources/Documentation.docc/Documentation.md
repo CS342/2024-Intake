@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Stanford University
+//
+// SPDX-License-Identifier: MIT
+
 # ``Intake``
 
 <!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
