@@ -57,6 +57,7 @@
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */; };
 		3C89F66D2B9D948B00A4F52D /* PatientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C89F66C2B9D948B00A4F52D /* PatientInfo.swift */; };
+		510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */; };
 		511827962B740192002033A0 /* SurgeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827952B740191002033A0 /* SurgeryView.swift */; };
 		51805C122B81853800D17109 /* IntakeMedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C112B81853700D17109 /* IntakeMedication.swift */; };
 		51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */; };
@@ -180,6 +181,7 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeStandard.swift; sourceTree = "<group>"; };
 		3C89F66C2B9D948B00A4F52D /* PatientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo.swift; sourceTree = "<group>"; };
+		510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTests.swift; sourceTree = "<group>"; };
 		511827952B740191002033A0 /* SurgeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryView.swift; sourceTree = "<group>"; };
 		51805C112B81853700D17109 /* IntakeMedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedication.swift; sourceTree = "<group>"; };
 		51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationViewModel.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */,
+				510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */,
 			);
 			path = IntakeUITests;
 			sourceTree = "<group>";
@@ -928,6 +931,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
