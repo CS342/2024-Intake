@@ -10,6 +10,10 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// LLMInteraction is the core functionality of Chief Complaint. It initializes the LLM, uses a robust system prompt to ensure that the questions
+// asked are specific and medically sound. It utilizes function calling to identify when enough information has been gathered about the patient
+// to be helpful to a doctor. The function call 
+
 
 import Foundation
 import SpeziChat
@@ -21,24 +25,25 @@ import SwiftUI
 
 
 struct LLMInteraction: View {
+    // I needed to disable this error because any order I tried would not work. Seems to be an issue with swiftlint
     // swiftlint:disable type_contents_order
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var dob: String = ""
     @State private var gender: String = ""
+    @State var showOnboarding = true
+    @State var greeting = true
+    @State var stringBox: StringBox = .init()
+    @State var showSheet = false
     @Environment(LLMRunner.self) var runner: LLMRunner
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-
-    @State var showOnboarding = true
-    @State var greeting = true
-
-    @State var stringBox: StringBox = .init()
-    @State var showSheet = false
     
     @Observable
     class StringBox: Equatable {
@@ -62,8 +67,8 @@ struct LLMInteraction: View {
                     """
       
         static let summaryDescription = """
-                A summary of the patient's primary concern. Include a sentence introducing the patient's name,\
-                age, and gender, if you have access to this information.
+                A brief summary of the patient's primary concern. Include all information that would be relevant\
+                for a doctor who will treat the patient.
         """
         @Parameter(description: summaryDescription) var patientSummary: String
         
@@ -96,19 +101,21 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
-                let nameString = data.generalData.name.components(separatedBy: " ")
-                if let firstNameValue = nameString.first {
-                    firstName = firstNameValue
-                }
-                let systemMessage = """
-                    The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
-                    years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\
-                    the patient as you would a person of this age group, using as simple words as possible\
-                    if the patient is young. Address them by their first name when you ask questions.
-                """
-                session.context.append(
-                    systemMessage: systemMessage
-                )
+            checkToken()
+            
+            let nameString = data.generalData.name.components(separatedBy: " ")
+            if let firstNameValue = nameString.first {
+                firstName = firstNameValue
+            }
+            let systemMessage = """
+                The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
+                years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\
+                the patient as you would a person of this age group, using as simple words as possible\
+                if the patient is young. Address them by their first name when you ask questions.
+            """
+            session.context.append(
+                systemMessage: systemMessage
+            )
           
             
             if greeting {
@@ -134,7 +141,7 @@ struct LLMInteraction: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT".localized().localizedString()
                 )
             ) {
@@ -145,6 +152,10 @@ struct LLMInteraction: View {
     
     private func showSummary() {
         navigationPath.path.append(NavigationViews.concern)
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
