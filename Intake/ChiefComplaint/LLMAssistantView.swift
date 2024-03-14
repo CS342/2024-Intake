@@ -19,6 +19,7 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct LLMAssistantView: View {
+    @Environment(LLMOpenAITokenSaver.self) var tokenSaver
     @Binding var presentingAccount: Bool
     @State var showOnboarding = true
     @State var greeting = true
@@ -42,6 +43,8 @@ struct LLMAssistantView: View {
                 }
             }
             .onAppear {
+                checkToken()
+                
                 if greeting {
                     let assistantMessage = ChatEntity(role: .assistant, content: initialQuestion)
                     session.context.insert(assistantMessage, at: 0)
@@ -56,7 +59,7 @@ struct LLMAssistantView: View {
         self._session = LLMSessionProvider(
                 schema: LLMOpenAISchema(
                     parameters: .init(
-                        modelType: .gpt3_5Turbo,
+                        modelType: .gpt4,
                         systemPrompt: prompt.wrappedValue
                     )
                 ) {}
@@ -64,6 +67,9 @@ struct LLMAssistantView: View {
         self._pageTitle = pageTitle
         self._initialQuestion = initialQuestion
         self._prompt = prompt
+    }
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

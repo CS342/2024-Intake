@@ -82,7 +82,8 @@ struct UpdateMedicalHistoryFunction: LLMFunction {
 struct MedicalHistoryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
@@ -104,6 +105,8 @@ struct MedicalHistoryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData) {
                 session.context.append(
                                     systemMessage: currentMedHistory
@@ -130,7 +133,7 @@ struct MedicalHistoryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medical history.\
                         You have the ability to add a medical history condition by calling the update_medical_history function.\
@@ -144,6 +147,10 @@ struct MedicalHistoryLLMAssistant: View {
                 UpdateMedicalHistoryFunction(medicalHistoryItemBox: temporaryMedicalHistoryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

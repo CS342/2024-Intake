@@ -75,6 +75,7 @@ struct UpdateAllergyFunction: LLMFunction {
 struct AllergyLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -97,6 +98,8 @@ struct AllergyLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             if let currentallergy = getCurrentPatientAllergy(allergyList: data.allergyData) {
                 session.context.append(
                                     systemMessage: currentallergy
@@ -123,7 +126,7 @@ struct AllergyLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's allergies.\
                         You have the ability to add a allergy if the patient tells you to by calling the update_allergies function.\
@@ -137,6 +140,10 @@ struct AllergyLLMAssistant: View {
                 UpdateAllergyFunction(allergyItemBox: temporaryAllergyItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

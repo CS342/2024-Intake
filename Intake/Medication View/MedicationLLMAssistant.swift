@@ -36,6 +36,7 @@ func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>)
 struct MedicationLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -56,6 +57,8 @@ struct MedicationLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your medications?")
                 session.context.insert(assistantMessage, at: 0)
@@ -75,7 +78,7 @@ struct MedicationLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medications.\
                         You do not have the ability to add or delete medications, so please tell the patient that.\
@@ -86,6 +89,10 @@ struct MedicationLLMAssistant: View {
             ) {
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
