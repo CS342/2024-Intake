@@ -49,6 +49,7 @@ class SurgeryTests: XCTestCase {
         app.textFields["SURGERY_STATUS"].typeText("COMPLETED")
         app.navigationBars["New Surgery"].buttons["Surgical History"].tap()
         XCTAssertTrue(app.staticTexts["Knee Surgery"].waitForExistence(timeout: 2))
+        sleep(2)
         app.buttons["Next"].tap()
         sleep(3)
         XCTAssertTrue(app.navigationBars["Patient Form"].waitForExistence(timeout: 2))
