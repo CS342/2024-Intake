@@ -23,10 +23,12 @@ The CS342 2024 Intake application is using the [Spezi](https://github.com/Stanfo
 
 ## CS342 2024 Intake Features
 
-*Provide a comprehensive description of your application, including figures showing the application. You can learn more on how to structure a README in the [Stanford Spezi Documentation Guide](https://swiftpackageindex.com/stanfordspezi/spezi/documentation/spezi/documentation-guide)*
 
-> [!NOTE]  
-> Do you want to learn more about the Stanford Spezi Template Application and how to use, extend, and modify this application? Check out the [Stanford Spezi Template Application documentation](https://stanfordspezi.github.io/SpeziTemplateApplication)
+The medication feature is described in greater detail below. The allergies feature autofills the users allergies, along witht he reactions for each allergy. The menstrual history feature only displays if the user is a women and shows the start and end date of the users last period. The smoking history feature provides information about the users smoking habits. Finally, the scrollable summary is described in greater detail below.
+
+The medical history, allergies, and surgeries all use SpeziLLM to filter the data to only include the relevant information from the health records.
+
+The medical history, surgery, and allergy views all use SpeziLLM to allow the user to ask questions about that corresponding section, with an added ability to add entries to your form through the LLM chat.
 
 
 ## Contributing
