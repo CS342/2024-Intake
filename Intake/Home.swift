@@ -40,6 +40,10 @@ struct StartButton: View {
                 navigationPath.append(NavigationViews.menstrual)
             } else if FeatureFlags.testSmoking {
                 navigationPath.append(NavigationViews.smoking)
+            } else if FeatureFlags.testSurgery {
+                navigationPath.append(NavigationViews.surgical)
+            } else if FeatureFlags.testCondition {
+                navigationPath.append(NavigationViews.medical)
             } else {
                 navigationPath.append(NavigationViews.general)
             }

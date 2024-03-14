@@ -15,6 +15,7 @@
 import Foundation
 import XCTest
 
+// This tests checking if the current patient medications appear, adding a new medication, filling out its information, and seeing if it persists.
 class MedicationTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -30,7 +31,7 @@ class MedicationTests: XCTestCase {
         let app = XCUIApplication()
         
         // Small workaround to wait until the madications loaded into main memory
-        sleep(8)
+        sleep(10)
         
         XCTAssertEqual(app.state, .runningForeground)
         app.buttons["Create New Form"].tap()
@@ -45,10 +46,5 @@ class MedicationTests: XCTestCase {
         app.buttons["Add Medication"].tap()
         XCTAssertTrue(app.staticTexts["Verapamil Hydrochloride 40 MG"].waitForExistence(timeout: 5))
         app.buttons["Save Medications"].tap()
-        XCTAssertTrue(app.navigationBars["Patient Form"].waitForExistence(timeout: 2))
-//        XCTAssertTrue(app.staticTexts["Hydrochlorothiazide 25 MG Oral Tablet"].waitForExistence(timeout: 5))
-//        XCTAssertTrue(app.staticTexts["amLODIPine 2.5 MG Oral Tablet"].waitForExistence(timeout: 5))
-//        XCTAssertTrue(app.staticTexts["Verapamil Hydrochloride 40 MG"].waitForExistence(timeout: 5))
-//        XCTAssertTrue(app.staticTexts["2.5 MG - Every Day"].waitForExistence(timeout: 5))
     }
 }

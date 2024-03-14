@@ -57,10 +57,12 @@
 		2FF53D8B2A8725DE00042B76 /* SpeziMockWebService in Frameworks */ = {isa = PBXBuildFile; productRef = 2FF53D8A2A8725DE00042B76 /* SpeziMockWebService */; };
 		2FF53D8D2A8729D600042B76 /* IntakeStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */; };
 		3C89F66D2B9D948B00A4F52D /* PatientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C89F66C2B9D948B00A4F52D /* PatientInfo.swift */; };
-		510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */; };
 		3CD23D612BA137D500AB9914 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3CD23D602BA137D500AB9914 /* Documentation.docc */; };
 		3CD23D642BA14D6D00AB9914 /* NinasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD23D632BA14D6D00AB9914 /* NinasTests.swift */; };
+		510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */; };
 		511827962B740192002033A0 /* SurgeryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511827952B740191002033A0 /* SurgeryView.swift */; };
+		5142133E2BA367F70012AFD7 /* SurgeryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142133D2BA367F70012AFD7 /* SurgeryTests.swift */; };
+		514213402BA368140012AFD7 /* ConditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142133F2BA368140012AFD7 /* ConditionsTests.swift */; };
 		51805C122B81853800D17109 /* IntakeMedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C112B81853700D17109 /* IntakeMedication.swift */; };
 		51805C152B81857100D17109 /* IntakeMedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */; };
 		51805C182B81898700D17109 /* SpeziMedication in Frameworks */ = {isa = PBXBuildFile; productRef = 51805C172B81898700D17109 /* SpeziMedication */; };
@@ -183,10 +185,12 @@
 		2FE5DCAC29EE6107004B9AB4 /* AccountOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountOnboarding.swift; sourceTree = "<group>"; };
 		2FF53D8C2A8729D600042B76 /* IntakeStandard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeStandard.swift; sourceTree = "<group>"; };
 		3C89F66C2B9D948B00A4F52D /* PatientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo.swift; sourceTree = "<group>"; };
-		510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTests.swift; sourceTree = "<group>"; };
 		3CD23D602BA137D500AB9914 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		3CD23D632BA14D6D00AB9914 /* NinasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinasTests.swift; sourceTree = "<group>"; };
+		510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationTests.swift; sourceTree = "<group>"; };
 		511827952B740191002033A0 /* SurgeryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurgeryView.swift; sourceTree = "<group>"; };
+		5142133D2BA367F70012AFD7 /* SurgeryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurgeryTests.swift; sourceTree = "<group>"; };
+		5142133F2BA368140012AFD7 /* ConditionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsTests.swift; sourceTree = "<group>"; };
 		51805C112B81853700D17109 /* IntakeMedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedication.swift; sourceTree = "<group>"; };
 		51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeMedicationViewModel.swift; sourceTree = "<group>"; };
 		51805C192B818A1A00D17109 /* IntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeDosage.swift; sourceTree = "<group>"; };
@@ -570,6 +574,8 @@
 				510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */,
 				ACBC9D1C2BA2B3F6003E2581 /* AllergyTests.swift */,
 				3CD23D632BA14D6D00AB9914 /* NinasTests.swift */,
+				5142133D2BA367F70012AFD7 /* SurgeryTests.swift */,
+				5142133F2BA368140012AFD7 /* ConditionsTests.swift */,
 			);
 			path = IntakeUITests;
 			sourceTree = "<group>";
@@ -937,8 +943,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				514213402BA368140012AFD7 /* ConditionsTests.swift in Sources */,
 				ACBC9D1D2BA2B3F6003E2581 /* AllergyTests.swift in Sources */,
 				510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */,
+				5142133E2BA367F70012AFD7 /* SurgeryTests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,
 				3CD23D642BA14D6D00AB9914 /* NinasTests.swift in Sources */,
 			);
