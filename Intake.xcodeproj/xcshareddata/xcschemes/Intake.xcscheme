@@ -82,12 +82,12 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--testPatient"
-            isEnabled = "YES">
+            argument = "--skipToScrollable"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--skipToScrollable"
-            isEnabled = "YES">
+            argument = "--testPatient"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--showOnboarding"
@@ -99,6 +99,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--testMedication"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

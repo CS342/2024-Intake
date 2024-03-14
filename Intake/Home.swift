@@ -32,7 +32,11 @@ struct StartButton: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(NavigationViews.general)
+            if FeatureFlags.testMedication {
+                        navigationPath.append(NavigationViews.medication)
+                    } else {
+                navigationPath.append(NavigationViews.general)
+            }
         }) {
             Text("Create New Form")
                 .font(.headline)

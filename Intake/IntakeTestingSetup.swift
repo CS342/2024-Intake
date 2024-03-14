@@ -24,11 +24,10 @@ private struct IntakeAppTestingSetup: ViewModifier {
                     completedOnboardingFlow = false
                 }
                 if FeatureFlags.testPatient {
-                          let bundles = await ModelsR4.Bundle.llmOnFHIRMockPatients
-                          let firstMockPatient = bundles[3]
-                          store.removeAllResources()
-                          store.load(bundle: firstMockPatient)
-                        }
+                    let bundle = await ModelsR4.Bundle.gonzalo160Duenas839
+                    store.removeAllResources()
+                    store.load(bundle: bundle)
+                }
             }
     }
 }

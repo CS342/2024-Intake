@@ -19,6 +19,7 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
+// The IntakeMedicationSettingsViewModel takes the patient's FHIRStore medications and adds any that match to the medicationOptions to the medicationInstances list which is then used for the MedicationContentView.
 @Observable
 class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, CustomStringConvertible {
     var medicationInstances: Set<IntakeMedicationInstance> = []
@@ -46,7 +47,9 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
             .joined(separator: ", ")
     }
 
+    // The init is modified from the SpeziMedication examples to load in the existing patient medications from their FHIRStore data.
     init(existingMedications: [FHIRResource]) { // swiftlint:disable:this function_body_length
+        // medicationOptions provides the list of medications options chosen as the most common medications from the sample patients
         self.medicationOptions = [
             IntakeMedication(
                 localizedDescription: "Hydrochlorothiazide 25 MG Oral Tablet",
@@ -99,17 +102,20 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
         ]
 
         var foundMedications: [IntakeMedicationInstance] = []
+        // This function matches any patient medication from FHIRStore to a medication in medicationOptions.
         if !existingMedications.isEmpty {
             for medication in existingMedications {
                 for option in medicationOptions where option.localizedDescription == medication.displayName {
                         var medSchedule: SpeziMedication.Schedule
                         let medRequest = medicationRequest(resource: medication)
                         if case .boolean(let asNeeded) = medRequest?.dosageInstruction?.first?.asNeeded {
+                            // Checks if medication is asNeeded, otherwise finds the frequency in days.
                             if let asNeededbool = asNeeded.value?.bool {
                                 if asNeededbool {
                                     medSchedule = SpeziMedication.Schedule(frequency: .asNeeded)
                                 } else {
                                     let intValue: Int
+                                    // Need to convert from FHIRDecimal to int.
                                     let interval = medRequest?.dosageInstruction?.first?.timing?.repeat?.period?.value?.decimal
                                     if let interval = interval {
                                         intValue = interval.int
@@ -122,7 +128,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
                                 guard let firstDosage = option.dosages.first else {
                                     continue
                                 }
-
+                                // Create an IntakeMedicationInstance to the data. 
                                 let intakeMedicationInstance = IntakeMedicationInstance(
                                     type: option,
                                     dosage: firstDosage,
@@ -139,7 +145,8 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
     func persist(medicationInstances: Set<IntakeMedicationInstance>) async throws {
         self.medicationInstances = medicationInstances
     }
-
+    
+    // Converts a FHIRResource into a MedicationRequest.
     func medicationRequest(resource: FHIRResource) -> MedicationRequest? {
         guard case let .r4(resource) = resource.versionedResource,
               let medicationRequest = resource as? ModelsR4.MedicationRequest else {
@@ -149,6 +156,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
     }
 }
 
+// Needed to convert the FHIRDecimal into an Int.
 extension Decimal {
     var int: Int {
         let intVal = NSDecimalNumber(decimal: self).intValue  // swiftlint:disable:this legacy_objc_type
