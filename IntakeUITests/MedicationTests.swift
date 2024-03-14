@@ -22,7 +22,7 @@ class MedicationTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--testPatient", "--testMedication", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--disableFirebase","--testPatient", "--testMedication", "--skipToScrollable"]
         app.launch()
     }
     
@@ -45,7 +45,7 @@ class MedicationTests: XCTestCase {
         app.buttons["Add Medication"].tap()
         XCTAssertTrue(app.staticTexts["Verapamil Hydrochloride 40 MG"].waitForExistence(timeout: 5))
         app.buttons["Save Medications"].tap()
-        sleep(7)
+        sleep(10)
         XCTAssertTrue(app.navigationBars["Patient Form"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Hydrochlorothiazide 25 MG Oral Tablet"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["amLODIPine 2.5 MG Oral Tablet"].waitForExistence(timeout: 5))
