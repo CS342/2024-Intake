@@ -47,15 +47,19 @@ struct InspectSurgeryView: View {
         Form {
             Section(header: Text("Procedure")) {
                 TextField("", text: $surgery.surgeryName)
+                    .accessibilityLabel(Text("SURGERY_NAME"))
             }
             Section(header: Text("Performed")) {
                 TextField("YYYY-MM-DD", text: $surgery.date)
+                    .accessibilityLabel(Text("SURGERY_DATE"))
             }
             Section(header: Text("Status")) {
                 TextField("", text: $surgery.status)
+                    .accessibilityLabel(Text("SURGERY_STATUS"))
             }
             Section(header: Text("Location")) {
                 TextField("", text: $surgery.location)
+                    .accessibilityLabel(Text("SURGERY_LOCATION"))
             }
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
@@ -94,8 +98,13 @@ struct SurgeryView: View {
         if data.surgeriesLoaded {
             VStack {
                 surgeryForm
-                SubmitButton(nextView: NavigationViews.medication)
-                    .padding()
+                if FeatureFlags.skipToScrollable {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.medication)
+                        .padding()
+                }
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))

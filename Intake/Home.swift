@@ -37,7 +37,7 @@ struct StartButton: View {
             } else if FeatureFlags.testSurgery {
                 navigationPath.append(NavigationViews.surgical)
             } else if FeatureFlags.testCondition {
-                navigationPath.append(NavigationViews.surgical)
+                navigationPath.append(NavigationViews.medical)
             } else {
                 navigationPath.append(NavigationViews.general)
             }

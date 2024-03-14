@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// This SurgeryItemBox was needed so the LLM could input information to the variable surgeryItem and the equatable allows for the onChange function to recognize updated information has been added.
 @Observable
 class SurgeryItemBox: Equatable {
     var surgeryItem: SurgeryItem?
@@ -29,6 +30,7 @@ class SurgeryItemBox: Equatable {
     }
 }
 
+// This function allows for updated patient surgery information to be inputted the the Surgery LLM Assistant system prompt.
 func getCurrentPatientSurgery(surgeryList: [SurgeryItem]) -> String? {
     var surgeryDetails = "The patient has had several surgeries."
     
@@ -41,6 +43,7 @@ func getCurrentPatientSurgery(surgeryList: [SurgeryItem]) -> String? {
     return surgeryDetails.isEmpty ? nil : surgeryDetails
 }
 
+// This Surgery LLM Assistant allows for the patient to ask about their current surgeries and add new surgery information to their list. 
 struct UpdateSurgeryFunction: LLMFunction {
     static let name: String = "update_surgeries"
     static let description: String = """

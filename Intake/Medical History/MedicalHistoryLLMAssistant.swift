@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// This box was needed in order to set the output of the LLM to the medicalHistoryItem and it's equatable in order to check if there's been a change in order to add an additional medical history data point.
 @Observable
 class MedicalHistoryItemBox: Equatable {
     var medicalHistoryItem: MedicalHistoryItem?
@@ -29,7 +30,7 @@ class MedicalHistoryItemBox: Equatable {
     }
 }
 
-
+// This function gets the current patient medical history data and inputs it into the system prompt.
 func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> String? {
     var medHistoryDetails = "The patient has had several conditions in their medical history described in the following sentences."
     
@@ -46,6 +47,7 @@ func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> St
     return medHistoryDetails.isEmpty ? nil : medHistoryDetails
 }
 
+// This LLM Assistant allows the patient to ask about their current medical history and add new data to their medical history list. 
 struct UpdateMedicalHistoryFunction: LLMFunction {
     static let name: String = "update_medical_history"
     static let description: String = """

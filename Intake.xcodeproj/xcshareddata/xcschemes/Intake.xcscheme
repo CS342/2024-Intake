@@ -82,6 +82,10 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "--testCondition"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "--skipToScrollable"
             isEnabled = "NO">
          </CommandLineArgument>
