@@ -26,6 +26,7 @@ struct LLMAssistantView: View {
     @Binding var initialQuestion: String
     @Binding var prompt: String
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
 
     var body: some View {
         NavigationView {
@@ -41,7 +42,9 @@ struct LLMAssistantView: View {
                     AccountButton(isPresented: $presentingAccount)
                 }
             }
-            .onAppear {
+            .task {
+                showOnboarding = !tokenSaver.tokenPresent
+                
                 if greeting {
                     let assistantMessage = ChatEntity(role: .assistant, content: initialQuestion)
                     session.context.insert(assistantMessage, at: 0)
