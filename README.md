@@ -27,11 +27,16 @@ There are 8 main features in this app: Chief Complaint, Medical history, Surgica
 
 The medical history, allergies, and surgeries all use [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) to filter the data to only include the relevant information from the health records.
 
-The medical history, surgery, and allergy views all use [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) to allow the user to ask questions about that corresponding section, with an added ability to add entries to your form through the LLM chat.
+The medical history, surgery, and allergy views all use [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) to allow the user to click the chat button in the to and ask questions about that corresponding section, with an added ability to add entries to your form through the LLM chat.
 
 |![Screenshot displaying the chief complaint view.](/screenshots/chiefComplaint.png#gh-light-mode-only) ![Screenshot displaying the chief complaint view.](/screenshots/chiefComplaint.png#gh-dark-mode-only)|![Screenshot displaying the medication view.](/screenshots/medication.png#gh-light-mode-only)![Screenshot displaying the medication view.](/screenshots/medication.png#gh-dark-mode-only)|![Screenshot displaying the summary view.](/screenshots/summary.png#gh-light-mode-only)![Screenshot displaying the summary view.](/screenshots/summary.png#gh-dark-mode-only)
 |:--:|:--:|:--:|
 
+The image on the left is the chief complaint feature which uses [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) to chat with the user about the reason for their visit. It asks specifically tailored questions based on the users response, and then forumalizes a chief complaint for the user once it has enough information to do so.
+
+The image in the middle is the medication feature which uses [SpeziMedication](https://github.com/StanfordSpezi/SpeziMedication) to gatehr all the necessary information about the medications the user is taking. It includes information about name of medication, dosgage, frequency, and schedule of taking the medicine. If you click the the + button in the top right, it will allow you to add a new medication. For this app, we have only allowed the user to choose between 10 medications, so that it can work with [SpeziMedication](https://github.com/StanfordSpezi/SpeziMedication), but the other features allow you enter any entry. 
+
+The image on the right is the summary page, which gives the user a summary for all the information it has gathered in the form. Any of the edit buttons will take the user back to that feature, so they can edit their information. This particular user did not have any surgeries, so it is left blank. The share button at the bottom allows the user to export this information into a pdf format that they can then send to their doctor. Additionally, once you share the form, it gets stored on the users phone, so the next time the user open the app, they have the ability to automatically load their most recent form and come straight to this page without having to go through the form again if nothing has changed.
 
 ## Contributing
 
