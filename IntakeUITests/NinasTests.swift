@@ -34,9 +34,13 @@ final class NinasTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--testPatient", "--skipToScrollable"]
         let startButton = app.buttons["Start"]
-        let nextToScrollableView = app.buttons["Next"]
-        startButton.tap()
-        nextToScrollableView.tap()
+        let isStartButtonExist = startButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(isStartButtonExist, "Start button does not exist")
+        let next = app.buttons["Next"]
+        if isStartButtonExist {
+            startButton.tap()
+        }
+        next.tap()
         XCTAssertTrue(app.staticTexts["Gonzalo Alejandro Dueñas"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["1958-02-06"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["66"].waitForExistence(timeout: 5))
