@@ -278,7 +278,9 @@ struct ScrollablePDF: View {
                 SurgerySection()
                 MedicationSection()
                 AllergySection()
-                MenstrualSection()
+                if data.generalData.sex == "Female" {
+                    MenstrualSection()
+                }
                 SmokingSection()
             }
             .navigationTitle("Patient Form")
