@@ -38,11 +38,15 @@ The image in the middle is the medication feature which uses [SpeziMedication](h
 
 The image on the right is the summary page, which gives the user a summary for all the information it has gathered in the form. Any of the edit buttons will take the user back to that feature, so they can edit their information. This particular user did not have any surgeries, so it is left blank. The share button at the bottom allows the user to export this information into a pdf format that they can then send to their doctor. Additionally, once you share the form, it gets stored on the users phone, so the next time the user open the app, they have the ability to automatically load their most recent form and come straight to this page without having to go through the form again if nothing has changed.
 
+
 ## Contributing
 
-*Ensure that you add an adequate contribution section to this README.*
+Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordSpezi/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordSpezi/.github/blob/main/CODE_OF_CONDUCT.md) first. You can find a list of contributors in the [Contributors.md](https://github.com/CS342/2024-Intake/blob/main/CONTRIBUTORS.md) file
 
 
 ## License
 
-This project is licensed under the MIT License. See [Licenses](LICENSES) for more information.
+This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordSpezi/SpeziOnboarding/tree/main/LICENSES) for more information.
+
+![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/FooterLight.png#gh-light-mode-only)
+![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/FooterDark.png#gh-dark-mode-only)
