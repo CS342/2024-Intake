@@ -31,9 +31,16 @@ The CS342 2024 Intake application is using the [Spezi](https://github.com/Stanfo
 
 ## Contributing
 
-*Ensure that you add an adequate contribution section to this README.*
+
+Contributions to this project are welcome. Please make sure to read the [contribution guidelines](https://github.com/StanfordSpezi/.github/blob/main/CONTRIBUTING.md) and the [contributor covenant code of conduct](https://github.com/StanfordSpezi/.github/blob/main/CODE_OF_CONDUCT.md) first. You can find a list of contributors in the
 
 
 ## License
 
-This project is licensed under the MIT License. See [Licenses](LICENSES) for more information.
+
+This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordSpezi/Spezi/tree/main/LICENSES) for more information.
+
+
+![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/Footer.png#gh-light-mode-only)
+![Spezi Footer](https://raw.githubusercontent.com/StanfordSpezi/.github/main/assets/Footer~dark.png#gh-dark-mode-only)
+
