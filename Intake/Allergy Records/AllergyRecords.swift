@@ -56,7 +56,11 @@ struct AllergyList: View {
             VStack {
                 allergyForm
                 /**/
-                if data.generalData.sex == "Female" {
+                if FeatureFlags.skipToScrollable {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                }
+                else if data.generalData.sex == "Female" {
                     SubmitButton(nextView: NavigationViews.menstrual)
                         .padding()
                 } else {
