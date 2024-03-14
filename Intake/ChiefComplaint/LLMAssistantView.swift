@@ -56,7 +56,7 @@ struct LLMAssistantView: View {
         self._session = LLMSessionProvider(
                 schema: LLMOpenAISchema(
                     parameters: .init(
-                        modelType: .gpt3_5Turbo,
+                        modelType: .gpt4,
                         systemPrompt: prompt.wrappedValue
                     )
                 ) {}

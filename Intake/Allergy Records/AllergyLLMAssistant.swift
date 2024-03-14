@@ -119,7 +119,7 @@ struct AllergyLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's allergies.\
                         You have the ability to add a allergy if the patient tells you to by calling the update_allergies function.\

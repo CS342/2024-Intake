@@ -128,7 +128,7 @@ struct MedicalHistoryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medical history.\
                         You have the ability to add a medical history condition by calling the update_medical_history function.\

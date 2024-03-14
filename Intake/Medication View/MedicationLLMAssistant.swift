@@ -73,7 +73,7 @@ struct MedicationLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medications.\
                         You do not have the ability to add or delete medications, so please tell the patient that.\

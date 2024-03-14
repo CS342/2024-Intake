@@ -117,7 +117,7 @@ struct SurgeryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's surgery.\
                         You have the ability to add a surgery if the patient tells you to by calling the update_surgeries function.\
