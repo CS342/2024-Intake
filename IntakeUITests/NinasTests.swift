@@ -52,11 +52,11 @@ final class NinasTests: XCTestCase {
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--skipToScrollable"]
         app.launch()
         
-        let startButton = app.buttons["Start"]
+        let startButton = app.buttons["Create New Form"]
         let nameTextField = app.textFields["Full Name"]
         let dobDatePicker = app.datePickers["Date of Birth"]
         let sexPicker = app.datePickers["Sex"]
-        let nextToScrollableView = app.buttons["Next"]
+        let next = app.buttons["Next"]
         
         startButton.tap()
         nameTextField.tap()
@@ -67,7 +67,7 @@ final class NinasTests: XCTestCase {
         dobDatePicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "1980")
         sexPicker.tap()
         sexPicker.adjust(toPickerWheelValue: "Male")
-        nextToScrollableView.tap()
+        next.tap()
         
         XCTAssertTrue(app.staticTexts["John Doe"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["1980-01-01"].waitForExistence(timeout: 5))
