@@ -33,6 +33,7 @@ struct SmokingHistoryItem {
     var additionalDetails: String
 }
 
+//DataStore stores the data the patient updates throughout the Intake form process.
 @Observable
 class DataStore {
     var allergyData: [AllergyItem] = []

@@ -25,4 +25,5 @@ enum FeatureFlags {
     static let testSchedule = CommandLine.arguments.contains("--testSchedule")
     static let testPatient = CommandLine.arguments.contains("--testPatient")
     static let testMedication = CommandLine.arguments.contains("--testMedication")
+    static let skipToScrollable = CommandLine.arguments.contains("--skipToScrollable")
 }

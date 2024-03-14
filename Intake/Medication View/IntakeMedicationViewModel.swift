@@ -19,6 +19,7 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
+// The IntakeMedicationSettingsViewModel takes the patient's FHIRStore medications and adds any that match to the medicationOptions to the medicationInstances list which is then used for the MedicationContentView.
 @Observable
 class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, CustomStringConvertible {
     var medicationInstances: Set<IntakeMedicationInstance> = []
@@ -47,6 +48,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
     }
 
     init(existingMedications: [FHIRResource]) { // swiftlint:disable:this function_body_length
+        //medicationOptions provides the list of medications options chosen as the most common medications from the sample patients
         self.medicationOptions = [
             IntakeMedication(
                 localizedDescription: "Hydrochlorothiazide 25 MG Oral Tablet",
@@ -99,6 +101,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
         ]
 
         var foundMedications: [IntakeMedicationInstance] = []
+        // this function matches any patient medication from FHIRStore to a medication in medicationOptions
         if !existingMedications.isEmpty {
             for medication in existingMedications {
                 for option in medicationOptions where option.localizedDescription == medication.displayName {
