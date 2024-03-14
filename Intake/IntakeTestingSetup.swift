@@ -5,11 +5,14 @@
 //
 // SPDX-License-Identifier: MIT
 //
-
+import ModelsR4
+import SpeziFHIR
+import SpeziFHIRMockPatients
 import SwiftUI
 
 private struct IntakeAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
+    @Environment(FHIRStore.self) private var store
 
     func body(content: Content) -> some View {
         content
@@ -19,6 +22,11 @@ private struct IntakeAppTestingSetup: ViewModifier {
                 }
                 if FeatureFlags.showOnboarding {
                     completedOnboardingFlow = false
+                }
+                if FeatureFlags.testPatient {
+                    let bundle = await ModelsR4.Bundle.gonzalo160Duenas839
+                    store.removeAllResources()
+                    store.load(bundle: bundle)
                 }
             }
     }

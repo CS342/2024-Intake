@@ -23,9 +23,6 @@
     "%@ Reactions" : {
 
     },
-    "0 pack years" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -102,6 +99,9 @@
 
     },
     "Additional Symptoms" : {
+
+    },
+    "Additional Symptoms:" : {
 
     },
     "Age" : {
@@ -240,10 +240,10 @@
         }
       }
     },
-    "Currently Smoking:" : {
+    "Create New Form" : {
 
     },
-    "Date" : {
+    "Currently Smoking:" : {
 
     },
     "Date of Birth" : {
@@ -373,7 +373,7 @@
     "It looks like an unexpected view was appended to the NavigationPath!" : {
 
     },
-    "Last Menstrural Period" : {
+    "Last Menstrual Period:" : {
 
     },
     "Last period's end date" : {
@@ -396,6 +396,9 @@
 
     },
     "List your current medications." : {
+
+    },
+    "Load Latest Form" : {
 
     },
     "Location" : {
@@ -666,9 +669,6 @@
     "Review of Systems" : {
 
     },
-    "Review of Systems:" : {
-
-    },
     "Review summary of your medical history." : {
 
     },
@@ -734,19 +734,16 @@
     "Smoked in the Past:" : {
 
     },
-    "Smoking history" : {
-
-    },
     "Smoking History" : {
 
     },
     "Smoking Status" : {
 
     },
-    "Social History" : {
+    "Smoking Status:" : {
 
     },
-    "Start" : {
+    "Social History" : {
 
     },
     "Start Date:" : {
