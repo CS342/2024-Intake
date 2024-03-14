@@ -33,7 +33,7 @@ class MedicationTests: XCTestCase {
         sleep(8)
         
         XCTAssertEqual(app.state, .runningForeground)
-        app.buttons["Start"].tap()
+        app.buttons["Create New Form"].tap()
         
         XCTAssertTrue(app.staticTexts["Hydrochlorothiazide 25 MG Oral Tablet"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["amLODIPine 2.5 MG Oral Tablet"].waitForExistence(timeout: 10))

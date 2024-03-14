@@ -17,6 +17,7 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
+// This view displays the medications in the patient's FHIR data, and allows them to add, update and delete their medications.
 struct MedicationContentView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -45,9 +46,11 @@ struct MedicationContentView: View {
                 ProgressView()
             }
         }
+        // Updates the medicationSettingsViewModel init if there's a change to the patient's fhirStore medications.
         .onChange(of: fhirStore.llmMedications) {
             medicationSettingsViewModel = .init(existingMedications: fhirStore.llmMedications)
         }
+        // Task to initialize the MedicationSettingsViewModel with the patient's existing fhirStore medications.
         .task {
             let patientMedications = fhirStore.llmMedications
             self.medicationSettingsViewModel = IntakeMedicationSettingsViewModel(existingMedications: patientMedications)

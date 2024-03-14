@@ -15,7 +15,7 @@
 import Foundation
 import SpeziMedication
 
-// The IntakeDosage struct has a localizedDescription that describes the does information
+// The IntakeDosage struct has a localizedDescription that describes the dosage information.
 struct IntakeDosage: Dosage, Codable {
     var localizedDescription: String
 }
