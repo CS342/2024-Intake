@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10521599.svg)](https://doi.org/10.5281/zenodo.10521599)
 
 This repository contains the CS342 2024 Intake application.
-The CS342 2024 Intake application is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication).
+The CS342 2024 Intake application is using the [Spezi](https://github.com/StanfordSpezi/Spezi) ecosystem and builds on top of the [Stanford Spezi Template Application](https://github.com/StanfordSpezi/SpeziTemplateApplication). This app allows the user to manually fill out the form from scratch or connect their health records using HealthKit, in which case the form will be autofilled based on their health records.
 
 > [!NOTE]  
 > Do you want to try out the CS342 2024 Intake application? You can download it to your iOS device using [TestFlight](https://testflight.apple.com/join/Yp0Y24xT)!
@@ -29,14 +29,7 @@ The medical history, allergies, and surgeries all use [SpeziLLM](https://github.
 
 The medical history, surgery, and allergy views all use [SpeziLLM](https://github.com/StanfordSpezi/SpeziLLM) to allow the user to ask questions about that corresponding section, with an added ability to add entries to your form through the LLM chat.
 
-|![Screenshot displaying the chief complaint view.](screenshots/chiefComplaint.png#gh-light-mode-only) 
-![Screenshot displaying the chief complaint view.](screenshots/chiefComplaint.pngg#gh-dark-mode-only)
-
-|![Screenshot displaying the sequential onboarding view.](Sources/SpeziOnboarding/SpeziOnboarding.docc/Resources/SequentialOnboardingView.png#gh-light-mode-only) 
-![Screenshot displaying the sequential onboarding view.](Sources/SpeziOnboarding/SpeziOnboarding.docc/Resources/SequentialOnboardingView~dark.png#gh-dark-mode-only)
-
-|![Screenshot displaying the consent view.](Sources/SpeziOnboarding/SpeziOnboarding.docc/Resources/ConsentView.png#gh-light-mode-only)
-![Screenshot displaying the consent view.](Sources/SpeziOnboarding/SpeziOnboarding.docc/Resources/ConsentView~dark.png#gh-dark-mode-only)
+|![Screenshot displaying the chief complaint view.](/screenshots/chiefComplaint.png#gh-light-mode-only) ![Screenshot displaying the chief complaint view.](/screenshots/chiefComplaint.png#gh-dark-mode-only)|![Screenshot displaying the medication view.](/screenshots/medication.png#gh-light-mode-only)![Screenshot displaying the medication view.](/screenshots/medication.png#gh-dark-mode-only)|![Screenshot displaying the summary view.](/screenshots/summary.png#gh-light-mode-only)![Screenshot displaying the summary view.](/screenshots/summary.png#gh-dark-mode-only)
 |:--:|:--:|:--:|
 
 
