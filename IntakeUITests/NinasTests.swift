@@ -36,10 +36,10 @@ final class NinasTests: XCTestCase {
         let startButton = app.buttons["Create New Form"]
         let isStartButtonExist = startButton.waitForExistence(timeout: 5)
         XCTAssertTrue(isStartButtonExist, "Start button does not exist")
-        let next = app.buttons["Next"]
         if isStartButtonExist {
             startButton.tap()
         }
+        let next = app.buttons["Next"]
         next.tap()
         XCTAssertTrue(app.staticTexts["Gonzalo Alejandro Dueñas"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["1958-02-06"].waitForExistence(timeout: 5))
@@ -51,14 +51,12 @@ final class NinasTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--skipToScrollable"]
         app.launch()
-        
         let startButton = app.buttons["Create New Form"]
+        startButton.tap()
         let nameTextField = app.textFields["Full Name"]
         let dobDatePicker = app.datePickers["Date of Birth"]
         let sexPicker = app.datePickers["Sex"]
         let next = app.buttons["Next"]
-        
-        startButton.tap()
         nameTextField.tap()
         nameTextField.typeText("John Doe")
         dobDatePicker.tap()
