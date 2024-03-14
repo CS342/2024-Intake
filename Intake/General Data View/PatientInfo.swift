@@ -95,6 +95,8 @@ struct PatientInfo: View {
     
     var body: some View {
         @Bindable var data = data
+        // Necessary because without it other linting errors arise regarding each argument needing their own line
+        // swiftlint:disable closure_body_length
         Form {
             Section(header: Text("Patient Information")) {
                 HStack {
