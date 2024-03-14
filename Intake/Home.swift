@@ -33,8 +33,18 @@ struct StartButton: View {
     var body: some View {
         Button(action: {
             if FeatureFlags.testMedication {
-                        navigationPath.append(NavigationViews.medication)
-                    } else {
+                navigationPath.append(NavigationViews.medication)
+            } else if FeatureFlags.testAllergy {
+                navigationPath.append(NavigationViews.allergies)
+            } else if FeatureFlags.testMenstrual {
+                navigationPath.append(NavigationViews.menstrual)
+            } else if FeatureFlags.testSmoking {
+                navigationPath.append(NavigationViews.smoking)
+            } else if FeatureFlags.testSurgery {
+                navigationPath.append(NavigationViews.surgical)
+            } else if FeatureFlags.testCondition {
+                navigationPath.append(NavigationViews.medical)
+            } else {
                 navigationPath.append(NavigationViews.general)
             }
         }) {
@@ -45,7 +55,7 @@ struct StartButton: View {
                 .padding()
                 .background(Color.blue)
                 .cornerRadius(10)
-        }
+        }.accessibilityIdentifier("Create New Form")
     }
 }
 
@@ -114,7 +124,7 @@ struct SettingsButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
                     .foregroundColor(.blue)
-                    .accessibilityLabel(Text("SETTINGS"))
+                    .accessibilityLabel("SETTINGS")
             }
         )
     }

@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// This SurgeryItemBox was needed so the LLM could input information to the variable surgeryItem and the equatable allows for the onChange function to recognize updated information has been added.
 @Observable
 class SurgeryItemBox: Equatable {
     var surgeryItem: SurgeryItem?
@@ -29,6 +30,7 @@ class SurgeryItemBox: Equatable {
     }
 }
 
+// This function allows for updated patient surgery information to be inputted the the Surgery LLM Assistant system prompt.
 func getCurrentPatientSurgery(surgeryList: [SurgeryItem]) -> String? {
     var surgeryDetails = "The patient has had several surgeries."
     
@@ -41,6 +43,7 @@ func getCurrentPatientSurgery(surgeryList: [SurgeryItem]) -> String? {
     return surgeryDetails.isEmpty ? nil : surgeryDetails
 }
 
+// This Surgery LLM Assistant allows for the patient to ask about their current surgeries and add new surgery information to their list. 
 struct UpdateSurgeryFunction: LLMFunction {
     static let name: String = "update_surgeries"
     static let description: String = """
@@ -68,6 +71,7 @@ struct UpdateSurgeryFunction: LLMFunction {
 struct SurgeryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -90,6 +94,8 @@ struct SurgeryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             print("surgerybox", surgeryItemBox)
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your surgeries?")
@@ -117,7 +123,7 @@ struct SurgeryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's surgery.\
                         You have the ability to add a surgery if the patient tells you to by calling the update_surgeries function.\
@@ -131,6 +137,10 @@ struct SurgeryLLMAssistant: View {
                 UpdateSurgeryFunction(surgeryItemBox: temporarySurgeryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

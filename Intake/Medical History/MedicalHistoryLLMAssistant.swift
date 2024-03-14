@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// This box was needed in order to set the output of the LLM to the medicalHistoryItem and it's equatable in order to check if there's been a change in order to add an additional medical history data point.
 @Observable
 class MedicalHistoryItemBox: Equatable {
     var medicalHistoryItem: MedicalHistoryItem?
@@ -29,7 +30,7 @@ class MedicalHistoryItemBox: Equatable {
     }
 }
 
-
+// This function gets the current patient medical history data and inputs it into the system prompt.
 func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> String? {
     var medHistoryDetails = "The patient has had several conditions in their medical history described in the following sentences."
     
@@ -46,6 +47,7 @@ func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> St
     return medHistoryDetails.isEmpty ? nil : medHistoryDetails
 }
 
+// This LLM Assistant allows the patient to ask about their current medical history and add new data to their medical history list. 
 struct UpdateMedicalHistoryFunction: LLMFunction {
     static let name: String = "update_medical_history"
     static let description: String = """
@@ -80,7 +82,8 @@ struct UpdateMedicalHistoryFunction: LLMFunction {
 struct MedicalHistoryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
@@ -102,6 +105,8 @@ struct MedicalHistoryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData) {
                 session.context.append(
                                     systemMessage: currentMedHistory
@@ -128,7 +133,7 @@ struct MedicalHistoryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's medical history.\
                         You have the ability to add a medical history condition by calling the update_medical_history function.\
@@ -142,6 +147,10 @@ struct MedicalHistoryLLMAssistant: View {
                 UpdateMedicalHistoryFunction(medicalHistoryItemBox: temporaryMedicalHistoryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

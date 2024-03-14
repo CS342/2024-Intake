@@ -31,7 +31,6 @@ private struct IntakeAppTestingSetup: ViewModifier {
             }
     }
 }
-
 extension View {
     func testingSetup() -> some View {
         self.modifier(IntakeAppTestingSetup())

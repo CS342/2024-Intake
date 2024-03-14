@@ -24,6 +24,11 @@ enum FeatureFlags {
     /// Adds a test task to the schedule at the current time
     static let testSchedule = CommandLine.arguments.contains("--testSchedule")
     static let testPatient = CommandLine.arguments.contains("--testPatient")
+    static let testAllergy = CommandLine.arguments.contains("--testAllergy")
+    static let testMenstrual = CommandLine.arguments.contains("--testMenstrual")
+    static let testSmoking = CommandLine.arguments.contains("--testSmoking")
     static let testMedication = CommandLine.arguments.contains("--testMedication")
     static let skipToScrollable = CommandLine.arguments.contains("--skipToScrollable")
+    static let testCondition = CommandLine.arguments.contains("--testCondition")
+    static let testSurgery = CommandLine.arguments.contains("--testSurgery")
 }

@@ -47,9 +47,9 @@ struct MedicationContentView: View {
             }
         }
         // Updates the medicationSettingsViewModel init if there's a change to the patient's fhirStore medications.
-        .onChange(of: fhirStore.llmMedications) {
-            medicationSettingsViewModel = .init(existingMedications: fhirStore.llmMedications)
-        }
+//        .onChange(of: fhirStore.llmMedications) {
+//            medicationSettingsViewModel = .init(existingMedications: fhirStore.llmMedications)
+//        }
         // Task to initialize the MedicationSettingsViewModel with the patient's existing fhirStore medications.
         .task {
             let patientMedications = fhirStore.llmMedications

@@ -32,8 +32,13 @@ struct MedicalHistoryView: View {
         if loaded.conditionData {
             VStack {
                 medicalHistoryForm
-                SubmitButton(nextView: NavigationViews.surgical)
-                    .padding()
+                if FeatureFlags.testCondition {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.surgical)
+                        .padding()
+                }
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)
         } else {
@@ -86,9 +91,9 @@ struct MedicalHistoryView: View {
         Button(action: addConditionAction) {
             HStack {
                 Image(systemName: "plus")
-                    .accessibilityHidden(true)
             }
         }
+        .accessibilityLabel("add_condition")
     }
 
     private var instructionText: some View {
@@ -148,7 +153,7 @@ struct MedicalHistoryView: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: systemPrompt
                 )
             )
@@ -162,12 +167,14 @@ struct MedicalHistoryView: View {
     private func conditionEntry(item: Binding<MedicalHistoryItem>) -> some View {
         HStack {
             TextField("Condition", text: item.condition)
+                .accessibilityLabel("Condition Box")
             Spacer()
             Button(action: {
                 item.active.wrappedValue.toggle()
             }) {
                 Image(systemName: item.active.wrappedValue ? "checkmark.square" : "square")
                     .accessibilityHidden(true)
+                    .accessibilityLabel("Active Box")
             }
             .buttonStyle(BorderlessButtonStyle())
         }

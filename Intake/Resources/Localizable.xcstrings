@@ -77,6 +77,9 @@
     "Active" : {
 
     },
+    "Add Allergy Field" : {
+
+    },
     "Add Field" : {
 
     },
@@ -369,9 +372,6 @@
           }
         }
       }
-    },
-    "It looks like an unexpected view was appended to the NavigationPath!" : {
-
     },
     "Last Menstrual Period:" : {
 

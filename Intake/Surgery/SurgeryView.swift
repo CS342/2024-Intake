@@ -18,6 +18,27 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
+
+func compare(surgery1: SurgeryItem, surgery2: SurgeryItem) -> Bool {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    
+    if let date1 = dateFormatter.date(from: surgery1.date) {
+        if let date2 = dateFormatter.date(from: surgery2.date) {
+            return date1 > date2
+        }
+        return true
+    }
+    
+    return false
+}
+
+func sortSurgeriesByDate(surgeries: inout [SurgeryItem]) {
+    if surgeries.count > 1 {
+        surgeries.sort { compare(surgery1: $0, surgery2: $1) }
+    }
+}
+
 struct AddSurgery: View {
     @Binding var surgeries: [SurgeryItem]
     @Environment(DataStore.self) var data
@@ -47,15 +68,19 @@ struct InspectSurgeryView: View {
         Form {
             Section(header: Text("Procedure")) {
                 TextField("", text: $surgery.surgeryName)
+                    .accessibilityLabel(Text("SURGERY_NAME"))
             }
             Section(header: Text("Performed")) {
                 TextField("YYYY-MM-DD", text: $surgery.date)
+                    .accessibilityLabel(Text("SURGERY_DATE"))
             }
             Section(header: Text("Status")) {
                 TextField("", text: $surgery.status)
+                    .accessibilityLabel(Text("SURGERY_STATUS"))
             }
             Section(header: Text("Location")) {
                 TextField("", text: $surgery.location)
+                    .accessibilityLabel(Text("SURGERY_LOCATION"))
             }
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
@@ -94,14 +119,22 @@ struct SurgeryView: View {
         if data.surgeriesLoaded {
             VStack {
                 surgeryForm
-                SubmitButton(nextView: NavigationViews.medication)
-                    .padding()
+                if FeatureFlags.skipToScrollable {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.medication)
+                        .padding()
+                }
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
                  Text("Chat")
             })
+            .onAppear {
+                sortSurgeriesByDate(surgeries: &data.surgeries)
+            }
         } else {
             ProgressView()
                 .task {
@@ -160,7 +193,7 @@ struct SurgeryView: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: systemPrompt
                 )
             )
@@ -185,6 +218,8 @@ struct SurgeryView: View {
         }
         
         data.surgeries = await self.filter(surgeries: data.surgeries)
+        sortSurgeriesByDate(surgeries: &data.surgeries)
+        
         data.surgeriesLoaded = true
     }
     
