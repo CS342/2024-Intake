@@ -18,6 +18,7 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
+
 struct SurgeryItem: Identifiable, Equatable {
     var id = UUID()
     var surgeryName: String = ""

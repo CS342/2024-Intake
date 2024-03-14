@@ -33,7 +33,6 @@ struct SubmitButton: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
     var nextView: NavigationViews
-
     var body: some View {
         Button(action: {
             if end.reachedEnd {
@@ -57,6 +56,7 @@ struct SubmitButtonWithAction: View {
     @Environment(ReachedEndWrapper.self) private var end
     var nextView: NavigationViews
     var onButtonTap: () -> Void
+    var accessibilityIdentifier: String
 
     var body: some View {
         Button(action: {

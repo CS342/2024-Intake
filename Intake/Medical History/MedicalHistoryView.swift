@@ -17,12 +17,6 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
-struct MedicalHistoryItem: Identifiable, Equatable {
-    var id = UUID()
-    var condition: String
-    var active: Bool
-}
-
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath

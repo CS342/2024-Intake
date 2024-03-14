@@ -68,6 +68,7 @@ struct UpdateAllergyFunction: LLMFunction {
     }
 }
 
+// The AllergyLLMAssistant allows the user to ask the chat questions about their current allergies and add new allergies to their data.
 struct AllergyLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath

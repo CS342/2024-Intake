@@ -32,18 +32,73 @@ struct StartButton: View {
     
     var body: some View {
         Button(action: {
-            navigationPath.append(NavigationViews.general)
+            if FeatureFlags.testMedication {
+                        navigationPath.append(NavigationViews.medication)
+                    } else {
+                navigationPath.append(NavigationViews.general)
+            }
         }) {
-            Text("Start")
+            Text("Create New Form")
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .padding()
                 .background(Color.blue)
                 .cornerRadius(10)
-        }
+        }.accessibilityIdentifier("Create New Form")
     }
 }
+
+struct LoadLastButton: View {
+    @Binding var navigationPath: NavigationPath
+    @Binding var disabled: Bool
+    @Environment(DataStore.self) private var data
+    
+    var body: some View {
+        Button(action: {
+            let fetchData = loadDataStore()
+            if let loadedData = fetchData {
+                data.allergyData = loadedData.allergyData
+                data.generalData = loadedData.generalData
+                data.surgeries = loadedData.surgeries
+                data.conditionData = loadedData.conditionData
+                data.menstrualHistory = loadedData.menstrualHistory
+                data.smokingHistory = loadedData.smokingHistory
+                data.chiefComplaint = loadedData.chiefComplaint
+                data.surgeriesLoaded = loadedData.surgeriesLoaded
+                data.medicationData = loadedData.medicationData
+                navigationPath.append(NavigationViews.pdfs)
+            }
+        }) {
+            Text("Load Latest Form")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(Color.white)
+                .padding()
+                .background(disabled ? Color.blue.opacity(0.5) : Color.blue)
+                .cornerRadius(10)
+        }
+        .disabled(disabled)
+    }
+    
+    func loadDataStore() -> DataStore? {
+        let decoder = JSONDecoder()
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
+            if let data = try? Data(contentsOf: pathWithFilename) {
+                do {
+                    let dataStore = try decoder.decode(DataStore.self, from: data)
+                    print("successfully loaded")
+                    return dataStore
+                } catch {
+                    print("Failed to load DataStore: \(error)")
+                }
+            }
+        }
+        return nil
+    }
+}
+
 
 struct SettingsButton: View {
     @Binding var showSettings: Bool
@@ -59,7 +114,7 @@ struct SettingsButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
                     .foregroundColor(.blue)
-                    .accessibilityLabel(Text("SETTINGS"))
+                    .accessibilityLabel("SETTINGS")
             }
         )
     }
@@ -69,9 +124,10 @@ struct HomeView: View {
     static var accountEnabled: Bool {
         !FeatureFlags.disableFirebase && !FeatureFlags.skipOnboarding
     }
-
+    
     @State private var presentingAccount = false
     @State private var showSettings = false
+    @State var isButtonDisabled = true
 
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
@@ -96,24 +152,28 @@ struct HomeView: View {
                 .foregroundColor(.gray)
         }
     }
-
+    
     var body: some View {
         @Bindable var navigationPath = navigationPath
         @Bindable var data = data
-
+        
         NavigationStack(path: $navigationPath.path) {
             VStack {
                 Spacer()
                 homeLogo
                 homeTitle
                 Spacer()
+                LoadLastButton(navigationPath: $navigationPath.path, disabled: $isButtonDisabled)
+                    .padding(.bottom, 10)
                 StartButton(navigationPath: $navigationPath.path)
+                    .padding(.top, 10)
+                Spacer()
             }
-          
+            
             .toolbar {
-                    SettingsButton(showSettings: $showSettings)
+                SettingsButton(showSettings: $showSettings)
             }
-
+            
             .navigationDestination(for: NavigationViews.self) { view in
                 switch view {
                 case .smoking: SmokingHistoryView()
@@ -139,13 +199,35 @@ struct HomeView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
         }
-// comment out below for pdf testing
         .accountRequired(Self.accountEnabled) {
             AccountSheet()
         }
         .verifyRequiredAccountDetails(Self.accountEnabled)
-        
-// comment out above for pdf testing
+        .onAppear {
+            let fetchData = loadDataStore()
+            if fetchData != nil {
+                isButtonDisabled = false
+            } else {
+                isButtonDisabled = true
+            }
+        }
+    }
+    
+    func loadDataStore() -> DataStore? {
+        let decoder = JSONDecoder()
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
+            if let data = try? Data(contentsOf: pathWithFilename) {
+                do {
+                    let dataStore = try decoder.decode(DataStore.self, from: data)
+                    print("successfully loaded")
+                    return dataStore
+                } catch {
+                    print("Failed to load DataStore: \(error)")
+                }
+            }
+        }
+        return nil
     }
 }
 
@@ -154,7 +236,7 @@ struct HomeView: View {
     let details = AccountDetails.Builder()
         .set(\.userId, value: "lelandstanford@stanford.edu")
         .set(\.name, value: PersonNameComponents(givenName: "Leland", familyName: "Stanford"))
-
+    
     return HomeView()
         .previewWith(standard: IntakeStandard()) {
             IntakeScheduler()

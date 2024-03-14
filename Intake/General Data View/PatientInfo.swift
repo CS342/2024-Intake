@@ -10,21 +10,25 @@
 //
 // SPDX-License-Identifier: MIT
 //
+// The Patient Info View allows the patient to enter their name, date of birth, and sex. If the patient is connected with Healthkit, it allows
+// them to verify their information is correct and edit it if not. The information is automatically pulled from Healthkit if the patient is connected.
+
 import SpeziFHIR
 import SwiftUI
+
 // swiftlint:disable type_contents_order
+// Again, no matter the order of these variables, there is still issues with type_contents_order. It was necessary to just disable this.
 struct PatientInfo: View {
-    @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    @Environment(FHIRStore.self) private var fhirStore
-    
-    
     @State private var fullName: String = ""
     @State private var firstName: String = ""
     @State private var birthdate: String = ""
-    @State private var gender: String = ""
+    @State private var gender: String = "female"
     @State private var sexOption: String = ""
     @State private var birthdateDateFormat = Date()
+    
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(FHIRStore.self) private var fhirStore
     
     func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
         if dobString.isEmpty {
@@ -55,11 +59,11 @@ struct PatientInfo: View {
             if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                 if key == "name" {
                     if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
-                        let nameDict = nameArray[0] // Accessing the first name object
+                        let nameDict = nameArray[0]
                         if let family = nameDict["family"] as? String,
                            let givenArray = nameDict["given"] as? [String],
                            !givenArray.isEmpty {
-                            let given = givenArray.joined(separator: " ") // Assuming there might be more than one given name
+                            let given = givenArray.joined(separator: " ")
                             
                             return "\(given) \(family)"
                         }
@@ -91,6 +95,8 @@ struct PatientInfo: View {
     
     var body: some View {
         @Bindable var data = data
+        // Necessary because without it other linting errors arise regarding each argument needing their own line
+        // swiftlint:disable closure_body_length
         Form {
             Section(header: Text("Patient Information")) {
                 HStack {
@@ -111,16 +117,31 @@ struct PatientInfo: View {
                     .pickerStyle(MenuPickerStyle())
                 }
             }
-            
-            SubmitButtonWithAction(nextView: .chat, onButtonTap: {
-                updateData()
-            })
+            Spacer()
+            if FeatureFlags.skipToScrollable {
+                SubmitButtonWithAction(
+                    nextView: .pdfs,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
+            } else {
+                SubmitButtonWithAction(
+                    nextView: .medical,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
+            }
         }
-        .onAppear {
+        .task {
             loadData()
         }
     }
     
+    @MainActor
     private func loadData() {
         if let patient = fhirStore.patient {
             fullName = getInfo(patient: patient, field: "name").filter { !$0.isNumber }
@@ -134,6 +155,7 @@ struct PatientInfo: View {
             if let dob = dateFormatter.date(from: birthdate) {
                 birthdateDateFormat = dob
             }
+            gender.capitalizeFirstLetter()
             sexOption = gender
             data.generalData = PatientData(name: fullName, birthdate: birthdate, age: age, sex: gender)
         }
@@ -148,6 +170,12 @@ struct PatientInfo: View {
         let age = calculateAge(from: birthdate)
         data.generalData.sex = sexOption
         data.generalData.age = age
+    }
+}
+
+extension String {
+    mutating func capitalizeFirstLetter() {
+        self = prefix(1).capitalized + dropFirst()
     }
 }
 

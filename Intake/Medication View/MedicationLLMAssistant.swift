@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// Adds the current patient medications to the system prompt.
 func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>) -> String? {
     var medicationDetails = "The patient is currently taking several medications:"
     print(medicationList)
@@ -31,6 +32,7 @@ func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>)
     return medicationDetails.isEmpty ? nil : medicationDetails
 }
 
+// Provides medication LLM assistant functionality to allow the patient to ask about their current medications.
 struct MedicationLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath

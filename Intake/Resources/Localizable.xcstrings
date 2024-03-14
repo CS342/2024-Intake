@@ -23,12 +23,6 @@
     "%@ Reactions" : {
 
     },
-    "0 pack years" : {
-
-    },
-    "35" : {
-
-    },
     "ACCOUNT_NEXT" : {
       "localizations" : {
         "en" : {
@@ -89,6 +83,9 @@
     "Add_allergy" : {
 
     },
+    "Add_allergy" : {
+
+    },
     "ADD_REACTION" : {
 
     },
@@ -102,6 +99,9 @@
 
     },
     "Additional Symptoms" : {
+
+    },
+    "Additional Symptoms:" : {
 
     },
     "Age" : {
@@ -240,10 +240,10 @@
         }
       }
     },
-    "Currently Smoking:" : {
+    "Create New Form" : {
 
     },
-    "Date" : {
+    "Currently Smoking:" : {
 
     },
     "Date of Birth" : {
@@ -264,6 +264,9 @@
     "DELETE_SURGERY" : {
 
     },
+    "Do you currently smoke or have you smoked in the past?" : {
+
+    },
     "Download your medical records from your health system." : {
 
     },
@@ -282,11 +285,15 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Female" : {
-
-    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
 
@@ -363,6 +370,7 @@
         }
       }
     },
+
     "January 1, 1980" : {
 
     },
@@ -370,6 +378,12 @@
 
     },
     "Last Menstrural Period" : {
+
+    },
+    "It looks like an unexpected view was appended to the NavigationPath!" : {
+
+    },
+    "Last Menstrual Period:" : {
 
     },
     "Last period's end date" : {
@@ -392,6 +406,9 @@
 
     },
     "List your current medications." : {
+
+    },
+    "Load Latest Form" : {
 
     },
     "Location" : {
@@ -662,9 +679,6 @@
     "Review of Systems" : {
 
     },
-    "Review of Systems:" : {
-
-    },
     "Review summary of your medical history." : {
 
     },
@@ -700,7 +714,14 @@
 
     },
     "SETTINGS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a Mock Patient"
+          }
+        }
+      }
     },
     "Sex" : {
 
@@ -723,19 +744,16 @@
     "Smoked in the Past:" : {
 
     },
-    "Smoking history" : {
-
-    },
     "Smoking History" : {
 
     },
     "Smoking Status" : {
 
     },
-    "Social History" : {
+    "Smoking Status:" : {
 
     },
-    "Start" : {
+    "Social History" : {
 
     },
     "Start Date:" : {

@@ -17,17 +17,6 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
-struct AllergyItem: Identifiable, Equatable {
-    let id = UUID()
-    var allergy: String
-    var reaction: [ReactionItem]
-    
-    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
-        lhs.allergy == rhs.allergy
-    }
-}
-
-
 struct ChatButton: View {
     // Use @Binding to create a two-way binding to the parent view's showingChat state
     @Binding var showingChat: Bool
@@ -66,8 +55,14 @@ struct AllergyList: View {
         if loaded.allergyData {
             VStack {
                 allergyForm
-                SubmitButton(nextView: NavigationViews.menstrual)
-                    .padding()
+                /**/
+                if data.generalData.sex == "Female" {
+                    SubmitButton(nextView: NavigationViews.menstrual)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.smoking)
+                        .padding()
+                }
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)
         } else {

@@ -15,7 +15,8 @@
 import Foundation
 import SpeziMedication
 
-struct IntakeMedication: Medication, Comparable {
+// This describes the IntakeMedication struct which contains a localizedDescription (medication name) and a list of dosages.
+struct IntakeMedication: Medication, Comparable, Codable {
     var localizedDescription: String
     var dosages: [IntakeDosage]
 }

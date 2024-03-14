@@ -15,7 +15,8 @@
 import Foundation
 import SpeziMedication
 
-struct IntakeMedicationInstance: MedicationInstance, MedicationInstanceInitializable {
+// This defines an IntakeMedicationInstance which is composed of an id, an IntakeMedication type, a dosage, and a schedule. 
+struct IntakeMedicationInstance: MedicationInstance, MedicationInstanceInitializable, Codable {
     let id: UUID
     let type: IntakeMedication
     var dosage: IntakeDosage
