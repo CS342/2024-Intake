@@ -40,7 +40,7 @@ struct SmokingHistoryView: View {
                     SubmitButton(nextView: NavigationViews.pdfs)
                         .padding()
                 } else {
-                    SubmitButton(nextView: NavigationViews.chat)
+                    SubmitButton(nextView: NavigationViews.pdfs)
                         .padding()
                 }
             }
