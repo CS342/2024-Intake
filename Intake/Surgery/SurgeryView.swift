@@ -19,18 +19,6 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 
-struct SurgeryItem: Identifiable, Equatable {
-    var id = UUID()
-    var surgeryName: String = ""
-    var date: String = ""
-    var endDate: String = ""
-    var status: String = ""
-    var location: String = ""
-    var notes: [String] = []
-    var bodySites: [String] = []
-    var complications: [String] = []
-}
-
 func compare(surgery1: SurgeryItem, surgery2: SurgeryItem) -> Bool {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
