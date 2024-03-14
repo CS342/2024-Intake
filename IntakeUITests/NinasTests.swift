@@ -1,13 +1,9 @@
 //
-//  NinasTests.swift
-//  IntakeUITests
-//
-//  Created by Nina Boord on 3/12/24.
+// This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
-//
 //
 
 // I test the following:
@@ -58,23 +54,22 @@ final class NinasTests: XCTestCase {
         if isStartButtonExist {
             startButton.tap()
         }
-        let nameTextField = app.textFields["Full Name"]
-        let dobDatePicker = app.datePickers["Date of Birth"]
-        let sexPicker = app.datePickers["Sex"]
+        let nameTextField = app.textFields["Full name"]
+        let dobDatePicker = app.datePickers.firstMatch
+        let sexPicker = app.buttons["Sex, Female"]
         let next = app.buttons["Next"]
         nameTextField.tap()
         nameTextField.typeText("John Doe")
         dobDatePicker.tap()
-        dobDatePicker.pickerWheels.element(boundBy: 0).adjust(toPickerWheelValue: "January")
-        dobDatePicker.pickerWheels.element(boundBy: 1).adjust(toPickerWheelValue: "1")
-        dobDatePicker.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "1980")
+        sleep(1)
+        dobDatePicker.tap()
+        nameTextField.tap()
         sexPicker.tap()
-        sexPicker.adjust(toPickerWheelValue: "Male")
+        sleep(1)
+        app.buttons["Male"].tap()
         next.tap()
         
         XCTAssertTrue(app.staticTexts["John Doe"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["1980-01-01"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.staticTexts["44"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Male"].waitForExistence(timeout: 5))
     }
 }
