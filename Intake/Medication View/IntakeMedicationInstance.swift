@@ -15,7 +15,7 @@
 import Foundation
 import SpeziMedication
 
-struct IntakeMedicationInstance: MedicationInstance, MedicationInstanceInitializable {
+struct IntakeMedicationInstance: MedicationInstance, MedicationInstanceInitializable, Codable {
     let id: UUID
     let type: IntakeMedication
     var dosage: IntakeDosage

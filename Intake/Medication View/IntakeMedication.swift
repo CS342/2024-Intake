@@ -15,7 +15,7 @@
 import Foundation
 import SpeziMedication
 
-struct IntakeMedication: Medication, Comparable {
+struct IntakeMedication: Medication, Comparable, Codable {
     var localizedDescription: String
     var dosages: [IntakeDosage]
 }

@@ -18,18 +18,6 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
-struct SurgeryItem: Identifiable, Equatable {
-    var id = UUID()
-    var surgeryName: String = ""
-    var date: String = ""
-    var endDate: String = ""
-    var status: String = ""
-    var location: String = ""
-    var notes: [String] = []
-    var bodySites: [String] = []
-    var complications: [String] = []
-}
-
 struct AddSurgery: View {
     @Binding var surgeries: [SurgeryItem]
     @Environment(DataStore.self) var data
