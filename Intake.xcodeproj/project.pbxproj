@@ -125,7 +125,6 @@
 		F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */; };
 		F42AB1E52B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */; };
 		F42AB1EC2B6DBF21002E13A6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */; };
-		F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */; };
 		F4F4F8812B8C6FC5008FBEED /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F4F8802B8C6FC5008FBEED /* Elements.swift */; };
 /* End PBXBuildFile section */
 
@@ -240,7 +239,6 @@
 		F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMInteraction.swift; sourceTree = "<group>"; };
 		F42AB1E42B6383F9002E13A6 /* LLMOpenAITokenOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMOpenAITokenOnboarding.swift; sourceTree = "<group>"; };
 		F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
-		F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyViewTest.swift; sourceTree = "<group>"; };
 		F4F4F8802B8C6FC5008FBEED /* Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -606,7 +604,6 @@
 				5AEA5F202B82DDD000F1577A /* LLMAssistantView.swift */,
 				F42AB1DE2B637C9C002E13A6 /* LLMInteraction.swift */,
 				F42AB1EB2B6DBF20002E13A6 /* SummaryView.swift */,
-				F42AB1F12B71B4D0002E13A6 /* AllergyViewTest.swift */,
 			);
 			path = ChiefComplaint;
 			sourceTree = "<group>";
@@ -853,7 +850,6 @@
 				2FE5DC3A29EDD7CA004B9AB4 /* Welcome.swift in Sources */,
 				F42AB1DF2B637C9D002E13A6 /* LLMInteraction.swift in Sources */,
 				51A360162B965819004E7E12 /* AllergyLLMAssistant.swift in Sources */,
-				F42AB1F22B71B4D2002E13A6 /* AllergyViewTest.swift in Sources */,
 				3C89F66D2B9D948B00A4F52D /* PatientInfo.swift in Sources */,
 				2FE5DC3829EDD7CA004B9AB4 /* InterestingModules.swift in Sources */,
 				2FE5DC3529EDD7CA004B9AB4 /* Consent.swift in Sources */,

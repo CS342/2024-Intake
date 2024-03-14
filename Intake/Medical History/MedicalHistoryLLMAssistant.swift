@@ -80,7 +80,8 @@ struct UpdateMedicalHistoryFunction: LLMFunction {
 struct MedicalHistoryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
-    
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
@@ -102,6 +103,8 @@ struct MedicalHistoryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData) {
                 session.context.append(
                                     systemMessage: currentMedHistory
@@ -142,6 +145,10 @@ struct MedicalHistoryLLMAssistant: View {
                 UpdateMedicalHistoryFunction(medicalHistoryItemBox: temporaryMedicalHistoryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

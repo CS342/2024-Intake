@@ -68,6 +68,7 @@ struct UpdateSurgeryFunction: LLMFunction {
 struct SurgeryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -90,6 +91,8 @@ struct SurgeryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             print("surgerybox", surgeryItemBox)
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your surgeries?")
@@ -131,6 +134,10 @@ struct SurgeryLLMAssistant: View {
                 UpdateSurgeryFunction(surgeryItemBox: temporarySurgeryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
