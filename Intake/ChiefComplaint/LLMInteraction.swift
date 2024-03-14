@@ -39,6 +39,9 @@ struct LLMInteraction: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
@@ -98,19 +101,21 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
-                let nameString = data.generalData.name.components(separatedBy: " ")
-                if let firstNameValue = nameString.first {
-                    firstName = firstNameValue
-                }
-                let systemMessage = """
-                    The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
-                    years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\
-                    the patient as you would a person of this age group, using as simple words as possible\
-                    if the patient is young. Address them by their first name when you ask questions.
-                """
-                session.context.append(
-                    systemMessage: systemMessage
-                )
+            checkToken()
+            
+            let nameString = data.generalData.name.components(separatedBy: " ")
+            if let firstNameValue = nameString.first {
+                firstName = firstNameValue
+            }
+            let systemMessage = """
+                The first name of the patient is \(String(describing: firstName)) and the patient is \(String(describing: data.generalData.age)) \
+                years old. The patient's sex is \(String(describing: data.generalData.sex)) Please speak with\
+                the patient as you would a person of this age group, using as simple words as possible\
+                if the patient is young. Address them by their first name when you ask questions.
+            """
+            session.context.append(
+                systemMessage: systemMessage
+            )
           
             
             if greeting {
@@ -136,7 +141,7 @@ struct LLMInteraction: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: "CHIEF_COMPLAINT_SYSTEM_PROMPT".localized().localizedString()
                 )
             ) {
@@ -147,6 +152,10 @@ struct LLMInteraction: View {
     
     private func showSummary() {
         navigationPath.path.append(NavigationViews.concern)
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 

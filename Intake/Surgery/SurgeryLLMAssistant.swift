@@ -68,6 +68,7 @@ struct UpdateSurgeryFunction: LLMFunction {
 struct SurgeryLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
     @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -90,6 +91,8 @@ struct SurgeryLLMAssistant: View {
         }
         
         .onAppear {
+            checkToken()
+            
             print("surgerybox", surgeryItemBox)
             if greeting {
                 let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your surgeries?")
@@ -117,7 +120,7 @@ struct SurgeryLLMAssistant: View {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
-                    modelType: .gpt3_5Turbo,
+                    modelType: .gpt4,
                     systemPrompt: """
                         Pretend you are a nurse. Your job is to answer information about the patient's surgery.\
                         You have the ability to add a surgery if the patient tells you to by calling the update_surgeries function.\
@@ -131,6 +134,10 @@ struct SurgeryLLMAssistant: View {
                 UpdateSurgeryFunction(surgeryItemBox: temporarySurgeryItemBox)
             }
         )
+    }
+    
+    private func checkToken() {
+        showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
