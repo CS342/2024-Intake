@@ -48,6 +48,6 @@ class SurgeryTests: XCTestCase {
         app.textFields["SURGERY_STATUS"].tap()
         app.textFields["SURGERY_STATUS"].typeText("COMPLETED")
         app.navigationBars["New Surgery"].buttons["Surgical History"].tap()
-        app.buttons["Next"].tap()        
+        app.buttons["Next"].tap()
     }
 }
