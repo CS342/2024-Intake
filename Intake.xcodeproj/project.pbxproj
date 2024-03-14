@@ -119,6 +119,7 @@
 		A9DFE8A92ABE551400428242 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFE8A82ABE551400428242 /* AccountButton.swift */; };
 		A9FE7AD02AA39BAB0077B045 /* AccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */; };
 		ACAA47812B571C800032D21F /* Questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = ACAA47802B571C7F0032D21F /* Questionnaire.json */; };
+		ACBC9D1D2BA2B3F6003E2581 /* AllergyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBC9D1C2BA2B3F6003E2581 /* AllergyTests.swift */; };
 		ACDF32ED2B9D0F4300B127E2 /* MenstrualHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */; };
 		ACF862BE2B96E29600ACBA1E /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF862BD2B96E29600ACBA1E /* ExportView.swift */; };
 		ACFFA1CE2B8FD7190006E6D4 /* SmokingHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */; };
@@ -242,6 +243,7 @@
 		A9DFE8A82ABE551400428242 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
 		A9FE7ACF2AA39BAB0077B045 /* AccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheet.swift; sourceTree = "<group>"; };
 		ACAA47802B571C7F0032D21F /* Questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Questionnaire.json; sourceTree = "<group>"; };
+		ACBC9D1C2BA2B3F6003E2581 /* AllergyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyTests.swift; sourceTree = "<group>"; };
 		ACF862BD2B96E29600ACBA1E /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		ACFFA1CD2B8FD7190006E6D4 /* SmokingHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokingHistory.swift; sourceTree = "<group>"; };
 		ACFFA1D02B8FD8BB0006E6D4 /* MenstrualHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenstrualHistory.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 			children = (
 				2F4E237D2989A2FE0013F3D9 /* LaunchTests.swift */,
 				510CAAF02BA0DFFB00872B1A /* MedicationTests.swift */,
+				ACBC9D1C2BA2B3F6003E2581 /* AllergyTests.swift */,
 				3CD23D632BA14D6D00AB9914 /* NinasTests.swift */,
 				5142133D2BA367F70012AFD7 /* SurgeryTests.swift */,
 				5142133F2BA368140012AFD7 /* ConditionsTests.swift */,
@@ -941,6 +944,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				514213402BA368140012AFD7 /* ConditionsTests.swift in Sources */,
+				ACBC9D1D2BA2B3F6003E2581 /* AllergyTests.swift in Sources */,
 				510CAAF12BA0DFFB00872B1A /* MedicationTests.swift in Sources */,
 				5142133E2BA367F70012AFD7 /* SurgeryTests.swift in Sources */,
 				2F4E237E2989A2FE0013F3D9 /* LaunchTests.swift in Sources */,

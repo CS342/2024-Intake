@@ -28,6 +28,7 @@ struct EditAllergyView: View {
             TextField("Allergy Name", text: $data.allergyData[index].allergy)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding([.horizontal, .top])
+                .accessibilityLabel("Add Allergy Field")
             ReactionSectionView(index: index)
             Spacer()
             saveButton
