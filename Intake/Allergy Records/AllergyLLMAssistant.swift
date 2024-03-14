@@ -18,6 +18,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
+// This class allows for the LLM to store output information in the allergyItem variable and it's equatable so the onChange function can recognize when there's been an update to allergy information.
 @Observable
 class AllergyItemBox: Equatable {
     var allergyItem: AllergyItem?
@@ -29,6 +30,7 @@ class AllergyItemBox: Equatable {
     }
 }
 
+// This function gathers current patient allergy information and inputs it into the LLM assistant system prompt.
 func getCurrentPatientAllergy(allergyList: [AllergyItem]) -> String? {
     var allergyDetails = "The patient has several allergies described in the next sentences."
     
@@ -44,6 +46,7 @@ func getCurrentPatientAllergy(allergyList: [AllergyItem]) -> String? {
     return allergyDetails.isEmpty ? nil : allergyDetails
 }
 
+// The Allergy LLM Assistant allows the patient to ask questions about their current allergies and add any additional allergies to their list. 
 struct UpdateAllergyFunction: LLMFunction {
     static let name: String = "update_allergies"
     static let description: String = """
