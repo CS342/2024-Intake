@@ -101,8 +101,6 @@ struct LLMInteraction: View {
         }
         
         .onAppear {
-            checkToken()
-            
             let nameString = data.generalData.name.components(separatedBy: " ")
             if let firstNameValue = nameString.first {
                 firstName = firstNameValue
