@@ -48,7 +48,7 @@ class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, Cu
     }
 
     init(existingMedications: [FHIRResource]) { // swiftlint:disable:this function_body_length
-        //medicationOptions provides the list of medications options chosen as the most common medications from the sample patients
+        // medicationOptions provides the list of medications options chosen as the most common medications from the sample patients
         self.medicationOptions = [
             IntakeMedication(
                 localizedDescription: "Hydrochlorothiazide 25 MG Oral Tablet",
