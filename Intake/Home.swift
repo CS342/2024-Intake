@@ -41,7 +41,7 @@ struct StartButton: View {
                 .padding()
                 .background(Color.blue)
                 .cornerRadius(10)
-        }.accessibilityIdentifier("Start")
+        }
     }
 }
 

@@ -33,7 +33,7 @@ final class NinasTests: XCTestCase {
     func testIfHealthKitDataInScrollable() throws {
         let app = XCUIApplication()
         app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--testPatient", "--skipToScrollable"]
-        let startButton = app.buttons["Start"]
+        let startButton = app.buttons["Create New Form"]
         let isStartButtonExist = startButton.waitForExistence(timeout: 5)
         XCTAssertTrue(isStartButtonExist, "Start button does not exist")
         let next = app.buttons["Next"]
