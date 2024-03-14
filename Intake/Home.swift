@@ -45,7 +45,7 @@ struct StartButton: View {
                 .padding()
                 .background(Color.blue)
                 .cornerRadius(10)
-        }
+        }.accessibilityIdentifier("Create New Form")
     }
 }
 
@@ -114,7 +114,7 @@ struct SettingsButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
                     .foregroundColor(.blue)
-                    .accessibilityLabel(Text("SETTINGS"))
+                    .accessibilityLabel("SETTINGS")
             }
         )
     }
