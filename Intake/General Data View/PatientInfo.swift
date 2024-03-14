@@ -117,17 +117,21 @@ struct PatientInfo: View {
             }
             Spacer()
             if FeatureFlags.skipToScrollable {
-                SubmitButtonWithAction(nextView: .pdfs,
-                onButtonTap: {
-                    updateData()
-                },
-                accessibilityIdentifier: "Next")
+                SubmitButtonWithAction(
+                    nextView: .pdfs,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
             } else {
-                SubmitButtonWithAction(nextView: .medical,
-                onButtonTap: {
-                    updateData()
-                },
-                accessibilityIdentifier: "Next")
+                SubmitButtonWithAction(
+                    nextView: .medical,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
             }
         }
         .task {
