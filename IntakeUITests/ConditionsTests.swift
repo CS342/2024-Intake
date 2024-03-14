@@ -14,7 +14,7 @@
 import Foundation
 import XCTest
 
-//Due to the nature of how conditions are added, this was difficult to test since there are an arbitrary number of rows due to LLM filtering. Therefore, this just checks the existence of the buttons.
+// Due to the nature of how conditions are added, this was difficult to test since there are an arbitrary number of rows due to LLM filtering. Therefore, this just checks the existence of the buttons.
 class ConditionTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
