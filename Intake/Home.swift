@@ -33,8 +33,14 @@ struct StartButton: View {
     var body: some View {
         Button(action: {
             if FeatureFlags.testMedication {
-                        navigationPath.append(NavigationViews.medication)
-                    } else {
+                navigationPath.append(NavigationViews.medication)
+            } else if FeatureFlags.testAllergy {
+                navigationPath.append(NavigationViews.allergies)
+            } else if FeatureFlags.testMenstrual {
+                navigationPath.append(NavigationViews.menstrual)
+            } else if FeatureFlags.testSmoking {
+                navigationPath.append(NavigationViews.smoking)
+            } else {
                 navigationPath.append(NavigationViews.general)
             }
         }) {
