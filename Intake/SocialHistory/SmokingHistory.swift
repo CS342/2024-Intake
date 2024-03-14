@@ -36,8 +36,13 @@ struct SmokingHistoryView: View {
                 .onDisappear {
                     storeSmokingHistory()
                 }
-                SubmitButton(nextView: NavigationViews.chat)
-                    .padding()
+                if FeatureFlags.skipToScrollable {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.chat)
+                        .padding()
+                }
             }
         }
     }

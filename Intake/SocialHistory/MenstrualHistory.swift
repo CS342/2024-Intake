@@ -55,8 +55,13 @@ struct SocialHistoryQuestionView: View {
                     .onDisappear {
                         data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
                     }
-                    SubmitButton(nextView: NavigationViews.smoking)
-                        .padding()
+                    if FeatureFlags.skipToScrollable {
+                        SubmitButton(nextView: NavigationViews.pdfs)
+                            .padding()
+                    } else {
+                        SubmitButton(nextView: NavigationViews.smoking)
+                            .padding()
+                    }
                 }
             }
         }
