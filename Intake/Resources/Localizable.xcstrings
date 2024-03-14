@@ -10,9 +10,6 @@
     "*Click the details to view/edit the reactions" : {
 
     },
-    "%.2f" : {
-
-    },
     "%@ - %@" : {
       "localizations" : {
         "en" : {
@@ -24,12 +21,6 @@
       }
     },
     "%@ Reactions" : {
-
-    },
-    "0 pack years" : {
-
-    },
-    "35" : {
 
     },
     "ACCOUNT_NEXT" : {
@@ -107,6 +98,9 @@
     "Additional Symptoms" : {
 
     },
+    "Additional Symptoms:" : {
+
+    },
     "Age" : {
 
     },
@@ -128,13 +122,16 @@
     "Allergy Name" : {
 
     },
+    "Are you currently smoking or have you smoked in the past?" : {
+
+    },
+    "Are you currently smoking?" : {
+
+    },
     "Auto-fill Intake Form" : {
 
     },
     "Back" : {
-
-    },
-    "Calculation" : {
 
     },
     "Chat" : {
@@ -240,7 +237,10 @@
         }
       }
     },
-    "Date" : {
+    "Create New Form" : {
+
+    },
+    "Currently Smoking:" : {
 
     },
     "Date of Birth" : {
@@ -261,9 +261,6 @@
     "DELETE_SURGERY" : {
 
     },
-    "Do you currently smoke or have you smoked in the past?" : {
-
-    },
     "Download your medical records from your health system." : {
 
     },
@@ -282,16 +279,23 @@
     "Ex: Smoked for 10 years, quit 5 years ago..." : {
 
     },
-    "Female" : {
-
-    },
     "FHIR_RESOURCES_CHAT_CANCEL" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
     "Full name" : {
 
     },
     "Get Started" : {
+
+    },
+    "Have you smoked in the past?" : {
 
     },
     "HEALTHKIT_PERMISSIONS_BUTTON" : {
@@ -341,12 +345,6 @@
     "HOME_LOGO" : {
 
     },
-    "How many days a year do you smoke?" : {
-
-    },
-    "How many packs do you smoke a day?" : {
-
-    },
     "Inactive" : {
 
     },
@@ -369,13 +367,7 @@
     "It looks like an unexpected view was appended to the NavigationPath!" : {
 
     },
-    "January 1, 1980" : {
-
-    },
-    "John Doe" : {
-
-    },
-    "Last Menstrural Period" : {
+    "Last Menstrual Period:" : {
 
     },
     "Last period's end date" : {
@@ -398,6 +390,9 @@
 
     },
     "List your current medications." : {
+
+    },
+    "Load Latest Form" : {
 
     },
     "Location" : {
@@ -425,6 +420,9 @@
 
     },
     "Medications:" : {
+
+    },
+    "Menstrual History" : {
 
     },
     "Menstrual Information" : {
@@ -580,12 +578,6 @@
     "Other important questions." : {
 
     },
-    "Pack Years:" : {
-
-    },
-    "Pack years: %.2f" : {
-
-    },
     "Past Medical History:" : {
 
     },
@@ -671,9 +663,6 @@
     "Review of Systems" : {
 
     },
-    "Review of Systems:" : {
-
-    },
     "Review summary of your medical history." : {
 
     },
@@ -709,7 +698,14 @@
 
     },
     "SETTINGS_TITLE" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a Mock Patient"
+          }
+        }
+      }
     },
     "Sex" : {
 
@@ -729,25 +725,25 @@
     "Skip" : {
 
     },
-    "Smoking history" : {
+    "Smoked in the Past:" : {
 
     },
     "Smoking History" : {
 
     },
-    "Social History" : {
+    "Smoking Status" : {
 
     },
-    "Start" : {
+    "Smoking Status:" : {
+
+    },
+    "Social History" : {
 
     },
     "Start Date:" : {
 
     },
     "Status" : {
-
-    },
-    "Submit" : {
 
     },
     "Submit your Form" : {

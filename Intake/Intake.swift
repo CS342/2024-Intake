@@ -15,27 +15,64 @@ class NavigationPathWrapper {
     var path = NavigationPath()
 }
 
-struct PatientData {
+struct PatientData: Codable {
     var name: String
     var birthdate: String
     var age: String
     var sex: String
 }
 
-struct MenstrualHistoryItem {
+struct ReactionItem: Identifiable, Codable {
+    var id = UUID()
+    var reaction: String
+}
+
+
+struct AllergyItem: Identifiable, Equatable, Codable {
+    var id = UUID()
+    var allergy: String
+    var reaction: [ReactionItem]
+    
+    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
+        lhs.allergy == rhs.allergy
+    }
+}
+
+struct MedicalHistoryItem: Identifiable, Equatable, Codable {
+    var id = UUID()
+    var condition: String
+    var active: Bool
+}
+
+
+struct MenstrualHistoryItem: Codable {
     var startDate: Date
     var endDate: Date
     var additionalDetails: String
 }
 
-struct SmokingHistoryItem {
-    var packYears: Double
+struct SmokingHistoryItem: Codable {
+    var hasSmokedOrSmoking: Bool
+    var currentlySmoking: Bool
+    var smokedInThePast: Bool
     var additionalDetails: String
 }
 
-//DataStore stores the data the patient updates throughout the Intake form process.
+struct SurgeryItem: Identifiable, Equatable, Codable {
+    var id = UUID()
+    var surgeryName: String = ""
+    var date: String = ""
+    var endDate: String = ""
+    var status: String = ""
+    var location: String = ""
+    var notes: [String] = []
+    var bodySites: [String] = []
+    var complications: [String] = []
+}
+
+
 @Observable
-class DataStore {
+class DataStore: Codable {
     var allergyData: [AllergyItem] = []
     var conditionData: [MedicalHistoryItem] = []
     var medicationData: Set<IntakeMedicationInstance> = []
@@ -44,7 +81,7 @@ class DataStore {
     var chiefComplaint: String = ""
     var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
     var menstrualHistory = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
-    var smokingHistory = SmokingHistoryItem(packYears: 0.0, additionalDetails: "")
+    var smokingHistory = SmokingHistoryItem(hasSmokedOrSmoking: Bool(), currentlySmoking: Bool(), smokedInThePast: Bool(), additionalDetails: "")
 }
 
 @Observable

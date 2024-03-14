@@ -28,7 +28,7 @@ struct MedicationContentView: View {
     var body: some View {
         VStack {
             if let medicationSettingsViewModel {
-                MedicationSettings(allowEmtpySave: true, medicationSettingsViewModel: medicationSettingsViewModel) {
+                MedicationSettings(allowEmptySave: true, medicationSettingsViewModel: medicationSettingsViewModel) {
                     if FeatureFlags.skipToScrollable {
                         data.medicationData = medicationSettingsViewModel.medicationInstances
                         navigationPath.path.append(NavigationViews.pdfs)
