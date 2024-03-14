@@ -34,7 +34,11 @@ struct StartButton: View {
         Button(action: {
             if FeatureFlags.testMedication {
                         navigationPath.append(NavigationViews.medication)
-                    } else {
+            } else if FeatureFlags.testSurgery {
+                navigationPath.append(NavigationViews.surgical)
+            } else if FeatureFlags.testCondition {
+                navigationPath.append(NavigationViews.surgical)
+            } else {
                 navigationPath.append(NavigationViews.general)
             }
         }) {
