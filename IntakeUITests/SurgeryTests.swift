@@ -32,7 +32,7 @@ class SurgeryTests: XCTestCase {
         
         sleep(5)
         
-        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["Chat"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Surgical History"].images["Chat with LLM Assistant"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].waitForExistence(timeout: 2))
         app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].tap()
         app.textFields["SURGERY_NAME"].tap()

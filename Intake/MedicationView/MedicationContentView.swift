@@ -34,6 +34,7 @@ struct MedicationContentView: View {
                     .navigationTitle("Medications")
                     .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant()) {
                         Image(systemName: "bubble")
+                            .accessibilityLabel("Chat with LLM Assistant")
                     })
             } else {
                 ProgressView()

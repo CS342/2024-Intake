@@ -33,7 +33,7 @@ class ConditionTests: XCTestCase {
         
         sleep(5)
         
-        XCTAssertTrue(app.navigationBars["Medical History"].buttons["Chat"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Medical History"].images["Chat with LLM Assistant"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars["Medical History"].buttons["add_condition"].waitForExistence(timeout: 2))
         app.navigationBars["Medical History"].buttons["add_condition"].tap()
     }

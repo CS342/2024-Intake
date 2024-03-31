@@ -105,6 +105,7 @@ struct SurgeryView: View {
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant()) {
                 Image(systemName: "bubble")
+                    .accessibilityLabel("Chat with LLM Assistant")
             })
             .task {
                 sortSurgeriesByDate(surgeries: &data.surgeries)

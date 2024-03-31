@@ -89,6 +89,7 @@ struct AllergyList: View {
         .navigationBarItems(trailing: addAllergyButton)
         .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant()) {
             Image(systemName: "bubble")
+                .accessibilityLabel("Chat with LLM Assistant")
         })
     }
         

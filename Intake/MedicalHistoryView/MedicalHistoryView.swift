@@ -63,6 +63,7 @@ struct MedicalHistoryView: View {
         .navigationBarItems(trailing: addConditionButton)
         .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant()) {
             Image(systemName: "bubble")
+                .accessibilityLabel("Chat with LLM Assistant")
         })
     }
 
