@@ -1,10 +1,3 @@
-//
-//  MedicationContentView.swift
-//  Intake
-//
-//  Created by Kate Callon on 2/18/24.
-//
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Medication project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -17,7 +10,7 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
-// This view displays the medications in the patient's FHIR data, and allows them to add, update and delete their medications.
+/// This view displays the medications in the patient's FHIR data, and allows them to add, update and delete their medications.
 struct MedicationContentView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -39,7 +32,7 @@ struct MedicationContentView: View {
                     }
                 }
                 .navigationTitle("Medications")
-                .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant(presentingAccount: .constant(false))) {
+                .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant()) {
                     Text("Chat")
                 })
             } else {

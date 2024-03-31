@@ -1,9 +1,4 @@
 //
-//  ScrollablePDF.swift
-//  Intake
-//
-//  Created by Akash Gupta on 2/28/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -36,6 +31,7 @@ struct HeaderTitle: View {
         }
     }
 }
+
 
 struct ScrollablePDF: View {
     private struct ConditionSection: View {
@@ -80,7 +76,7 @@ struct ScrollablePDF: View {
                 let data = try encoder.encode(dataStore)
                 // You can also use UserDefaults if the data is small enough, but file storage is recommended for larger data
                 if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                    let pathWithFilename = documentDirectory.appendingPathComponent("DataStore3.json")
+                    let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
                     try data.write(to: pathWithFilename)
                     print("successfully stored")
                 }
@@ -208,66 +204,68 @@ struct ScrollablePDF: View {
     }
     
     private struct MenstrualSection: View {
-           @Environment(DataStore.self) private var data
-
-           var body: some View {
-               Section(header: Text("Menstrual History")) {
-                   VStack(alignment: .leading) {
-                       HStack {
-                           Text("Start Date:")
-                           Spacer()
-                           Text(data.menstrualHistory.startDate, style: .date)
-                               .foregroundColor(.secondary)
-                       }
-                       HStack {
-                           Text("End Date:")
-                           Spacer()
-                           Text(data.menstrualHistory.endDate, style: .date)
-                               .foregroundColor(.secondary)
-                       }
-                       HStack {
-                           Text("Additional Details:")
-                           Spacer()
-                           Text(data.menstrualHistory.additionalDetails)
-                               .foregroundColor(.secondary)
-                       }
-                   }
-               }
-           }
-       }
-
-       private struct SmokingSection: View {
-           @Environment(DataStore.self) private var data
-
-           var body: some View {
-               Section(header: Text("Smoking History")) {
-                   VStack(alignment: .leading) {
-                       HStack {
-                           Text("Currently Smoking:")
-                           Spacer()
-                           Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
-                               .foregroundColor(.secondary)
-                       }
-                       HStack {
-                           Text("Smoked in the Past:")
-                           Spacer()
-                           Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
-                               .foregroundColor(.secondary)
-                       }
-                       HStack {
-                           Text("Additional Details:")
-                           Spacer()
-                           Text(data.smokingHistory.additionalDetails)
-                               .foregroundColor(.secondary)
-                       }
-                   }
-               }
-           }
-       }
+        @Environment(DataStore.self) private var data
+        
+        var body: some View {
+            Section(header: Text("Menstrual History")) {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Start Date:")
+                        Spacer()
+                        Text(data.menstrualHistory.startDate, style: .date)
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("End Date:")
+                        Spacer()
+                        Text(data.menstrualHistory.endDate, style: .date)
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Additional Details:")
+                        Spacer()
+                        Text(data.menstrualHistory.additionalDetails)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+    
+    private struct SmokingSection: View {
+        @Environment(DataStore.self) private var data
+        
+        var body: some View {
+            Section(header: Text("Smoking History")) {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Currently Smoking:")
+                        Spacer()
+                        Text(data.smokingHistory.currentlySmoking ? "Yes" : "No")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Smoked in the Past:")
+                        Spacer()
+                        Text(data.smokingHistory.smokedInThePast ? "Yes" : "No")
+                            .foregroundColor(.secondary)
+                    }
+                    HStack {
+                        Text("Additional Details:")
+                        Spacer()
+                        Text(data.smokingHistory.additionalDetails)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+    }
+    
     
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
+    
     
     var body: some View {
         VStack {
@@ -283,12 +281,13 @@ struct ScrollablePDF: View {
                 }
                 SmokingSection()
             }
-            .navigationTitle("Patient Form")
-            .onAppear(perform: {
-                end.reachedEnd = true
-            })
+            
             ExportButton()
                 .padding()
         }
+            .navigationTitle("Patient Form")
+            .task {
+                end.reachedEnd = true
+            }
     }
 }

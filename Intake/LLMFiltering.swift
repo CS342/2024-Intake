@@ -1,10 +1,4 @@
 //
-//  LLMFiltering.swift
-//  Intake
-//
-//  Created by Akash Gupta on 3/8/24.
-//
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -23,10 +17,12 @@ class LLMFiltering {
     private var session: LLMOpenAISession
     private var data: DataStore
     
+    
     init(session: LLMOpenAISession, data: DataStore) {
         self.session = session
         self.data = data
     }
+    
     
     func filter(surgeries: [String]) async -> [String] {
         let stopWords = [
@@ -88,7 +84,6 @@ class LLMFiltering {
         
         return responseText
     }
-    
     
     func filterSurgeries() async throws -> [SurgeryItem] {
         @Environment(DataStore.self) var data

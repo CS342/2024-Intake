@@ -1,23 +1,21 @@
 //
-//  ReactionView.swift
-//  Intake
-//
-//  Created by Akash Gupta on 2/1/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
+
 import Foundation
 import SpeziFHIR
 import SwiftUI
+
 
 struct ReactionView: View {
     @State private var reactionRecords: [ReactionItem]
     @State private var name: String
 
+    
     var body: some View {
         NavigationView {
             List {
@@ -59,11 +57,13 @@ struct ReactionView: View {
         }
     }
 
+    
     init(reactionRecords: [ReactionItem], name: String) {
         self._reactionRecords = State(initialValue: reactionRecords)
         self._name = State(initialValue: name)
     }
 }
+
 
 #Preview {
     ReactionView(reactionRecords: [ReactionItem(reaction: "hello")], name: "Diabetes")

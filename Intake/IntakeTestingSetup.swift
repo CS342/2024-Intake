@@ -5,15 +5,18 @@
 //
 // SPDX-License-Identifier: MIT
 //
+
 import ModelsR4
 import SpeziFHIR
 import SpeziFHIRMockPatients
 import SwiftUI
 
+
 private struct IntakeAppTestingSetup: ViewModifier {
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
     @Environment(FHIRStore.self) private var store
 
+    
     func body(content: Content) -> some View {
         content
             .task {
@@ -31,6 +34,8 @@ private struct IntakeAppTestingSetup: ViewModifier {
             }
     }
 }
+
+
 extension View {
     func testingSetup() -> some View {
         self.modifier(IntakeAppTestingSetup())

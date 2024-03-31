@@ -1,9 +1,4 @@
 //
-//  AllergyLLMAssistant.swift
-//  Intake
-//
-//  Created by Kate Callon on 3/4/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -18,35 +13,20 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-// This class allows for the LLM to store output information in the allergyItem variable and it's equatable so the onChange function can recognize when there's been an update to allergy information.
+
+/// This class allows for the LLM to store output information in the allergyItem variable and it's equatable so the onChange function can recognize when there's been an update to allergy information.
 @Observable
 class AllergyItemBox: Equatable {
     var allergyItem: AllergyItem?
-
+    
     init() {}
-
+    
     static func == (lhs: AllergyItemBox, rhs: AllergyItemBox) -> Bool {
         lhs.allergyItem == rhs.allergyItem
     }
 }
 
-// This function gathers current patient allergy information and inputs it into the LLM assistant system prompt.
-func getCurrentPatientAllergy(allergyList: [AllergyItem]) -> String? {
-    var allergyDetails = "The patient has several allergies described in the next sentences."
-    
-    for allergy in allergyList {
-        let allergyName = allergy.allergy
-        if let allergyReaction = allergy.reaction.first?.reaction {
-            allergyDetails += "The patient has allergy \(allergyName) with the reaction \(allergyReaction).\n"
-        } else {
-            allergyDetails += "The patient has allergy \(allergyName).\n"
-        }
-    }
-    
-    return allergyDetails.isEmpty ? nil : allergyDetails
-}
-
-// The Allergy LLM Assistant allows the patient to ask questions about their current allergies and add any additional allergies to their list. 
+/// The Allergy LLM Assistant allows the patient to ask questions about their current allergies and add any additional allergies to their list.
 struct UpdateAllergyFunction: LLMFunction {
     static let name: String = "update_allergies"
     static let description: String = """
@@ -58,12 +38,12 @@ struct UpdateAllergyFunction: LLMFunction {
     @Parameter(description: "The reaction of the allergy the patient wants to create.") var allergyReaction: String
     
     let allergyItemBox: AllergyItemBox
-
+    
     init(allergyItemBox: AllergyItemBox) {
         self.allergyItemBox = allergyItemBox
     }
     
-
+    
     func execute() async throws -> String? {
         let updatedAllergy = AllergyItem(allergy: allergyName, reaction: [ReactionItem(reaction: allergyReaction)])
         allergyItemBox.allergyItem = updatedAllergy
@@ -77,13 +57,13 @@ struct AllergyLLMAssistant: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
-    @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-
+    
     @State var showOnboarding = true
     @State var greeting = true
     
     @State var allergyItemBox: AllergyItemBox
+    
     
     var body: some View {
         @Bindable var data = data
@@ -97,13 +77,13 @@ struct AllergyLLMAssistant: View {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         
-        .onAppear {
+        .task {
             checkToken()
             
             if let currentallergy = getCurrentPatientAllergy(allergyList: data.allergyData) {
                 session.context.append(
-                                    systemMessage: currentallergy
-                                )
+                    systemMessage: currentallergy
+                )
             }
             
             if greeting {
@@ -118,9 +98,9 @@ struct AllergyLLMAssistant: View {
             }
         }
     }
-
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
+    
+    
+    init() {
         let temporaryAllergyItemBox = AllergyItemBox()
         self.allergyItemBox = temporaryAllergyItemBox
         self._session = LLMSessionProvider(
@@ -142,13 +122,31 @@ struct AllergyLLMAssistant: View {
         )
     }
     
+    
+    /// This function gathers current patient allergy information and inputs it into the LLM assistant system prompt.
+    func getCurrentPatientAllergy(allergyList: [AllergyItem]) -> String? {
+        var allergyDetails = "The patient has several allergies described in the next sentences."
+        
+        for allergy in allergyList {
+            let allergyName = allergy.allergy
+            if let allergyReaction = allergy.reaction.first?.reaction {
+                allergyDetails += "The patient has allergy \(allergyName) with the reaction \(allergyReaction).\n"
+            } else {
+                allergyDetails += "The patient has allergy \(allergyName).\n"
+            }
+        }
+        
+        return allergyDetails.isEmpty ? nil : allergyDetails
+    }
+    
     private func checkToken() {
         showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
+
 #Preview {
-    LLMInteraction(presentingAccount: .constant(false))
+    LLMInteraction()
         .previewWith {
             LLMRunner {
                 LLMOpenAIPlatform()

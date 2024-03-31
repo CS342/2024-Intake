@@ -1,9 +1,3 @@
-//
-//  SurgeryView.swift
-//  Intake
-//
-//  Created by Kate Callon on 2/6/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -17,27 +11,6 @@ import SpeziFHIR
 import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
-
-
-func compare(surgery1: SurgeryItem, surgery2: SurgeryItem) -> Bool {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    
-    if let date1 = dateFormatter.date(from: surgery1.date) {
-        if let date2 = dateFormatter.date(from: surgery2.date) {
-            return date1 > date2
-        }
-        return true
-    }
-    
-    return false
-}
-
-func sortSurgeriesByDate(surgeries: inout [SurgeryItem]) {
-    if surgeries.count > 1 {
-        surgeries.sort { compare(surgery1: $0, surgery2: $1) }
-    }
-}
 
 struct AddSurgery: View {
     @Binding var surgeries: [SurgeryItem]
@@ -114,6 +87,7 @@ struct SurgeryView: View {
     private var LLMFiltering = true
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
     
+    
     var body: some View {
         @Bindable var data = data
         if data.surgeriesLoaded {
@@ -129,10 +103,10 @@ struct SurgeryView: View {
             }
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
-            .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant(presentingAccount: .constant(false))) {
-                 Text("Chat")
+            .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant()) {
+                Text("Chat")
             })
-            .onAppear {
+            .task {
                 sortSurgeriesByDate(surgeries: &data.surgeries)
             }
         } else {
@@ -169,6 +143,7 @@ struct SurgeryView: View {
         }
     }
     
+    
     init() {
         let systemPrompt = """
             You are a helpful assistant that filters lists of procedures. You will be given\
@@ -199,14 +174,15 @@ struct SurgeryView: View {
             )
         )
     }
-
+    
+    
     func delete(at offsets: IndexSet) {
         data.surgeries.remove(atOffsets: offsets)
     }
-
+    
     func getProcedures() async {
         let procedures = fhirStore.procedures
-
+        
         for pro in procedures where !data.surgeries.contains(where: { $0.surgeryName == pro.displayName }) {
             let vrs = pro.versionedResource
             switch vrs {
@@ -323,6 +299,26 @@ struct SurgeryView: View {
         }
     }
     
+    private func compare(surgery1: SurgeryItem, surgery2: SurgeryItem) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date1 = dateFormatter.date(from: surgery1.date) {
+            if let date2 = dateFormatter.date(from: surgery2.date) {
+                return date1 > date2
+            }
+            return true
+        }
+        
+        return false
+    }
+    
+    private func sortSurgeriesByDate(surgeries: inout [SurgeryItem]) {
+        if surgeries.count > 1 {
+            surgeries.sort { compare(surgery1: $0, surgery2: $1) }
+        }
+    }
+    
     func containsAnyWords(item: String, words: [String]) -> Bool {
         words.contains { item.contains($0) }
     }
@@ -362,6 +358,7 @@ struct SurgeryView: View {
         return cleaned
     }
 }
+
 
 #Preview {
     SurgeryView()

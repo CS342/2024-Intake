@@ -1,9 +1,3 @@
-//
-//  AddConditionView.swift
-//  Intake
-//
-//  Created by Akash Gupta on 2/19/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University

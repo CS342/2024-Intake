@@ -1,9 +1,4 @@
 //
-//  ReactionSectionView.swift
-//  Intake
-//
-//  Created by Akash Gupta on 3/10/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -19,6 +14,7 @@ import SwiftUI
 struct ReactionSectionView: View {
     @Environment(DataStore.self) private var data
     var index: Int
+    
     
     var body: some View {
         Form { // Use Form instead of List
@@ -50,6 +46,8 @@ struct ReactionSectionView: View {
             EditButton()
         }
     }
+    
+    
     func delete(at offsets: IndexSet) {
         data.allergyData[index].reaction.remove(atOffsets: offsets)
     }

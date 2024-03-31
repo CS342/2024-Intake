@@ -1,7 +1,3 @@
-//  MedicalHistoryView.swift
-//  Intake
-//
-//  Created by Akash Gupta on 1/30/24.
 //
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
@@ -18,9 +14,9 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 struct ChatButton: View {
-    // Use @Binding to create a two-way binding to the parent view's showingChat state
     @Binding var showingChat: Bool
 
+    
     var body: some View {
         Button(action: {
             // Toggle the provided state
@@ -37,6 +33,7 @@ struct ChatButton: View {
     }
 }
 
+
 struct AllergyList: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -46,7 +43,6 @@ struct AllergyList: View {
     @State private var showingReaction = false
     @State private var selectedIndex = 0
     @State private var showingChat = false
-    @State private var presentingAccount = false
     @State private var newAllergy = AllergyItem(allergy: "", reaction: [])
     
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
@@ -91,7 +87,7 @@ struct AllergyList: View {
         }
         .navigationTitle("Allergies")
         .navigationBarItems(trailing: addAllergyButton)
-        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant(presentingAccount: $presentingAccount)) {
+        .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant()) {
             Text("Chat")
         })
     }
@@ -163,7 +159,6 @@ struct AllergyList: View {
 
     private func chatSheetView() -> some View {
         LLMAssistantView(
-            presentingAccount: .constant(false),
             pageTitle: .constant("Allergy Assistant"),
             initialQuestion: .constant("Do you have any questions about your allergies?"),
             prompt: .constant("Pretend you are a nurse. Your job is to help the patient understand what allergies they have.")

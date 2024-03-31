@@ -1,10 +1,4 @@
 //
-//  MedicationTests.swift
-//  IntakeUITests
-//
-//  Created by Kate Callon on 3/12/24.
-//
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -15,7 +9,7 @@
 import Foundation
 import XCTest
 
-// This tests checking if the current patient medications appear, adding a new medication, filling out its information, and seeing if it persists.
+/// These tests checking if the current patient medications appear, adding a new medication, filling out its information, and seeing if it persists.
 class MedicationTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -23,14 +17,14 @@ class MedicationTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--disableFirebase", "--testPatient", "--testMedication", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--testPatient", "--testMedication", "--skipToScrollable"]
         app.launch()
     }
     
     func testMedications() throws {
         let app = XCUIApplication()
         
-        // Small workaround to wait until the madications loaded into main memory
+        // Small workaround to wait until the medications loaded into main memory
         sleep(10)
         
         XCTAssertEqual(app.state, .runningForeground)

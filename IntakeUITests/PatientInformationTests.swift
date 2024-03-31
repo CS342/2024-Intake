@@ -6,13 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-// I test the following:
-// 1. If a patient is connected with healthkit, does the information in the PatientInfo view show up?
-// 2. If a patient is not connected with healthkit and fills in their information manually, does the information in the PatientInfo view show up?
-// 3. Does the data in each case persist to scrollableView?
-
 import XCTest
 
+
+/// Test the following:
+/// 1. If a patient is connected with healthkit, does the information in the PatientInfo view show up?
+/// 2. If a patient is not connected with healthkit and fills in their information manually, does the information in the PatientInfo view show up?
+/// 3. Does the data in each case persist to scrollableView?
 final class NinasTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -28,7 +28,7 @@ final class NinasTests: XCTestCase {
     
     func testIfHealthKitDataInScrollable() throws {
         let app = XCUIApplication()
-        app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--testPatient", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--testPatient", "--skipToScrollable"]
         app.launch()
         sleep(1)
         let startButton = app.buttons["Create New Form"]
@@ -46,7 +46,7 @@ final class NinasTests: XCTestCase {
     
     func testIfCustomDataInScrollable() throws {
         let app = XCUIApplication()
-        app.launchArguments = ["--disableFirebase", "--skipOnboarding", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--skipToScrollable"]
         app.launch()
         sleep(1)
         let startButton = app.buttons["Create New Form"]

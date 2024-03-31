@@ -1,27 +1,25 @@
+//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
-// ExportView displays all of the information gathered from Intake thus far in one view. It then uses ImageRenderer to export the information to a PDF
-// with a simple share button.
 
-// swiftlint disable: closure_body_length
 import PDFKit
 import SpeziFHIR
 import SwiftUI
 import UIKit
 
-// Again, I had to disable this error as it was causing issues and could not be resolved.
-// swiftlint:disable file_types_order
+
+/// ExportView displays all of the information gathered from Intake thus far in one view. It then uses ImageRenderer to export the information to a PDF
+/// with a simple share button.
 struct ExportView: View {
     @Environment(DataStore.self) var data
     @State private var isSharing = false
     @State private var pdfData: PDFDocument?
     
-    // A long closure body length here is imperative for this view to be formatted correctly. Thus, I had to disable this warning.
-    // swiftlint:disable closure_body_length
+
     var body: some View {
         ScrollView {
             self.wrappedBody
@@ -50,9 +48,9 @@ struct ExportView: View {
             print("PDF data changed")
         }
     }
-    @ViewBuilder
-    // swiftlint:disable attributes
-    private var wrappedBody: some View {
+    
+    // swiftlint:disable closure_body_length
+    @ViewBuilder private var wrappedBody: some View {
         VStack(alignment: .leading) {
             Text("MEDICAL HISTORY")
                 .fontWeight(.bold)
@@ -206,20 +204,20 @@ struct ExportView: View {
                     }
                 }
             }
-            // swiftlint:enable:closure_body_length
         }
             .if(isSharing, transform: { view in
                 view
                     .padding()
             })
     }
+    // swiftlint:enable closure_body_length
+    
     
     @MainActor
     private func shareButtonTapped() async {
         self.isSharing = true
         self.pdfData = await self.exportToPDF()
     }
-    
     
     @MainActor
     func exportToPDF() async -> PDFDocument? {
@@ -273,30 +271,6 @@ struct ExportView: View {
     }
 }
 
-
-struct ShareSheet: UIViewControllerRepresentable {
-    let sharedItem: PDFDocument
-    
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let temporaryPath = FileManager.default.temporaryDirectory.appendingPathComponent(
-            LocalizedStringResource("Intake Form").localizedString() + ".pdf"
-        )
-        try? sharedItem.dataRepresentation()?.write(to: temporaryPath)
-        
-        let controller = UIActivityViewController(
-            activityItems: [temporaryPath],
-            applicationActivities: nil
-        )
-        controller.completionWithItemsHandler = { _, _, _, _ in
-            try? FileManager.default.removeItem(at: temporaryPath)
-        }
-        
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
 
 struct ExportView_Previews: PreviewProvider {
     static var previews: some View {

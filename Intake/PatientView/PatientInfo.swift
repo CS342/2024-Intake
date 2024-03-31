@@ -1,23 +1,15 @@
-////
-////  SwiftUIView.swift
-////  Intake
-////
-////  Created by Nina Boord on 3/9/24.
-////
 // This source file is part of the Intake based on the Stanford Spezi Template Medication project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
-// The Patient Info View allows the patient to enter their name, date of birth, and sex. If the patient is connected with Healthkit, it allows
-// them to verify their information is correct and edit it if not. The information is automatically pulled from Healthkit if the patient is connected.
 
 import SpeziFHIR
 import SwiftUI
 
-// swiftlint:disable type_contents_order
-// Again, no matter the order of these variables, there is still issues with type_contents_order. It was necessary to just disable this.
+/// The Patient Info View allows the patient to enter their name, date of birth, and sex. If the patient is connected with Healthkit, it allows
+/// them to verify their information is correct and edit it if not. The information is automatically pulled from Healthkit if the patient is connected.
 struct PatientInfo: View {
     @State private var fullName: String = ""
     @State private var firstName: String = ""
@@ -30,68 +22,6 @@ struct PatientInfo: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(FHIRStore.self) private var fhirStore
     
-    func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
-        if dobString.isEmpty {
-            return ""
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        
-        guard let birthDate = dateFormatter.date(from: dobString) else {
-            return "Invalid date format or date string."
-        }
-        
-        let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
-        if let age = ageComponents.year {
-            return "\(age)"
-        } else {
-            return "Could not calculate age"
-        }
-    }
-    
-    func getValue(forKey key: String, from jsonString: String) -> String? {
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Error: Cannot create Data from JSON string")
-            return nil
-        }
-        
-        do {
-            if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
-                if key == "name" {
-                    if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
-                        let nameDict = nameArray[0]
-                        if let family = nameDict["family"] as? String,
-                           let givenArray = nameDict["given"] as? [String],
-                           !givenArray.isEmpty {
-                            let given = givenArray.joined(separator: " ")
-                            
-                            return "\(given) \(family)"
-                        }
-                    }
-                } else {
-                    return dictionary[key] as? String
-                }
-            } else {
-                print("Error: JSON is not a dictionary")
-            }
-        } catch {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        return nil
-    }
-    
-    func getInfo(patient: FHIRResource, field: String) -> String {
-        let jsonDescription = patient.jsonDescription
-        
-        if let infoValue = getValue(forKey: field, from: jsonDescription) {
-            print("Info found: \(infoValue)")
-            return infoValue
-        }
-        
-        print("Key \(field) not found")
-        return ""
-    }
     
     var body: some View {
         @Bindable var data = data
@@ -139,6 +69,70 @@ struct PatientInfo: View {
         .task {
             loadData()
         }
+    }
+    
+    
+    private func calculateAge(from dobString: String, with format: String = "yyyy-MM-dd") -> String {
+        if dobString.isEmpty {
+            return ""
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        guard let birthDate = dateFormatter.date(from: dobString) else {
+            return "Invalid date format or date string."
+        }
+        
+        let ageComponents = Calendar.current.dateComponents([.year], from: birthDate, to: Date())
+        if let age = ageComponents.year {
+            return "\(age)"
+        } else {
+            return "Could not calculate age"
+        }
+    }
+    
+    private func getValue(forKey key: String, from jsonString: String) -> String? {
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            print("Error: Cannot create Data from JSON string")
+            return nil
+        }
+        
+        do {
+            if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                if key == "name" {
+                    if let nameArray = dictionary[key] as? [[String: Any]], !nameArray.isEmpty {
+                        let nameDict = nameArray[0]
+                        if let family = nameDict["family"] as? String,
+                           let givenArray = nameDict["given"] as? [String],
+                           !givenArray.isEmpty {
+                            let given = givenArray.joined(separator: " ")
+                            
+                            return "\(given) \(family)"
+                        }
+                    }
+                } else {
+                    return dictionary[key] as? String
+                }
+            } else {
+                print("Error: JSON is not a dictionary")
+            }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+    
+    private func getInfo(patient: FHIRResource, field: String) -> String {
+        let jsonDescription = patient.jsonDescription
+        
+        if let infoValue = getValue(forKey: field, from: jsonDescription) {
+            print("Info found: \(infoValue)")
+            return infoValue
+        }
+        
+        print("Key \(field) not found")
+        return ""
     }
     
     @MainActor

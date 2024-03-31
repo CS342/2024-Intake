@@ -1,9 +1,3 @@
-//
-//  MedicationLLMAssistant.swift
-//  Intake
-//
-//  Created by Kate Callon on 3/2/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -18,29 +12,14 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-// Adds the current patient medications to the system prompt.
-func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>) -> String? {
-    var medicationDetails = "The patient is currently taking several medications:"
-    print(medicationList)
-    for medication in medicationList {
-        let medName = medication.type.localizedDescription
-        let dose = medication.dosage.localizedDescription
-        let frequency = medication.schedule.frequency
-        medicationDetails += "The patient is taking medication \(medName), the dose is \(dose), and the frequency is \(frequency).\n"
-    }
-    
-    return medicationDetails.isEmpty ? nil : medicationDetails
-}
-
-// Provides medication LLM assistant functionality to allow the patient to ask about their current medications.
+/// Provides medication LLM assistant functionality to allow the patient to ask about their current medications.
 struct MedicationLLMAssistant: View {
     @Environment(DataStore.self) private var data
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
     
-    @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-
+    
     @State var showOnboarding = true
     @State var greeting = true
     
@@ -51,12 +30,10 @@ struct MedicationLLMAssistant: View {
             session: $session
         )
         .navigationTitle("Medications Assistant")
-        
         .sheet(isPresented: $showOnboarding) {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
-        
-        .onAppear {
+        .task {
             checkToken()
             
             if greeting {
@@ -67,14 +44,14 @@ struct MedicationLLMAssistant: View {
             
             if let currentMed = getCurrentPatientMedications(medicationList: data.medicationData) {
                 session.context.append(
-                                    systemMessage: currentMed
-                                )
+                    systemMessage: currentMed
+                )
             }
         }
     }
-
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
+    
+    
+    init() {
         self._session = LLMSessionProvider(
             schema: LLMOpenAISchema(
                 parameters: .init(
@@ -91,13 +68,29 @@ struct MedicationLLMAssistant: View {
         )
     }
     
+    
+    /// Adds the current patient medications to the system prompt.
+    func getCurrentPatientMedications(medicationList: Set<IntakeMedicationInstance>) -> String? {
+        var medicationDetails = "The patient is currently taking several medications:"
+        print(medicationList)
+        for medication in medicationList {
+            let medName = medication.type.localizedDescription
+            let dose = medication.dosage.localizedDescription
+            let frequency = medication.schedule.frequency
+            medicationDetails += "The patient is taking medication \(medName), the dose is \(dose), and the frequency is \(frequency).\n"
+        }
+        
+        return medicationDetails.isEmpty ? nil : medicationDetails
+    }
+    
     private func checkToken() {
         showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
+
 #Preview {
-    LLMInteraction(presentingAccount: .constant(false))
+    LLMInteraction()
         .previewWith {
             LLMRunner {
                 LLMOpenAIPlatform()

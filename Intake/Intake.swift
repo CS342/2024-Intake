@@ -7,105 +7,20 @@
 //
 
 import Spezi
-import SpeziFirebaseAccount
 import SwiftUI
 
-@Observable
-class NavigationPathWrapper {
-    var path = NavigationPath()
-}
-
-struct PatientData: Codable {
-    var name: String
-    var birthdate: String
-    var age: String
-    var sex: String
-}
-
-struct ReactionItem: Identifiable, Codable {
-    var id = UUID()
-    var reaction: String
-}
-
-
-struct AllergyItem: Identifiable, Equatable, Codable {
-    var id = UUID()
-    var allergy: String
-    var reaction: [ReactionItem]
-    
-    static func == (lhs: AllergyItem, rhs: AllergyItem) -> Bool {
-        lhs.allergy == rhs.allergy
-    }
-}
-
-struct MedicalHistoryItem: Identifiable, Equatable, Codable {
-    var id = UUID()
-    var condition: String
-    var active: Bool
-}
-
-
-struct MenstrualHistoryItem: Codable {
-    var startDate: Date
-    var endDate: Date
-    var additionalDetails: String
-}
-
-struct SmokingHistoryItem: Codable {
-    var hasSmokedOrSmoking: Bool
-    var currentlySmoking: Bool
-    var smokedInThePast: Bool
-    var additionalDetails: String
-}
-
-struct SurgeryItem: Identifiable, Equatable, Codable {
-    var id = UUID()
-    var surgeryName: String = ""
-    var date: String = ""
-    var endDate: String = ""
-    var status: String = ""
-    var location: String = ""
-    var notes: [String] = []
-    var bodySites: [String] = []
-    var complications: [String] = []
-}
-
-
-@Observable
-class DataStore: Codable {
-    var allergyData: [AllergyItem] = []
-    var conditionData: [MedicalHistoryItem] = []
-    var medicationData: Set<IntakeMedicationInstance> = []
-    var surgeries: [SurgeryItem] = []
-    var surgeriesLoaded = false
-    var chiefComplaint: String = ""
-    var generalData = PatientData(name: "", birthdate: "", age: "", sex: "")
-    var menstrualHistory = MenstrualHistoryItem(startDate: Date(), endDate: Date(), additionalDetails: "")
-    var smokingHistory = SmokingHistoryItem(hasSmokedOrSmoking: Bool(), currentlySmoking: Bool(), smokedInThePast: Bool(), additionalDetails: "")
-}
-
-@Observable
-class ReachedEndWrapper {
-    var reachedEnd = false
-    var surgeriesLoaded = false
-}
-
-@Observable
-class LoadedWrapper {
-    var conditionData = false
-    var allergyData = false
-}
 
 @main
 struct Intake: App {
     @UIApplicationDelegateAdaptor(IntakeDelegate.self) var appDelegate
     @AppStorage(StorageKeys.onboardingFlowComplete) var completedOnboardingFlow = false
 
-    let navigationPath = NavigationPathWrapper()
-    let data = DataStore()
-    let reachedEnd = ReachedEndWrapper()
-    let loaded = LoadedWrapper()
+    @State var navigationPath = NavigationPathWrapper()
+    @State var data = DataStore()
+    @State var reachedEnd = ReachedEndWrapper()
+    @State var loaded = LoadedWrapper()
 
+    
     var body: some Scene {
         WindowGroup {
             ZStack {

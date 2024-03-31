@@ -1,18 +1,10 @@
 //
-//  LLMInteraction.swift
-//  Intake
-//
-//  Created by Nick Riedman on 1/25/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
 //
 // SPDX-License-Identifier: MIT
 //
-// LLMInteraction is the core functionality of Chief Complaint. It initializes the LLM, uses a robust system prompt to ensure that the questions
-// asked are specific and medically sound. It utilizes function calling to identify when enough information has been gathered about the patient
-// to be helpful to a doctor. The function call 
 
 
 import Foundation
@@ -24,27 +16,10 @@ import SpeziLLMOpenAI
 import SwiftUI
 
 
+/// LLMInteraction is the core functionality of Chief Complaint. It initializes the LLM, uses a robust system prompt to ensure that the questions
+/// asked are specific and medically sound. It utilizes function calling to identify when enough information has been gathered about the patient
+/// to be helpful to a doctor.
 struct LLMInteraction: View {
-    // I needed to disable this error because any order I tried would not work. Seems to be an issue with swiftlint
-    // swiftlint:disable type_contents_order
-    @State private var fullName: String = ""
-    @State private var firstName: String = ""
-    @State private var dob: String = ""
-    @State private var gender: String = ""
-    @State var showOnboarding = true
-    @State var greeting = true
-    @State var stringBox: StringBox = .init()
-    @State var showSheet = false
-    @Environment(LLMRunner.self) var runner: LLMRunner
-    @Environment(FHIRStore.self) private var fhirStore
-    @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
-    
-    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
-
-    @Binding var presentingAccount: Bool
-    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
-    
     @Observable
     class StringBox: Equatable {
         var llmResponseSummary: String
@@ -84,6 +59,25 @@ struct LLMInteraction: View {
             return nil
         }
     }
+    
+    
+    @State private var fullName: String = ""
+    @State private var firstName: String = ""
+    @State private var dob: String = ""
+    @State private var gender: String = ""
+    @State var showOnboarding = true
+    @State var greeting = true
+    @State var stringBox: StringBox = .init()
+    @State var showSheet = false
+    @Environment(LLMRunner.self) var runner: LLMRunner
+    @Environment(FHIRStore.self) private var fhirStore
+    @Environment(DataStore.self) private var data
+    @Environment(NavigationPathWrapper.self) private var navigationPath
+    
+    @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
+
+    @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
+    
   
     var body: some View {
         @Bindable var data = data
@@ -100,7 +94,7 @@ struct LLMInteraction: View {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         
-        .onAppear {
+        .task {
             let nameString = data.generalData.name.components(separatedBy: " ")
             if let firstNameValue = nameString.first {
                 firstName = firstNameValue
@@ -132,8 +126,8 @@ struct LLMInteraction: View {
         }
     }
   
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
+    
+    init() {
         let temporaryStringBox = StringBox()
         self.stringBox = temporaryStringBox
         self._session = LLMSessionProvider(
@@ -148,6 +142,7 @@ struct LLMInteraction: View {
         )
     }
     
+    
     private func showSummary() {
         navigationPath.path.append(NavigationViews.concern)
     }
@@ -157,8 +152,9 @@ struct LLMInteraction: View {
     }
 }
 
+
 #Preview {
-    LLMInteraction(presentingAccount: .constant(false))
+    LLMInteraction()
         .previewWith {
             LLMRunner {
                 LLMOpenAIPlatform()

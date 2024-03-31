@@ -1,7 +1,3 @@
-//  MedicalHistoryView.swift
-//  Intake
-//
-//  Created by Akash Gupta on 1/30/24.
 //
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
@@ -17,6 +13,7 @@ import SpeziLLM
 import SpeziLLMOpenAI
 import SwiftUI
 
+
 struct MedicalHistoryView: View {
     @Environment(FHIRStore.self) private var fhirStore
     @Environment(NavigationPathWrapper.self) private var navigationPath
@@ -28,6 +25,7 @@ struct MedicalHistoryView: View {
     
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
+    
     var body: some View {
         if loaded.conditionData {
             VStack {
@@ -63,7 +61,7 @@ struct MedicalHistoryView: View {
         }
         .navigationTitle("Medical History")
         .navigationBarItems(trailing: addConditionButton)
-        .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant(presentingAccount: .constant(false))) {
+        .navigationBarItems(trailing: NavigationLink(destination: MedicalHistoryLLMAssistant()) {
             Text("Chat")
         })
     }
@@ -104,6 +102,7 @@ struct MedicalHistoryView: View {
         .font(.caption)
         .foregroundColor(.gray)
     }
+    
     
     init() {    // swiftlint:disable:this function_body_length
         let systemPrompt = """
@@ -160,6 +159,7 @@ struct MedicalHistoryView: View {
         )
     }
     
+    
     private func addConditionAction() {
         data.conditionData.append(MedicalHistoryItem(condition: "", active: false))
     }
@@ -182,7 +182,6 @@ struct MedicalHistoryView: View {
 
     private func chatSheetView() -> some View {
         LLMAssistantView(
-            presentingAccount: .constant(false),
             pageTitle: .constant("Medical History Assistant"),
             initialQuestion: .constant("Do you have any questions about your medical conditions"),
             prompt: .constant(
@@ -229,6 +228,7 @@ struct MedicalHistoryView: View {
         data.conditionData.remove(atOffsets: offsets)
     }
 }
+
 
 #Preview {
     MedicalHistoryView()

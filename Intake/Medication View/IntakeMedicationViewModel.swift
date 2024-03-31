@@ -1,10 +1,3 @@
-//
-//  IntakeMedicationViewModel.swift
-//  Intake
-//
-//  Created by Kate Callon on 2/17/24.
-//
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Medication project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -19,7 +12,7 @@ import SpeziFHIR
 import SpeziMedication
 import SwiftUI
 
-// The IntakeMedicationSettingsViewModel takes the patient's FHIRStore medications and adds any that match to the medicationOptions to the medicationInstances list which is then used for the MedicationContentView.
+/// The IntakeMedicationSettingsViewModel takes the patient's FHIRStore medications and adds any that match to the medicationOptions to the medicationInstances list which is then used for the MedicationContentView.
 @Observable
 class IntakeMedicationSettingsViewModel: Module, MedicationSettingsViewModel, CustomStringConvertible {
     var medicationInstances: Set<IntakeMedicationInstance> = []

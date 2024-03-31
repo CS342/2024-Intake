@@ -1,9 +1,4 @@
 //
-//  MedicalHistoryLLMAssistant.swift
-//  Intake
-//
-//  Created by Kate Callon on 3/4/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -18,7 +13,7 @@ import SpeziLLMLocal
 import SpeziLLMOpenAI
 import SwiftUI
 
-// This box was needed in order to set the output of the LLM to the medicalHistoryItem and it's equatable in order to check if there's been a change in order to add an additional medical history data point.
+/// This box was needed in order to set the output of the LLM to the medicalHistoryItem and it's equatable in order to check if there's been a change in order to add an additional medical history data point.
 @Observable
 class MedicalHistoryItemBox: Equatable {
     var medicalHistoryItem: MedicalHistoryItem?
@@ -30,24 +25,7 @@ class MedicalHistoryItemBox: Equatable {
     }
 }
 
-// This function gets the current patient medical history data and inputs it into the system prompt.
-func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> String? {
-    var medHistoryDetails = "The patient has had several conditions in their medical history described in the following sentences."
-    
-    for medHistory in medHistoryList {
-        let medHistoryName = medHistory.condition
-        let active = medHistory.active
-        if active {
-            medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an active condition.\n"
-        } else {
-            medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an inactive condition.\n"
-        }
-    }
-    
-    return medHistoryDetails.isEmpty ? nil : medHistoryDetails
-}
-
-// This LLM Assistant allows the patient to ask about their current medical history and add new data to their medical history list. 
+/// This LLM Assistant allows the patient to ask about their current medical history and add new data to their medical history list. 
 struct UpdateMedicalHistoryFunction: LLMFunction {
     static let name: String = "update_medical_history"
     static let description: String = """
@@ -84,13 +62,13 @@ struct MedicalHistoryLLMAssistant: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(LLMOpenAITokenSaver.self) private var tokenSaver
 
-    @Binding var presentingAccount: Bool
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
     @State var showOnboarding = true
     @State var greeting = true
     
     @State var medicalHistoryItemBox: MedicalHistoryItemBox
+    
     
     var body: some View {
         @Bindable var data = data
@@ -104,7 +82,7 @@ struct MedicalHistoryLLMAssistant: View {
             LLMOnboardingView(showOnboarding: $showOnboarding)
         }
         
-        .onAppear {
+        .task {
             checkToken()
             
             if let currentMedHistory = getCurrentPatientMedicalHistory(medHistoryList: data.conditionData) {
@@ -126,8 +104,8 @@ struct MedicalHistoryLLMAssistant: View {
         }
     }
 
-    init(presentingAccount: Binding<Bool>) {
-        self._presentingAccount = presentingAccount
+    
+    init() {
         let temporaryMedicalHistoryItemBox = MedicalHistoryItemBox()
         self.medicalHistoryItemBox = temporaryMedicalHistoryItemBox
         self._session = LLMSessionProvider(
@@ -149,13 +127,32 @@ struct MedicalHistoryLLMAssistant: View {
         )
     }
     
+    
+    // This function gets the current patient medical history data and inputs it into the system prompt.
+    func getCurrentPatientMedicalHistory(medHistoryList: [MedicalHistoryItem]) -> String? {
+        var medHistoryDetails = "The patient has had several conditions in their medical history described in the following sentences."
+        
+        for medHistory in medHistoryList {
+            let medHistoryName = medHistory.condition
+            let active = medHistory.active
+            if active {
+                medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an active condition.\n"
+            } else {
+                medHistoryDetails += "The patient has the condition \(medHistoryName) and it is currently an inactive condition.\n"
+            }
+        }
+        
+        return medHistoryDetails.isEmpty ? nil : medHistoryDetails
+    }
+    
     private func checkToken() {
         showOnboarding = !tokenSaver.tokenPresent
     }
 }
 
+
 #Preview {
-    LLMInteraction(presentingAccount: .constant(false))
+    LLMInteraction()
         .previewWith {
             LLMRunner {
                 LLMOpenAIPlatform()

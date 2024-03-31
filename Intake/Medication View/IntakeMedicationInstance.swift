@@ -1,10 +1,3 @@
-//
-//  IntakeMedicationInstance.swift
-//  Intake
-//
-//  Created by Kate Callon on 2/17/24.
-//
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Medication project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -15,7 +8,7 @@
 import Foundation
 import SpeziMedication
 
-// This defines an IntakeMedicationInstance which is composed of an id, an IntakeMedication type, a dosage, and a schedule. 
+/// This defines an IntakeMedicationInstance which is composed of an id, an IntakeMedication type, a dosage, and a schedule. 
 struct IntakeMedicationInstance: MedicationInstance, MedicationInstanceInitializable, Codable {
     let id: UUID
     let type: IntakeMedication

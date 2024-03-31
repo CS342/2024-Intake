@@ -1,9 +1,3 @@
-//
-//  MenstrualHistory.swift
-//  Intake
-//
-//  Created by Zoya Garg on 2/28/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -14,6 +8,7 @@ import Foundation
 import HealthKit
 import SwiftUI
 
+
 struct SocialHistoryQuestionView: View {
     @State private var additionalDetails: String = ""
     @State private var startDate = Date()
@@ -23,7 +18,8 @@ struct SocialHistoryQuestionView: View {
     @State private var showMaleSlide = false
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
-    // do this ONLY in nav before this
+    
+    
     var body: some View {
         NavigationView {
             VStack {
