@@ -33,7 +33,7 @@ class MedicationTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Hydrochlorothiazide 25 MG Oral Tablet"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["amLODIPine 2.5 MG Oral Tablet"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.navigationBars["Medication Settings"].buttons["Add New Medication"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.navigationBars["Medication Settings"].images["Chat with LLM Assistant"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Medication Settings"].buttons["Chat with LLM Assistant"].waitForExistence(timeout: 2))
         app.navigationBars["Medication Settings"].buttons["Add New Medication"].tap()
         app.buttons["Verapamil Hydrochloride 40 MG"].tap()
         app.buttons["Save Dosage"].tap()
