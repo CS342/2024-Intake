@@ -12,6 +12,7 @@ import SwiftUI
 struct StartButton: View {
     @Binding var navigationPath: NavigationPath
     
+    
     var body: some View {
         Button(action: {
             if FeatureFlags.testMedication {
@@ -45,6 +46,7 @@ struct LoadLastButton: View {
     @Binding var navigationPath: NavigationPath
     @Binding var disabled: Bool
     @Environment(DataStore.self) private var data
+    
     
     var body: some View {
         Button(action: {
@@ -94,6 +96,7 @@ struct LoadLastButton: View {
 
 struct SettingsButton: View {
     @Binding var showSettings: Bool
+    
     
     var body: some View {
         Button(
