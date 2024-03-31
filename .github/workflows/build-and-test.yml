@@ -29,6 +29,7 @@ jobs:
     with:
       artifactname: Intake.xcresult
       runsonlabels: '["macOS", "self-hosted"]'
+      customcommand: "fastlane test"
   uploadcoveragereport:
     name: Upload Coverage Report
     needs: buildandtest
