@@ -113,12 +113,7 @@ struct HomeView: View {
 
 #if DEBUG
 #Preview {
-    return HomeView()
-        .previewWith(standard: IntakeStandard()) {}
-}
-
-#Preview {
-    return HomeView()
+    HomeView()
         .previewWith(standard: IntakeStandard()) {}
 }
 #endif

@@ -19,10 +19,6 @@ import SwiftUI
 
 
 actor IntakeStandard: Standard, EnvironmentAccessible, HealthKitConstraint, OnboardingConstraint {
-    enum IntakeStandardError: Error {
-        case userNotAuthenticatedYet
-    }
-
     @Dependency var fhirStore: FHIRStore
 
     @MainActor var useHealthKitResources = true
