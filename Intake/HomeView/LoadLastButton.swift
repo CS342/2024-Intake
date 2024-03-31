@@ -9,39 +9,6 @@
 import SwiftUI
 
 
-struct StartButton: View {
-    @Binding var navigationPath: NavigationPath
-    
-    
-    var body: some View {
-        Button(action: {
-            if FeatureFlags.testMedication {
-                navigationPath.append(NavigationViews.medication)
-            } else if FeatureFlags.testAllergy {
-                navigationPath.append(NavigationViews.allergies)
-            } else if FeatureFlags.testMenstrual {
-                navigationPath.append(NavigationViews.menstrual)
-            } else if FeatureFlags.testSmoking {
-                navigationPath.append(NavigationViews.smoking)
-            } else if FeatureFlags.testSurgery {
-                navigationPath.append(NavigationViews.surgical)
-            } else if FeatureFlags.testCondition {
-                navigationPath.append(NavigationViews.medical)
-            } else {
-                navigationPath.append(NavigationViews.general)
-            }
-        }) {
-            Text("Create New Form")
-                .font(.headline)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
-        }.accessibilityIdentifier("Create New Form")
-    }
-}
-
 struct LoadLastButton: View {
     @Binding var navigationPath: NavigationPath
     @Binding var disabled: Bool
@@ -90,27 +57,5 @@ struct LoadLastButton: View {
             }
         }
         return nil
-    }
-}
-
-
-struct SettingsButton: View {
-    @Binding var showSettings: Bool
-    
-    
-    var body: some View {
-        Button(
-            action: {
-                showSettings.toggle()
-            },
-            label: {
-                Image(systemName: "gear")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.blue)
-                    .accessibilityLabel("SETTINGS")
-            }
-        )
     }
 }
