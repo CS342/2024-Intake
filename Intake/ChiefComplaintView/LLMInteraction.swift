@@ -65,7 +65,7 @@ struct LLMInteraction: View {
     @State private var firstName: String = ""
     @State private var dob: String = ""
     @State private var gender: String = ""
-    @State var showOnboarding = true
+    @AppStorage(StorageKeys.llmOnboardingComplete) var showOnboarding = true
     @State var greeting = true
     @State var stringBox: StringBox = .init()
     @State var showSheet = false

@@ -328,10 +328,8 @@
 		519E830A2B7C4F1600A2D92D /* MedicationView */ = {
 			isa = PBXGroup;
 			children = (
-				51805C112B81853700D17109 /* IntakeMedication.swift */,
-				51805C192B818A1A00D17109 /* IntakeDosage.swift */,
+				97FE2EA82BB9410F006A3B8E /* Models */,
 				51805C142B81857100D17109 /* IntakeMedicationViewModel.swift */,
-				51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */,
 				51A027662B82CDA300A195C8 /* MedicationContentView.swift */,
 				51A3600F2B944517004E7E12 /* MedicationLLMAssistant.swift */,
 			);
@@ -350,8 +348,6 @@
 		5A2B9F832B69E06B005CA63F /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
-				5A2B9F842B69E06B005CA63F /* SettingsView.swift */,
-				5A2B9F852B69E06B005CA63F /* ResourceSelection.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -427,12 +423,12 @@
 				9701570B2BB925CC00335713 /* Models */,
 				2FE5DC2829EDD398004B9AB4 /* Onboarding */,
 				970157162BB929DB00335713 /* HomeView */,
-				F42AB1DA2B637C5F002E13A6 /* ChiefComplaintView */,
 				3C89F6682B9D939500A4F52D /* PatientView */,
-				511827942B740191002033A0 /* SurgeryView */,
-				5A2B9FB32B6AFE1F005CA63F /* AllergyView */,
-				519E830A2B7C4F1600A2D92D /* MedicationView */,
+				F42AB1DA2B637C5F002E13A6 /* ChiefComplaintView */,
 				5A2B9F762B69AE07005CA63F /* MedicalHistoryView */,
+				519E830A2B7C4F1600A2D92D /* MedicationView */,
+				5A2B9FB32B6AFE1F005CA63F /* AllergyView */,
+				511827942B740191002033A0 /* SurgeryView */,
 				AC2A17272B70684D00F560D0 /* SocialHistoryView */,
 				ACF862BC2B96E28400ACBA1E /* ExportView */,
 				5A2B9F832B69E06B005CA63F /* SettingsView */,
@@ -492,11 +488,31 @@
 		970157162BB929DB00335713 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				97FE2EA72BB93C6C006A3B8E /* Settings */,
 				97FE2EA52BB935A2006A3B8E /* LoadLastButton.swift */,
-				970157172BB929FC00335713 /* SettingsButton.swift */,
 				97FE2EA32BB93582006A3B8E /* StartButton.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		97FE2EA72BB93C6C006A3B8E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				970157172BB929FC00335713 /* SettingsButton.swift */,
+				5A2B9F842B69E06B005CA63F /* SettingsView.swift */,
+				5A2B9F852B69E06B005CA63F /* ResourceSelection.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		97FE2EA82BB9410F006A3B8E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				51805C112B81853700D17109 /* IntakeMedication.swift */,
+				51805C192B818A1A00D17109 /* IntakeDosage.swift */,
+				51805C1C2B818A4400D17109 /* IntakeMedicationInstance.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		AC2A17272B70684D00F560D0 /* SocialHistoryView */ = {

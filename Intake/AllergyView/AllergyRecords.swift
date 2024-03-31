@@ -88,7 +88,7 @@ struct AllergyList: View {
         .navigationTitle("Allergies")
         .navigationBarItems(trailing: addAllergyButton)
         .navigationBarItems(trailing: NavigationLink(destination: AllergyLLMAssistant()) {
-            Text("Chat")
+            Image(systemName: "bubble")
         })
     }
         

@@ -178,7 +178,7 @@ struct ScrollablePDF: View {
         @Environment(NavigationPathWrapper.self) private var navigationPath
         
         var body: some View {
-            Section(header: HeaderTitle(title: "Surgical History", nextView: NavigationViews.allergies)) {
+            Section(header: HeaderTitle(title: "Allergies", nextView: NavigationViews.allergies)) {
                 @Bindable var data = data
                 List($data.allergyData, id: \.id) { $item in
                     HStack {

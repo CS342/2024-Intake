@@ -11,7 +11,7 @@ import SwiftUI
 
 struct LoadLastButton: View {
     @Binding var navigationPath: NavigationPath
-    @Binding var disabled: Bool
+    var disabled: Bool
     @Environment(DataStore.self) private var data
     
     
@@ -39,7 +39,7 @@ struct LoadLastButton: View {
                 .background(disabled ? Color.blue.opacity(0.5) : Color.blue)
                 .cornerRadius(10)
         }
-        .disabled(disabled)
+            .disabled(disabled)
     }
     
     func loadDataStore() -> DataStore? {

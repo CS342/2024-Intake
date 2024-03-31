@@ -11,7 +11,6 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showSettings = false
-    @State var isButtonDisabled = true
 
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
@@ -30,7 +29,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                LoadLastButton(navigationPath: $navigationPath.path, disabled: $isButtonDisabled)
+                LoadLastButton(navigationPath: $navigationPath.path, disabled: !isLoadEnabled)
                     .padding(.bottom, 10)
                 StartButton(navigationPath: $navigationPath.path)
                     .padding(.top, 10)
@@ -59,14 +58,8 @@ struct HomeView: View {
                 }
             }
         }
-        .task {
-            let fetchData = loadDataStore()
-            
-            if fetchData != nil {
-                isButtonDisabled = false
-            } else {
-                isButtonDisabled = true
-            }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
         }
     }
     
@@ -91,22 +84,13 @@ struct HomeView: View {
         }
     }
     
-    
-    func loadDataStore() -> DataStore? {
-        let decoder = JSONDecoder()
+    private var isLoadEnabled: Bool {
         if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let pathWithFilename = documentDirectory.appendingPathComponent("DataStore.json")
-            if let data = try? Data(contentsOf: pathWithFilename) {
-                do {
-                    let dataStore = try decoder.decode(DataStore.self, from: data)
-                    print("successfully loaded")
-                    return dataStore
-                } catch {
-                    print("Failed to load DataStore: \(error)")
-                }
-            }
+            
+            return FileManager.default.fileExists(atPath: pathWithFilename.path())
         }
-        return nil
+        return false
     }
 }
 

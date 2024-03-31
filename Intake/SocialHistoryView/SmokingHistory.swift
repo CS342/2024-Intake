@@ -18,29 +18,27 @@ struct SmokingHistoryView: View {
 
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    initialSmokingQuestionSection
-                    
-                    if hasSmokedOrSmoking {
-                        followUpQuestionsSection
-                        additionalDetailsSection
-                    }
-                }
-                .navigationTitle("Social History")
-                .onDisappear {
-                    storeSmokingHistory()
-                }
-                if FeatureFlags.skipToScrollable {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
-                } else {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
+        VStack {
+            Form {
+                initialSmokingQuestionSection
+                
+                if hasSmokedOrSmoking {
+                    followUpQuestionsSection
+                    additionalDetailsSection
                 }
             }
+            if FeatureFlags.skipToScrollable {
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
+            } else {
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
+            }
         }
+            .navigationTitle("Social History")
+            .onDisappear {
+                storeSmokingHistory()
+            }
     }
 
     private var initialSmokingQuestionSection: some View {

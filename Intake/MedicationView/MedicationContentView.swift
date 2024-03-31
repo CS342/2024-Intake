@@ -16,8 +16,8 @@ struct MedicationContentView: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(DataStore.self) private var data
     @State private var presentSettings = false
-    
     @State private var medicationSettingsViewModel: IntakeMedicationSettingsViewModel?
+    
     
     var body: some View {
         VStack {
@@ -31,32 +31,29 @@ struct MedicationContentView: View {
                         navigationPath.path.append(NavigationViews.allergies)
                     }
                 }
-                .navigationTitle("Medications")
-                .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant()) {
-                    Text("Chat")
-                })
+                    .navigationTitle("Medications")
+                    .navigationBarItems(trailing: NavigationLink(destination: MedicationLLMAssistant()) {
+                        Image(systemName: "bubble")
+                    })
             } else {
                 ProgressView()
             }
         }
-        // Updates the medicationSettingsViewModel init if there's a change to the patient's fhirStore medications.
-//        .onChange(of: fhirStore.llmMedications) {
-//            medicationSettingsViewModel = .init(existingMedications: fhirStore.llmMedications)
-//        }
-        // Task to initialize the MedicationSettingsViewModel with the patient's existing fhirStore medications.
-        .task {
-            let patientMedications = fhirStore.llmMedications
-            self.medicationSettingsViewModel = IntakeMedicationSettingsViewModel(existingMedications: patientMedications)
-            var initialData: Set<IntakeMedicationInstance> = []
-            if let newMed = self.medicationSettingsViewModel?.medicationInstances {
-                initialData = newMed
+            // Task to initialize the MedicationSettingsViewModel with the patient's existing fhirStore medications.
+            .task {
+                let patientMedications = fhirStore.llmMedications
+                self.medicationSettingsViewModel = IntakeMedicationSettingsViewModel(existingMedications: patientMedications)
+                
+                if !data.medicationData.isEmpty {
+                    medicationSettingsViewModel?.medicationInstances = data.medicationData
+                }
             }
-            data.medicationData = initialData
-        }
+            .onDisappear {
+                data.medicationData = medicationSettingsViewModel?.medicationInstances ?? []
+            }
     }
-    
-    init() {}
 }
+
 
 #Preview {
     MedicationContentView()

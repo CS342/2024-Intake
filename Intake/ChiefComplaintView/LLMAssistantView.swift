@@ -16,7 +16,7 @@ import SwiftUI
 
 struct LLMAssistantView: View {
     @Environment(LLMOpenAITokenSaver.self) var tokenSaver
-    @State var showOnboarding = true
+    @AppStorage(StorageKeys.llmOnboardingComplete) var showOnboarding = true
     @State var greeting = true
     @Binding var pageTitle: String
     @Binding var initialQuestion: String

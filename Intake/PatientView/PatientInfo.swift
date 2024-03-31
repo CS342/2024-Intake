@@ -15,7 +15,7 @@ struct PatientInfo: View {
     @State private var firstName: String = ""
     @State private var birthdate: String = ""
     @State private var gender: String = "female"
-    @State private var sexOption: String = ""
+    @State private var sexOption: String = "Female"
     @State private var birthdateDateFormat = Date()
     
     @Environment(DataStore.self) private var data
@@ -25,27 +25,26 @@ struct PatientInfo: View {
     
     var body: some View {
         @Bindable var data = data
-        Form {
-            Section(header: Text("Patient Information")) {
-                HStack {
-                    TextField("Full name", text: $data.generalData.name)
-                    Spacer()
-                }
-                HStack {
+        
+        VStack {
+            Form {
+                Section(header: Text("Patient Information")) {
+                    TextField(text: $data.generalData.name) {
+                        Text("Full name")
+                    }
+                    
                     DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
                         .datePickerStyle(DefaultDatePickerStyle())
-                }
-                HStack {
-                    let options = ["Female", "Male"]
+                
                     Picker("Sex", selection: $sexOption) {
-                        ForEach(options, id: \.self) { option in
+                        ForEach(["Female", "Male"], id: \.self) { option in
                             Text(option).tag(option)
                         }
                     }
-                    .pickerStyle(MenuPickerStyle())
+                        .pickerStyle(MenuPickerStyle())
                 }
             }
-            Spacer()
+
             SubmitButtonWithAction(
                 nextView: FeatureFlags.skipToScrollable ? .pdfs : .chat,
                 onButtonTap: {
@@ -53,10 +52,11 @@ struct PatientInfo: View {
                 },
                 accessibilityIdentifier: "Next"
             )
+                .padding()
         }
-        .task {
-            loadData()
-        }
+            .task {
+                loadData()
+            }
     }
     
     

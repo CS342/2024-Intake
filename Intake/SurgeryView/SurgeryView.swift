@@ -104,7 +104,7 @@ struct SurgeryView: View {
             .navigationTitle("Surgical History")
             .navigationBarItems(trailing: AddSurgery(surgeries: $data.surgeries))
             .navigationBarItems(trailing: NavigationLink(destination: SurgeryLLMAssistant()) {
-                Text("Chat")
+                Image(systemName: "bubble")
             })
             .task {
                 sortSurgeriesByDate(surgeries: &data.surgeries)

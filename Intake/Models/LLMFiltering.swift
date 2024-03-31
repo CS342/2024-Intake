@@ -86,7 +86,6 @@ class LLMFiltering {
     }
     
     func filterSurgeries() async throws -> [SurgeryItem] {
-        @Environment(DataStore.self) var data
         let filteredNames = try await self.LLMFilter(names: [])
         let filteredSurgeries = data.surgeries.filter { self.containsAnyWords(item: $0.surgeryName, words: filteredNames) }
         var cleaned = filteredSurgeries

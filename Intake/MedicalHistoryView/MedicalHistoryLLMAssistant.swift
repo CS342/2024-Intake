@@ -64,7 +64,7 @@ struct MedicalHistoryLLMAssistant: View {
 
     @LLMSessionProvider<LLMOpenAISchema> var session: LLMOpenAISession
 
-    @State var showOnboarding = true
+    @AppStorage(StorageKeys.llmOnboardingComplete) var showOnboarding = true
     @State var greeting = true
     
     @State var medicalHistoryItemBox: MedicalHistoryItemBox
