@@ -16,13 +16,11 @@ class LaunchTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding"]
         app.launch()
     }
     
     func testApplicationLaunch() throws {
         let app = XCUIApplication()
         XCTAssertEqual(app.state, .runningForeground)
-        app.buttons["Start"].tap()
     }
 }
