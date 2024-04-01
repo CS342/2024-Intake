@@ -31,11 +31,3 @@ jobs:
       googleserviceinfoplistpath: 'Intake/Supporting Files/GoogleService-Info.plist'
       setupsigning: true
       fastlanelane: beta
-  deployfirebase:
-    name: Deploy Firebase Project
-    needs: iosapptestflightdeployment
-    uses: StanfordBDHG/.github/.github/workflows/firebase-deploy.yml@v2
-    with:
-      arguments: '--debug'
-    secrets:
-      GOOGLE_APPLICATION_CREDENTIALS_BASE64: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
