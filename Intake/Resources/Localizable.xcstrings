@@ -24,6 +24,7 @@
 
     },
     "ACCOUNT_NEXT" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -34,6 +35,7 @@
       }
     },
     "ACCOUNT_SETUP_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -44,6 +46,7 @@
       }
     },
     "ACCOUNT_SIGNED_IN_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -54,6 +57,7 @@
       }
     },
     "ACCOUNT_SUBTITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -65,6 +69,7 @@
     },
     "ACCOUNT_TITLE" : {
       "comment" : "MARK: Account",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -77,6 +82,9 @@
     "Active" : {
 
     },
+    "Active Box" : {
+
+    },
     "Add Allergy Field" : {
 
     },
@@ -86,7 +94,7 @@
     "Add_allergy" : {
 
     },
-    "Add_allergy" : {
+    "add_condition" : {
 
     },
     "ADD_REACTION" : {
@@ -140,9 +148,6 @@
     "Back" : {
 
     },
-    "Chat" : {
-
-    },
     "Chief Complaint:" : {
 
     },
@@ -159,6 +164,7 @@
     },
     "CLOSE" : {
       "comment" : "MARK: General",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -169,6 +175,7 @@
       }
     },
     "COMPLETED_TASK_LABEL %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -179,6 +186,9 @@
       }
     },
     "Condition" : {
+
+    },
+    "Condition Box" : {
 
     },
     "CONSENT_LOADING_ERROR" : {
@@ -192,6 +202,7 @@
       }
     },
     "CONTACTS_NAVIGATION_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -214,6 +225,7 @@
       }
     },
     "CONTRIBUTIONS_LIST_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -224,6 +236,7 @@
       }
     },
     "CONTRIBUTIONS_LIST_FOOTER" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -234,6 +247,7 @@
       }
     },
     "CONTRIBUTIONS_LIST_HEADER" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -265,9 +279,6 @@
 
     },
     "DELETE_SURGERY" : {
-
-    },
-    "Do you currently smoke or have you smoked in the past?" : {
 
     },
     "Download your medical records from your health system." : {
@@ -383,6 +394,7 @@
 
     },
     "LICENSE_INFO_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -572,6 +584,7 @@
       }
     },
     "OLIVER_AALAMI_BIO" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -615,6 +628,7 @@
 
     },
     "PROJECT_LICENSE_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -625,6 +639,7 @@
       }
     },
     "QUESTIONNAIRE_DESCRIPTION" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -635,6 +650,7 @@
       }
     },
     "QUESTIONNAIRE_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -651,6 +667,7 @@
 
     },
     "Repository Link" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -676,6 +693,7 @@
 
     },
     "SCHEDULE_LIST_TITLE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -764,10 +782,23 @@
     "Surgery Assistant" : {
 
     },
+    "SURGERY_DATE" : {
+
+    },
+    "SURGERY_LOCATION" : {
+
+    },
+    "SURGERY_NAME" : {
+
+    },
+    "SURGERY_STATUS" : {
+
+    },
     "Surgical History" : {
 
     },
     "TASK_CONTEXT_ACTION_QUESTIONNAIRE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -778,6 +809,7 @@
       }
     },
     "TASK_CONTEXT_ACTION_TEST" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -788,6 +820,7 @@
       }
     },
     "TASK_LABEL %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

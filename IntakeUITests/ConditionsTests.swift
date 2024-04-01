@@ -1,9 +1,4 @@
 //
-//  ConditionsTests.swift
-//  IntakeUITests
-//
-//  Created by Kate Callon on 3/14/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -14,7 +9,8 @@
 import Foundation
 import XCTest
 
-// Due to the nature of how conditions are added, this was difficult to test since there are an arbitrary number of rows due to LLM filtering. Therefore, this just checks the existence of the buttons.
+
+/// Due to the nature of how conditions are added, this was difficult to test since there are an arbitrary number of rows due to LLM filtering. Therefore, this just checks the existence of the buttons.
 class ConditionTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -22,14 +18,14 @@ class ConditionTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--disableFirebase", "--testPatient", "--testCondition", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--testPatient", "--testCondition", "--skipToScrollable"]
         app.launch()
     }
     
     func testConditions() throws {
         let app = XCUIApplication()
         
-        // Small workaround to wait until the madications loaded into main memory
+        // Small workaround to wait until the medications loaded into main memory
         sleep(10)
         
         XCTAssertEqual(app.state, .runningForeground)
@@ -37,7 +33,7 @@ class ConditionTests: XCTestCase {
         
         sleep(5)
         
-        XCTAssertTrue(app.navigationBars["Medical History"].buttons["Chat"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Medical History"].buttons["Chat with LLM Assistant"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars["Medical History"].buttons["add_condition"].waitForExistence(timeout: 2))
         app.navigationBars["Medical History"].buttons["add_condition"].tap()
     }

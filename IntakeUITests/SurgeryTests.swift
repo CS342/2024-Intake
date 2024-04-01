@@ -1,9 +1,4 @@
 //
-//  SurgeryTests.swift
-//  IntakeUITests
-//
-//  Created by Kate Callon on 3/14/24.
-//
 // This source file is part of the Intake based on the Stanford Spezi Template Application project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University
@@ -14,7 +9,7 @@
 import Foundation
 import XCTest
 
-// This tests adding a new surgery, filling out its information, and seeing if it persists. 
+/// This tests adding a new surgery, filling out its information, and seeing if it persists. 
 class SurgeryTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -22,7 +17,7 @@ class SurgeryTests: XCTestCase {
         continueAfterFailure = false
         
         let app = XCUIApplication()
-        app.launchArguments = ["--skipOnboarding", "--disableFirebase", "--testPatient", "--testSurgery", "--skipToScrollable"]
+        app.launchArguments = ["--skipOnboarding", "--testPatient", "--testSurgery", "--skipToScrollable"]
         app.launch()
     }
     
@@ -37,7 +32,7 @@ class SurgeryTests: XCTestCase {
         
         sleep(5)
         
-        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["Chat"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["Chat with LLM Assistant"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].waitForExistence(timeout: 2))
         app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].tap()
         app.textFields["SURGERY_NAME"].tap()
