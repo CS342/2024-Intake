@@ -91,14 +91,23 @@ struct SurgeryView: View {
     var body: some View {
         @Bindable var data = data
         if data.surgeriesLoaded {
-            VStack {
-                surgeryForm
-                if FeatureFlags.skipToScrollable {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
-                } else {
-                    SubmitButton(nextView: NavigationViews.medication)
-                        .padding()
+            ZStack {
+                VStack {
+                    surgeryForm
+                    
+                    Spacer(minLength: 62)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    if FeatureFlags.skipToScrollable {
+                        SubmitButton(nextView: NavigationViews.pdfs)
+                            .padding()
+                    } else {
+                        SubmitButton(nextView: NavigationViews.medication)
+                            .padding()
+                    }
                 }
             }
             .navigationTitle("Surgical History")
@@ -121,6 +130,7 @@ struct SurgeryView: View {
     private var surgeryElements: some View {
         Group {
             @Bindable var data = data
+            
             ForEach($data.surgeries) { $item in
                 NavigationLink(destination: InspectSurgeryView(surgery: $item, isNew: false)) {
                     Label(item.surgeryName, systemImage: "arrowtriangle.right")
@@ -134,6 +144,7 @@ struct SurgeryView: View {
     private var surgeryForm: some View {
         Form {
             @Bindable var data = data
+            
             Section(header: Text("Please add your past surgeries")) {
                 if data.surgeries.isEmpty {
                     Text("Select + to add a surgery")

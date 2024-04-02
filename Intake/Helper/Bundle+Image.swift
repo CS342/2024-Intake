@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 extension Foundation.Bundle {
     /// Loads an image from the `Bundle` instance.
     /// - Parameters:

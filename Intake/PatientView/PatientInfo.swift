@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import Combine
 import SpeziFHIR
 import SwiftUI
 
@@ -17,16 +18,16 @@ struct PatientInfo: View {
     @State private var gender: String = "female"
     @State private var sexOption: String = "Female"
     @State private var birthdateDateFormat = Date()
+    @State private var keyboardHeight: CGFloat = 0
     
     @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(FHIRStore.self) private var fhirStore
     
     
     var body: some View {
         @Bindable var data = data
         
-        VStack {
+        ZStack {
             Form {
                 Section(header: Text("Patient Information")) {
                     TextField(text: $data.generalData.name) {
@@ -35,24 +36,28 @@ struct PatientInfo: View {
                     
                     DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
                         .datePickerStyle(DefaultDatePickerStyle())
-                
+                    
                     Picker("Sex", selection: $sexOption) {
                         ForEach(["Female", "Male"], id: \.self) { option in
                             Text(option).tag(option)
                         }
                     }
-                        .pickerStyle(MenuPickerStyle())
+                    .pickerStyle(MenuPickerStyle())
                 }
             }
-
-            SubmitButtonWithAction(
-                nextView: FeatureFlags.skipToScrollable ? .pdfs : .chat,
-                onButtonTap: {
-                    updateData()
-                },
-                accessibilityIdentifier: "Next"
-            )
-                .padding()
+            
+            VStack {
+                Spacer()
+                
+                SubmitButtonWithAction(
+                    nextView: FeatureFlags.skipToScrollable ? .pdfs : .chat,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
+                    .padding()
+            }
         }
             .task {
                 loadData()
@@ -162,8 +167,18 @@ extension String {
 }
 
 
-struct PatientInfo_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    @State var dataStore = DataStore()
+    @State var fhirStore = FHIRStore()
+    @State var navigationPath = NavigationPathWrapper()
+    @State var reachedEnd = ReachedEndWrapper()
+    
+    
+    return NavigationStack {
         PatientInfo()
     }
+        .environment(dataStore)
+        .environment(fhirStore)
+        .environment(navigationPath)
+        .environment(reachedEnd)
 }

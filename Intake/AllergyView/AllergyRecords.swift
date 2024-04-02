@@ -49,18 +49,26 @@ struct AllergyList: View {
 
     var body: some View {
         if loaded.allergyData {
-            VStack {
-                allergyForm
-                /**/
-                if FeatureFlags.skipToScrollable {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
-                } else if data.generalData.sex == "Female" {
-                    SubmitButton(nextView: NavigationViews.menstrual)
-                        .padding()
-                } else {
-                    SubmitButton(nextView: NavigationViews.smoking)
-                        .padding()
+            ZStack {
+                VStack {
+                    allergyForm
+                    
+                    Spacer(minLength: 62)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    if FeatureFlags.skipToScrollable {
+                        SubmitButton(nextView: NavigationViews.pdfs)
+                            .padding()
+                    } else if data.generalData.sex == "Female" {
+                        SubmitButton(nextView: NavigationViews.menstrual)
+                            .padding()
+                    } else {
+                        SubmitButton(nextView: NavigationViews.smoking)
+                            .padding()
+                    }
                 }
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)

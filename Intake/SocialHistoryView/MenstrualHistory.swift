@@ -21,39 +21,48 @@ struct SocialHistoryQuestionView: View {
     
     
     var body: some View {
-        VStack {
-            if data.generalData.sex == "Female" {
-                Form {
-                    Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
-                        @Bindable var data = data
-                        DatePicker("Last period's start date", selection: $startDate, in: ...Date(), displayedComponents: .date)
-                            .datePickerStyle(DefaultDatePickerStyle())
+        if data.generalData.sex == "Female" {
+            ZStack {
+                VStack {
+                    Form {
+                        Section(header: Text("Menstrual Information").foregroundColor(.gray)) {
+                            @Bindable var data = data
+                            DatePicker("Last period's start date", selection: $startDate, in: ...Date(), displayedComponents: .date)
+                                .datePickerStyle(DefaultDatePickerStyle())
+                            
+                            DatePicker("Last period's end date", selection: $endDate, in: ...Date(), displayedComponents: .date)
+                                .datePickerStyle(DefaultDatePickerStyle())
+                        }
                         
-                        DatePicker("Last period's end date", selection: $endDate, in: ...Date(), displayedComponents: .date)
-                            .datePickerStyle(DefaultDatePickerStyle())
+                        Section(header: Text("Additional Symptoms").foregroundColor(.gray)) {
+                            @Bindable var data = data
+                            TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
+                        }
                     }
                     
-                    Section(header: Text("Additional Symptoms").foregroundColor(.gray)) {
-                        @Bindable var data = data
-                        TextField("Ex: Heavy bleeding on second day, fatigue...", text: $additionalDetails)
+                    Spacer(minLength: 62)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    if FeatureFlags.skipToScrollable {
+                        SubmitButton(nextView: NavigationViews.pdfs)
+                            .padding()
+                    } else {
+                        SubmitButton(nextView: NavigationViews.smoking)
+                            .padding()
                     }
                 }
-                .navigationTitle("Menstrual History")
-                .task {
-                    startDate = data.menstrualHistory.startDate
-                    endDate = data.menstrualHistory.endDate
-                    additionalDetails = data.menstrualHistory.additionalDetails
-                }
-                .onDisappear {
-                    data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
-                }
-                if FeatureFlags.skipToScrollable {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
-                } else {
-                    SubmitButton(nextView: NavigationViews.smoking)
-                        .padding()
-                }
+            }
+            .navigationTitle("Menstrual History")
+            .task {
+                startDate = data.menstrualHistory.startDate
+                endDate = data.menstrualHistory.endDate
+                additionalDetails = data.menstrualHistory.additionalDetails
+            }
+            .onDisappear {
+                data.menstrualHistory = MenstrualHistoryItem(startDate: startDate, endDate: endDate, additionalDetails: additionalDetails)
             }
         }
     }

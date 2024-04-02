@@ -18,21 +18,30 @@ struct SmokingHistoryView: View {
 
     
     var body: some View {
-        VStack {
-            Form {
-                initialSmokingQuestionSection
-                
-                if hasSmokedOrSmoking {
-                    followUpQuestionsSection
-                    additionalDetailsSection
+        ZStack {
+            VStack {
+                Form {
+                    initialSmokingQuestionSection
+                    
+                    if hasSmokedOrSmoking {
+                        followUpQuestionsSection
+                        additionalDetailsSection
+                    }
                 }
+                
+                Spacer(minLength: 62)
             }
-            if FeatureFlags.skipToScrollable {
-                SubmitButton(nextView: NavigationViews.pdfs)
-                    .padding()
-            } else {
-                SubmitButton(nextView: NavigationViews.pdfs)
-                    .padding()
+            
+            VStack {
+                Spacer()
+                
+                if FeatureFlags.skipToScrollable {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                } else {
+                    SubmitButton(nextView: NavigationViews.pdfs)
+                        .padding()
+                }
             }
         }
             .navigationTitle("Social History")

@@ -268,22 +268,30 @@ struct ScrollablePDF: View {
     
     
     var body: some View {
-        VStack {
-            Form {
-                PatientInfo()
-                ChiefComplaint()
-                ConditionSection()
-                SurgerySection()
-                MedicationSection()
-                AllergySection()
-                if data.generalData.sex == "Female" {
-                    MenstrualSection()
+        ZStack {
+            VStack {
+                Form {
+                    PatientInfo()
+                    ChiefComplaint()
+                    ConditionSection()
+                    SurgerySection()
+                    MedicationSection()
+                    AllergySection()
+                    if data.generalData.sex == "Female" {
+                        MenstrualSection()
+                    }
+                    SmokingSection()
                 }
-                SmokingSection()
+                
+                Spacer(minLength: 62)
             }
             
-            ExportButton()
-                .padding()
+            VStack {
+                Spacer()
+                
+                ExportButton()
+                    .padding()
+            }
         }
             .navigationTitle("Patient Form")
             .task {
