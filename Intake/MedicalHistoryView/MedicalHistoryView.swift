@@ -28,14 +28,23 @@ struct MedicalHistoryView: View {
     
     var body: some View {
         if loaded.conditionData {
-            VStack {
-                medicalHistoryForm
-                if FeatureFlags.testCondition {
-                    SubmitButton(nextView: NavigationViews.pdfs)
-                        .padding()
-                } else {
-                    SubmitButton(nextView: NavigationViews.surgical)
-                        .padding()
+            ZStack {
+                VStack {
+                    medicalHistoryForm
+                    
+                    Spacer(minLength: 62)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    if FeatureFlags.testCondition {
+                        SubmitButton(nextView: NavigationViews.pdfs)
+                            .padding()
+                    } else {
+                        SubmitButton(nextView: NavigationViews.surgical)
+                            .padding()
+                    }
                 }
             }
             .sheet(isPresented: $showingChat, content: chatSheetView)

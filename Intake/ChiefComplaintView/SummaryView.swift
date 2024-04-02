@@ -30,10 +30,19 @@ struct SummaryView: View {
 
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            ComplaintForm(chiefComplaint: $chiefComplaint)
-            SubmitButton(nextView: .medical)
-                .padding()
+        ZStack {
+            VStack {
+                ComplaintForm(chiefComplaint: $chiefComplaint)
+                
+                Spacer(minLength: 62)
+            }
+            
+            VStack {
+                Spacer()
+                
+                SubmitButton(nextView: NavigationViews.medical)
+                    .padding()
+            }
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SkipButton: View {
     var action: () -> Void
 
@@ -27,6 +28,8 @@ struct SubmitButton: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(ReachedEndWrapper.self) private var end
     var nextView: NavigationViews
+    
+    
     var body: some View {
         Button(action: {
             if end.reachedEnd {

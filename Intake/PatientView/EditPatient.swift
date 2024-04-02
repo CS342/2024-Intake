@@ -19,7 +19,7 @@ struct EditPatientView: View {
     var body: some View {
         @Bindable var data = data
         
-        VStack {
+        ZStack {
             Form {
                 Section(header: Text("Name")) {
                     TextField("Name", text: $data.generalData.name)
@@ -35,7 +35,12 @@ struct EditPatientView: View {
                 }
             }
             
-            SubmitButton(nextView: NavigationViews.pdfs)
+            VStack {
+                Spacer()
+                
+                SubmitButton(nextView: NavigationViews.pdfs)
+                    .padding()
+            }
         }
     }
 }

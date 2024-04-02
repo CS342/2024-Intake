@@ -19,40 +19,47 @@ struct PatientInfo: View {
     @State private var birthdateDateFormat = Date()
     
     @Environment(DataStore.self) private var data
-    @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(FHIRStore.self) private var fhirStore
     
     
     var body: some View {
         @Bindable var data = data
         
-        VStack {
-            Form {
-                Section(header: Text("Patient Information")) {
-                    TextField(text: $data.generalData.name) {
-                        Text("Full name")
-                    }
-                    
-                    DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
-                        .datePickerStyle(DefaultDatePickerStyle())
-                
-                    Picker("Sex", selection: $sexOption) {
-                        ForEach(["Female", "Male"], id: \.self) { option in
-                            Text(option).tag(option)
+        ZStack {
+            VStack {
+                Form {
+                    Section(header: Text("Patient Information")) {
+                        TextField(text: $data.generalData.name) {
+                            Text("Full name")
                         }
-                    }
+                        
+                        DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
+                            .datePickerStyle(DefaultDatePickerStyle())
+                        
+                        Picker("Sex", selection: $sexOption) {
+                            ForEach(["Female", "Male"], id: \.self) { option in
+                                Text(option).tag(option)
+                            }
+                        }
                         .pickerStyle(MenuPickerStyle())
+                    }
                 }
+                
+                Spacer(minLength: 62)
             }
-
-            SubmitButtonWithAction(
-                nextView: FeatureFlags.skipToScrollable ? .pdfs : .chat,
-                onButtonTap: {
-                    updateData()
-                },
-                accessibilityIdentifier: "Next"
-            )
-                .padding()
+            
+            VStack {
+                Spacer()
+                
+                SubmitButtonWithAction(
+                    nextView: FeatureFlags.skipToScrollable ? .pdfs : .chat,
+                    onButtonTap: {
+                        updateData()
+                    },
+                    accessibilityIdentifier: "Next"
+                )
+                    .padding()
+            }
         }
             .task {
                 loadData()
@@ -162,8 +169,18 @@ extension String {
 }
 
 
-struct PatientInfo_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    @State var dataStore = DataStore()
+    @State var fhirStore = FHIRStore()
+    @State var navigationPath = NavigationPathWrapper()
+    @State var reachedEnd = ReachedEndWrapper()
+    
+    
+    return NavigationStack {
         PatientInfo()
     }
+        .environment(dataStore)
+        .environment(fhirStore)
+        .environment(navigationPath)
+        .environment(reachedEnd)
 }
