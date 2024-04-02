@@ -5,7 +5,6 @@
 // SPDX-License-Identifier: MIT
 //
 
-import Combine
 import SpeziFHIR
 import SwiftUI
 
@@ -18,7 +17,6 @@ struct PatientInfo: View {
     @State private var gender: String = "female"
     @State private var sexOption: String = "Female"
     @State private var birthdateDateFormat = Date()
-    @State private var keyboardHeight: CGFloat = 0
     
     @Environment(DataStore.self) private var data
     @Environment(FHIRStore.self) private var fhirStore
@@ -28,22 +26,26 @@ struct PatientInfo: View {
         @Bindable var data = data
         
         ZStack {
-            Form {
-                Section(header: Text("Patient Information")) {
-                    TextField(text: $data.generalData.name) {
-                        Text("Full name")
-                    }
-                    
-                    DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
-                        .datePickerStyle(DefaultDatePickerStyle())
-                    
-                    Picker("Sex", selection: $sexOption) {
-                        ForEach(["Female", "Male"], id: \.self) { option in
-                            Text(option).tag(option)
+            VStack {
+                Form {
+                    Section(header: Text("Patient Information")) {
+                        TextField(text: $data.generalData.name) {
+                            Text("Full name")
                         }
+                        
+                        DatePicker("Date of Birth:", selection: $birthdateDateFormat, in: ...Date(), displayedComponents: .date)
+                            .datePickerStyle(DefaultDatePickerStyle())
+                        
+                        Picker("Sex", selection: $sexOption) {
+                            ForEach(["Female", "Male"], id: \.self) { option in
+                                Text(option).tag(option)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
                     }
-                    .pickerStyle(MenuPickerStyle())
                 }
+                
+                Spacer(minLength: 62)
             }
             
             VStack {
