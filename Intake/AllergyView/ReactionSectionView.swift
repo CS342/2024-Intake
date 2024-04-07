@@ -20,12 +20,14 @@ struct ReactionSectionView: View {
         Form { // Use Form instead of List
             Section(header: headerTitle) {
                 @Bindable var data = data
+                
                 ForEach($data.allergyData[index].reaction) { $item in
                     HStack {
                         TextField("Reactions", text: $item.reaction)
                     }
                 }
-                .onDelete(perform: delete)
+                    .onDelete(perform: delete)
+                
                 Button(action: {
                     data.allergyData[index].reaction.append(ReactionItem(reaction: ""))
                 }) {

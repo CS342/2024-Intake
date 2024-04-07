@@ -68,7 +68,7 @@ struct HomeView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 100, height: 100)
-            .foregroundColor(.blue)
+            .foregroundColor(.accentColor)
             .accessibilityLabel(Text("HOME_LOGO"))
     }
     

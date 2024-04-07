@@ -78,10 +78,6 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--disableFirebase"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "--testCondition"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -111,7 +107,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--skipOnboarding"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testSchedule"
@@ -119,10 +115,6 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--testMedication"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--useFirebaseEmulator"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>

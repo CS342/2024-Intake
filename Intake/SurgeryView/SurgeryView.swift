@@ -35,7 +35,8 @@ struct InspectSurgeryView: View {
     @Environment(NavigationPathWrapper.self) var navigationPath
     @Environment(\.dismiss) private var dismiss
     
-    var isNew: Bool
+    let isNew: Bool
+    
     
     var body: some View {
         Form {
@@ -57,22 +58,23 @@ struct InspectSurgeryView: View {
             }
         }
         .navigationBarTitle(isNew ? "New Surgery" : "Edit Surgery")
-        .navigationBarItems(trailing: !isNew ? deleteButton : nil)
+        .navigationBarItems(trailing: saveButton)
     }
     
-    private var deleteButton: some View {
+    private var saveButton: some View {
         Button(action: {
-            if let index = data.surgeries.firstIndex(of: surgery) {
+            if !isNew,
+               let index = data.surgeries.firstIndex(of: surgery) {
                 data.surgeries.remove(at: index)
             }
             dismiss()
         }) {
-            Text("Delete")
+            Text(isNew ? "Done" : "Delete")
                 .font(.headline)
-                .foregroundColor(.blue)
-                .padding(8) // Add padding
-                .cornerRadius(8) // Round the corners
-                .accessibilityLabel(Text("DELETE_SURGERY"))
+                .foregroundColor(.accentColor)
+                .padding(8)
+                .cornerRadius(8)
+                .accessibilityLabel(isNew ? Text("Done") : Text("Delete"))
         }
     }
 }

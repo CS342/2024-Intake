@@ -36,7 +36,7 @@ struct LoadLastButton: View {
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
                 .padding()
-                .background(disabled ? Color.blue.opacity(0.5) : Color.blue)
+                .background(disabled ? .accent.opacity(0.5) : .accent)
                 .cornerRadius(10)
         }
             .disabled(disabled)

@@ -23,7 +23,7 @@ struct SettingsButton: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.accentColor)
                     .accessibilityLabel("SETTINGS")
             }
         )

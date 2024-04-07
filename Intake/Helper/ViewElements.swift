@@ -15,7 +15,7 @@ struct SkipButton: View {
         Button(action: action) {
             Text("Skip")
                 .font(.headline)
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 .padding(8) // Add padding for better appearance
                 .cornerRadius(8) // Round the corners
         }
@@ -42,7 +42,7 @@ struct SubmitButton: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
+                .background(.accent)
                 .cornerRadius(8)
         }
     }
@@ -68,7 +68,7 @@ struct SubmitButtonWithAction: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
+                .background(.accent)
                 .cornerRadius(8)
         }
     }

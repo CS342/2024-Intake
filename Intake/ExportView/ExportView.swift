@@ -205,10 +205,6 @@ struct ExportView: View {
                 }
             }
         }
-            .if(isSharing, transform: { view in
-                view
-                    .padding()
-            })
     }
     // swiftlint:enable closure_body_length
     
@@ -221,7 +217,7 @@ struct ExportView: View {
     
     @MainActor
     func exportToPDF() async -> PDFDocument? {
-        let renderer = ImageRenderer(content: self.wrappedBody)
+        let renderer = ImageRenderer(content: self.wrappedBody.padding())
         
         let proposedHeightOptional = renderer.uiImage?.size.height
         

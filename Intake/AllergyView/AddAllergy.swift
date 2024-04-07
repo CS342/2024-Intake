@@ -15,19 +15,32 @@ struct EditAllergyView: View {
     @Environment(NavigationPathWrapper.self) private var navigationPath
     @Environment(\.presentationMode) var presentationMode
     
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             let index = data.allergyData.firstIndex(of: item) ?? 0
             @Bindable var data = data
-            TextField("Allergy Name", text: $data.allergyData[index].allergy)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding([.horizontal, .top])
-                .accessibilityLabel("Add Allergy Field")
-            ReactionSectionView(index: index)
-            Spacer()
-            saveButton
+            
+            ZStack {
+                VStack {
+                    TextField("Allergy Name", text: $data.allergyData[index].allergy)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .padding([.horizontal, .top])
+                        .accessibilityLabel("Add Allergy Field")
+                    
+                    ReactionSectionView(index: index)
+                    
+                    Spacer(minLength: 62)
+                }
+                
+                VStack {
+                    Spacer()
+                    
+                    saveButton
+                }
+            }
         }
-        .navigationBarTitle("Allergy Name")
+        .navigationBarTitle("Allergy")
     }
     
     private var saveButton: some View {
@@ -38,17 +51,9 @@ struct EditAllergyView: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
+                .background(.accent)
+                .cornerRadius(8)
         }
-        .padding()
+            .padding()
     }
 }
-
-
-// #Preview {
-//    EditAllergyView(allergyItem: AllergyItem(allergy: "", reaction: []), showingReaction: <#T##Binding<Bool>#>, allergyRecords: <#T##Binding<[AllergyItem]>#>, showingReaction: .constant(true), allergyRecords: .constant([]))
-//        .previewWith {
-//            FHIRStore()
-//        }
-// }
