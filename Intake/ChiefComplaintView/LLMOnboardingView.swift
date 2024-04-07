@@ -20,9 +20,6 @@ struct LLMOnboardingView: View {
         OnboardingStack(onboardingFlowComplete: !$showOnboarding) {
             // OpenAI Onboarding
             LLMOpenAITokenOnboarding()
-
-            // Local Onboarding
-            // LLMLocalDownloadOnboarding()
         }
             .interactiveDismissDisabled(showOnboarding)
     }

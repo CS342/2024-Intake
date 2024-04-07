@@ -36,7 +36,7 @@ struct StartButton: View {
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .padding()
-                .background(Color.blue)
+                .background(.accent)
                 .cornerRadius(10)
         }.accessibilityIdentifier("Create New Form")
     }

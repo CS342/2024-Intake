@@ -25,7 +25,6 @@ struct ChatButton: View {
             Image(systemName: "message")
                 .font(.largeTitle)
                 .padding()
-                .background(Color.blue)
                 .foregroundColor(Color.white)
                 .clipShape(Circle())
                 .accessibilityLabel("Message")

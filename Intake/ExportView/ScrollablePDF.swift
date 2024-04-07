@@ -24,7 +24,7 @@ struct HeaderTitle: View {
                 navigationPath.path.append(nextView)
             }) {
                 Text("EDIT")
-                    .foregroundColor(.blue)
+                    .foregroundColor(.accentColor)
                     .padding()
                     .cornerRadius(10)
             }
@@ -65,7 +65,7 @@ struct ScrollablePDF: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.blue)
+                    .background(.accent)
                     .cornerRadius(8)
             }
         }

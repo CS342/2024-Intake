@@ -130,6 +130,9 @@
     "Allergies:" : {
 
     },
+    "Allergy" : {
+
+    },
     "Allergy Assistant" : {
 
     },
@@ -281,7 +284,7 @@
     "DELETE_REACTION" : {
 
     },
-    "DELETE_SURGERY" : {
+    "Done" : {
 
     },
     "Download your medical records from your health system." : {
