@@ -28,7 +28,6 @@ jobs:
     uses: CS342/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       artifactname: Intake.xcresult
-      runsonlabels: '["macOS", "self-hosted"]'
       customcommand: "fastlane test"
   uploadcoveragereport:
     name: Upload Coverage Report
@@ -36,3 +35,5 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
       coveragereports: Intake.xcresult
+    secrets:
+      token: ${{ secrets.CODECOV_TOKEN }}

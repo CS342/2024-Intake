@@ -9,6 +9,15 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Intake.xcodeproj",
+          "identifier" : "653A254C283387FE005D4D48",
+          "name" : "Intake"
+        }
+      ]
+    },
     "targetForVariableExpansion" : {
       "containerPath" : "container:Intake.xcodeproj",
       "identifier" : "653A254C283387FE005D4D48",

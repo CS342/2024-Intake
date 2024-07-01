@@ -92,7 +92,7 @@ struct MedicalHistoryLLMAssistant: View {
             }
             
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your medical history?")
+                let assistantMessage = LLMContextEntity(role: .assistant(), content: "Do you have any questions about your medical history?")
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false

@@ -87,7 +87,7 @@ struct AllergyLLMAssistant: View {
             }
             
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your allergies?")
+                let assistantMessage = LLMContextEntity(role: .assistant(), content: "Do you have any questions about your allergies?")
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false

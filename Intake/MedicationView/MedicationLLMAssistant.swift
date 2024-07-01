@@ -37,7 +37,7 @@ struct MedicationLLMAssistant: View {
             checkToken()
             
             if greeting {
-                let assistantMessage = ChatEntity(role: .assistant, content: "Do you have any questions about your medications?")
+                let assistantMessage = LLMContextEntity(role: .assistant(), content: "Do you have any questions about your medications?")
                 session.context.insert(assistantMessage, at: 0)
             }
             greeting = false
