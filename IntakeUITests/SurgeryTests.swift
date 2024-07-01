@@ -30,10 +30,8 @@ class SurgeryTests: XCTestCase {
         XCTAssertEqual(app.state, .runningForeground)
         app.buttons["Create New Form"].tap()
         
-        sleep(5)
-        
-        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["Chat with LLM Assistant"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["Chat with LLM Assistant"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].waitForExistence(timeout: 5))
         app.navigationBars["Surgical History"].buttons["ADD_SURGERY"].tap()
         app.textFields["SURGERY_NAME"].tap()
         app.textFields["SURGERY_NAME"].typeText("\u{8}\u{8}\u{8}\u{8}\u{8}\u{8}\u{8}")

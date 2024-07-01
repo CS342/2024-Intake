@@ -35,3 +35,5 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
       coveragereports: Intake.xcresult
+    secrets:
+      token: ${{ secrets.CODECOV_TOKEN }}
