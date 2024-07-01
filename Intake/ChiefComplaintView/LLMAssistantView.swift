@@ -37,7 +37,7 @@ struct LLMAssistantView: View {
                 checkToken()
                 
                 if greeting {
-                    let assistantMessage = ChatEntity(role: .assistant, content: initialQuestion)
+                    let assistantMessage = LLMContextEntity(role: .assistant(), content: initialQuestion)
                     session.context.insert(assistantMessage, at: 0)
                 }
                 greeting = false
