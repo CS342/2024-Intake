@@ -18,6 +18,7 @@ jobs:
   buildandtest:
     name: Build and Test
     uses: ./.github/workflows/build-and-test.yml
+    secrets: inherit
     permissions:
       security-events: write
       actions: read
